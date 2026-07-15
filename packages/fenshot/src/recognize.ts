@@ -41,9 +41,11 @@ export interface RecognizerOptions {
    *  in this package under `model/`). Serve it as a static asset and
    *  point here, e.g. "/models/chess-tiles-v2.onnx". */
   modelUrl: string;
-  /** Directory URL of the onnxruntime-web wasm assets
-   *  (`ort-wasm-simd-threaded.{mjs,wasm}`), e.g. "/ort/". */
-  wasmPaths: string;
+  /** Location of the onnxruntime-web wasm assets. Either a directory
+   *  URL prefix (e.g. "/ort/") or exact per-file URLs, which is what
+   *  bundlers like Vite need:
+   *  `{ mjs: mjsUrl, wasm: wasmUrl }` from `?url` imports. */
+  wasmPaths: string | { mjs: string; wasm: string };
 }
 
 export interface Recognizer {
@@ -72,6 +74,43 @@ function imageToGray(img: HTMLImageElement | ImageBitmap): GrayImage {
   ctx.drawImage(img, 0, 0, cw, ch);
   const data = ctx.getImageData(0, 0, cw, ch);
   return rgbaToGray(data.data, cw, ch);
+}
+
+export type TileClassifier = (corners: BoardCorners) => Promise<RecognitionResult>;
+
+/**
+ * Pure recognition core: detect corners, classify, arbitrate against
+ * the grid-snap candidate. Platform-independent (no canvas, no ONNX);
+ * the classifier is injected. Exercised directly by the golden test
+ * suite and usable from Node with any rasterizer.
+ */
+export async function recognizeGray(
+  gray: GrayImage,
+  classify: TileClassifier,
+): Promise<BoardScanResult | null> {
+  const corners = findChessboardCorners(gray);
+  if (!corners) return null;
+
+  let bestCorners = corners;
+  let best = await classify(corners);
+  const snapped = snapCorners(gray, corners);
+  if (
+    snapped.x0 !== corners.x0 ||
+    snapped.y0 !== corners.y0 ||
+    snapped.x1 !== corners.x1 ||
+    snapped.y1 !== corners.y1
+  ) {
+    const snappedRead = await classify(snapped);
+    if (snappedRead.meanConfidence > best.meanConfidence) {
+      best = snappedRead;
+      bestCorners = snapped;
+    }
+  }
+  return {
+    ...best,
+    corners: bestCorners,
+    reliable: best.minConfidence >= CONFIDENCE_FLOOR,
+  };
 }
 
 export function createRecognizer(options: RecognizerOptions): Recognizer {
@@ -112,36 +151,13 @@ export function createRecognizer(options: RecognizerOptions): Recognizer {
       const img =
         source instanceof File || source instanceof Blob ? await createImageBitmap(source) : source;
       const gray = imageToGray(img);
-      const corners = findChessboardCorners(gray);
-      if (!corners) return null;
       const [ort, session] = await Promise.all([loadOrt(), getSession()]);
 
-      const classify = async (c: BoardCorners): Promise<RecognitionResult> => {
+      return recognizeGray(gray, async (c) => {
         const tiles = extractTiles(gray, c);
         const out = await session.run({ tiles: new ort.Tensor("float32", tiles, [64, 1024]) });
         return probsToPlacement(out["probs"].data as Float32Array);
-      };
-
-      let bestCorners = corners;
-      let best = await classify(corners);
-      const snapped = snapCorners(gray, corners);
-      if (
-        snapped.x0 !== corners.x0 ||
-        snapped.y0 !== corners.y0 ||
-        snapped.x1 !== corners.x1 ||
-        snapped.y1 !== corners.y1
-      ) {
-        const snappedRead = await classify(snapped);
-        if (snappedRead.meanConfidence > best.meanConfidence) {
-          best = snappedRead;
-          bestCorners = snapped;
-        }
-      }
-      return {
-        ...best,
-        corners: bestCorners,
-        reliable: best.minConfidence >= CONFIDENCE_FLOOR,
-      };
+      });
     },
   };
 }

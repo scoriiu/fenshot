@@ -26,9 +26,9 @@
     "onnxruntime-web": ">=1.17.0"
   },
   "devDependencies": {
-    "onnxruntime-web": "^1.20.0",
-    "pngjs": "^7.0.0",
     "@types/pngjs": "^6.0.5",
+    "onnxruntime-web": "1.26.0",
+    "pngjs": "^7.0.0",
     "typescript": "^5.6.0",
     "vitest": "^3.0.0"
   },
@@ -46,10 +46,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/coriiusolomon/fenshot.git"
+    "url": "git+https://github.com/scoriiu/fenshot.git"
   },
-  "homepage": "https://github.com/coriiusolomon/fenshot#readme",
+  "homepage": "https://github.com/scoriiu/fenshot#readme",
   "bugs": {
-    "url": "https://github.com/coriiusolomon/fenshot/issues"
+    "url": "https://github.com/scoriiu/fenshot/issues"
   }
 }

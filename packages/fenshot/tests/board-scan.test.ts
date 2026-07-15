@@ -17,14 +17,10 @@ import { readFileSync } from "fs";
 import { join } from "path";
 import { PNG } from "pngjs";
 import * as ort from "onnxruntime-web";
-import { findChessboardCorners, snapCorners, type GrayImage } from "../src/detect";
+import { findChessboardCorners, type GrayImage } from "../src/detect";
 import { extractTiles, rgbaToGray } from "../src/tiles";
-import {
-  probsToPlacement,
-  flipPlacement,
-  resolveOrientation,
-  type RecognitionResult,
-} from "../src/fen";
+import { recognizeGray } from "../src/recognize";
+import { probsToPlacement, flipPlacement, resolveOrientation } from "../src/fen";
 
 const FIX = join(__dirname, "fixtures");
 
@@ -60,17 +56,11 @@ async function classify(img: GrayImage, corners: NonNullable<ReturnType<typeof f
   return probsToPlacement(out["probs"].data as Float32Array);
 }
 
-/** Mirrors recognize.ts: raw + snapped candidates, mean confidence wins. */
+/** Runs the REAL arbitration core (recognizeGray) with the real model. */
 async function recognize(img: GrayImage) {
-  const corners = findChessboardCorners(img);
-  expect(corners).not.toBeNull();
-  let best: RecognitionResult = await classify(img, corners!);
-  const snapped = snapCorners(img, corners!);
-  if (snapped.x0 !== corners!.x0 || snapped.y0 !== corners!.y0 || snapped.x1 !== corners!.x1 || snapped.y1 !== corners!.y1) {
-    const r = await classify(img, snapped);
-    if (r.meanConfidence > best.meanConfidence) best = r;
-  }
-  return best;
+  const result = await recognizeGray(img, (c) => classify(img, c));
+  expect(result).not.toBeNull();
+  return result!;
 }
 
 describe("board-scan detector port", () => {

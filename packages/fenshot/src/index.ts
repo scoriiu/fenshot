@@ -1,9 +1,11 @@
 export {
   createRecognizer,
+  recognizeGray,
   CONFIDENCE_FLOOR,
   type Recognizer,
   type RecognizerOptions,
   type BoardScanResult,
+  type TileClassifier,
 } from "./recognize";
 export {
   findChessboardCorners,

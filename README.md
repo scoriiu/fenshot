@@ -1,34 +1,87 @@
 # fenshot
 
-Screenshot in. FEN out.
+**Screenshot in. FEN out.**
 
-Paste any chessboard screenshot, a chess.com game, a Lichess puzzle, a diagram from a chess book PDF, a position someone posted on reddit, and get the position as a FEN you can analyze, entirely in your browser. Nothing is uploaded anywhere.
+[![CI](https://github.com/scoriiu/fenshot/actions/workflows/ci.yml/badge.svg)](https://github.com/scoriiu/fenshot/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/fenshot)](https://www.npmjs.com/package/fenshot)
+[![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-- **[Live demo](https://coriiusolomon.github.io/fenshot/)** — paste an image, get the position, one click to analyze on Lichess.
-- **[`fenshot` on npm](https://www.npmjs.com/package/fenshot)** — the recognition engine as a library ([docs](packages/fenshot/README.md)).
+Paste any chessboard screenshot, a chess.com game, a Lichess puzzle, a diagram from a chess book, a position from a reddit thread, and get the position as a FEN, entirely in your browser. No account, no upload, nothing leaves the page.
 
-## Why another scanner
+**[Try it live →](https://scoriiu.github.io/fenshot/)**
 
-There was no maintained, high-quality, open-source screenshot scanner. The classic OSS reference (tensorflow_chessbot) was trained on a narrow theme set: it confuses queens and kings on chess.com themes and cannot read book diagrams. Commercial tools do it well, but closed, with accounts, on their servers.
+## How it works
 
-fenshot's classifier was trained from scratch on a synthetic corpus, known positions rendered across ~72 piece sets, ~55 board themes, procedural flat boards, and book-diagram hatch styles, with real-world screenshot degradations baked in. On the real-screenshot eval set the legacy model misread up to 34 tiles per board; fenshot ships at zero. The full story is in the [package README](packages/fenshot/README.md#how-it-works-and-why-it-reads-book-diagrams).
+| Your screenshot | | What fenshot reads |
+|:---:|:---:|:---:|
+| <img src="packages/fenshot/tests/fixtures/chesscom-italian-white.png" width="360" alt="chess.com screenshot" /> | **→** | `r1bqk1nr/pppp1ppp/2n5/`<br/>`2b1p3/2B1P3/5N2/`<br/>`PPPP1PPP/RNBQK2R` |
+
+One click later the position is open on [Lichess analysis](https://lichess.org/analysis) or the board editor.
+
+Under the hood:
+
+1. **Board detection** finds the board in the image via gradient peak analysis, a TypeScript port of `chessboard_finder.py` from [tensorflow_chessbot](https://github.com/Elucidation/tensorflow_chessbot) (MIT).
+2. **Tile classification** reads the 64 squares with a compact CNN (~330k params, 1.3 MB ONNX) running on onnxruntime-web, WASM in the browser.
+3. **Alignment arbitration** classifies both the detected corners and a checkerboard grid-snap candidate; the read with higher mean confidence wins. This is what makes book diagrams work.
+4. **Orientation resolution** detects Black-point-of-view screenshots from pawn-advance direction and flips the read.
+5. **Honesty contract**: every result carries per-tile confidence. Unreliable reads say so instead of returning a silently wrong FEN.
+
+### Why the classifier is different
+
+The classic open-source model (tensorflow_chessbot) was trained on a narrow theme set: it confuses queens and kings on chess.com themes and cannot read book diagrams. fenshot's classifier was trained **from scratch on a fully synthetic corpus**: known positions rendered across ~72 piece sets and ~55 board themes, plus procedural flat boards and hatched book-diagram styles, with real-world degradations baked in (JPEG artifacts, blur, dimming overlays, resize round-trips, corner jitter). Every tile's label is true by construction, and training tiles flow through the exact same extraction code that runs in production, zero train/serve skew.
+
+On the real-screenshot eval set, the legacy model misread up to 34 tiles per board. fenshot ships at **zero wrong tiles on every positive case**, with negatives (no board in the image) still correctly rejected.
+
+## Use it as a library
+
+The recognition engine is published as [`fenshot` on npm](https://www.npmjs.com/package/fenshot):
+
+```bash
+npm install fenshot onnxruntime-web
+```
+
+```ts
+import { createRecognizer, resolveOrientation, placementToFen } from "fenshot";
+
+const recognizer = createRecognizer({
+  modelUrl: "/models/chess-tiles-v2.onnx",   // shipped in the package under model/
+  wasmPaths: "/ort/",                        // onnxruntime-web wasm assets
+});
+
+const result = await recognizer.recognize(file); // File | Blob | HTMLImageElement | ImageBitmap
+if (result?.reliable) {
+  const { placement } = resolveOrientation(result.placement);
+  console.log(placementToFen(placement, "w"));
+}
+```
+
+Full API docs, asset-serving notes, and bundler specifics: [packages/fenshot/README.md](packages/fenshot/README.md).
 
 ## Repo layout
 
-- `packages/fenshot` — the npm package: board detection, tile classification, FEN composition, golden regression tests.
-- `apps/web` — the demo site (Vite + React), deployed to GitHub Pages.
+| Path | What |
+|------|------|
+| `packages/fenshot` | The npm package: detection, classification, FEN composition, golden regression tests |
+| `apps/web` | The demo app (Vite + React), deployed to GitHub Pages |
 
 ## Development
 
 ```bash
 npm install
-npm test          # golden regression suite
-npm run build     # build the package
-npm run dev       # run the demo app
+npm test              # golden regression suite (29 tests, real screenshots)
+npm run build         # build the package
+npm run dev           # run the demo app
 ```
+
+The test suite includes golden fixtures produced by the python reference pipeline and real screenshots with known FENs; the detector, the tile tensors, and the end-to-end reads are all locked.
 
 ## Credits
 
-Board detection is a TypeScript port of chessboard_finder.py from [Elucidation/tensorflow_chessbot](https://github.com/Elucidation/tensorflow_chessbot) (MIT). Built and maintained by [coachess.app](https://coachess.app).
+- Board detection algorithm: [Elucidation/tensorflow_chessbot](https://github.com/Elucidation/tensorflow_chessbot) (MIT).
+- Piece sets and board themes used as training input: lichess ([lila](https://github.com/lichess-org/lila)) and chess.com (training input only, never redistributed; only trained weights ship).
+- Board rendering in the demo: [cm-chessboard](https://github.com/shaack/cm-chessboard) (MIT).
+- Built and maintained by [coachess.app](https://coachess.app), fenshot is the open-sourced position-import engine that runs there in production.
 
-MIT licensed.
+## License
+
+[MIT](LICENSE)

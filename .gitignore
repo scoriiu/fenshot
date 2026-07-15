@@ -3,3 +3,4 @@ dist/
 *.tgz
 .DS_Store
 .tmp/
+apps/web/src/ort/
