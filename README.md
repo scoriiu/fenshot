@@ -14,9 +14,9 @@ Paste any chessboard screenshot, a chess.com game, a Lichess puzzle, a diagram f
 
 | Your screenshot | | What fenshot reads |
 |:---:|:---:|:---:|
-| <img src="packages/fenshot/tests/fixtures/chesscom-italian-white.png" width="360" alt="chess.com screenshot" /> | **→** | `r1bqk1nr/pppp1ppp/2n5/`<br/>`2b1p3/2B1P3/5N2/`<br/>`PPPP1PPP/RNBQK2R` |
+| <img src="packages/fenshot/tests/fixtures/lichess-italian-black.png" width="360" alt="Lichess screenshot from Black's point of view" /> | **→** | `r1bqk1nr/pppp1ppp/2n5/`<br/>`2b1p3/2B1P3/5N2/`<br/>`PPPP1PPP/RNBQK2R` |
 
-One click later the position is open on [Lichess analysis](https://lichess.org/analysis) or the board editor.
+The screenshot above is from **Black's point of view**; fenshot detects that from pawn-advance direction and flips the read automatically. One click later the position is open on [Lichess analysis](https://lichess.org/analysis) or the board editor.
 
 Under the hood:
 
