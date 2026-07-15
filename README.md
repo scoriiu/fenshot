@@ -3,7 +3,7 @@
 **Screenshot in. FEN out.**
 
 [![CI](https://github.com/scoriiu/fenshot/actions/workflows/ci.yml/badge.svg)](https://github.com/scoriiu/fenshot/actions/workflows/ci.yml)
-[![npm](https://img.shields.io/npm/v/fenshot)](https://www.npmjs.com/package/fenshot)
+[![npm](https://img.shields.io/npm/v/%40scoriiu%2Ffenshot)](https://www.npmjs.com/package/@scoriiu/fenshot)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 Paste any chessboard screenshot, a chess.com game, a Lichess puzzle, a diagram from a chess book, a position from a reddit thread, and get the position as a FEN, entirely in your browser. No account, no upload, nothing leaves the page.
@@ -34,14 +34,14 @@ On the real-screenshot eval set, the legacy model misread up to 34 tiles per boa
 
 ## Use it as a library
 
-The recognition engine is published as [`fenshot` on npm](https://www.npmjs.com/package/fenshot):
+The recognition engine is published as [`@scoriiu/fenshot` on npm](https://www.npmjs.com/package/@scoriiu/fenshot):
 
 ```bash
-npm install fenshot onnxruntime-web
+npm install @scoriiu/fenshot onnxruntime-web
 ```
 
 ```ts
-import { createRecognizer, resolveOrientation, placementToFen } from "fenshot";
+import { createRecognizer, resolveOrientation, placementToFen } from "@scoriiu/fenshot";
 
 const recognizer = createRecognizer({
   modelUrl: "/models/chess-tiles-v2.onnx",   // shipped in the package under model/

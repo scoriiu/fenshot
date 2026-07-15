@@ -1,5 +1,5 @@
 {
-  "name": "fenshot",
+  "name": "@scoriiu/fenshot",
   "version": "0.1.0",
   "description": "Screenshot in, FEN out. Chessboard recognition in the browser: detects the board in any screenshot or book diagram and reads the position with a CNN tile classifier.",
   "type": "module",
@@ -21,6 +21,9 @@
     "build": "tsc -p tsconfig.build.json",
     "test": "vitest run",
     "prepublishOnly": "npm run build && npm run test"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "peerDependencies": {
     "onnxruntime-web": ">=1.17.0"

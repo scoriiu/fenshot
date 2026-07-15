@@ -27,7 +27,7 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm run build -w fenshot
+      - run: npm run build -w @scoriiu/fenshot
       - run: npm run build -w web
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

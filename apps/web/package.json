@@ -13,7 +13,7 @@
   "dependencies": {
     "chess.js": "^1.0.0",
     "cm-chessboard": "^8.12.7",
-    "fenshot": "^0.1.0",
+    "@scoriiu/fenshot": "^0.1.0",
     "onnxruntime-web": "1.26.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

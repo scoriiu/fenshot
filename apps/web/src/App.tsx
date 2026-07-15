@@ -5,7 +5,7 @@ import {
   resolveOrientation,
   placementToFen,
   type BoardScanResult,
-} from "fenshot";
+} from "@scoriiu/fenshot";
 import { Board } from "./Board";
 // src/ort/ is synced from onnxruntime-web by scripts/sync-ort.mjs
 // (predev/prebuild); ?url makes Vite emit the files as hashed assets.

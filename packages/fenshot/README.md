@@ -3,7 +3,7 @@
 Screenshot in. FEN out.
 
 [![CI](https://github.com/scoriiu/fenshot/actions/workflows/ci.yml/badge.svg)](https://github.com/scoriiu/fenshot/actions/workflows/ci.yml)
-[![npm](https://img.shields.io/npm/v/fenshot)](https://www.npmjs.com/package/fenshot)
+[![npm](https://img.shields.io/npm/v/%40scoriiu%2Ffenshot)](https://www.npmjs.com/package/@scoriiu/fenshot)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/scoriiu/fenshot/blob/main/LICENSE)
 
 Live demo: **[scoriiu.github.io/fenshot](https://scoriiu.github.io/fenshot/)**
@@ -15,12 +15,12 @@ Extracted from the position-import feature of [coachess.app](https://coachess.ap
 ## Install
 
 ```bash
-npm install fenshot onnxruntime-web
+npm install @scoriiu/fenshot onnxruntime-web
 ```
 
 Two static assets must be served by your app:
 
-1. **The model** (1.3 MB): copy `node_modules/fenshot/model/chess-tiles-v2.onnx` to your static dir.
+1. **The model** (1.3 MB): copy `node_modules/@scoriiu/fenshot/model/chess-tiles-v2.onnx` to your static dir.
 2. **The onnxruntime wasm pair**: copy `ort-wasm-simd-threaded.mjs` and `ort-wasm-simd-threaded.wasm` from `node_modules/onnxruntime-web/dist/` to a static dir (e.g. `/ort/`).
 
 Both are lazy-loaded on first scan, so users who never scan never download them.
@@ -28,7 +28,7 @@ Both are lazy-loaded on first scan, so users who never scan never download them.
 ## Quickstart
 
 ```ts
-import { createRecognizer, resolveOrientation, placementToFen } from "fenshot";
+import { createRecognizer, resolveOrientation, placementToFen } from "@scoriiu/fenshot";
 
 const recognizer = createRecognizer({
   modelUrl: "/models/chess-tiles-v2.onnx",

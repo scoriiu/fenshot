@@ -6,8 +6,8 @@
     "apps/*"
   ],
   "scripts": {
-    "build": "npm run build -w fenshot",
-    "test": "npm run test -w fenshot",
+    "build": "npm run build -w @scoriiu/fenshot",
+    "test": "npm run test -w @scoriiu/fenshot",
     "dev": "vite --config apps/web/vite.config.ts apps/web"
   }
 }
