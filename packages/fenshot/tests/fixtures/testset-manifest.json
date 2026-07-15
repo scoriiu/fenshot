@@ -1,0 +1,7 @@
+{
+  "chesscom-italian-white.png": { "fen": "r1bqk1nr/pppp1ppp/2n5/2b1p3/2B1P3/5N2/PPPP1PPP/RNBQK2R", "orientation": "white", "expect": "match" },
+  "lichess-italian-black.png": { "fen": "r1bqk1nr/pppp1ppp/2n5/2b1p3/2B1P3/5N2/PPPP1PPP/RNBQK2R", "orientation": "black", "expect": "match" },
+  "fen2image-italian.png": { "fen": "r1bqk1nr/pppp1ppp/2n5/2b1p3/2B1P3/5N2/PPPP1PPP/RNBQK2R", "orientation": "white", "expect": "match" },
+  "reddit-page-board.png": { "fen": "2k5/pppq2b1/3p2p1/5np1/P5N1/5p1P/1P2r2R/Q4K2", "orientation": "black", "expect": "match" },
+  "pale-blue-tds-board.png": { "fen": "r1b2bnr/p2pk1p1/np2N2p/1Pp1Q3/5pP1/B3P2B/P1PP1PqP/RN2K2R", "orientation": "white", "expect": "match" }
+}

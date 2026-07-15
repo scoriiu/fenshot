@@ -1,0 +1,12 @@
+{
+  "width": 606,
+  "height": 548,
+  "corners": [
+    30,
+    14,
+    542,
+    526
+  ],
+  "expectedFen": "bn4kN/p5bp/1p3npB/3p4/8/5Q2/PPP2PPP/R3R1K1",
+  "source": "Elucidation/tensorflow_chessbot example_input.png (MIT)"
+}

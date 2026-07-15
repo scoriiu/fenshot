@@ -1,0 +1,13 @@
+{
+  "name": "fenshot-workspace",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "npm run build -w fenshot",
+    "test": "npm run test -w fenshot",
+    "dev": "npm run dev -w web"
+  }
+}

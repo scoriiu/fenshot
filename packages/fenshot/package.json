@@ -1,0 +1,55 @@
+{
+  "name": "fenshot",
+  "version": "0.1.0",
+  "description": "Screenshot in, FEN out. Chessboard recognition in the browser: detects the board in any screenshot or book diagram and reads the position with a CNN tile classifier.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./model/chess-tiles-v2.onnx": "./model/chess-tiles-v2.onnx"
+  },
+  "files": [
+    "dist",
+    "model"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "test": "vitest run",
+    "prepublishOnly": "npm run build && npm run test"
+  },
+  "peerDependencies": {
+    "onnxruntime-web": ">=1.17.0"
+  },
+  "devDependencies": {
+    "onnxruntime-web": "^1.20.0",
+    "pngjs": "^7.0.0",
+    "@types/pngjs": "^6.0.5",
+    "typescript": "^5.6.0",
+    "vitest": "^3.0.0"
+  },
+  "keywords": [
+    "chess",
+    "fen",
+    "screenshot",
+    "ocr",
+    "chessboard",
+    "recognition",
+    "onnx",
+    "lichess"
+  ],
+  "author": "Coachess (https://coachess.app)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coriiusolomon/fenshot.git"
+  },
+  "homepage": "https://github.com/coriiusolomon/fenshot#readme",
+  "bugs": {
+    "url": "https://github.com/coriiusolomon/fenshot/issues"
+  }
+}
