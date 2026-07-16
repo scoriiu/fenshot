@@ -194,10 +194,29 @@ function checkerboardScore(img: GrayImage, x0: number, y0: number, x1: number, y
   return Math.abs(score);
 }
 
-function bestPeakSequence(hough: Float64Array): number[] | null {
+/** How many candidate line sequences the one-axis reconstruction
+ *  arbitrates between. Piece edges and adjacent UI lines can form a
+ *  shifted arithmetic sequence whose peak values narrowly beat the true
+ *  grid's; checkerboard correlation separates them reliably, so several
+ *  candidates are kept instead of trusting peak strength alone. */
+const MAX_CANDIDATE_SEQS = 5;
+
+interface CandidateSequence {
+  /** Trimmed to 7-9 lines by weakest-end peak value: what the two-axis
+   *  sub-grid path consumes (faithful to the python reference). */
+  trimmed: number[];
+  /** The full arithmetic sequence before trimming. The trim ranks by
+   *  peak VALUE, and phantom lines (board edge, adjacent UI) can carry
+   *  stronger peaks than true grid lines, so the one-axis
+   *  reconstruction enumerates sub-grids of the full sequence instead
+   *  and lets checkerboard correlation arbitrate. */
+  full: number[];
+}
+
+function rankedPeakSequences(hough: Float64Array): CandidateSequence[] {
   const suppressed = nonmaxSuppress(hough);
   const peak = max(suppressed, 0, suppressed.length);
-  if (peak <= 0) return null;
+  if (peak <= 0) return [];
   const positions: number[] = [];
   const values: number[] = [];
   for (let i = 0; i < suppressed.length; i++) {
@@ -208,20 +227,29 @@ function bestPeakSequence(hough: Float64Array): number[] | null {
     }
   }
   const seqs = getAllSequences(positions);
-  if (seqs.length === 0) return null;
+  if (seqs.length === 0) return [];
   const valueAt = new Map(positions.map((p, i) => [p, values[i]]));
-  let best: number[] | null = null;
-  let bestScore = -Infinity;
-  for (const seq of seqs) {
+  const scored = seqs.map((seq) => {
     const vals = seq.map((p) => valueAt.get(p) ?? 0);
     const trimmed = trimSequence(seq, vals);
-    const score = trimmed.vals.reduce((a, b) => a + b, 0) / trimmed.vals.length;
-    if (score > bestScore) {
-      bestScore = score;
-      best = trimmed.seq;
+    return {
+      candidate: { trimmed: trimmed.seq, full: seq },
+      score: trimmed.vals.reduce((a, b) => a + b, 0) / trimmed.vals.length,
+    };
+  });
+  scored.sort((a, b) => b.score - a.score);
+  const unique: CandidateSequence[] = [];
+  for (const { candidate } of scored) {
+    if (
+      !unique.some(
+        (u) => u.full.length === candidate.full.length && u.full.every((v, i) => v === candidate.full[i]),
+      )
+    ) {
+      unique.push(candidate);
     }
+    if (unique.length >= MAX_CANDIDATE_SEQS) break;
   }
-  return best;
+  return unique;
 }
 
 /**
@@ -278,33 +306,27 @@ function reconstructSquareBoard(
   img: GrayImage,
   good: number[],
   axis: "x" | "y",
-  weakPeaks: number[],
-): BoardCorners | null {
+): { box: BoardCorners; score: number } | null {
   const tile = median(good.slice(1).map((v, i) => v - good[i]));
   if (!(tile > 0)) return null;
-  // The good-axis sequence is ambiguous: it may span first-to-last
-  // OUTER edge (board texture puts gradient energy on the boundary) or
-  // only the 7 INNER lines (clean themes where the outer edge blends
-  // into the page). Score both interpretations and let the
-  // checkerboard correlation arbitrate, mirroring how the two-axis
-  // path arbitrates candidate sub-grids.
+  // The good-axis sequence is ambiguous: its lines can be the 7 INNER
+  // grid lines (extent = one tile beyond each end), can include one or
+  // both OUTER edges, or can include phantom lines from adjacent UI.
+  // Enumerate the same candidates the two-axis path considers: every
+  // 7-line sub-grid padded by one tile, plus the whole span read as
+  // outer-edge-to-outer-edge. Checkerboard correlation arbitrates.
   const gA = Math.round(good[0]);
   const gB = Math.round(good[good.length - 1]);
   if (gB - gA <= 0) return null;
   const pad = Math.round(tile);
-  const extents: Array<[number, number]> = [
-    [gA, gB],
-    [gA - pad, gB + pad],
-  ];
+  const extents: Array<[number, number]> = [[gA, gB]];
+  for (let k = 0; k + 7 <= good.length; k++) {
+    const e: [number, number] = [Math.round(good[k]) - pad, Math.round(good[k + 6]) + pad];
+    if (!extents.some(([a, b]) => Math.abs(a - e[0]) <= 2 && Math.abs(b - e[1]) <= 2)) {
+      extents.push(e);
+    }
+  }
   const limit = axis === "x" ? img.height : img.width;
-
-  // If the weak axis detected outer edges (even though its internal lines
-  // were lost), bias the search to start positions whose span endpoints
-  // land near a detected edge — these are the true board boundaries.
-  const nearEdge = (a: number, b: number): boolean =>
-    weakPeaks.length > 0 &&
-    weakPeaks.some((p) => Math.abs(p - a) <= tile) &&
-    weakPeaks.some((p) => Math.abs(p - b) <= tile);
 
   let best: BoardCorners | null = null;
   let bestScore = -Infinity;
@@ -318,29 +340,36 @@ function reconstructSquareBoard(
         axis === "x"
           ? { x0: eA, y0: wA, x1: eB, y1: wB }
           : { x0: wA, y0: eA, x1: wB, y1: eB };
-      let score = checkerboardScore(img, box.x0, box.y0, box.x1, box.y1);
-      if (nearEdge(wA, wB)) score *= 1.5;
+      const score = checkerboardScore(img, box.x0, box.y0, box.x1, box.y1);
       if (score > bestScore) {
         bestScore = score;
         best = box;
       }
     }
   }
-  return best;
+  return best ? { box: best, score: bestScore } : null;
 }
 
-/** Peaks above the keep ratio on one axis, even when they don't form a
- *  full grid sequence — used to recover detected outer board edges for
- *  the one-axis reconstruction fallback. */
-function peakPositions(hough: Float64Array): number[] {
-  const suppressed = nonmaxSuppress(hough);
-  const peak = max(suppressed, 0, suppressed.length);
-  if (peak <= 0) return [];
-  const out: number[] = [];
-  for (let i = 0; i < suppressed.length; i++) {
-    if (suppressed[i] / peak >= PEAK_KEEP_RATIO) out.push(i);
+/** One-axis fallback across ALL candidate line sequences of the good
+ *  axis: a shifted sequence can out-score the true grid on raw peak
+ *  strength, so every candidate is reconstructed (from its FULL
+ *  untrimmed line list) and the checkerboard correlation picks the
+ *  winner. */
+function reconstructFromCandidates(
+  img: GrayImage,
+  candidates: CandidateSequence[],
+  axis: "x" | "y",
+): BoardCorners | null {
+  let best: BoardCorners | null = null;
+  let bestScore = -Infinity;
+  for (const { full } of candidates) {
+    const r = reconstructSquareBoard(img, full, axis);
+    if (r && r.score > bestScore) {
+      bestScore = r.score;
+      best = r.box;
+    }
   }
-  return out;
+  return best;
 }
 
 export function findChessboardCorners(img: GrayImage): BoardCorners | null {
@@ -351,14 +380,16 @@ export function findChessboardCorners(img: GrayImage): BoardCorners | null {
 
   // Rows hough peaks = y coordinates of horizontal lines;
   // cols hough peaks = x coordinates of vertical lines.
-  const linesY = bestPeakSequence(houghRows);
-  const linesX = bestPeakSequence(houghCols);
+  const candidatesY = rankedPeakSequences(houghRows);
+  const candidatesX = rankedPeakSequences(houghCols);
+  const linesY = candidatesY[0]?.trimmed ?? null;
+  const linesX = candidatesX[0]?.trimmed ?? null;
 
   // One axis clean, the other lost to low contrast / piece-edge noise:
   // rebuild the square board from the good axis. snapCorners (called by
   // the recognizer) then refines the alignment a few pixels either way.
-  if (linesX && !linesY) return reconstructSquareBoard(img, linesX, "x", peakPositions(houghRows));
-  if (linesY && !linesX) return reconstructSquareBoard(img, linesY, "y", peakPositions(houghCols));
+  if (linesX && !linesY) return reconstructFromCandidates(img, candidatesX, "x");
+  if (linesY && !linesX) return reconstructFromCandidates(img, candidatesY, "y");
   if (!linesX || !linesY) return null;
 
   const dx = median(linesX.slice(1).map((v, i) => v - linesX[i]));

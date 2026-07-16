@@ -78,13 +78,15 @@ function imageToGray(img: HTMLImageElement | ImageBitmap): GrayImage {
 
 export type TileClassifier = (corners: BoardCorners) => Promise<RecognitionResult>;
 
-/**
- * Pure recognition core: detect corners, classify, arbitrate against
- * the grid-snap candidate. Platform-independent (no canvas, no ONNX);
- * the classifier is injected. Exercised directly by the golden test
- * suite and usable from Node with any rasterizer.
- */
-export async function recognizeGray(
+const EMPTY_PLACEMENT = "8/8/8/8/8/8/8/8";
+
+/** Detection passes per image: the first board found can be an empty
+ *  decorative board (a page can contain several board-like regions,
+ *  including this library's own UI); masking it and rescanning finds
+ *  the board the user actually means. */
+const MAX_SCAN_PASSES = 3;
+
+async function scanOnce(
   gray: GrayImage,
   classify: TileClassifier,
 ): Promise<BoardScanResult | null> {
@@ -111,6 +113,49 @@ export async function recognizeGray(
     corners: bestCorners,
     reliable: best.minConfidence >= CONFIDENCE_FLOOR,
   };
+}
+
+/** Flatten a region so its gradients vanish and the detector cannot
+ *  lock onto it again on the next pass. */
+function maskRegion(gray: GrayImage, box: BoardCorners): GrayImage {
+  const data = Float32Array.from(gray.data);
+  const x0 = Math.max(0, Math.floor(box.x0));
+  const y0 = Math.max(0, Math.floor(box.y0));
+  const x1 = Math.min(gray.width, Math.ceil(box.x1));
+  const y1 = Math.min(gray.height, Math.ceil(box.y1));
+  for (let y = y0; y < y1; y++) {
+    data.fill(128, y * gray.width + x0, y * gray.width + x1);
+  }
+  return { data, width: gray.width, height: gray.height };
+}
+
+/**
+ * Pure recognition core: detect corners, classify, arbitrate against
+ * the grid-snap candidate. Platform-independent (no canvas, no ONNX);
+ * the classifier is injected. Exercised directly by the golden test
+ * suite and usable from Node with any rasterizer.
+ *
+ * An all-empty read is never the board the user means (an empty board
+ * has no position to analyze, and whole-screen captures can include
+ * decorative or placeholder boards). When a pass reads empty, the
+ * region is masked and the scan repeats, preferring a piece-bearing
+ * board found later. The empty read is still returned when nothing
+ * better exists.
+ */
+export async function recognizeGray(
+  gray: GrayImage,
+  classify: TileClassifier,
+): Promise<BoardScanResult | null> {
+  let working = gray;
+  let emptyFallback: BoardScanResult | null = null;
+  for (let pass = 0; pass < MAX_SCAN_PASSES; pass++) {
+    const result = await scanOnce(working, classify);
+    if (!result) break;
+    if (result.placement !== EMPTY_PLACEMENT) return result;
+    emptyFallback = emptyFallback ?? result;
+    working = maskRegion(working, result.corners);
+  }
+  return emptyFallback;
 }
 
 export function createRecognizer(options: RecognizerOptions): Recognizer {
