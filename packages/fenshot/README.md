@@ -105,7 +105,7 @@ Versus the legacy tensorflow_chessbot model on our real-screenshot eval set: the
 ## Credits
 
 - Board detection algorithm: [Elucidation/tensorflow_chessbot](https://github.com/Elucidation/tensorflow_chessbot) (MIT).
-- Piece set and board theme assets used as training input: lichess ([lila](https://github.com/lichess-org/lila), free licenses) and chess.com (training input only, never redistributed; only trained weights ship).
+- Piece set and board theme assets used as training input: lichess ([lila](https://github.com/lichess-org/lila), free licenses). The corpus also includes other sites' themes (including chess.com) so the recognizer reads their screenshots too; those assets are training input only and are never redistributed, only trained weights ship.
 - Built and maintained by [coachess.app](https://coachess.app).
 
 ## License
