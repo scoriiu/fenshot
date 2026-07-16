@@ -282,16 +282,21 @@ function reconstructSquareBoard(
 ): BoardCorners | null {
   const tile = median(good.slice(1).map((v, i) => v - good[i]));
   if (!(tile > 0)) return null;
-  // The good sequence already runs first-line to last-line. Treat that
-  // as the board span directly — do NOT pad a phantom tile on each side,
-  // which over-extends the square and pulls the checkerboard-correlation
-  // peak onto a false alignment in the surrounding UI.
+  // The good-axis sequence is ambiguous: it may span first-to-last
+  // OUTER edge (board texture puts gradient energy on the boundary) or
+  // only the 7 INNER lines (clean themes where the outer edge blends
+  // into the page). Score both interpretations and let the
+  // checkerboard correlation arbitrate, mirroring how the two-axis
+  // path arbitrates candidate sub-grids.
   const gA = Math.round(good[0]);
   const gB = Math.round(good[good.length - 1]);
-  const span = gB - gA;
-  if (span <= 0) return null;
+  if (gB - gA <= 0) return null;
+  const pad = Math.round(tile);
+  const extents: Array<[number, number]> = [
+    [gA, gB],
+    [gA - pad, gB + pad],
+  ];
   const limit = axis === "x" ? img.height : img.width;
-  const step = Math.max(2, Math.round(tile / 8));
 
   // If the weak axis detected outer edges (even though its internal lines
   // were lost), bias the search to start positions whose span endpoints
@@ -303,18 +308,22 @@ function reconstructSquareBoard(
 
   let best: BoardCorners | null = null;
   let bestScore = -Infinity;
-  for (let start = -span; start <= limit; start += step) {
-    const wA = start;
-    const wB = start + span;
-    const box: BoardCorners =
-      axis === "x"
-        ? { x0: gA, y0: wA, x1: gB, y1: wB }
-        : { x0: wA, y0: gA, x1: wB, y1: gB };
-    let score = checkerboardScore(img, box.x0, box.y0, box.x1, box.y1);
-    if (nearEdge(wA, wB)) score *= 1.5;
-    if (score > bestScore) {
-      bestScore = score;
-      best = box;
+  for (const [eA, eB] of extents) {
+    const span = eB - eA;
+    const step = Math.max(2, Math.round(tile / 8));
+    for (let start = -span; start <= limit; start += step) {
+      const wA = start;
+      const wB = start + span;
+      const box: BoardCorners =
+        axis === "x"
+          ? { x0: eA, y0: wA, x1: eB, y1: wB }
+          : { x0: wA, y0: eA, x1: wB, y1: eB };
+      let score = checkerboardScore(img, box.x0, box.y0, box.x1, box.y1);
+      if (nearEdge(wA, wB)) score *= 1.5;
+      if (score > bestScore) {
+        bestScore = score;
+        best = box;
+      }
     }
   }
   return best;
