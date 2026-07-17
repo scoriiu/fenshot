@@ -1,6 +1,7 @@
 {
   "name": "fenshot-workspace",
   "private": true,
+  "type": "module",
   "workspaces": [
     "packages/*",
     "apps/*"
@@ -9,5 +10,10 @@
     "build": "npm run build -w @scoriiu/fenshot",
     "test": "npm run test -w @scoriiu/fenshot",
     "dev": "vite --config apps/web/vite.config.ts apps/web"
+  },
+  "devDependencies": {
+    "chess.js": "^1.4.0",
+    "onnxruntime-web": "^1.26.0",
+    "sharp": "^0.34.5"
   }
 }

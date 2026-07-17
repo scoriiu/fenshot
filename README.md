@@ -32,6 +32,8 @@ The classic open-source model (tensorflow_chessbot) was trained on a narrow them
 
 On the real-screenshot eval set, the legacy model misread up to 34 tiles per board. fenshot ships at **zero wrong tiles on every positive case**, with negatives (no board in the image) still correctly rejected.
 
+The model is reproducible, not just downloadable: the full training pipeline (asset fetcher, corpus generator, training script, and the real-pipeline eval gate) lives in [`tools/tile-classifier`](tools/tile-classifier).
+
 ## Use it as a library
 
 The recognition engine is published as [`@scoriiu/fenshot` on npm](https://www.npmjs.com/package/@scoriiu/fenshot):
