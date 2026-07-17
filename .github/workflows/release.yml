@@ -1,0 +1,39 @@
+name: Release
+
+# Publishes @scoriiu/fenshot to npm via trusted publishing (OIDC).
+# No tokens: npmjs.com is configured to trust this workflow file in
+# this repository. Publish provenance is attested automatically.
+#
+# To release: bump the version in packages/fenshot/package.json,
+# commit, then:
+#   git tag v<version> && git push --tags
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          registry-url: https://registry.npmjs.org
+      - run: npm install -g npm@latest
+      - run: npm ci
+      - name: Verify tag matches package version
+        run: |
+          PKG_VERSION=$(node -p "require('./packages/fenshot/package.json').version")
+          TAG_VERSION="${GITHUB_REF_NAME#v}"
+          if [ "$PKG_VERSION" != "$TAG_VERSION" ]; then
+            echo "Tag $GITHUB_REF_NAME does not match package version $PKG_VERSION"
+            exit 1
+          fi
+      - run: npm publish --workspace @scoriiu/fenshot
