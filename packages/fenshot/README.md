@@ -96,6 +96,8 @@ Compose a full analyzable FEN from a bare placement. Castling rights are inferre
 
 Versus the legacy tensorflow_chessbot model on our real-screenshot eval set: the legacy model misread 34 tiles on one fixture and 5 tiles on a dimmed reddit screenshot; this model ships at zero wrong tiles on all positive cases with negatives still rejected.
 
+The model is reproducible, not just downloadable: the full training pipeline (asset fetcher, corpus generator, training script, and an eval gate that runs the real recognition pipeline against the golden fixtures) lives in [`tools/tile-classifier`](https://github.com/scoriiu/fenshot/tree/main/tools/tile-classifier).
+
 ## Limitations
 
 - 2D screenshots and diagrams only. 3D piece sets with perspective overhang are out of scope for now.
