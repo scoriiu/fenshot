@@ -1,0 +1,194 @@
+:root {
+  color-scheme: dark;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 340px;
+  background: #0c1117;
+  color: #cbd5e1;
+  font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+}
+
+.wrap {
+  padding: 14px 14px 12px;
+}
+
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.brand .name {
+  color: #fbbf24;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.brand .tag {
+  color: #64748b;
+  font-size: 11px;
+}
+
+.state {
+  padding: 28px 8px;
+  text-align: center;
+  color: #94a3b8;
+}
+
+.state .spinner {
+  width: 26px;
+  height: 26px;
+  margin: 0 auto 10px;
+  border: 3px solid rgba(251, 191, 36, 0.2);
+  border-top-color: #fbbf24;
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.state .hint {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #64748b;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(51, 65, 85, 0.8);
+}
+
+.sq {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  line-height: 1;
+  user-select: none;
+}
+
+.sq.light {
+  background: #f0d9b5;
+}
+
+.sq.dark {
+  background: #b58863;
+}
+
+.sq .white-piece {
+  color: #fafafa;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.55);
+}
+
+.sq .black-piece {
+  color: #1a1a1a;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.15);
+}
+
+.warning {
+  margin-top: 10px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  line-height: 1.45;
+  background: rgba(244, 63, 94, 0.1);
+  border: 1px solid rgba(244, 63, 94, 0.35);
+  color: #fda4af;
+}
+
+.turn {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.turn .label {
+  font-size: 12px;
+  color: #64748b;
+  align-self: center;
+  margin-right: 2px;
+}
+
+.turn button {
+  flex: 1;
+  height: 30px;
+  border-radius: 7px;
+  border: 1px solid #334155;
+  background: #1e293b;
+  color: #94a3b8;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.turn button.active {
+  background: rgba(251, 191, 36, 0.15);
+  border-color: rgba(251, 191, 36, 0.5);
+  color: #fbbf24;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.btn {
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  background: #1e293b;
+  color: #cbd5e1;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #283548;
+}
+
+.btn.primary {
+  grid-column: span 2;
+  background: #f59e0b;
+  border-color: #f59e0b;
+  color: #0c1117;
+}
+
+.btn.primary:hover {
+  background: #fbbf24;
+}
+
+.footer {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 11px;
+  color: #475569;
+}
+
+.footer a {
+  color: #64748b;
+}

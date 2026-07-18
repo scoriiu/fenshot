@@ -18,3 +18,4 @@ jobs:
       - run: npm run build -w @scoriiu/fenshot
       - run: npm test -w @scoriiu/fenshot
       - run: npm run build -w web
+      - run: npm run build -w extension
