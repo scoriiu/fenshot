@@ -263,7 +263,7 @@ export default function App() {
         <a href="https://coachess.app" target="_blank" rel="noreferrer">
           coachess.app
         </a>{" "}
-        · detection began as a port of{" "}
+        · detection extends{" "}
         <a
           href="https://github.com/Elucidation/tensorflow_chessbot"
           target="_blank"

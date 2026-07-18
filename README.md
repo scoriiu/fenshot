@@ -20,7 +20,7 @@ The screenshot above is from **Black's point of view**; fenshot detects that fro
 
 Under the hood:
 
-1. **Board detection** finds the board in the image via gradient peak analysis, a TypeScript port of `chessboard_finder.py` from [tensorflow_chessbot](https://github.com/Elucidation/tensorflow_chessbot) (MIT).
+1. **Board detection** finds the board in the image via gradient peak analysis. It started from `chessboard_finder.py` in [tensorflow_chessbot](https://github.com/Elucidation/tensorflow_chessbot) (MIT) and extends it with square-board reconstruction from a single clean axis, sub-grid extent arbitration, an empty-board rescan, signed checkerboard correlation, and one-tile parity repair, which is what lets it read page-wide screenshots, book diagrams, and low-contrast themes the original could not.
 2. **Tile classification** reads the 64 squares with a compact CNN (~330k params, 1.3 MB ONNX) running on onnxruntime-web, WASM in the browser.
 3. **Alignment arbitration** classifies both the detected corners and a checkerboard grid-snap candidate; the read with higher mean confidence wins. This is what makes book diagrams work.
 4. **Orientation resolution** detects Black-point-of-view screenshots from pawn-advance direction and flips the read.
