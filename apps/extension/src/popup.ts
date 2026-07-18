@@ -3,6 +3,9 @@
  * permission, granted by the click itself), runs fenshot recognition
  * locally, and offers the read position for analysis. No content
  * scripts, no host permissions, nothing leaves the device.
+ *
+ * All rendering uses DOM construction, never innerHTML, so the AMO
+ * linter and reviewers have nothing to question.
  */
 
 import { Chess } from "chess.js";
@@ -12,11 +15,10 @@ import {
   placementToFen,
   type BoardScanResult,
 } from "@scoriiu/fenshot";
+import { pieceElement } from "./pieces";
 import ortMjsUrl from "./ort/ort-wasm-simd-threaded.mjs?url";
 import ortWasmUrl from "./ort/ort-wasm-simd-threaded.wasm?url";
 import modelUrl from "../../../packages/fenshot/model/chess-tiles-v2.onnx?url";
-
-import { pieceSvg } from "./pieces";
 
 const app = document.getElementById("app")!;
 
@@ -27,40 +29,62 @@ interface ResultState {
   turn: "w" | "b";
 }
 
-function shell(inner: string): string {
-  return `
-    <div class="wrap">
-      <div class="brand"><span class="name">fenshot</span><span class="tag">screenshot in, FEN out</span></div>
-      ${inner}
-      <div class="footer">runs on your device · <a href="https://github.com/scoriiu/fenshot" target="_blank" rel="noreferrer">open source</a></div>
-    </div>`;
+function el<K extends keyof HTMLElementTagNameMap>(
+  tag: K,
+  className?: string,
+  text?: string,
+): HTMLElementTagNameMap[K] {
+  const node = document.createElement(tag);
+  if (className) node.className = className;
+  if (text) node.textContent = text;
+  return node;
+}
+
+function link(href: string, className: string, text: string): HTMLAnchorElement {
+  const a = el("a", className, text);
+  a.href = href;
+  a.target = "_blank";
+  a.rel = "noreferrer";
+  return a;
+}
+
+function render(...content: HTMLElement[]) {
+  const wrap = el("div", "wrap");
+  const brand = el("div", "brand");
+  brand.append(el("span", "name", "fenshot"), el("span", "tag", "screenshot in, FEN out"));
+  const footer = el("div", "footer");
+  footer.append("runs on your device · ", link("https://github.com/scoriiu/fenshot", "", "open source"));
+  wrap.append(brand, ...content, footer);
+  app.replaceChildren(wrap);
 }
 
 function renderMessage(title: string, hint: string, spinner = false) {
-  app.innerHTML = shell(`
-    <div class="state">
-      ${spinner ? '<div class="spinner"></div>' : ""}
-      <p>${title}</p>
-      <p class="hint">${hint}</p>
-    </div>`);
+  const state = el("div", "state");
+  if (spinner) state.append(el("div", "spinner"));
+  state.append(el("p", undefined, title), el("p", "hint", hint));
+  render(state);
 }
 
-function boardHtml(placement: string, flipped: boolean): string {
+function boardEl(placement: string, flipped: boolean): HTMLElement {
   const ranks = placement.split("/").map((row) =>
     row.replace(/\d/g, (d) => "1".repeat(parseInt(d, 10))),
   );
-  const squares: string[] = [];
+  const board = el("div", "board");
   for (let r = 0; r < 8; r++) {
     for (let f = 0; f < 8; f++) {
       const rank = flipped ? 7 - r : r;
       const file = flipped ? 7 - f : f;
       const piece = ranks[rank][file];
       const light = (rank + file) % 2 === 0;
-      const svg = piece === "1" ? "" : pieceSvg(piece);
-      squares.push(`<div class="sq ${light ? "light" : "dark"}">${svg}</div>`);
+      const sq = el("div", `sq ${light ? "light" : "dark"}`);
+      if (piece !== "1") {
+        const svg = pieceElement(piece);
+        if (svg) sq.append(svg);
+      }
+      board.append(sq);
     }
   }
-  return `<div class="board">${squares.join("")}</div>`;
+  return board;
 }
 
 function renderResult(state: ResultState) {
@@ -82,28 +106,33 @@ function renderResult(state: ResultState) {
     : `https://lichess.org/analysis/standard/${lichessFen}`;
   const coachessUrl = `https://coachess.app/coach/position?fen=${encodeURIComponent(fen)}${state.flipped ? "&pov=black" : ""}`;
 
-  app.innerHTML = shell(`
-    ${boardHtml(state.placement, state.flipped)}
-    ${warning ? `<div class="warning">${warning}</div>` : ""}
-    <div class="turn">
-      <span class="label">to move</span>
-      <button id="turn-w" class="${state.turn === "w" ? "active" : ""}">White</button>
-      <button id="turn-b" class="${state.turn === "b" ? "active" : ""}">Black</button>
-    </div>
-    <div class="actions">
-      <a id="open-lichess" class="btn primary" href="${analysisUrl}" target="_blank" rel="noreferrer">${legalityWarning ? "Fix in Lichess editor" : "Analyze on Lichess"}</a>
-      <a id="open-coachess" class="btn" href="${coachessUrl}" target="_blank" rel="noreferrer">Coachess</a>
-      <button id="copy-fen" class="btn">Copy FEN</button>
-    </div>`);
+  const content: HTMLElement[] = [boardEl(state.placement, state.flipped)];
+  if (warning) content.push(el("div", "warning", warning));
 
-  document.getElementById("turn-w")!.addEventListener("click", () => renderResult({ ...state, turn: "w" }));
-  document.getElementById("turn-b")!.addEventListener("click", () => renderResult({ ...state, turn: "b" }));
-  document.getElementById("copy-fen")!.addEventListener("click", async () => {
+  const turnRow = el("div", "turn");
+  turnRow.append(el("span", "label", "to move"));
+  const whiteBtn = el("button", state.turn === "w" ? "active" : "", "White");
+  whiteBtn.addEventListener("click", () => renderResult({ ...state, turn: "w" }));
+  const blackBtn = el("button", state.turn === "b" ? "active" : "", "Black");
+  blackBtn.addEventListener("click", () => renderResult({ ...state, turn: "b" }));
+  turnRow.append(whiteBtn, blackBtn);
+  content.push(turnRow);
+
+  const actions = el("div", "actions");
+  actions.append(
+    link(analysisUrl, "btn primary", legalityWarning ? "Fix in Lichess editor" : "Analyze on Lichess"),
+    link(coachessUrl, "btn", "Coachess"),
+  );
+  const copyBtn = el("button", "btn", "Copy FEN");
+  copyBtn.addEventListener("click", async () => {
     await navigator.clipboard.writeText(fen);
-    const btn = document.getElementById("copy-fen")!;
-    btn.textContent = "Copied";
-    setTimeout(() => (btn.textContent = "Copy FEN"), 1500);
+    copyBtn.textContent = "Copied";
+    setTimeout(() => (copyBtn.textContent = "Copy FEN"), 1500);
   });
+  actions.append(copyBtn);
+  content.push(actions);
+
+  render(...content);
 }
 
 async function captureTab(): Promise<Blob> {
