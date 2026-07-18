@@ -5,3 +5,4 @@ dist/
 .tmp/
 apps/web/src/ort/
 apps/extension/src/ort/
+apps/extension/*.zip

@@ -7,7 +7,8 @@
     "predev": "node scripts/sync-ort.mjs",
     "dev": "vite build --watch",
     "prebuild": "node scripts/sync-ort.mjs",
-    "build": "tsc -p tsconfig.json --noEmit && vite build"
+    "build": "tsc -p tsconfig.json --noEmit && vite build",
+    "package": "npm run build && cd dist && zip -qr ../fenshot-extension-$npm_package_version.zip . && echo packaged: fenshot-extension-$npm_package_version.zip"
   },
   "dependencies": {
     "@scoriiu/fenshot": "^0.1.3",
