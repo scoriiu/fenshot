@@ -2,9 +2,11 @@
   "manifest_version": 3,
   "name": "fenshot: chess board to FEN, one click",
   "homepage_url": "https://scoriiu.github.io/fenshot/",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "One click reads the chess position on the current page, entirely on your device, and opens it for analysis. Nothing is uploaded.",
-  "permissions": ["activeTab"],
+  "permissions": [
+    "activeTab"
+  ],
   "action": {
     "default_popup": "index.html",
     "default_title": "Read the chessboard on this page",
@@ -29,7 +31,9 @@
       "id": "fenshot@coachess.app",
       "strict_min_version": "140.0",
       "data_collection_permissions": {
-        "required": ["none"]
+        "required": [
+          "none"
+        ]
       }
     },
     "gecko_android": {
