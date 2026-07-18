@@ -171,7 +171,16 @@ function median(arr: number[]): number {
 }
 
 /** Crop (zero-padded out of bounds) + nearest resize to 64x64,
- *  correlate against ideal checkerboard kernel. */
+ *  correlate against ideal checkerboard kernel.
+ *
+ *  SIGNED, deliberately: the kernel's +1 cells are the crop's corner
+ *  parity, and a chessboard's corner squares (a8/h1 side) are the
+ *  LIGHT squares in either orientation, so a correctly aligned crop
+ *  correlates positive. A crop misaligned by an odd number of tiles
+ *  inverts the parity and goes negative, which is what lets the
+ *  arbitration reject one-tile-shifted boxes that abs() used to score
+ *  as high as the truth (found via the marble-theme web-eval case:
+ *  sparse position, confident read, every piece one file off). */
 function checkerboardScore(img: GrayImage, x0: number, y0: number, x1: number, y1: number): number {
   const w = x1 - x0;
   const h = y1 - y0;
@@ -191,7 +200,7 @@ function checkerboardScore(img: GrayImage, x0: number, y0: number, x1: number, y
       score += (parity * px) / 64;
     }
   }
-  return Math.abs(score);
+  return score;
 }
 
 /** How many candidate line sequences the one-axis reconstruction
@@ -372,6 +381,37 @@ function reconstructFromCandidates(
   return best;
 }
 
+/** A negative checkerboard correlation on the chosen box means its
+ *  parity is inverted: the grid was found but placed an odd number of
+ *  tiles off (an outer edge displacing an inner line in the peak
+ *  sequence shifts the whole box by one tile). The true box is then
+ *  one tile away in one direction; try all four and keep the best
+ *  positive. Found via the marble-theme web-eval case: sparse
+ *  position over low-contrast texture, every piece read one file off
+ *  at high confidence. */
+function repairParity(img: GrayImage, box: BoardCorners): BoardCorners {
+  const score = checkerboardScore(img, box.x0, box.y0, box.x1, box.y1);
+  if (score >= 0) return box;
+  const tile = Math.round((box.x1 - box.x0) / 8);
+  let best = box;
+  let bestScore = score;
+  const shifts: Array<[number, number]> = [
+    [tile, 0],
+    [-tile, 0],
+    [0, tile],
+    [0, -tile],
+  ];
+  for (const [sx, sy] of shifts) {
+    const c = { x0: box.x0 + sx, y0: box.y0 + sy, x1: box.x1 + sx, y1: box.y1 + sy };
+    const s = checkerboardScore(img, c.x0, c.y0, c.x1, c.y1);
+    if (s > bestScore) {
+      bestScore = s;
+      best = c;
+    }
+  }
+  return best;
+}
+
 export function findChessboardCorners(img: GrayImage): BoardCorners | null {
   const gradY = gradientRows(img);
   const gradX = gradientCols(img);
@@ -388,8 +428,14 @@ export function findChessboardCorners(img: GrayImage): BoardCorners | null {
   // One axis clean, the other lost to low contrast / piece-edge noise:
   // rebuild the square board from the good axis. snapCorners (called by
   // the recognizer) then refines the alignment a few pixels either way.
-  if (linesX && !linesY) return reconstructFromCandidates(img, candidatesX, "x");
-  if (linesY && !linesX) return reconstructFromCandidates(img, candidatesY, "y");
+  if (linesX && !linesY) {
+    const r = reconstructFromCandidates(img, candidatesX, "x");
+    return r ? repairParity(img, r) : null;
+  }
+  if (linesY && !linesX) {
+    const r = reconstructFromCandidates(img, candidatesY, "y");
+    return r ? repairParity(img, r) : null;
+  }
   if (!linesX || !linesY) return null;
 
   const dx = median(linesX.slice(1).map((v, i) => v - linesX[i]));
@@ -417,5 +463,5 @@ export function findChessboardCorners(img: GrayImage): BoardCorners | null {
       }
     }
   }
-  return best;
+  return best ? repairParity(img, best) : null;
 }

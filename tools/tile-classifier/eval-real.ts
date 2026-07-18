@@ -13,7 +13,7 @@
  * Cases: packages/fenshot/tests/fixtures/* per testset-manifest.json.
  */
 
-import { readFileSync } from "fs";
+import { readFileSync, existsSync } from "fs";
 import { join } from "path";
 import sharp from "sharp";
 import * as ort from "onnxruntime-web";
@@ -22,7 +22,8 @@ import * as ort from "onnxruntime-web";
 import { recognizeGray, rgbaToGray, extractTiles, probsToPlacement, flipPlacement, resolveOrientation, type BoardCorners } from "@scoriiu/fenshot";
 
 const MAX_DETECT_DIM = 1600;
-const FIXTURES = "packages/fenshot/tests/fixtures";
+const fixturesArg = process.argv.indexOf("--fixtures");
+const FIXTURES = fixturesArg > -1 ? process.argv[fixturesArg + 1] : "packages/fenshot/tests/fixtures";
 
 interface EvalCase {
   path: string;
@@ -37,7 +38,9 @@ function buildCases(): EvalCase[] {
     fen: (info as { fen: string }).fen,
     label: file,
   }));
-  cases.push({ path: join(FIXTURES, "reddit-chrome-no-board.png"), fen: null, label: "reddit-chrome-no-board.png (negative)" });
+  if (existsSync(join(FIXTURES, "reddit-chrome-no-board.png"))) {
+    cases.push({ path: join(FIXTURES, "reddit-chrome-no-board.png"), fen: null, label: "reddit-chrome-no-board.png (negative)" });
+  }
   return cases;
 }
 

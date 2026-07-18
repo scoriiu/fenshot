@@ -14,6 +14,7 @@
   "devDependencies": {
     "chess.js": "^1.4.0",
     "onnxruntime-web": "^1.26.0",
+    "playwright": "^1.61.1",
     "sharp": "^0.34.5"
   }
 }
