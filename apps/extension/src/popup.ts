@@ -16,10 +16,11 @@ import ortMjsUrl from "./ort/ort-wasm-simd-threaded.mjs?url";
 import ortWasmUrl from "./ort/ort-wasm-simd-threaded.wasm?url";
 import modelUrl from "../../../packages/fenshot/model/chess-tiles-v2.onnx?url";
 
-const PIECE_GLYPHS: Record<string, string> = {
-  K: "♔", Q: "♕", R: "♖", B: "♗", N: "♘", P: "♙",
-  k: "♚", q: "♛", r: "♜", b: "♝", n: "♞", p: "♟",
-};
+/** FEN piece char → cburnett SVG name in public/pieces/ (wK.svg …). */
+function pieceAsset(piece: string): string {
+  const color = piece === piece.toUpperCase() ? "w" : "b";
+  return `${color}${piece.toUpperCase()}`;
+}
 
 const app = document.getElementById("app")!;
 
@@ -59,11 +60,11 @@ function boardHtml(placement: string, flipped: boolean): string {
       const file = flipped ? 7 - f : f;
       const piece = ranks[rank][file];
       const light = (rank + file) % 2 === 0;
-      const glyph = piece === "1" ? "" : PIECE_GLYPHS[piece] ?? "";
-      const colorClass = piece === "1" ? "" : piece === piece.toUpperCase() ? "white-piece" : "black-piece";
-      squares.push(
-        `<div class="sq ${light ? "light" : "dark"}">${glyph ? `<span class="${colorClass}">${glyph}</span>` : ""}</div>`,
-      );
+      const img =
+        piece === "1"
+          ? ""
+          : `<img src="./pieces/${pieceAsset(piece)}.svg" alt="${piece}" draggable="false" />`;
+      squares.push(`<div class="sq ${light ? "light" : "dark"}">${img}</div>`);
     }
   }
   return `<div class="board">${squares.join("")}</div>`;
