@@ -260,7 +260,7 @@ export default function App() {
 
       <footer className="footer">
         MIT open source · built from the position import of{" "}
-        <a href="https://coachess.app" target="_blank" rel="noreferrer">
+        <a href="https://coachess.app/coach/position" target="_blank" rel="noreferrer">
           coachess.app
         </a>
       </footer>
