@@ -263,7 +263,14 @@ export default function App() {
         <a href="https://coachess.app" target="_blank" rel="noreferrer">
           coachess.app
         </a>{" "}
-        · board detection from tensorflow_chessbot
+        · detection began as a port of{" "}
+        <a
+          href="https://github.com/Elucidation/tensorflow_chessbot"
+          target="_blank"
+          rel="noreferrer"
+        >
+          tensorflow_chessbot
+        </a>
       </footer>
     </div>
   );
