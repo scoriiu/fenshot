@@ -80,6 +80,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 26px;
+  line-height: 1;
   user-select: none;
 }
 
@@ -91,10 +93,14 @@ body {
   background: #b58863;
 }
 
-.sq svg {
-  width: 92%;
-  height: 92%;
-  pointer-events: none;
+.sq .white-piece {
+  color: #fafafa;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.55);
+}
+
+.sq .black-piece {
+  color: #1a1a1a;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.15);
 }
 
 .warning {
