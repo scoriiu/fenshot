@@ -29,6 +29,7 @@ interface EvalCase {
   path: string;
   fen: string | null;
   label: string;
+  expect: "match" | "low-confidence-reject";
 }
 
 function buildCases(): EvalCase[] {
@@ -37,9 +38,10 @@ function buildCases(): EvalCase[] {
     path: join(FIXTURES, file),
     fen: (info as { fen: string }).fen,
     label: file,
+    expect: ((info as { expect?: string }).expect ?? "match") as EvalCase["expect"],
   }));
   if (existsSync(join(FIXTURES, "reddit-chrome-no-board.png"))) {
-    cases.push({ path: join(FIXTURES, "reddit-chrome-no-board.png"), fen: null, label: "reddit-chrome-no-board.png (negative)" });
+    cases.push({ path: join(FIXTURES, "reddit-chrome-no-board.png"), fen: null, label: "reddit-chrome-no-board.png (negative)", expect: "match" });
   }
   return cases;
 }
@@ -110,6 +112,14 @@ async function main() {
       continue;
     }
     const placement = resolveOrientation(result.placement).orientation === "black" ? flipPlacement(result.placement) : result.placement;
+    if (c.expect === "low-confidence-reject") {
+      const ok = result.minConfidence < 0.7;
+      console.log(
+        `${ok ? "PASS" : "FAIL"} ${c.label}: minConf ${result.minConfidence.toFixed(3)} (${ok ? "honestly flagged unreliable, as locked" : "confident read on a case locked as unreliable, retrain landed? flip the manifest"})`,
+      );
+      ok ? pass++ : fail++;
+      continue;
+    }
     const wrong = diffPlacements(placement, c.fen);
     const ok = wrong.length === 0;
     console.log(
