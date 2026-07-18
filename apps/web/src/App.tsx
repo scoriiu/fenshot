@@ -262,14 +262,6 @@ export default function App() {
         MIT open source · built from the position import of{" "}
         <a href="https://coachess.app" target="_blank" rel="noreferrer">
           coachess.app
-        </a>{" "}
-        · detection extends{" "}
-        <a
-          href="https://github.com/Elucidation/tensorflow_chessbot"
-          target="_blank"
-          rel="noreferrer"
-        >
-          tensorflow_chessbot
         </a>
       </footer>
     </div>
