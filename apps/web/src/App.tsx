@@ -194,7 +194,7 @@ export default function App() {
                   <Board placement={result.placement} flipped={result.flipped} />
                 </div>
               </div>
-              <figcaption>What fenshot read</figcaption>
+              <figcaption>What fenshot read · {Math.round(result.scan.meanConfidence * 100)}%</figcaption>
             </figure>
           </div>
           <div className="result-panel">
@@ -214,53 +214,56 @@ export default function App() {
               </button>
             </div>
 
-            <div className="controls">
-              <div className="control-group">
-                <span className="control-label">Side to move</span>
-                <div className="toggle">
-                  <button
-                    className={result.turn === "w" ? "on" : ""}
-                    onClick={() => setPhase({ ...result, turn: "w" })}
-                  >
-                    White
-                  </button>
-                  <button
-                    className={result.turn === "b" ? "on" : ""}
-                    onClick={() => setPhase({ ...result, turn: "b" })}
-                  >
-                    Black
-                  </button>
+            <div className="panel-bottom">
+              <div className="controls">
+                <div className="control-group">
+                  <span className="control-label">Side to move</span>
+                  <div className="toggle">
+                    <button
+                      className={result.turn === "w" ? "on" : ""}
+                      onClick={() => setPhase({ ...result, turn: "w" })}
+                    >
+                      White
+                    </button>
+                    <button
+                      className={result.turn === "b" ? "on" : ""}
+                      onClick={() => setPhase({ ...result, turn: "b" })}
+                    >
+                      Black
+                    </button>
+                  </div>
                 </div>
+                <button
+                  className="btn btn-quiet"
+                  onClick={() => setPhase({ ...result, flipped: !result.flipped })}
+                >
+                  Flip board
+                </button>
               </div>
-              <button
-                className="btn btn-quiet"
-                onClick={() => setPhase({ ...result, flipped: !result.flipped })}
-              >
-                Flip board
-              </button>
-              <span className="confidence">
-                confidence {Math.round(result.scan.meanConfidence * 100)}%
-              </span>
-            </div>
 
-            <div className="actions">
-              <a
-                className="btn btn-primary"
-                href={`https://coachess.app/coach/position?fen=${encodeURIComponent(fen ?? "")}${result?.flipped ? "&pov=black" : ""}&ref=fenshot-web`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Analyze on Coachess
-              </a>
-              <a className="btn" href={`https://lichess.org/analysis/standard/${lichessFen}`} target="_blank" rel="noreferrer">
-                Analyze on Lichess
-              </a>
-              <a className="btn" href={`https://lichess.org/editor/${lichessFen}`} target="_blank" rel="noreferrer">
-                Lichess editor
-              </a>
-              <button className="btn" onClick={reset}>
-                Scan another
-              </button>
+              <div className="actions">
+                <button className="btn btn-rescan" onClick={reset}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                    <path d="M3 12a9 9 0 1 0 3-6.7" />
+                    <path d="M3 4v4h4" />
+                  </svg>
+                  Scan another
+                </button>
+                <a className="btn" href={`https://lichess.org/analysis/standard/${lichessFen}`} target="_blank" rel="noreferrer">
+                  Analyze on Lichess
+                </a>
+                <a className="btn" href={`https://lichess.org/editor/${lichessFen}`} target="_blank" rel="noreferrer">
+                  Lichess editor
+                </a>
+                <a
+                  className="btn btn-primary"
+                  href={`https://coachess.app/coach/position?fen=${encodeURIComponent(fen ?? "")}${result?.flipped ? "&pov=black" : ""}&ref=fenshot-web`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Analyze on Coachess
+                </a>
+              </div>
             </div>
           </div>
         </main>
