@@ -25,7 +25,7 @@ body {
 .page {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 24px 20px 40px;
+  padding: 20px 20px 28px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -215,7 +215,7 @@ body {
 .shot-card {
   margin: 0 auto;
   width: 100%;
-  max-width: min(52vh, 560px);
+  max-width: clamp(240px, calc(100vh - 420px), 560px);
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 16px;
@@ -447,7 +447,7 @@ body {
 }
 
 .footer {
-  padding-top: 32px;
+  padding-top: 20px;
   color: var(--muted);
   font-size: 13px;
   text-align: center;
