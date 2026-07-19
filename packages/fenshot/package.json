@@ -1,6 +1,6 @@
 {
   "name": "@scoriiu/fenshot",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Screenshot in, FEN out. Chessboard recognition in the browser: detects the board in any screenshot or book diagram and reads the position with a CNN tile classifier.",
   "type": "module",
   "main": "./dist/index.js",
