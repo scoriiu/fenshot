@@ -244,7 +244,15 @@ export default function App() {
             </div>
 
             <div className="actions">
-              <a className="btn btn-primary" href={`https://lichess.org/analysis/standard/${lichessFen}`} target="_blank" rel="noreferrer">
+              <a
+                className="btn btn-primary"
+                href={`https://coachess.app/coach/position?fen=${encodeURIComponent(fen ?? "")}${result?.flipped ? "&pov=black" : ""}&ref=fenshot-web`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Analyze on Coachess
+              </a>
+              <a className="btn" href={`https://lichess.org/analysis/standard/${lichessFen}`} target="_blank" rel="noreferrer">
                 Analyze on Lichess
               </a>
               <a className="btn" href={`https://lichess.org/editor/${lichessFen}`} target="_blank" rel="noreferrer">
@@ -260,7 +268,7 @@ export default function App() {
 
       <footer className="footer">
         MIT open source · built from the position import of{" "}
-        <a href="https://coachess.app/coach/position" target="_blank" rel="noreferrer">
+        <a href="https://coachess.app?ref=fenshot-web" target="_blank" rel="noreferrer">
           coachess.app
         </a>
       </footer>

@@ -83,7 +83,7 @@ The test suite includes golden fixtures produced by the python reference pipelin
 - Piece sets and board themes used as training input: lichess ([lila](https://github.com/lichess-org/lila), free licenses). The corpus also includes other sites' themes so the recognizer reads their screenshots too; those assets are training input only and are never redistributed, only trained weights ship.
 - Board rendering in the demo: [cm-chessboard](https://github.com/shaack/cm-chessboard) (MIT).
 - Piece images in the browser extension: the cburnett set by Colin M.L. Burnett (GPL/BSD/GFDL multi-license), via [lichess-org/lila](https://github.com/lichess-org/lila).
-- Built and maintained by [coachess.app](https://coachess.app), fenshot is the open-sourced position-import engine that runs there in production.
+- Built and maintained by [coachess.app](https://coachess.app?ref=fenshot-gh), fenshot is the open-sourced position-import engine that runs there in production.
 
 ## License
 

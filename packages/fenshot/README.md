@@ -10,7 +10,7 @@ Live demo: **[scoriiu.github.io/fenshot](https://scoriiu.github.io/fenshot/)**
 
 Chessboard recognition that runs entirely in the browser: finds the board in any screenshot (chess.com, Lichess, book diagrams, reddit lightboxes), reads the position with a CNN tile classifier, and returns a FEN with per-tile confidence. No server, no account, nothing leaves the page.
 
-Extracted from the position-import feature of [coachess.app](https://coachess.app), where it runs in production.
+Extracted from the position-import feature of [coachess.app](https://coachess.app?ref=fenshot-npm), where it runs in production.
 
 ## Install
 
@@ -108,7 +108,7 @@ The model is reproducible, not just downloadable: the full training pipeline (as
 
 - Board detection algorithm: [Elucidation/tensorflow_chessbot](https://github.com/Elucidation/tensorflow_chessbot) (MIT).
 - Piece set and board theme assets used as training input: lichess ([lila](https://github.com/lichess-org/lila), free licenses). The corpus also includes other sites' themes (including chess.com) so the recognizer reads their screenshots too; those assets are training input only and are never redistributed, only trained weights ship.
-- Built and maintained by [coachess.app](https://coachess.app).
+- Built and maintained by [coachess.app](https://coachess.app?ref=fenshot-npm).
 
 ## License
 
