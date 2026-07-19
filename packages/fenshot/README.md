@@ -6,7 +6,7 @@ Screenshot in. FEN out.
 [![npm](https://img.shields.io/npm/v/%40scoriiu%2Ffenshot)](https://www.npmjs.com/package/@scoriiu/fenshot)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/scoriiu/fenshot/blob/main/LICENSE)
 
-Live demo: **[scoriiu.github.io/fenshot](https://scoriiu.github.io/fenshot/)**
+Live demo: **[fenshot.com](https://fenshot.com/)**
 
 Chessboard recognition that runs entirely in the browser: finds the board in any screenshot (chess.com, Lichess, book diagrams, reddit lightboxes), reads the position with a CNN tile classifier, and returns a FEN with per-tile confidence. No server, no account, nothing leaves the page.
 

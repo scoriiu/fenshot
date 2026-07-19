@@ -44,7 +44,7 @@ Built from the position-import engine of coachess.app.
 
 ## Privacy policy URL
 
-https://scoriiu.github.io/fenshot/extension-privacy.html
+https://fenshot.com/extension-privacy.html
 
 ## Permission justification (CWS review form)
 

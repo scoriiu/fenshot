@@ -8,7 +8,7 @@
 
 Paste any chessboard screenshot, a chess.com game, a Lichess puzzle, a diagram from a chess book, a position from a reddit thread, and get the position as a FEN, entirely in your browser. No account, no upload, nothing leaves the page.
 
-**[Try it live →](https://scoriiu.github.io/fenshot/)**
+**[Try it live →](https://fenshot.com/)**
 
 ## How it works
 

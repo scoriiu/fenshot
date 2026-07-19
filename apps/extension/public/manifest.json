@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "fenshot: chess board to FEN, one click",
-  "homepage_url": "https://scoriiu.github.io/fenshot/",
+  "homepage_url": "https://fenshot.com/",
   "version": "0.1.1",
   "description": "One click reads the chess position on the current page, entirely on your device, and opens it for analysis. Nothing is uploaded.",
   "permissions": [
