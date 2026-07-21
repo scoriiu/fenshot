@@ -117,7 +117,11 @@ async function scanBlob(blob: Blob, origin: ScanOrigin) {
   renderMessage("Reading the position\u2026", "runs entirely on your device", true);
   try {
     const result = await getRecognizer().recognize(blob);
-    if (!result) {
+    // An automatic whole-page scan with an implausible read (no kings)
+    // is a detector false positive on page UI, not a board. Explicit
+    // origins (area, upload, paste) still render: the user asserted a
+    // board is there, and the legality warning covers the rest.
+    if (!result || (origin === "page" && !result.plausible)) {
       if (origin === "page") {
         renderHub("No chessboard found on this page.", "if you can see one, select it below");
       } else if (origin === "area") {

@@ -34,6 +34,12 @@ const MAX_DETECT_DIM = 1600;
 export interface BoardScanResult extends RecognitionResult {
   corners: BoardCorners;
   reliable: boolean;
+  /** True when the read satisfies the one invariant every real chess
+   *  position has: exactly one king per side. Detector false positives
+   *  on board-free UI (settings pages, card grids) typically read as
+   *  sparse kingless scatters; callers doing automatic whole-page scans
+   *  should treat implausible reads as "no board found". */
+  plausible: boolean;
 }
 
 export interface RecognizerOptions {
@@ -80,6 +86,16 @@ export type TileClassifier = (corners: BoardCorners) => Promise<RecognitionResul
 
 const EMPTY_PLACEMENT = "8/8/8/8/8/8/8/8";
 
+function isPlausiblePosition(placement: string): boolean {
+  let white = 0;
+  let black = 0;
+  for (const ch of placement) {
+    if (ch === "K") white++;
+    else if (ch === "k") black++;
+  }
+  return white === 1 && black === 1;
+}
+
 /** Detection passes per image: the first board found can be an empty
  *  decorative board (a page can contain several board-like regions,
  *  including this library's own UI); masking it and rescanning finds
@@ -112,6 +128,7 @@ async function scanOnce(
     ...best,
     corners: bestCorners,
     reliable: best.minConfidence >= CONFIDENCE_FLOOR,
+    plausible: isPlausiblePosition(best.placement),
   };
 }
 
@@ -135,27 +152,33 @@ function maskRegion(gray: GrayImage, box: BoardCorners): GrayImage {
  * the classifier is injected. Exercised directly by the golden test
  * suite and usable from Node with any rasterizer.
  *
- * An all-empty read is never the board the user means (an empty board
- * has no position to analyze, and whole-screen captures can include
- * decorative or placeholder boards). When a pass reads empty, the
- * region is masked and the scan repeats, preferring a piece-bearing
- * board found later. The empty read is still returned when nothing
- * better exists.
+ * An implausible read is unlikely to be the board the user means: an
+ * empty board has no position to analyze, and a kingless scatter is
+ * usually the detector locking onto board-free UI (whole-screen
+ * captures can include decorative boards, placeholder boards, and
+ * card grids that look like boards). When a pass reads implausible,
+ * the region is masked and the scan repeats, preferring a plausible
+ * board found later. The best implausible read is still returned when
+ * nothing better exists, preferring piece-bearing reads over empty
+ * ones; callers decide how much to trust it via `plausible`.
  */
 export async function recognizeGray(
   gray: GrayImage,
   classify: TileClassifier,
 ): Promise<BoardScanResult | null> {
   let working = gray;
-  let emptyFallback: BoardScanResult | null = null;
+  let fallback: BoardScanResult | null = null;
   for (let pass = 0; pass < MAX_SCAN_PASSES; pass++) {
     const result = await scanOnce(working, classify);
     if (!result) break;
-    if (result.placement !== EMPTY_PLACEMENT) return result;
-    emptyFallback = emptyFallback ?? result;
+    if (result.plausible) return result;
+    const fallbackIsEmpty = !fallback || fallback.placement === EMPTY_PLACEMENT;
+    if (fallbackIsEmpty && (!fallback || result.placement !== EMPTY_PLACEMENT)) {
+      fallback = result;
+    }
     working = maskRegion(working, result.corners);
   }
-  return emptyFallback;
+  return fallback;
 }
 
 export function createRecognizer(options: RecognizerOptions): Recognizer {

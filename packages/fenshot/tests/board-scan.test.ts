@@ -101,6 +101,57 @@ describe("board-scan detector port", () => {
     // gate is CONFIDENCE_FLOOR (0.7) on min, with a strong mean.
     expect(result.minConfidence).toBeGreaterThan(0.7);
     expect(result.meanConfidence).toBeGreaterThan(0.9);
+    expect(result.plausible).toBe(true);
+  });
+});
+
+describe("plausibility gating (kingless false positives)", () => {
+  // Regression: on brave://extensions/ the detector locked onto the
+  // settings-page card grid and the classifier hallucinated a sparse
+  // kingless scatter. Such reads must come back plausible=false and
+  // must not shadow a real board found on a later masked pass.
+  const stubResult = (placement: string) => ({
+    placement,
+    confidences: new Array(64).fill(0.95),
+    minConfidence: 0.95,
+    meanConfidence: 0.95,
+  });
+
+  it("returns a kingless read as fallback flagged implausible", async () => {
+    const result = await recognizeGray(loadGoldenGray(), async () =>
+      stubResult("3p4/8/8/3qBB1p/8/8/8/8"),
+    );
+    expect(result).not.toBeNull();
+    expect(result!.plausible).toBe(false);
+  });
+
+  it("returns a two-king read immediately as plausible", async () => {
+    const result = await recognizeGray(loadGoldenGray(), async () =>
+      stubResult("4k3/8/8/8/8/8/8/4K3"),
+    );
+    expect(result).not.toBeNull();
+    expect(result!.plausible).toBe(true);
+  });
+
+  it("masks an implausible region and keeps scanning for a real board", async () => {
+    // Two golden boards side by side; the left one reads as a kingless
+    // scatter (false positive), the right one as a real position. The
+    // scan must not stop at the kingless read.
+    const g = loadGoldenGray();
+    const w = g.width * 2;
+    const data = new Float32Array(w * g.height);
+    for (let y = 0; y < g.height; y++) {
+      const row = g.data.subarray(y * g.width, (y + 1) * g.width);
+      data.set(row, y * w);
+      data.set(row, y * w + g.width);
+    }
+    const img = { data, width: w, height: g.height };
+    const result = await recognizeGray(img, async (c) =>
+      stubResult(c.x0 < g.width ? "3p4/8/8/3qBB1p/8/8/8/8" : "4k3/8/8/8/8/8/8/4K3"),
+    );
+    expect(result).not.toBeNull();
+    expect(result!.placement).toBe("4k3/8/8/8/8/8/8/4K3");
+    expect(result!.plausible).toBe(true);
   });
 });
 
