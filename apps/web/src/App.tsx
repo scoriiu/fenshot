@@ -269,6 +269,28 @@ export default function App() {
         </main>
       )}
 
+      <div className="ext-row">
+        <span className="ext-label">Skip the screenshot: the extension reads the board on any page in one click</span>
+        <div className="ext-links">
+          <a
+            className="ext-btn"
+            href="https://chromewebstore.google.com/detail/fenshot-chess-board-to-fe/fpkdijjlnafehkdkjmkppcekocjdomkc"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Chrome
+          </a>
+          <a
+            className="ext-btn"
+            href="https://addons.mozilla.org/en-US/firefox/addon/fenshot/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Firefox
+          </a>
+        </div>
+      </div>
+
       <footer className="footer">
         MIT open source · built from the position import of{" "}
         <a href="https://coachess.app?ref=fenshot-web" target="_blank" rel="noreferrer">

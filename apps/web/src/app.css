@@ -446,6 +446,39 @@ body {
   font-size: 13px;
 }
 
+.ext-row {
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.ext-label {
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+}
+
+.ext-links {
+  display: flex;
+  gap: 8px;
+}
+
+.ext-btn {
+  color: var(--muted);
+  font-size: 14px;
+  text-decoration: none;
+  border: 1px solid var(--border);
+  padding: 6px 18px;
+  border-radius: 8px;
+}
+
+.ext-btn:hover {
+  color: var(--text);
+  border-color: var(--muted);
+}
+
 .footer {
   padding-top: 20px;
   color: var(--muted);
