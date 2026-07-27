@@ -10,6 +10,8 @@ Paste any chessboard screenshot, a chess.com game, a Lichess puzzle, a diagram f
 
 **[Try it live →](https://fenshot.com/)**
 
+**Browser extension** (reads the board on any page in one click): [Chrome](https://chromewebstore.google.com/detail/fenshot-chess-board-to-fe/fpkdijjlnafehkdkjmkppcekocjdomkc) · [Firefox](https://addons.mozilla.org/en-US/firefox/addon/fenshot/), source in [`apps/extension`](apps/extension)
+
 ## How it works
 
 | Your screenshot | | What fenshot reads |
@@ -64,6 +66,7 @@ Full API docs, asset-serving notes, and bundler specifics: [packages/fenshot/REA
 | Path | What |
 |------|------|
 | `packages/fenshot` | The npm package: detection, classification, FEN composition, golden regression tests |
+| `apps/extension` | The browser extension (Chrome + Firefox), one-click scan of the visible page |
 | `apps/web` | The demo app (Vite + React), deployed to GitHub Pages |
 
 ## Development
