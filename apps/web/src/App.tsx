@@ -288,6 +288,14 @@ export default function App() {
           >
             Firefox
           </a>
+          <a
+            className="ext-btn"
+            href="https://microsoftedge.microsoft.com/addons/detail/fenshot-chess-board-to-f/cjcpedpebpfcedbcfejppadobfohbaif"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Edge
+          </a>
         </div>
       </div>
 
