@@ -453,29 +453,38 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 14px;
+  gap: 10px;
 }
 
-.install-main {
-  height: 44px;
-  padding: 0 26px;
-  font-size: 15px;
+.install-btn {
+  height: 42px;
   display: inline-flex;
   align-items: center;
-}
-
-.install-others {
+  padding: 0 22px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
 }
 
-.install-others a {
-  color: var(--muted);
-  text-decoration: underline;
-}
-
-.install-others a:hover {
+.install-btn:hover {
   color: var(--text);
+  border-color: var(--muted);
+}
+
+.install-btn.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #0c1117;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.install-btn.primary:hover {
+  background: #fbbf24;
+  border-color: #fbbf24;
 }
 
 @media (max-width: 700px) {

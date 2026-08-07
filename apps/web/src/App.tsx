@@ -148,22 +148,17 @@ export default function App() {
           GitHub
         </a>
         <div className="install-hero">
-          <a className="btn btn-primary install-main" href={STORES[browser]} target="_blank" rel="noreferrer">
-            Add to {browser} · free
-          </a>
-          <span className="install-others">
-            also on{" "}
-            {(Object.keys(STORES) as StoreName[])
-              .filter((name) => name !== browser)
-              .map((name, i) => (
-                <span key={name}>
-                  {i > 0 && " · "}
-                  <a href={STORES[name]} target="_blank" rel="noreferrer">
-                    {name}
-                  </a>
-                </span>
-              ))}
-          </span>
+          {(Object.keys(STORES) as StoreName[]).map((name) => (
+            <a
+              key={name}
+              className={`install-btn ${name === browser ? "primary" : ""}`}
+              href={STORES[name]}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {name === browser ? `Add to ${name}` : name}
+            </a>
+          ))}
         </div>
       </header>
 
