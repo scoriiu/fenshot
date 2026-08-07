@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>fenshot extension - chess board to FEN, one click</title>
+<meta name="description" content="Free, open source browser extension: one click reads the chess board on your screen and opens it on a real analysis board." />
+<link rel="icon" href="/favicon.svg" />
+<style>
+  :root {
+    --bg: #0c1117;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --border: #263243;
+    --accent: #f59e0b;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .card { max-width: 460px; text-align: center; }
+  .brand { font-size: 30px; font-weight: 700; color: #f1f5f9; letter-spacing: -0.02em; }
+  .brand span { color: var(--accent); }
+  .tag { color: var(--muted); font-size: 14px; margin-top: 6px; }
+  .status { margin-top: 26px; font-size: 15px; color: var(--muted); }
+  .buttons { margin-top: 18px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  a.store {
+    display: inline-flex;
+    align-items: center;
+    height: 42px;
+    padding: 0 22px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+  }
+  a.store:hover { color: var(--text); border-color: var(--muted); }
+  a.store.primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #0c1117;
+    font-weight: 600;
+    font-size: 15px;
+  }
+  .foot { margin-top: 26px; font-size: 13px; color: var(--muted); }
+  .foot a { color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="brand"><span>fen</span>shot</div>
+  <div class="tag">screenshot in, FEN out. free, open source, runs entirely in your browser.</div>
+  <div class="status" id="status"></div>
+  <div class="buttons" id="buttons"></div>
+  <div class="foot">
+    prefer no install? <a href="/">use the web version</a> ·
+    <a href="https://github.com/scoriiu/fenshot" target="_blank" rel="noreferrer">source on github</a>
+  </div>
+</div>
+<script>
+  var STORES = {
+    Chrome: "https://chromewebstore.google.com/detail/fenshot-chess-board-to-fe/fpkdijjlnafehkdkjmkppcekocjdomkc",
+    Firefox: "https://addons.mozilla.org/en-US/firefox/addon/fenshot/",
+    Edge: "https://microsoftedge.microsoft.com/addons/detail/fenshot-chess-board-to-f/cjcpedpebpfcedbcfejppadobfohbaif"
+  };
+  var ua = navigator.userAgent;
+  var isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(ua);
+  var browser = ua.indexOf("Edg/") >= 0 ? "Edge" : ua.indexOf("Firefox") >= 0 ? "Firefox" : "Chrome";
+  var isFirefoxAndroid = isMobile && browser === "Firefox";
+
+  var statusEl = document.getElementById("status");
+  var buttonsEl = document.getElementById("buttons");
+
+  Object.keys(STORES).forEach(function (name) {
+    var a = document.createElement("a");
+    a.className = "store" + (name === browser && (!isMobile || isFirefoxAndroid) ? " primary" : "");
+    a.href = STORES[name];
+    a.target = "_blank";
+    a.rel = "noreferrer";
+    a.textContent = name === browser ? "Add to " + name : name;
+    buttonsEl.appendChild(a);
+  });
+
+  if (isMobile && !isFirefoxAndroid) {
+    statusEl.textContent = "the extension is for desktop browsers. on your phone, the web version below does the same job, no install needed.";
+  } else {
+    statusEl.textContent = "taking you to the " + browser + " store\u2026 if nothing happens, use the button below.";
+    setTimeout(function () { window.location.href = STORES[browser]; }, 1200);
+  }
+</script>
+</body>
+</html>
