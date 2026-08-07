@@ -33,6 +33,7 @@ body {
 
 .header {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
   gap: 16px;
   padding-bottom: 28px;
@@ -444,6 +445,43 @@ body {
   height: 36px;
   padding: 0 14px;
   font-size: 13px;
+}
+
+.install-hero {
+  width: 100%;
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.install-main {
+  height: 44px;
+  padding: 0 26px;
+  font-size: 15px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.install-others {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.install-others a {
+  color: var(--muted);
+  text-decoration: underline;
+}
+
+.install-others a:hover {
+  color: var(--text);
+}
+
+@media (max-width: 700px) {
+  .install-hero {
+    display: none;
+  }
 }
 
 .ext-row {

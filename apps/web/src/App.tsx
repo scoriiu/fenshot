@@ -15,6 +15,24 @@ import modelUrl from "../../../packages/fenshot/model/chess-tiles-v2.onnx?url";
 
 const BASE = import.meta.env.BASE_URL;
 
+const STORES = {
+  Chrome:
+    "https://chromewebstore.google.com/detail/fenshot-chess-board-to-fe/fpkdijjlnafehkdkjmkppcekocjdomkc",
+  Firefox: "https://addons.mozilla.org/en-US/firefox/addon/fenshot/",
+  Edge: "https://microsoftedge.microsoft.com/addons/detail/fenshot-chess-board-to-f/cjcpedpebpfcedbcfejppadobfohbaif",
+} as const;
+
+type StoreName = keyof typeof STORES;
+
+/** Edge ships "Edg/" in the UA; Firefox ships "Firefox". Everything else
+ *  (Chrome, Brave, Opera, Vivaldi, Arc) installs from the Chrome store. */
+function detectBrowser(): StoreName {
+  const ua = navigator.userAgent;
+  if (ua.includes("Edg/")) return "Edge";
+  if (ua.includes("Firefox")) return "Firefox";
+  return "Chrome";
+}
+
 type Phase =
   | { kind: "idle" }
   | { kind: "scanning" }
@@ -33,6 +51,7 @@ export default function App() {
   const [copied, setCopied] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [dragging, setDragging] = useState(false);
+  const browser = useMemo(detectBrowser, []);
 
   const recognizer = useMemo(
     () =>
@@ -128,6 +147,24 @@ export default function App() {
         <a className="gh-link" href="https://github.com/scoriiu/fenshot" target="_blank" rel="noreferrer">
           GitHub
         </a>
+        <div className="install-hero">
+          <a className="btn btn-primary install-main" href={STORES[browser]} target="_blank" rel="noreferrer">
+            Add to {browser} · free
+          </a>
+          <span className="install-others">
+            also on{" "}
+            {(Object.keys(STORES) as StoreName[])
+              .filter((name) => name !== browser)
+              .map((name, i) => (
+                <span key={name}>
+                  {i > 0 && " · "}
+                  <a href={STORES[name]} target="_blank" rel="noreferrer">
+                    {name}
+                  </a>
+                </span>
+              ))}
+          </span>
+        </div>
       </header>
 
       {!result && (
@@ -272,30 +309,11 @@ export default function App() {
       <div className="ext-row">
         <span className="ext-label">Skip the screenshot: the extension reads the board on any page in one click</span>
         <div className="ext-links">
-          <a
-            className="ext-btn"
-            href="https://chromewebstore.google.com/detail/fenshot-chess-board-to-fe/fpkdijjlnafehkdkjmkppcekocjdomkc"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Chrome
-          </a>
-          <a
-            className="ext-btn"
-            href="https://addons.mozilla.org/en-US/firefox/addon/fenshot/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Firefox
-          </a>
-          <a
-            className="ext-btn"
-            href="https://microsoftedge.microsoft.com/addons/detail/fenshot-chess-board-to-f/cjcpedpebpfcedbcfejppadobfohbaif"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Edge
-          </a>
+          {(Object.keys(STORES) as StoreName[]).map((name) => (
+            <a key={name} className="ext-btn" href={STORES[name]} target="_blank" rel="noreferrer">
+              {name}
+            </a>
+          ))}
         </div>
       </div>
 
