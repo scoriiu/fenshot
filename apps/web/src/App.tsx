@@ -69,6 +69,9 @@ export default function App() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [dragging, setDragging] = useState(false);
   const browser = useMemo(detectBrowser, []);
+  const demoVideoRef = useRef<HTMLVideoElement>(null);
+  const [demoPlays, setDemoPlays] = useState(0);
+  const demoEnded = demoPlays >= 2;
 
   const recognizer = useMemo(
     () =>
@@ -224,14 +227,32 @@ export default function App() {
         </div>
         <aside className="demo-frame" aria-label="Demo: reading a board from a live broadcast">
           <video
+            ref={demoVideoRef}
             src="/fenshot-demo.mp4"
             poster="/fenshot-demo-poster.jpg"
             autoPlay
             muted
-            loop
             playsInline
+            onEnded={() => {
+              setDemoPlays((p) => {
+                const next = p + 1;
+                if (next < 2) void demoVideoRef.current?.play();
+                return next;
+              });
+            }}
           />
-          <div className="demo-scanline" aria-hidden />
+          {!demoEnded && <div key={demoPlays} className="demo-scanline" aria-hidden />}
+          {demoEnded && (
+            <button
+              className="demo-replay"
+              onClick={() => {
+                setDemoPlays(0);
+                void demoVideoRef.current?.play();
+              }}
+            >
+              ▶ Replay demo
+            </button>
+          )}
         </aside>
         </main>
       )}
