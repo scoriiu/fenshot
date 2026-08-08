@@ -181,7 +181,8 @@ export default function App() {
       </header>
 
       {!result && (
-        <main
+        <main className="idle-grid">
+        <div
           className={`dropzone ${dragging ? "dropzone-active" : ""} ${phase.kind === "scanning" ? "dropzone-busy" : ""}`}
           onDragOver={(e) => {
             e.preventDefault();
@@ -220,6 +221,18 @@ export default function App() {
               e.target.value = "";
             }}
           />
+        </div>
+        <aside className="demo-frame" aria-label="Demo: reading a board from a live broadcast">
+          <video
+            src="/fenshot-demo.mp4"
+            poster="/fenshot-demo-poster.jpg"
+            autoPlay
+            muted
+            loop
+            playsInline
+          />
+          <div className="demo-scanline" aria-hidden />
+        </aside>
         </main>
       )}
 
