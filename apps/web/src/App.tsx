@@ -70,8 +70,8 @@ export default function App() {
   const [dragging, setDragging] = useState(false);
   const browser = useMemo(detectBrowser, []);
   const demoVideoRef = useRef<HTMLVideoElement>(null);
-  const [demoPlays, setDemoPlays] = useState(0);
-  const demoEnded = demoPlays >= 2;
+  const [demoEnded, setDemoEnded] = useState(false);
+  const [demoCycle, setDemoCycle] = useState(0);
 
   const recognizer = useMemo(
     () =>
@@ -167,20 +167,6 @@ export default function App() {
         <a className="gh-link" href="https://github.com/scoriiu/fenshot" target="_blank" rel="noreferrer">
           GitHub
         </a>
-        <div className="install-hero">
-          {(Object.keys(STORES) as StoreName[]).map((name) => (
-            <a
-              key={name}
-              className={`install-btn ${name === browser ? "primary" : ""}`}
-              href={STORES[name]}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <BrowserIcon name={name} />
-              {name === browser ? `Add to ${name}` : name}
-            </a>
-          ))}
-        </div>
       </header>
 
       {!result && (
@@ -225,34 +211,51 @@ export default function App() {
             }}
           />
         </div>
-        <aside className="demo-frame" aria-label="Demo: reading a board from a live broadcast">
-          <video
-            ref={demoVideoRef}
-            src="/fenshot-demo.mp4"
-            poster="/fenshot-demo-poster.jpg"
-            autoPlay
-            muted
-            playsInline
-            onEnded={() => {
-              setDemoPlays((p) => {
-                const next = p + 1;
-                if (next < 2) void demoVideoRef.current?.play();
-                return next;
-              });
-            }}
-          />
-          {!demoEnded && <div key={demoPlays} className="demo-scanline" aria-hidden />}
-          {demoEnded && (
-            <button
-              className="demo-replay"
-              onClick={() => {
-                setDemoPlays(0);
-                void demoVideoRef.current?.play();
-              }}
-            >
-              ▶ Replay demo
-            </button>
-          )}
+        <aside className="ext-panel" aria-label="The fenshot browser extension">
+          <div className="demo-media">
+            <video
+              ref={demoVideoRef}
+              src="/fenshot-demo.mp4"
+              poster="/fenshot-demo-poster.jpg"
+              autoPlay
+              muted
+              playsInline
+              onEnded={() => setDemoEnded(true)}
+            />
+            {!demoEnded && <div key={demoCycle} className="demo-scanline" aria-hidden />}
+            {demoEnded && (
+              <button
+                className="demo-replay"
+                onClick={() => {
+                  setDemoCycle((c) => c + 1);
+                  setDemoEnded(false);
+                  void demoVideoRef.current?.play();
+                }}
+              >
+                ▶ Replay demo
+              </button>
+            )}
+          </div>
+          <div className="ext-panel-body">
+            <p className="ext-panel-note">
+              Skip the screenshot next time. The extension reads the board on
+              any page, one click.
+            </p>
+            <div className="ext-panel-buttons">
+              {(Object.keys(STORES) as StoreName[]).map((name) => (
+                <a
+                  key={name}
+                  className={`install-btn ${name === browser ? "primary" : ""}`}
+                  href={STORES[name]}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <BrowserIcon name={name} />
+                  {name === browser ? `Add to ${name}` : name}
+                </a>
+              ))}
+            </div>
+          </div>
         </aside>
         </main>
       )}

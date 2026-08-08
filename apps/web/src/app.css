@@ -80,21 +80,48 @@ body {
   align-items: stretch;
 }
 
-.demo-frame {
-  position: relative;
-  overflow: hidden;
+.ext-panel {
+  display: flex;
+  flex-direction: column;
   border: 1px solid var(--border);
   border-radius: 16px;
   background: var(--card);
-  display: flex;
-  align-items: center;
+  overflow: hidden;
 }
 
-.demo-frame video {
+.demo-media {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+
+.demo-media video {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: contain;
+  height: auto;
+}
+
+.ext-panel-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+  padding: 18px 20px 20px;
+}
+
+.ext-panel-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+}
+
+.ext-panel-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .demo-scanline {
@@ -145,9 +172,6 @@ body {
 @media (max-width: 900px) {
   .idle-grid {
     grid-template-columns: 1fr;
-  }
-  .demo-frame {
-    max-height: 300px;
   }
 }
 
@@ -527,17 +551,8 @@ body {
   font-size: 13px;
 }
 
-.install-hero {
-  width: 100%;
-  margin-top: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-
 .install-btn {
-  width: 168px;
+  width: 148px;
   height: 42px;
   display: inline-flex;
   align-items: center;
