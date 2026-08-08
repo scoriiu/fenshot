@@ -140,10 +140,10 @@ export default function App() {
   return (
     <div className="page">
       <header className="header">
-        <div className="brand">
+        <h1 className="brand">
           <span className="brand-accent">fen</span>shot
-        </div>
-        <div className="tagline">Screenshot in. FEN out. Nothing leaves your browser.</div>
+        </h1>
+        <p className="tagline">Chess screenshot in. FEN out. Nothing leaves your browser.</p>
         <a className="gh-link" href="https://github.com/scoriiu/fenshot" target="_blank" rel="noreferrer">
           GitHub
         </a>

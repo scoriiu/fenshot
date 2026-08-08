@@ -3,14 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>fenshot — screenshot in, FEN out</title>
+    <title>fenshot: chess screenshot to FEN converter, free and open source</title>
     <meta
       name="description"
-      content="Paste any chessboard screenshot and get the position as a FEN, entirely in your browser. Free and open source."
+      content="Turn any chess screenshot, photo or book diagram into a FEN and a playable analysis board. One click, free, open source, runs entirely in your browser, nothing uploaded."
     />
+    <link rel="canonical" href="https://fenshot.com/" />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="fenshot — screenshot in, FEN out" />
+    <meta property="og:site_name" content="fenshot" />
+    <meta property="og:title" content="fenshot: chess screenshot to FEN, free and open source" />
     <meta
       property="og:description"
       content="Paste any chess screenshot or book diagram and it becomes an analyzable board. Runs entirely in your browser, free and open source, one click to Lichess."
@@ -20,12 +22,32 @@
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="fenshot — screenshot in, FEN out" />
+    <meta name="twitter:title" content="fenshot: chess screenshot to FEN, free and open source" />
     <meta
       name="twitter:description"
       content="Paste any chess screenshot and it becomes an analyzable board. Free, open source, in your browser."
     />
     <meta name="twitter:image" content="https://fenshot.com/og.png" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "fenshot",
+        "url": "https://fenshot.com/",
+        "description": "Chess screenshot to FEN converter. Reads chess positions from screenshots, photos and book diagrams, entirely in the browser, and opens them on a playable analysis board.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any (web browser)",
+        "browserRequirements": "Requires a modern browser with WebAssembly",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "license": "https://github.com/scoriiu/fenshot/blob/main/LICENSE",
+        "sameAs": [
+          "https://github.com/scoriiu/fenshot",
+          "https://chromewebstore.google.com/detail/fenshot-chess-board-to-fe/fpkdijjlnafehkdkjmkppcekocjdomkc",
+          "https://addons.mozilla.org/en-US/firefox/addon/fenshot/",
+          "https://microsoftedge.microsoft.com/addons/detail/fenshot-chess-board-to-f/cjcpedpebpfcedbcfejppadobfohbaif"
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -40,6 +40,7 @@ body {
 }
 
 .brand {
+  margin: 0;
   font-size: 28px;
   font-weight: 700;
   color: #f1f5f9;
@@ -51,6 +52,7 @@ body {
 }
 
 .tagline {
+  margin: 0;
   color: var(--muted);
   font-size: 14px;
   flex: 1;
