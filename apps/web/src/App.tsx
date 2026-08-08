@@ -332,18 +332,6 @@ export default function App() {
         </main>
       )}
 
-      <div className="ext-row">
-        <span className="ext-label">Skip the screenshot: the extension reads the board on any page in one click</span>
-        <div className="ext-links">
-          {(Object.keys(STORES) as StoreName[]).map((name) => (
-            <a key={name} className="ext-btn" href={STORES[name]} target="_blank" rel="noreferrer">
-              <BrowserIcon name={name} />
-              {name}
-            </a>
-          ))}
-        </div>
-      </div>
-
       <footer className="footer">
         MIT open source · built from the position import of{" "}
         <a href="https://coachess.app?ref=fenshot-web" target="_blank" rel="noreferrer">
