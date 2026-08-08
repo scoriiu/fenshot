@@ -459,10 +459,12 @@ body {
 }
 
 .install-btn {
+  width: 168px;
   height: 42px;
   display: inline-flex;
   align-items: center;
-  padding: 0 22px;
+  justify-content: center;
+  gap: 8px;
   border: 1px solid var(--border);
   border-radius: 10px;
   color: var(--muted);
@@ -481,7 +483,6 @@ body {
   border-color: var(--accent);
   color: #0c1117;
   font-weight: 600;
-  font-size: 15px;
 }
 
 .install-btn.primary:hover {
@@ -515,12 +516,22 @@ body {
 }
 
 .ext-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  width: 118px;
   color: var(--muted);
   font-size: 14px;
   text-decoration: none;
   border: 1px solid var(--border);
-  padding: 6px 18px;
+  padding: 6px 0;
   border-radius: 8px;
+}
+
+.ext-btn svg {
+  width: 14px;
+  height: 14px;
 }
 
 .ext-btn:hover {
