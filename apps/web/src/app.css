@@ -112,9 +112,34 @@ body {
 
 .ext-panel-note {
   margin: 0;
-  color: var(--muted);
-  font-size: 13px;
+  color: var(--text);
+  font-size: 14px;
   text-align: center;
+}
+
+.ext-panel-meta {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  column-gap: 18px;
+  row-gap: 6px;
+}
+
+.ext-panel-meta span {
+  color: var(--muted);
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ext-panel-meta span::before {
+  content: "";
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.7;
 }
 
 .ext-panel-buttons {

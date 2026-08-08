@@ -255,6 +255,12 @@ export default function App() {
                 </a>
               ))}
             </div>
+            <div className="ext-panel-meta">
+              <span>Free</span>
+              <span>Open source</span>
+              <span>No account</span>
+              <span>Nothing uploaded</span>
+            </div>
           </div>
         </aside>
         </main>
