@@ -8,6 +8,8 @@
 
 Paste any chessboard screenshot, a chess.com game, a Lichess puzzle, a diagram from a chess book, a position from a reddit thread, and get the position as a FEN, entirely in your browser. No account, no upload, nothing leaves the page.
 
+The recognition itself runs 100% client-side. The fenshot.com website uses self-hosted, cookieless [Umami](https://umami.is) for anonymous page-view counts (no personal data, no third parties, and never your images or positions). The browser extension contains no analytics at all.
+
 **[Try it live →](https://fenshot.com/)**
 
 **Browser extension** (reads the board on any page in one click): [Chrome](https://chromewebstore.google.com/detail/fenshot-chess-board-to-fe/fpkdijjlnafehkdkjmkppcekocjdomkc) · [Firefox](https://addons.mozilla.org/en-US/firefox/addon/fenshot/) · [Edge](https://microsoftedge.microsoft.com/addons/detail/fenshot-chess-board-to-f/cjcpedpebpfcedbcfejppadobfohbaif), source in [`apps/extension`](apps/extension)
