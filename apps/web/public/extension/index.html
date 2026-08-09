@@ -125,6 +125,8 @@
     a.href = STORES[name];
     a.target = "_blank";
     a.rel = "noreferrer";
+    a.setAttribute("data-umami-event", "store-click");
+    a.setAttribute("data-umami-event-store", name.toLowerCase());
     a.appendChild(icon(name));
     a.appendChild(document.createTextNode(name === browser ? "Add to " + name : name));
     buttonsEl.appendChild(a);
@@ -134,7 +136,11 @@
     statusEl.textContent = "the extension is for desktop browsers. on your phone, the web version below does the same job, no install needed.";
   } else {
     statusEl.textContent = "taking you to the " + browser + " store\u2026 if nothing happens, use the button below.";
-    setTimeout(function () { window.location.href = STORES[browser]; }, 1200);
+    setTimeout(function () {
+      // sendBeacon-based, survives the navigation
+      if (window.umami && window.umami.track) window.umami.track("store-redirect", { store: browser.toLowerCase() });
+      window.location.href = STORES[browser];
+    }, 1200);
   }
 </script>
 </body>

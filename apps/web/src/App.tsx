@@ -249,6 +249,8 @@ export default function App() {
                   href={STORES[name]}
                   target="_blank"
                   rel="noreferrer"
+                  data-umami-event="store-click"
+                  data-umami-event-store={name.toLowerCase()}
                 >
                   <BrowserIcon name={name} />
                   {name === browser ? `Add to ${name}` : name}
