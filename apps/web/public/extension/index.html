@@ -135,12 +135,7 @@
   if (isMobile && !isFirefoxAndroid) {
     statusEl.textContent = "the extension is for desktop browsers. on your phone, the web version below does the same job, no install needed.";
   } else {
-    statusEl.textContent = "taking you to the " + browser + " store\u2026 if nothing happens, use the button below.";
-    setTimeout(function () {
-      // sendBeacon-based, survives the navigation
-      if (window.umami && window.umami.track) window.umami.track("store-redirect", { store: browser.toLowerCase() });
-      window.location.href = STORES[browser];
-    }, 1200);
+    statusEl.textContent = "one click to your browser's store.";
   }
 </script>
 </body>
