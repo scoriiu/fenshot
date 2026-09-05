@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>fenshot: turn a picture of a chess position into a playable board (image to FEN)</title>
+    <title>Chess Image to Board — screenshot or photo to FEN & analysis | fenshot</title>
     <meta
       name="description"
-      content="Copy a chess position from any picture: screenshot, photo or book diagram. One click gives you the FEN and a playable analysis board. Free, open source, runs entirely in your browser, nothing uploaded."
+      content="Turn any chess image into a playable board: screenshots, photos of real boards, book diagrams. Free chess image to FEN converter that runs in your browser. Paste a picture, get the position, analyze it instantly."
     />
     <link rel="canonical" href="https://fenshot.com/" />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
@@ -49,9 +49,53 @@
       }
     </script>
     <script defer src="https://analytics.coachess.app/script.js" data-website-id="e8886b74-e0de-4a09-9dbb-d3b3f1e1fd53"></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "What is a FEN?", "acceptedAnswer": { "@type": "Answer", "text": "FEN (Forsyth-Edwards Notation) is the standard one-line text format for a chess position. Every chess site and engine understands it. fenshot creates the FEN from any chess image so you never have to type a position square by square." } },
+          { "@type": "Question", "name": "Does it work with photos of a real chess board?", "acceptedAnswer": { "@type": "Answer", "text": "It works best with top-down 2D boards: screenshots, book diagrams, app captures. A straight-overhead photo of a physical board has the best chance, and imperfect scans can be fixed by hand before analyzing." } },
+          { "@type": "Question", "name": "Can it read chess book diagrams?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Photograph or scan the printed diagram, paste the image, and the position becomes a live analyzable board." } },
+          { "@type": "Question", "name": "Is my image uploaded to a server?", "acceptedAnswer": { "@type": "Answer", "text": "No. The recognition model runs entirely in your browser via WebAssembly. Nothing is transmitted." } },
+          { "@type": "Question", "name": "How do I analyze the position after scanning?", "acceptedAnswer": { "@type": "Answer", "text": "Click Analyze and the position opens on a free analysis board with Stockfish running locally. You can also copy the FEN to any chess site." } }
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
+
+    <section id="seo-content" style="max-width:720px;margin:0 auto;padding:48px 20px 64px;color:#cbd5e1;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.65;font-size:15px">
+      <h2 style="color:#fef3c7;font-size:22px;margin:0 0 12px">Turn a chess image into a playable board</h2>
+      <p>fenshot reads the position out of any chess picture and gives you a live, analyzable board. Paste a screenshot from chess.com or Lichess, a photo of a chess book diagram, or a position someone posted on Reddit or sent you in a chat. One click later you have the FEN string and a board you can actually move pieces on, with a free Stockfish engine.</p>
+      <p>Everything runs in your browser. The image is never uploaded anywhere: a small neural network reads the board locally, which is why the scan finishes in about a second. The whole tool is free and <a href="https://github.com/scoriiu/fenshot" style="color:#fbbf24">open source</a>.</p>
+
+      <h2 style="color:#fef3c7;font-size:22px;margin:32px 0 12px">How to convert a chess screenshot to FEN</h2>
+      <ol style="padding-left:20px">
+        <li>Copy any chess image: press <strong>Ctrl+V</strong> right on this page, drag a file in, or click the box to choose one.</li>
+        <li>fenshot finds the board in the image and reads every piece, in your browser.</li>
+        <li>Copy the FEN string, or open the position on a playable analysis board with an engine.</li>
+      </ol>
+      <p>If you analyze positions often, the <a href="/extension/" style="color:#fbbf24">browser extension</a> reads the board straight off any webpage without screenshots: chess.com games, Lichess studies, YouTube videos, articles.</p>
+
+      <h2 style="color:#fef3c7;font-size:22px;margin:32px 0 12px">Common questions</h2>
+      <h3 style="color:#e2e8f0;font-size:16px;margin:20px 0 6px">What is a FEN?</h3>
+      <p>FEN (Forsyth–Edwards Notation) is the standard one-line text format for a chess position. Every chess site and engine understands it: paste a FEN into Lichess, chess.com or any analysis tool and the exact position appears. fenshot creates the FEN for you so you never have to type a position square by square.</p>
+      <h3 style="color:#e2e8f0;font-size:16px;margin:20px 0 6px">Does it work with photos of a real chess board?</h3>
+      <p>It works best with top-down 2D boards: screenshots, book diagrams, app captures. Photos of physical boards taken at an angle are hit and miss; a straight-overhead photo has the best chance. When a scan is imperfect you can fix individual squares by hand before analyzing.</p>
+      <h3 style="color:#e2e8f0;font-size:16px;margin:20px 0 6px">Can it read chess book diagrams?</h3>
+      <p>Yes. Printed diagrams are one of the main uses: photograph or scan the page, paste the image, and the position becomes a live board. Reading a gambit book with a phone next to it stops being a memory exercise.</p>
+      <h3 style="color:#e2e8f0;font-size:16px;margin:20px 0 6px">Is my image uploaded to a server?</h3>
+      <p>No. The recognition model runs entirely in your browser via WebAssembly. Nothing is transmitted, which you can verify in the network tab or the source code.</p>
+      <h3 style="color:#e2e8f0;font-size:16px;margin:20px 0 6px">How do I analyze the position after scanning?</h3>
+      <p>Click "Analyze" and the position opens on a free analysis board with Stockfish running locally: best moves, evaluation, and full piece movement. You can also copy the FEN and take it to any site you prefer.</p>
+      <h3 style="color:#e2e8f0;font-size:16px;margin:20px 0 6px">Which sites and formats does it recognize?</h3>
+      <p>chess.com and Lichess screenshots in any theme, most chess apps, book and PDF diagrams, and the common piece sets used by chess websites and publications. If a particular set fails, the manual editor lets you correct it in seconds.</p>
+
+      <p style="margin-top:32px;color:#94a3b8">Related searches this tool answers: chess image to board, chess screenshot to FEN, picture of chess position to analysis, chess photo to digital board, book diagram to FEN, get FEN from chess.com screenshot.</p>
+    </section>
+
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

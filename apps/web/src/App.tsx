@@ -70,8 +70,19 @@ export default function App() {
   const [dragging, setDragging] = useState(false);
   const browser = useMemo(detectBrowser, []);
   const demoVideoRef = useRef<HTMLVideoElement>(null);
-  const [demoEnded, setDemoEnded] = useState(false);
+  // Autoplay the demo only until it has been watched once. Recurring
+  // users open this page as a tool; a video bursting into motion on
+  // every visit is noise (founder call 2026-08-24). Returning visits
+  // get the still poster with a play button — a smart default instead
+  // of a settings checkbox nobody would find.
+  const demoSeen = useMemo(() => {
+    try { return localStorage.getItem("fenshot-demo-seen") === "1"; } catch { return false; }
+  }, []);
+  const [demoEnded, setDemoEnded] = useState(demoSeen);
   const [demoCycle, setDemoCycle] = useState(0);
+  const markDemoSeen = () => {
+    try { localStorage.setItem("fenshot-demo-seen", "1"); } catch { /* ok */ }
+  };
 
   const recognizer = useMemo(
     () =>
@@ -217,10 +228,10 @@ export default function App() {
               ref={demoVideoRef}
               src="/fenshot-demo.mp4"
               poster="/fenshot-demo-poster.jpg"
-              autoPlay
+              autoPlay={!demoSeen}
               muted
               playsInline
-              onEnded={() => setDemoEnded(true)}
+              onEnded={() => { setDemoEnded(true); markDemoSeen(); }}
             />
             {!demoEnded && <div key={demoCycle} className="demo-scanline" aria-hidden />}
             {demoEnded && (
@@ -232,7 +243,7 @@ export default function App() {
                   void demoVideoRef.current?.play();
                 }}
               >
-                ▶ Replay demo
+                ▶ {demoSeen ? "Play demo" : "Replay demo"}
               </button>
             )}
           </div>

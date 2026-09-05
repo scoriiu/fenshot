@@ -12,4 +12,9 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url><loc>https://fenshot.com/chess-image-to-board/</loc></url>
+  <url><loc>https://fenshot.com/chess-screenshot-to-fen/</loc></url>
+  <url><loc>https://fenshot.com/photo-of-chess-board-to-fen/</loc></url>
+  <url><loc>https://fenshot.com/chess-book-diagram-to-fen/</loc></url>
+  <url><loc>https://fenshot.com/chesscom-screenshot-to-lichess/</loc></url>
 </urlset>
