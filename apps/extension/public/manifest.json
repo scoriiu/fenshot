@@ -5,7 +5,8 @@
   "version": "0.3.0",
   "description": "Reads the chess position on any page or screenshot: one click, select an area, upload, or paste. Runs entirely on your device.",
   "permissions": [
-    "activeTab"
+    "activeTab",
+    "scripting"
   ],
   "action": {
     "default_popup": "index.html",

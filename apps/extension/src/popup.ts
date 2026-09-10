@@ -5,7 +5,13 @@
  * read misses (busy page, multiple boards, blocked capture), the
  * popup never dead-ends: the user can drag a box around the board on
  * the captured page, upload an image, or paste a screenshot. All of
- * it stays on the device; no content scripts, no host permissions.
+ * it stays on the device; no persistent content scripts, no host
+ * permissions.
+ *
+ * In parallel with the screenshot, the popup reads the page's text
+ * (one-shot chrome.scripting call, also covered by activeTab) and looks
+ * for whole games written as move lists; see pgn.ts. Any game found is
+ * offered next to the position, or on its own when no board was read.
  *
  * All rendering uses DOM construction, never innerHTML, so the AMO
  * linter and reviewers have nothing to question.
@@ -19,6 +25,7 @@ import {
   type BoardScanResult,
 } from "@scoriiu/fenshot";
 import { pieceElement } from "./pieces";
+import { collectPageText, findGames, lichessGameUrl, coachessGameUrl, type FoundGame } from "./pgn";
 import ortMjsUrl from "./ort/ort-wasm-simd-threaded.mjs?url";
 import ortWasmUrl from "./ort/ort-wasm-simd-threaded.wasm?url";
 import modelUrl from "../../../packages/fenshot/model/chess-tiles-v2.onnx?url";
@@ -38,7 +45,10 @@ interface ResultState {
 }
 
 let pageBitmap: ImageBitmap | null = null;
+let pageGames: FoundGame[] = [];
 let lastResult: ResultState | null = null;
+/** Re-renders the screen currently shown, if it is one that lists games. */
+let refreshScreen: (() => void) | null = null;
 let recognizer: ReturnType<typeof createRecognizer> | null = null;
 
 function getRecognizer() {
@@ -80,6 +90,37 @@ function render(...content: HTMLElement[]) {
   app.replaceChildren(wrap);
 }
 
+/**
+ * Games found in the page text. One game: a single row. Several: a
+ * list, longest first, each with the same actions. Returns null when
+ * there is nothing to show so callers can append conditionally.
+ */
+function gamesEl(): HTMLElement | null {
+  if (pageGames.length === 0) return null;
+  const box = el("div", "games");
+  const n = pageGames.length;
+  box.append(el("div", "games-title", n === 1 ? "Game on this page" : `${n} games on this page`));
+  for (const game of pageGames) {
+    const row = el("div", "game");
+    row.append(el("div", "game-label", game.label));
+    const actions = el("div", "game-actions");
+    actions.append(
+      link(coachessGameUrl(game), "btn small primary", "Coachess"),
+      link(lichessGameUrl(game), "btn small", "Lichess"),
+    );
+    const copy = el("button", "btn small", "Copy PGN");
+    copy.addEventListener("click", async () => {
+      await navigator.clipboard.writeText(game.pgn);
+      copy.textContent = "Copied";
+      setTimeout(() => (copy.textContent = "Copy PGN"), 1500);
+    });
+    actions.append(copy);
+    row.append(actions);
+    box.append(row);
+  }
+  return box;
+}
+
 function renderMessage(title: string, hint: string, spinner = false) {
   const state = el("div", "state");
   if (spinner) state.append(el("div", "spinner"));
@@ -94,6 +135,7 @@ function renderMessage(title: string, hint: string, spinner = false) {
  * every capability.
  */
 function renderHub(title: string, hint?: string) {
+  refreshScreen = () => renderHub(title, hint);
   document.body.classList.remove("wide");
   const state = el("div", "state compact");
   state.append(el("p", undefined, title));
@@ -110,7 +152,8 @@ function renderHub(title: string, hint?: string) {
   paths.append(uploadBtn);
 
   const pasteHint = el("p", "paste-hint", `or paste a screenshot with ${pasteKey} \u00b7 drag & drop works too`);
-  render(state, paths, pasteHint);
+  const games = gamesEl();
+  render(state, paths, pasteHint, ...(games ? [games] : []));
 }
 
 async function scanBlob(blob: Blob, origin: ScanOrigin) {
@@ -169,6 +212,7 @@ function boardEl(placement: string, flipped: boolean): HTMLElement {
 
 function renderResult(state: ResultState) {
   lastResult = state;
+  refreshScreen = () => renderResult(state);
   document.body.classList.remove("wide");
   const fen = placementToFen(state.placement, state.turn);
   let legalityWarning: string | null = null;
@@ -200,11 +244,14 @@ function renderResult(state: ResultState) {
   turnRow.append(whiteBtn, blackBtn);
   content.push(turnRow);
 
+  // Coachess is the primary destination. An illegal read still goes to
+  // the Lichess editor first, since that is where squares get fixed.
   const actions = el("div", "actions");
-  actions.append(
-    link(analysisUrl, "btn primary", legalityWarning ? "Fix in Lichess editor" : "Analyze on Lichess"),
-    link(coachessUrl, "btn", "Coachess"),
-  );
+  if (legalityWarning) {
+    actions.append(link(analysisUrl, "btn primary", "Fix in Lichess editor"), link(coachessUrl, "btn", "Coachess"));
+  } else {
+    actions.append(link(coachessUrl, "btn primary", "Analyze on Coachess"), link(analysisUrl, "btn", "Lichess"));
+  }
   const copyBtn = el("button", "btn", "Copy FEN");
   copyBtn.addEventListener("click", async () => {
     await navigator.clipboard.writeText(fen);
@@ -222,6 +269,9 @@ function renderResult(state: ResultState) {
     content.push(rescan);
   }
 
+  const games = gamesEl();
+  if (games) content.push(games);
+
   render(...content);
 }
 
@@ -235,6 +285,7 @@ function renderResult(state: ResultState) {
 function renderCrop() {
   const bitmap = pageBitmap;
   if (!bitmap) return;
+  refreshScreen = null; // never yank the user out of a drag
   document.body.classList.add("wide");
 
   const maxW = 600;
@@ -367,8 +418,33 @@ async function captureTab(): Promise<Blob> {
   return res.blob();
 }
 
+/**
+ * Read the page text and look for games. Best effort: browser-internal
+ * pages, store pages and PDFs refuse injection, and that is fine; the
+ * screenshot path does not depend on this in any way.
+ */
+async function findPageGames(): Promise<FoundGame[]> {
+  try {
+    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    if (!tab?.id) return [];
+    const frames = await chrome.scripting.executeScript({ target: { tabId: tab.id }, func: collectPageText });
+    const texts = frames.flatMap((f) => (f.result as string[] | undefined) ?? []);
+    return findGames(texts);
+  } catch (err) {
+    console.warn("game scan skipped", err);
+    return [];
+  }
+}
+
 async function main() {
   renderMessage("Reading the board on this page\u2026", "runs entirely on your device", true);
+  // Game scan runs alongside the screenshot. If it lands after the
+  // board result is already on screen, that screen is refreshed so the
+  // games appear; if it lands first, the next render picks them up.
+  void findPageGames().then((games) => {
+    pageGames = games;
+    if (games.length) refreshScreen?.();
+  });
   let blob: Blob;
   try {
     blob = await captureTab();
