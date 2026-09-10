@@ -24,11 +24,11 @@ position. From there:
 - Open on Lichess
 - Copy the FEN to use anywhere
 
-New in 0.4: whole games. On a page that shows a game as a move list
-(chessgames.com, lichess, chess.com articles, blogs), fenshot finds it,
-verifies every move is legal, and shows it on a small board you can step
-through. One click opens the full game on Coachess or Lichess, or copies
-the PGN. Several games on one page? Page through them.
+Whole games too. On a page that shows a game as a move list, such as
+chessgames.com, lichess, a chess.com article or a blog, fenshot finds
+it, checks that every move is legal, and shows it on a small board you
+can step through. One click opens the full game on Coachess or Lichess,
+or copies the PGN. Several games on one page? Page through them.
 
 Privacy, for real:
 - The screenshot and the page text are read only when you click the icon
