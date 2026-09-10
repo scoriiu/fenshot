@@ -8,8 +8,9 @@
   ],
   "scripts": {
     "build": "npm run build -w @scoriiu/fenshot",
-    "test": "npm run test -w @scoriiu/fenshot",
-    "dev": "vite --config apps/web/vite.config.ts apps/web"
+    "test": "npm run test -w @scoriiu/fenshot && npm run test -w extension",
+    "dev": "vite --config apps/web/vite.config.ts apps/web",
+    "test:e2e": "npm run test:e2e -w extension"
   },
   "devDependencies": {
     "chess.js": "^1.4.0",

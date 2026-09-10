@@ -8,7 +8,9 @@
     "dev": "vite build --watch",
     "prebuild": "node scripts/sync-ort.mjs",
     "build": "tsc -p tsconfig.json --noEmit && vite build",
-    "package": "npm run build && cd dist && zip -qr ../fenshot-extension-$npm_package_version.zip . && echo packaged: fenshot-extension-$npm_package_version.zip"
+    "package": "npm run build && cd dist && zip -qr ../fenshot-extension-$npm_package_version.zip . && echo packaged: fenshot-extension-$npm_package_version.zip",
+    "test": "vitest run",
+    "test:e2e": "npm run build && vitest run --config vitest.e2e.config.ts"
   },
   "dependencies": {
     "@scoriiu/fenshot": "^0.1.3",
@@ -18,6 +20,8 @@
   "devDependencies": {
     "@types/chrome": "^0.0.280",
     "typescript": "^5.6.0",
-    "vite": "^7.0.0"
+    "vite": "^7.0.0",
+    "vitest": "^3.0.0",
+    "playwright": "^1.61.1"
   }
 }

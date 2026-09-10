@@ -47,8 +47,9 @@ export function collectPageText(): string[] {
 }
 
 const SAN =
-  /^(?:O-O(?:-O)?|0-0(?:-0)?|[KQRBN][a-h]?[1-8]?x?[a-h][1-8]|[a-h](?:x[a-h])?[1-8](?:=?[QRBN])?)[+#]?[!?]{0,2}$/;
-const MOVE_NO = /^(\d{1,3})\.(?:\.\.)?$/;
+  /^(?:O-O(?:-O)?|0-0(?:-0)?|[KQRBN][a-h]?[1-8]?x?[a-h][1-8]|[a-h](?:x[a-h])?(?:[2-7]|[18](?:=?[QRBN])?))[+#]?[!?]{0,2}$/;
+// "1." "1..." and bare "1" (lichess renders numbers without a dot).
+const MOVE_NO = /^(\d{1,3})(?:\.(?:\.\.)?)?$/;
 const MOVE_NO_INLINE = /^(\d{1,3})\.(\.\.)?(\S+)$/;
 const RESULT = /^(?:1-0|0-1|1\/2-1\/2|½-½|\*)$/;
 const TAG = /\[(\w+)\s+"([^"]*)"\]/g;
@@ -79,6 +80,65 @@ function readSequence(tokens: string[], start: number): { moves: string[]; resul
     moves.push(san.replace(/[!?]+$/, "").replace(/^0-0-0$/, "O-O-O").replace(/^0-0$/, "O-O"));
   }
   return { moves };
+}
+
+const SAN_SRC = SAN.source.slice(1, -1); // unanchored, for splitting glued pairs
+const RESULT_SRC = "1-0|0-1|1/2-1/2|\u00bd-\u00bd|\\*";
+// Two moves first: "Kf1g5" also parses as one (over-disambiguated)
+// SAN move, so the single-move form is only a fallback for line ends.
+const PAIR = new RegExp(`^(${SAN_SRC})(${SAN_SRC})(${RESULT_SRC})?$`);
+const SINGLE = new RegExp(`^(${SAN_SRC})(${RESULT_SRC})?$`);
+
+/**
+ * Sites that render each move in its own element (chessgames.com) give
+ * an innerText with no whitespace at all: "1.e4e52.f4exf43.Bc4Qh4+4.".
+ * The only reliable separator is the dot after a move number, since a
+ * SAN move never contains one. Walk the numbers in order, cut each
+ * segment at the next "<n+1>." and split it into white/black moves.
+ * Returns null when the token is not such a run.
+ */
+function explodeGlued(tok: string): string[] | null {
+  const head = /^(\d{1,3})(\.(?:\.\.)?)?(?=\S)/.exec(tok);
+  if (!head || MOVE_NO.test(tok)) return null;
+  // Lichess-style runs have no dots at all ("1e4e52Nf3"); when the
+  // token has dots, the next number must carry one too, which removes
+  // nearly all ambiguity between "e5" + "2." and "e52".
+  const dotted = tok.includes(".");
+  const out: string[] = [];
+  let n = parseInt(head[1], 10);
+  let pos = 0;
+  for (;;) {
+    const num = `${n}`;
+    if (!tok.startsWith(num, pos)) break;
+    pos += num.length;
+    if (tok.startsWith("...", pos)) pos += 3;
+    else if (tok.startsWith(".", pos)) pos += 1;
+    const next = `${n + 1}${dotted ? "." : ""}`;
+    // Every occurrence of the next move number is a candidate cut; the
+    // first one that leaves a valid white+black pair before it wins.
+    let cut = -1;
+    let pair: RegExpExecArray | null = null;
+    for (let p = tok.indexOf(next, pos + 1); p >= 0; p = tok.indexOf(next, p + 1)) {
+      pair = PAIR.exec(tok.slice(pos, p));
+      if (pair) {
+        cut = p;
+        break;
+      }
+    }
+    if (cut < 0) {
+      // Last segment: one or two moves, optional result, then the end.
+      const rest = tok.slice(pos);
+      const m = PAIR.exec(rest) ?? SINGLE.exec(rest);
+      if (!m) return out.length ? out : null;
+      out.push(`${n}.`, ...m.slice(1).filter((s): s is string => !!s));
+      break;
+    }
+    out.push(`${n}.`, pair![1], pair![2]);
+    if (pair![3]) out.push(pair![3]);
+    pos = cut;
+    n += 1;
+  }
+  return out.length ? out : null;
 }
 
 /** Replay; on the first illegal move, keep the legal prefix. */
@@ -132,12 +192,20 @@ export function findGames(texts: string[]): FoundGame[] {
     const tokens: string[] = [];
     const offsets: number[] = [];
     for (const m of text.matchAll(/\S+/g)) {
-      tokens.push(m[0]);
-      offsets.push(m.index!);
+      const glued = explodeGlued(m[0]);
+      if (glued) {
+        for (const g of glued) {
+          tokens.push(g);
+          offsets.push(m.index!);
+        }
+      } else {
+        tokens.push(m[0]);
+        offsets.push(m.index!);
+      }
     }
     for (let i = 0; i < tokens.length; i++) {
       const t = tokens[i];
-      if (t !== "1." && !/^1\.[^.]/.test(t)) continue;
+      if (t !== "1." && t !== "1" && !/^1\.[^.]/.test(t)) continue;
       const seq = readSequence(tokens, i);
       const moves = replay(seq.moves);
       if (moves.length < MIN_PLIES) continue;
