@@ -25,7 +25,14 @@ import {
   type BoardScanResult,
 } from "@scoriiu/fenshot";
 import { pieceElement } from "./pieces";
-import { collectPageText, findGames, lichessGameUrl, coachessGameUrl, type FoundGame } from "./pgn";
+import {
+  collectPageText,
+  findGames,
+  lichessGameUrl,
+  coachessGameUrl,
+  coachessPositionUrl,
+  type FoundGame,
+} from "./pgn";
 import ortMjsUrl from "./ort/ort-wasm-simd-threaded.mjs?url";
 import ortWasmUrl from "./ort/ort-wasm-simd-threaded.wasm?url";
 import modelUrl from "../../../packages/fenshot/model/chess-tiles-v2.onnx?url";
@@ -100,12 +107,15 @@ function gamesEl(): HTMLElement | null {
   const box = el("div", "games");
   const n = pageGames.length;
   box.append(el("div", "games-title", n === 1 ? "Game on this page" : `${n} games on this page`));
+  // The board read tells us which side the page shows at the bottom;
+  // the game opens from the same point of view.
+  const povBlack = lastResult?.origin === "page" && lastResult.flipped;
   for (const game of pageGames) {
     const row = el("div", "game");
     row.append(el("div", "game-label", game.label));
     const actions = el("div", "game-actions");
     actions.append(
-      link(coachessGameUrl(game), "btn small primary", "Coachess"),
+      link(coachessGameUrl(game, povBlack), "btn small primary", "Coachess"),
       link(lichessGameUrl(game), "btn small", "Lichess"),
     );
     const copy = el("button", "btn small", "Copy PGN");
@@ -230,7 +240,7 @@ function renderResult(state: ResultState) {
   const analysisUrl = legalityWarning
     ? `https://lichess.org/editor/${lichessFen}`
     : `https://lichess.org/analysis/standard/${lichessFen}`;
-  const coachessUrl = `https://coachess.app/coach/position?fen=${encodeURIComponent(fen)}${state.flipped ? "&pov=black" : ""}`;
+  const coachessUrl = coachessPositionUrl(fen, state.flipped);
 
   const content: HTMLElement[] = [boardEl(state.placement, state.flipped)];
   if (warning) content.push(el("div", "warning", warning));

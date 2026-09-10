@@ -67,18 +67,18 @@ function stripAnnotations(s: string): string {
  * From a "1." anchor, read forward token by token, collecting SAN moves
  * until something that is not a move, move number or result shows up.
  */
-function readSequence(tokens: string[], start: number): string[] {
+function readSequence(tokens: string[], start: number): { moves: string[]; result?: string } {
   const moves: string[] = [];
   for (let i = start; i < tokens.length; i++) {
     const tok = tokens[i];
     if (MOVE_NO.test(tok)) continue;
-    if (RESULT.test(tok)) break;
+    if (RESULT.test(tok)) return { moves, result: tok === "\u00bd-\u00bd" ? "1/2-1/2" : tok };
     const inline = MOVE_NO_INLINE.exec(tok);
     const san = inline ? inline[3] : tok;
     if (!SAN.test(san)) break;
     moves.push(san.replace(/[!?]+$/, "").replace(/^0-0-0$/, "O-O-O").replace(/^0-0$/, "O-O"));
   }
-  return moves;
+  return { moves };
 }
 
 /** Replay; on the first illegal move, keep the legal prefix. */
@@ -138,7 +138,8 @@ export function findGames(texts: string[]): FoundGame[] {
     for (let i = 0; i < tokens.length; i++) {
       const t = tokens[i];
       if (t !== "1." && !/^1\.[^.]/.test(t)) continue;
-      const moves = replay(readSequence(tokens, i));
+      const seq = readSequence(tokens, i);
+      const moves = replay(seq.moves);
       if (moves.length < MIN_PLIES) continue;
       const key = moves.join(" ");
       if (seen.has(key)) continue;
@@ -156,8 +157,14 @@ export function findGames(texts: string[]): FoundGame[] {
       }
       seen.add(key);
       const headers = headersBefore(text, offsets[i]);
+      // A result token closing the move list (chessgames, most tables)
+      // counts as a header when the page has no PGN tag for it, and
+      // only when the replay consumed the whole line: a truncated line
+      // has no known outcome.
+      if (!headers.Result && seq.result && moves.length === seq.moves.length) headers.Result = seq.result;
       const tagLines = Object.entries(headers).map(([k, v]) => `[${k} "${v}"]`);
-      const pgn = (tagLines.length ? tagLines.join("\n") + "\n\n" : "") + movetext(moves);
+      const pgn =
+        (tagLines.length ? tagLines.join("\n") + "\n\n" : "") + movetext(moves) + (headers.Result ? ` ${headers.Result}` : "");
       games.push({ moves, headers, pgn, label: labelFor(headers, moves) });
     }
   }
@@ -170,14 +177,58 @@ export function lichessGameUrl(game: FoundGame): string {
   return `https://lichess.org/analysis/pgn/${game.moves.map(encodeURIComponent).join("_")}`;
 }
 
-/**
- * Coachess' analysis board accepts `fen` (starting position) plus
- * `moves` (SAN, comma-separated), replays them and lands on the last
- * move. This is the same route the position button already uses.
+/*
+ * Coachess handoff. This URL shape is a public contract consumed by
+ * two codebases; agreed with the Coachess side on 2026-09-10. Any
+ * breaking change must be proposed there first.
+ *
+ *   /coach/position
+ *     ?fen=<START_FEN>                 always sent; required for moves= to parse
+ *     &moves=<SAN,comma-separated>     single source of truth for the moves;
+ *                                      O-O letters only, replay truncates at
+ *                                      the first bad token
+ *     [&pov=black]                     when the source page showed Black at the bottom
+ *     [&white=&black=&date=&result=]   display metadata; date as YYYY.MM.DD,
+ *                                      result 1-0 | 0-1 | 1/2-1/2; no event=, no pgn=
+ *     &utm_source=fenshot&utm_medium=extension&utm_campaign=game-import
+ *
+ * Whole URL stays under 2000 characters: plies are dropped from the
+ * end if needed (~350 plies fit, so this is a safety net, not a path
+ * real games take).
  */
+export const COACHESS_CONTRACT_VERSION = 1;
+const COACHESS_POSITION = "https://coachess.app/coach/position";
 const START_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+const MAX_URL = 2000;
+const RESULT_VALUES = new Set(["1-0", "0-1", "1/2-1/2"]);
 
-export function coachessGameUrl(game: FoundGame): string {
-  const moves = game.moves.map(encodeURIComponent).join(",");
-  return `https://coachess.app/coach/position?fen=${encodeURIComponent(START_FEN)}&moves=${moves}`;
+function utm(campaign: "game-import" | "position"): string {
+  return `utm_source=fenshot&utm_medium=extension&utm_campaign=${campaign}`;
+}
+
+/** Position handoff (the existing FEN button), same contract, own campaign tag. */
+export function coachessPositionUrl(fen: string, povBlack: boolean): string {
+  return `${COACHESS_POSITION}?fen=${encodeURIComponent(fen)}${povBlack ? "&pov=black" : ""}&${utm("position")}`;
+}
+
+export function coachessGameUrl(game: FoundGame, povBlack = false): string {
+  const h = game.headers;
+  const meta: string[] = [];
+  if (h.White?.trim()) meta.push(`white=${encodeURIComponent(h.White.trim())}`);
+  if (h.Black?.trim()) meta.push(`black=${encodeURIComponent(h.Black.trim())}`);
+  if (h.Date && /^\d{4}\.\d{2}\.\d{2}$/.test(h.Date)) meta.push(`date=${encodeURIComponent(h.Date)}`);
+  if (h.Result && RESULT_VALUES.has(h.Result)) meta.push(`result=${encodeURIComponent(h.Result)}`);
+
+  const build = (plies: number) => {
+    const moves = game.moves.slice(0, plies).map(encodeURIComponent).join("%2C");
+    const parts = [`fen=${encodeURIComponent(START_FEN)}`, `moves=${moves}`];
+    if (povBlack) parts.push("pov=black");
+    parts.push(...meta, utm("game-import"));
+    return `${COACHESS_POSITION}?${parts.join("&")}`;
+  };
+
+  let plies = game.moves.length;
+  let url = build(plies);
+  while (url.length > MAX_URL && plies > 1) url = build(--plies);
+  return url;
 }
