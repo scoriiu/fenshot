@@ -120,8 +120,23 @@ describe("popup end-to-end", () => {
       // Game from the page text.
       await popup.waitForSelector(".games");
       expect(await popup.locator(".games-title").textContent()).toBe("Game on this page");
-      expect(await popup.locator(".game").count()).toBe(1);
+      expect(await popup.locator(".pager").count()).toBe(0);
       expect(await popup.locator(".game-label").textContent()).toBe("Game (23 moves)");
+
+      // Mini board opens at the final position (Be7#), steppable both ways.
+      const mini = popup.locator(".board.mini");
+      expect(await mini.locator(".sq").count()).toBe(64);
+      const counter = popup.locator(".move-counter");
+      expect(await counter.textContent()).toBe("23. Be7# 45 / 45");
+      await popup.locator('button.nav[title="Previous move"]').click();
+      expect(await counter.textContent()).toBe("22... Nxf6 44 / 45");
+      await popup.locator('button.nav[title="Start"]').click();
+      expect(await counter.textContent()).toBe("Start 0 / 45");
+      expect(await popup.locator('button.nav[title="Start"]').isDisabled()).toBe(true);
+      await popup.keyboard.press("ArrowRight");
+      expect(await popup.locator(".move-counter").textContent()).toBe("1. e4 1 / 45");
+      await popup.keyboard.press("End");
+      expect(await popup.locator(".move-counter").textContent()).toBe("23. Be7# 45 / 45");
 
       const game = popup.locator(".game-actions a").first();
       expect(await game.textContent()).toBe("Coachess");
@@ -158,13 +173,32 @@ describe("popup end-to-end", () => {
     }
   });
 
-  it("article with two games and no board: hub screen lists both, longest first", async () => {
+  it("article with two games and no board: hub screen with a pager, longest first", async () => {
     const { page, popup } = await openPopupOn("article.html");
     try {
       await popup.waitForSelector(".paths");
       await popup.waitForSelector(".games");
-      expect(await popup.locator(".games-title").textContent()).toBe("2 games on this page");
-      expect(await popup.locator(".game-label").allTextContents()).toEqual(["Game (7 moves)", "Game (4 moves)"]);
+      const title = popup.locator(".games-title");
+      const label = popup.locator(".game-label");
+      const prev = popup.locator('button.nav[title="Previous game"]');
+      const next = popup.locator('button.nav[title="Next game"]');
+      expect(await title.textContent()).toBe("Game 1 of 2");
+      expect(await label.textContent()).toBe("Game (7 moves)");
+      expect(await prev.isDisabled()).toBe(true);
+      const firstHref = await popup.locator(".game-actions a").first().getAttribute("href");
+
+      await next.click();
+      expect(await title.textContent()).toBe("Game 2 of 2");
+      expect(await label.textContent()).toBe("Game (4 moves)");
+      expect(await popup.locator(".move-counter").textContent()).toBe("4. Qxf7# 7 / 7");
+      expect(await next.isDisabled()).toBe(true);
+      // Actions follow the selected game.
+      const secondHref = await popup.locator(".game-actions a").first().getAttribute("href");
+      expect(secondHref).not.toBe(firstHref);
+      expect(new URL(secondHref!).searchParams.get("moves")).toBe("e4,e5,Qh5,Nc6,Bc4,Nf6,Qxf7#");
+
+      await prev.click();
+      expect(await title.textContent()).toBe("Game 1 of 2");
       // The hub's own recovery paths are still there, untouched.
       expect(await popup.locator(".paths .btn").allTextContents()).toEqual([
         "Select the board on this page",

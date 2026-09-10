@@ -97,22 +97,96 @@ function render(...content: HTMLElement[]) {
   app.replaceChildren(wrap);
 }
 
+/** Which game is shown and at which ply; survives screen re-renders. */
+const gameView = { index: 0, ply: -1 };
+const placementCache = new WeakMap<FoundGame, string[]>();
+
+/** Board placement after each ply, index 0 = start position. Replayed once per game. */
+function placements(game: FoundGame): string[] {
+  let cached = placementCache.get(game);
+  if (!cached) {
+    const chess = new Chess();
+    cached = [chess.fen().split(" ")[0]];
+    for (const m of game.moves) {
+      chess.move(m);
+      cached.push(chess.fen().split(" ")[0]);
+    }
+    placementCache.set(game, cached);
+  }
+  return cached;
+}
+
 /**
- * Games found in the page text. One game: a single row. Several: a
- * list, longest first, each with the same actions. Returns null when
- * there is nothing to show so callers can append conditionally.
+ * Games found in the page text: a pager (when several), a small board
+ * the user can step through to confirm it is the right game, and the
+ * same three actions for every game. Returns null when there is
+ * nothing to show so callers can append conditionally.
  */
 function gamesEl(): HTMLElement | null {
-  if (pageGames.length === 0) return null;
-  const box = el("div", "games");
   const n = pageGames.length;
-  box.append(el("div", "games-title", n === 1 ? "Game on this page" : `${n} games on this page`));
+  if (n === 0) return null;
+  const box = el("div", "games");
   // The board read tells us which side the page shows at the bottom;
-  // the game opens from the same point of view.
-  const povBlack = lastResult?.origin === "page" && lastResult.flipped;
-  for (const game of pageGames) {
-    const row = el("div", "game");
-    row.append(el("div", "game-label", game.label));
+  // the game is shown and opened from the same point of view.
+  const povBlack = !!lastResult && lastResult.origin === "page" && lastResult.flipped;
+
+  const draw = () => {
+    gameView.index = Math.min(Math.max(gameView.index, 0), n - 1);
+    const game = pageGames[gameView.index];
+    const plies = placements(game);
+    if (gameView.ply < 0 || gameView.ply >= plies.length) gameView.ply = plies.length - 1;
+    const ply = gameView.ply;
+
+    const head = el("div", "games-head");
+    head.append(el("span", "games-title", n === 1 ? "Game on this page" : `Game ${gameView.index + 1} of ${n}`));
+    if (n > 1) {
+      const pager = el("div", "pager");
+      const prev = el("button", "nav", "\u2039");
+      prev.title = "Previous game";
+      prev.disabled = gameView.index === 0;
+      prev.addEventListener("click", () => {
+        gameView.index -= 1;
+        gameView.ply = -1;
+        draw();
+      });
+      const next = el("button", "nav", "\u203a");
+      next.title = "Next game";
+      next.disabled = gameView.index === n - 1;
+      next.addEventListener("click", () => {
+        gameView.index += 1;
+        gameView.ply = -1;
+        draw();
+      });
+      pager.append(prev, next);
+      head.append(pager);
+    }
+
+    const board = boardEl(plies[ply], povBlack);
+    board.classList.add("mini");
+
+    const moveRow = el("div", "moves");
+    const go = (to: number) => {
+      gameView.ply = Math.min(Math.max(to, 0), plies.length - 1);
+      draw();
+    };
+    const navBtn = (label: string, title: string, to: number, disabled: boolean) => {
+      const b = el("button", "nav", label);
+      b.title = title;
+      b.disabled = disabled;
+      b.addEventListener("click", () => go(to));
+      return b;
+    };
+    const moveNo = ply === 0 ? "Start" : `${Math.ceil(ply / 2)}.${ply % 2 === 0 ? ".." : ""} ${game.moves[ply - 1]}`;
+    const counter = el("span", "move-counter", `${moveNo}`);
+    counter.append(el("span", "dim", ` ${ply} / ${game.moves.length}`));
+    moveRow.append(
+      navBtn("\u23ee", "Start", 0, ply === 0),
+      navBtn("\u25c0", "Previous move", ply - 1, ply === 0),
+      counter,
+      navBtn("\u25b6", "Next move", ply + 1, ply === plies.length - 1),
+      navBtn("\u23ed", "End", plies.length - 1, ply === plies.length - 1),
+    );
+
     const actions = el("div", "game-actions");
     actions.append(
       link(coachessGameUrl(game, povBlack), "btn small primary", "Coachess"),
@@ -125,11 +199,23 @@ function gamesEl(): HTMLElement | null {
       setTimeout(() => (copy.textContent = "Copy PGN"), 1500);
     });
     actions.append(copy);
-    row.append(actions);
-    box.append(row);
-  }
+
+    box.replaceChildren(head, el("div", "game-label", game.label), board, moveRow, actions);
+  };
+  draw();
   return box;
 }
+
+// Arrow keys step through the game shown, when one is on screen.
+window.addEventListener("keydown", (e) => {
+  if (!document.querySelector(".games") || pageGames.length === 0) return;
+  const plies = placements(pageGames[gameView.index]).length;
+  const step: Record<string, number> = { ArrowLeft: -1, ArrowRight: 1, Home: -plies, End: plies };
+  if (!(e.key in step)) return;
+  e.preventDefault();
+  gameView.ply = Math.min(Math.max(gameView.ply + step[e.key], 0), plies - 1);
+  refreshScreen?.();
+});
 
 function renderMessage(title: string, hint: string, spinner = false) {
   const state = el("div", "state");
