@@ -170,6 +170,14 @@ export function lichessGameUrl(game: FoundGame): string {
   return `https://lichess.org/analysis/pgn/${game.moves.map(encodeURIComponent).join("_")}`;
 }
 
+/**
+ * Coachess' analysis board accepts `fen` (starting position) plus
+ * `moves` (SAN, comma-separated), replays them and lands on the last
+ * move. This is the same route the position button already uses.
+ */
+const START_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+
 export function coachessGameUrl(game: FoundGame): string {
-  return `https://coachess.app/coach/game?pgn=${encodeURIComponent(game.pgn)}`;
+  const moves = game.moves.map(encodeURIComponent).join(",");
+  return `https://coachess.app/coach/position?fen=${encodeURIComponent(START_FEN)}&moves=${moves}`;
 }
