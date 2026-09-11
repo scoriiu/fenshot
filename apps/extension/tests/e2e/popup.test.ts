@@ -255,3 +255,19 @@ describe("popup end-to-end: starting positions", () => {
     }
   });
 });
+
+describe("popup end-to-end: unsupported games", () => {
+  it("Chess960 page: says why there is no game instead of staying silent", async () => {
+    const { page, popup } = await openPopupOn("chess960.html");
+    try {
+      await popup.waitForSelector(".games");
+      expect(await popup.locator(".games-title").textContent()).toBe("Game on this page");
+      expect(await popup.locator(".games-note").textContent()).toContain("Chess960");
+      expect(await popup.locator(".game-actions").count()).toBe(0);
+      expect(await popup.locator(".board.mini").count()).toBe(0);
+    } finally {
+      await popup.close();
+      await page.close();
+    }
+  });
+});

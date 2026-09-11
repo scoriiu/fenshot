@@ -445,9 +445,20 @@ function roughPrefix(text: string, from: number, count: number): string[] {
   return out;
 }
 
+export interface GameScan {
+  games: FoundGame[];
+  /** Games on the page that cannot be replayed (Chess960 or another variant). */
+  unsupported: number;
+}
+
 export function findGames(texts: string[]): FoundGame[] {
+  return scanGames(texts).games;
+}
+
+export function scanGames(texts: string[]): GameScan {
   const games: FoundGame[] = [];
   const seen = new Set<string>();
+  let unsupportedCount = 0;
 
   for (const raw of texts) {
     const text = stripAnnotations(raw);
@@ -465,6 +476,7 @@ export function findGames(texts: string[]): FoundGame[] {
       const after = block.end;
       if (block.unsupported) {
         unsupported.push(roughPrefix(text, after, 4));
+        unsupportedCount += 1;
         continue;
       }
       const fen = block.fen!;
@@ -535,7 +547,7 @@ export function findGames(texts: string[]): FoundGame[] {
   }
   // Longest first: on a page with one main game plus snippets, the
   // main game is what the user came for.
-  return games.sort((a, b) => b.moves.length - a.moves.length);
+  return { games: games.sort((a, b) => b.moves.length - a.moves.length), unsupported: unsupportedCount };
 }
 
 /**

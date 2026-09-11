@@ -27,7 +27,7 @@ import {
 import { pieceElement } from "./pieces";
 import {
   collectPageText,
-  findGames,
+  scanGames,
   lichessGameUrl,
   coachessGameUrl,
   coachessPositionUrl,
@@ -53,6 +53,8 @@ interface ResultState {
 
 let pageBitmap: ImageBitmap | null = null;
 let pageGames: FoundGame[] = [];
+/** Games on the page fenshot cannot import (Chess960 / other variants). */
+let pageUnsupported = 0;
 let lastResult: ResultState | null = null;
 /** Re-renders the screen currently shown, if it is one that lists games. */
 let refreshScreen: (() => void) | null = null;
@@ -124,7 +126,21 @@ function placements(game: FoundGame): string[] {
  */
 function gamesEl(): HTMLElement | null {
   const n = pageGames.length;
-  if (n === 0) return null;
+  if (n === 0) {
+    // Nothing importable, but say so when there is a game that fenshot
+    // cannot replay: silence would look like a failure to read the page.
+    if (pageUnsupported === 0) return null;
+    const note = el("div", "games");
+    note.append(el("div", "games-title", "Game on this page"));
+    note.append(
+      el(
+        "p",
+        "games-note",
+        "This is a Chess960 (or other variant) game. fenshot imports standard chess games only.",
+      ),
+    );
+    return note;
+  }
   const box = el("div", "games");
   // The board read tells us which side the page shows at the bottom;
   // the game is shown and opened from the same point of view.
@@ -526,16 +542,16 @@ async function captureTab(): Promise<Blob> {
  * pages, store pages and PDFs refuse injection, and that is fine; the
  * screenshot path does not depend on this in any way.
  */
-async function findPageGames(): Promise<FoundGame[]> {
+async function findPageGames(): Promise<{ games: FoundGame[]; unsupported: number }> {
   try {
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-    if (!tab?.id) return [];
+    if (!tab?.id) return { games: [], unsupported: 0 };
     const frames = await chrome.scripting.executeScript({ target: { tabId: tab.id }, func: collectPageText });
     const texts = frames.flatMap((f) => (f.result as string[] | undefined) ?? []);
-    return findGames(texts);
+    return scanGames(texts);
   } catch (err) {
     console.warn("game scan skipped", err);
-    return [];
+    return { games: [], unsupported: 0 };
   }
 }
 
@@ -544,9 +560,10 @@ async function main() {
   // Game scan runs alongside the screenshot. If it lands after the
   // board result is already on screen, that screen is refreshed so the
   // games appear; if it lands first, the next render picks them up.
-  void findPageGames().then((games) => {
+  void findPageGames().then(({ games, unsupported }) => {
     pageGames = games;
-    if (games.length) refreshScreen?.();
+    pageUnsupported = unsupported;
+    if (games.length || unsupported) refreshScreen?.();
   });
   let blob: Blob;
   try {

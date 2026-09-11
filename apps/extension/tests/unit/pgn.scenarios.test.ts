@@ -9,7 +9,7 @@
  */
 import { describe, expect, it } from "vitest";
 import { Chess } from "chess.js";
-import { findGames, coachessGameUrl, lichessGameUrl } from "../../src/pgn";
+import { findGames, scanGames, coachessGameUrl, lichessGameUrl } from "../../src/pgn";
 
 const only = (text: string | string[]) => {
   const games = findGames(Array.isArray(text) ? text : [text]);
@@ -398,6 +398,14 @@ Sep-12-20	fredthebear: Looks like a pre-arranged draw to me.
 Sep-12-20	RookFile: Kasparov is basically retired from the game.
 This game is type: UNORTHODOX.`;
     expect(findGames([real])).toEqual([]);
+  });
+
+  it("scanGames reports unsupported games so the popup can say why there is nothing", () => {
+    expect(scanGames([KC_960_PAGE])).toEqual({ games: [], unsupported: 1 });
+    const mixed = scanGames([`1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 1-0\n\n${KC_960_PAGE}`]);
+    expect(mixed.games).toHaveLength(1);
+    expect(mixed.unsupported).toBe(1);
+    expect(scanGames(["1. e4 e5 2. Nf3 Nc6 3. Bb5 a6"]).unsupported).toBe(0);
   });
 
   it("O-O-O is never read as O-O with leftovers", () => {
