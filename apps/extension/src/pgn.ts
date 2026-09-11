@@ -141,9 +141,12 @@ function legalMap(chess: Chess): Map<string, string> {
  */
 function parseMoveAt(chess: Chess, legal: Map<string, string>, text: string, pos: number): Step | null {
   const max = Math.min(MAX_SAN_LEN, text.length - pos);
+  const castleLong = /^(?:O-O-O|0-0-0)/.test(text.slice(pos, pos + 5));
   for (let len = max; len >= 2; len--) {
     const sub = text.slice(pos, pos + len);
     if (!SAN.test(sub)) continue;
+    // "O-O-O" must never be read as "O-O" plus leftovers.
+    if (castleLong && !/^(?:O-O-O|0-0-0)/.test(sub)) break;
     const bare = sub
       .replace(/[!?]+$/, "")
       .replace(/^0-0-0/, "O-O-O")
@@ -393,8 +396,30 @@ function loadableFen(fen: string): string | null {
   }
 }
 
-const FEN_TAG = /\[FEN\s+"([^"]+)"\]/g;
-const VARIANT_TAG = /\[Variant\s+"(?!Standard|Normal|chess"|From Position)[^"]*"\]/i;
+const TAG_BLOCK = /(?:\[\w+\s+"[^"]*"\]\s*){1,}/g;
+
+/**
+ * PGN header blocks and what they say about the starting position.
+ * `fen` is set for a loadable non-standard start; `unsupported` when
+ * the game cannot be replayed: a non-standard [Variant], a FEN chess.js
+ * rejects (Chess960's X-FEN castling), or [SetUp "1"] whose FEN is not
+ * on the page at all (chessgames prints the PGN without it).
+ */
+function headerBlocks(text: string): { end: number; fen?: string; unsupported: boolean }[] {
+  const out: { end: number; fen?: string; unsupported: boolean }[] = [];
+  for (const m of text.matchAll(TAG_BLOCK)) {
+    const tags: Record<string, string> = {};
+    for (const t of m[0].matchAll(TAG)) tags[t[1]] = t[2];
+    const variant = tags.Variant && !/^(standard|normal|chess|from position)$/i.test(tags.Variant.trim());
+    const fen = tags.FEN ? loadableFen(tags.FEN) : null;
+    const unsupported = !!variant || (!!tags.FEN && !fen) || (tags.SetUp === "1" && !tags.FEN);
+    const end = m.index + m[0].length;
+    if (unsupported) out.push({ end, unsupported: true });
+    else if (fen && fen !== START_FEN) out.push({ end, fen, unsupported: false });
+  }
+  return out;
+}
+
 const START_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
 function labelFor(headers: Record<string, string>, moves: string[]): string {
@@ -436,15 +461,13 @@ export function findGames(texts: string[]): FoundGame[] {
     // variants) is fingerprinted so that a half-legal read of the same
     // moves from the standard start is suppressed below: a wrong game
     // is worse than none.
-    const variant = VARIANT_TAG.test(text);
-    for (const tag of text.matchAll(FEN_TAG)) {
-      const after = tag.index + tag[0].length;
-      const fen = variant ? null : loadableFen(tag[1]);
-      if (!fen) {
+    for (const block of headerBlocks(text)) {
+      const after = block.end;
+      if (block.unsupported) {
         unsupported.push(roughPrefix(text, after, 4));
         continue;
       }
-      if (fen === START_FEN) continue; // ordinary game, the "1." scan covers it
+      const fen = block.fen!;
       const f = fen.split(" ");
       const n0 = parseInt(f[5], 10) || 1;
       const black = f[1] === "b";

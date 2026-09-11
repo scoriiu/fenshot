@@ -365,8 +365,48 @@ describe("5. starting positions and variants", () => {
 
 1. d4 d5 2. e3 Nf6 3. Nf3 e6 4. c4 a6 5. Nc3 dxc4 6. Bxc4 c5 7. dxc5 Bxc5 8. Qxd8+ Kxd8 9. Bd3 Ke7 10. O-O-O Nc6 11. Ng5 Rd8 1/2-1/2`;
 
-  it("Chess960 page (chessgames gid=2010203): no game at all, not a half-legal partial", () => {
+  it("Chess960 page (chessgames gid=2010203) with a FEN tag: no game at all", () => {
     expect(findGames([KC_960_PAGE])).toEqual([]);
+  });
+
+  it("Chess960 page as chessgames really renders it: [SetUp] without [FEN], x-less table", () => {
+    // Real innerText of gid=2010203, trimmed: move table, kibitz, PGN block whose FEN tag is not printed.
+    const real = `Garry Kasparov vs Magnus Carlsen
+Champions Showdown Chess 9LX (2020) (unorthodox), lichess.org INT, rd 2, Sep-11
+Chess variants (000)  ·  1/2-1/2
+A1: go to game start	B1: move 10 half-moves backward	H1: go to game end
+	Move:	
+white
+	Last:	
+1.
+1. d4 d5 2. e3 Nf6 3. Nf3 e6 4. c4 a6 5. Nc3 dc4 6. Bc4 c5 7. dc5 Bc5 8. Qd8 Kd8 9. Bd3 Ke7 10. O-O-O Nc6 11. Ng5 Rd8 12. Nge4 Ne4 13. Ne4 Bb6 14. Bc3 f6 15. g4 Ba5 16. Ba5 Na5 17. Bc2 Bc6 18. Rhg1 Nc4 19. Rd8 Rd8 20. g5 f5 21. Nc3 Ne5 22. f4 Nf3 23. Rg2 g6 55. Kc4 b51/2-1/2
+Updated viewer to 'pgn4web' for 960 games.
+Sep-12-20	An Englishman: Good Evening: One odd bit about this game--after 10...Nc6, the position looks as if it had arisen from the Queen's Gambit Accepted.
+Sep-12-20	fredthebear: Looks like a pre-arranged draw to me.
+[Event "Champions Showdown Chess 9LX"]
+[Site "lichess.org INT"]
+[Date "2020.09.11"]
+[Result "1/2-1/2"]
+[White "Garry Kasparov"]
+[Black "Magnus Carlsen"]
+[ECO "000"]
+[PlyCount "110"]
+[SetUp "1"]
+
+1. d4 d5 2. e3 Nf6 3. Nf3 e6 4. c4 a6 5. Nc3 dxc4 6. Bxc4 c5 7. dxc5 Bxc5 8. Qxd8+ Kxd8 9. Bd3 Ke7 10. O-O-O Nc6 11. Ng5 Rd8 12. Nge4 Nxe4 13. Nxe4 Bb6 14. Bc3 f6 15. g4 Ba5 16. Bxa5 Nxa5 17. Bc2 Bc6 18. Rhg1 Nc4 19. Rxd8 Rxd8 20. g5 f5 21. Nc3 Ne5 22. f4 Nf3 55. Kc4 b5+ 1/2-1/2
+
+Sep-12-20	RookFile: Kasparov is basically retired from the game.
+This game is type: UNORTHODOX.`;
+    expect(findGames([real])).toEqual([]);
+  });
+
+  it("O-O-O is never read as O-O with leftovers", () => {
+    // After 1. d4 d5 2. Nc3 Nc6 3. Bf4 Bf5 4. Qd2 Qd7 both sides can castle long only.
+    const g = only("1. d4 d5 2. Nc3 Nc6 3. Bf4 Bf5 4. Qd2 Qd7 5. O-O-O O-O-O 6. Nf3 Nf6");
+    expect(g.moves.slice(8)).toEqual(["O-O-O", "O-O-O", "Nf3", "Nf6"]);
+    // Where O-O-O is illegal but O-O would be legal, the line stops rather than mis-reading.
+    const h = only("1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. O-O-O Nf6 5. d3 d6");
+    expect(h.moves).toHaveLength(6);
   });
 
   it("[Variant] tag other than standard is skipped even with a loadable FEN", () => {
