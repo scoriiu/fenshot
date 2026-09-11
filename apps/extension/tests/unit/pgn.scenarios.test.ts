@@ -9,7 +9,7 @@
  */
 import { describe, expect, it } from "vitest";
 import { Chess } from "chess.js";
-import { findGames, coachessGameUrl } from "../../src/pgn";
+import { findGames, coachessGameUrl, lichessGameUrl } from "../../src/pgn";
 
 const only = (text: string | string[]) => {
   const games = findGames(Array.isArray(text) ? text : [text]);
@@ -348,5 +348,76 @@ describe("4. generated commentary on random legal games", () => {
       if (moves.length < 200) continue;
       expect(only(glued(moves)).moves).toEqual(moves);
     }
+  });
+});
+
+describe("5. starting positions and variants", () => {
+  const KC_960_PAGE = `Garry Kasparov vs Magnus Carlsen (2020)
+1. d4 d5 2. e3 Nf6 3. Nf3 e6 4. c4 a6 5. Nc3 dc4 6. Bc4 c5 7. dc5 Bc5 8. Qd8 Kd8 9. Bd3 Ke7 10. O-O-O Nc6 11. Ng5 Rd8 12. Nge4 Ne4 13. Ne4 Bb6 14. Bc3 f6 15. g4 Ba5 16. Ba5 Na5 17. Bc2 Bc6 18. Rhg1 Nc4 19. Rd8 Rd8 20. g5 f5 21. Nc3 Ne5 1/2-1/2
+[Event "Champions Showdown Chess 9LX"]
+[Site "lichess.org INT"]
+[Date "2020.09.11"]
+[Result "1/2-1/2"]
+[White "Garry Kasparov"]
+[Black "Magnus Carlsen"]
+[SetUp "1"]
+[FEN "rnkqbbnr/pppppppp/8/8/8/8/PPPPPPPP/RNKQBBNR w HAha - 0 1"]
+
+1. d4 d5 2. e3 Nf6 3. Nf3 e6 4. c4 a6 5. Nc3 dxc4 6. Bxc4 c5 7. dxc5 Bxc5 8. Qxd8+ Kxd8 9. Bd3 Ke7 10. O-O-O Nc6 11. Ng5 Rd8 1/2-1/2`;
+
+  it("Chess960 page (chessgames gid=2010203): no game at all, not a half-legal partial", () => {
+    expect(findGames([KC_960_PAGE])).toEqual([]);
+  });
+
+  it("[Variant] tag other than standard is skipped even with a loadable FEN", () => {
+    const text = '[Variant "Crazyhouse"]\n[FEN "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"]\n\n1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 *';
+    expect(findGames([text])).toEqual([]);
+  });
+
+  it("capture notation without x, from the standard start", () => {
+    const g = only("1. e4 d5 2. ed5 Qd5 3. Nc3 Qa5 4. d4 Nf6 5. Nf3 Bg4 6. h3 Bf3 7. Qf3");
+    expect(g.moves).toEqual(["e4", "d5", "exd5", "Qxd5", "Nc3", "Qa5", "d4", "Nf6", "Nf3", "Bg4", "h3", "Bxf3", "Qxf3"]);
+  });
+
+  it("study with a [FEN] start, White to move at move 1 (lichess issue example)", () => {
+    const g = only('[FEN "4k3/5pK1/6p1/p7/6P1/7P/P7/8 w - -"]\n\n1. h4 Ke7 2. h5 gxh5 3. gxh5 f5 4. h6 f4 5. h7 *');
+    expect(g.startFen).toBe("4k3/5pK1/6p1/p7/6P1/7P/P7/8 w - - 0 1");
+    expect(g.moves).toEqual(["h4", "Ke7", "h5", "gxh5", "gxh5", "f5", "h6", "f4", "h7"]);
+    expect(g.pgn).toContain('[SetUp "1"]');
+    expect(g.pgn).toContain('[FEN "4k3/5pK1/6p1/p7/6P1/7P/P7/8 w - - 0 1"]');
+    expect(g.pgn.endsWith("1. h4 Ke7 2. h5 gxh5 3. gxh5 f5 4. h6 f4 5. h7 *")).toBe(true);
+  });
+
+  it("fragment starting mid-game with Black to move", () => {
+    const fen = "r1bqkbnr/pppp1ppp/2n5/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 3 3";
+    const g = only(`[SetUp "1"]\n[FEN "${fen}"]\n\n3... Bc5 4. c3 Nf6 5. d4 exd4 6. cxd4 Bb4+ 7. Nc3 Nxe4 1-0`);
+    expect(g.startFen).toBe(fen);
+    expect(g.moves).toEqual(["Bc5", "c3", "Nf6", "d4", "exd4", "cxd4", "Bb4+", "Nc3", "Nxe4"]);
+    expect(g.headers.Result).toBe("1-0");
+    expect(g.pgn.endsWith("3... Bc5 4. c3 Nf6 5. d4 exd4 6. cxd4 Bb4+ 7. Nc3 Nxe4 1-0")).toBe(true);
+  });
+
+  it("URLs carry the starting position", () => {
+    const fen = "r1bqkbnr/pppp1ppp/2n5/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 3 3";
+    const g = only(`[FEN "${fen}"]\n\n3... Bc5 4. c3 Nf6 5. d4 exd4 6. cxd4 Bb4+`);
+    const c = new URL(coachessGameUrl(g));
+    expect(c.searchParams.get("fen")).toBe(fen);
+    expect(c.searchParams.get("moves")).toBe("Bc5,c3,Nf6,d4,exd4,cxd4,Bb4+");
+    const l = lichessGameUrl(g);
+    expect(l.startsWith("https://lichess.org/analysis/pgn/%5BFEN%20%22r1bqkbnr%2F")).toBe(true);
+    expect(l.endsWith("%22%5D_Bc5_c3_Nf6_d4_exd4_cxd4_Bb4%2B")).toBe(true);
+    expect(l).not.toContain("+");
+  });
+
+  it("a [FEN] equal to the standard start is an ordinary game", () => {
+    const g = only('[FEN "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"]\n\n1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 *');
+    expect(g.startFen).toBeUndefined();
+    expect(g.pgn).not.toContain("[FEN");
+  });
+
+  it("standard game and a Chess960 game on the same page: only the standard one", () => {
+    const games = findGames([`Here: 1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 1-0\n\n${KC_960_PAGE}`]);
+    expect(games).toHaveLength(1);
+    expect(games[0].moves[0]).toBe("e4");
   });
 });

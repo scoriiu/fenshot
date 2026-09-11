@@ -224,3 +224,34 @@ describe("popup end-to-end", () => {
     }
   });
 });
+
+describe("popup end-to-end: starting positions", () => {
+  it("study with a [FEN] start: numbering, board and URLs follow the position", async () => {
+    const { page, popup } = await openPopupOn("study.html");
+    try {
+      await popup.waitForSelector(".games");
+      expect(await popup.locator(".game-label").textContent()).toBe("Composer \u2013 Solver (5 moves)");
+      const counter = popup.locator(".move-counter");
+      expect(await counter.textContent()).toBe("7... Nxe4 9 / 9");
+      await popup.locator('button.nav[title="Start"]').click();
+      expect(await counter.textContent()).toBe("Start 0 / 9");
+      await popup.keyboard.press("ArrowRight");
+      expect(await counter.textContent()).toBe("3... Bc5 1 / 9");
+      await popup.keyboard.press("ArrowRight");
+      expect(await counter.textContent()).toBe("4. c3 2 / 9");
+      // Board at "Start" shows the FEN position: white bishop on c4 (rank 4, file c).
+      await popup.locator('button.nav[title="Start"]').click();
+      const c4 = popup.locator(".board.mini .sq").nth(4 * 8 + 2); // rank index 4 from the top = rank 4
+      expect(await c4.locator("svg").count()).toBe(1);
+
+      const href = new URL((await popup.locator(".game-actions a").first().getAttribute("href"))!);
+      expect(href.searchParams.get("fen")).toBe("r1bqkbnr/pppp1ppp/2n5/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 3 3");
+      expect(href.searchParams.get("moves")).toBe("Bc5,c3,Nf6,d4,exd4,cxd4,Bb4+,Nc3,Nxe4");
+      const lichess = (await popup.locator(".game-actions a").nth(1).getAttribute("href"))!;
+      expect(lichess).toContain("/analysis/pgn/%5BFEN%20%22");
+    } finally {
+      await popup.close();
+      await page.close();
+    }
+  });
+});

@@ -26,6 +26,13 @@ import { Chess } from "chess.js";
 export interface FoundGame {
   /** SAN moves in order, as replayed. */
   moves: string[];
+  /**
+   * Starting position when the game does not begin from the standard
+   * one (a study, a puzzle, a game fragment with a [FEN] tag). Absent
+   * for normal games. Always standard chess: variants chess.js cannot
+   * replay (Chess960) are not reported at all rather than half-read.
+   */
+  startFen?: string;
   /** Seven-tag-roster-ish headers found right before the moves. */
   headers: Record<string, string>;
   /** Full PGN text: headers + movetext, suitable for import anywhere. */
@@ -52,7 +59,7 @@ export function collectPageText(): string[] {
 
 
 const SAN =
-  /^(?:O-O(?:-O)?|0-0(?:-0)?|[KQRBN][a-h]?[1-8]?x?[a-h][1-8]|[a-h](?:x[a-h])?(?:[2-7]|[18](?:=?[QRBN])?))[+#]?[!?]{0,2}$/;
+  /^(?:O-O(?:-O)?|0-0(?:-0)?|[KQRBN][a-h]?[1-8]?x?[a-h][1-8]|[a-h](?:x?[a-h])?(?:[2-7]|[18](?:=?[QRBN])?))[+#]?[!?]{0,2}$/;
 const RESULT_AT = /^(1-0|0-1|1\/2-1\/2|\u00bd-\u00bd|\*)(?![\w-])/;
 // Whitespace, "!?" marks, NAGs, "e.p.", and evaluation glyphs that sites
 // print right after a move (±, ∓, =, +-, -+, ⩲, ⩱, ∞).
@@ -114,7 +121,14 @@ interface Step {
 /** Canonical SAN by its bare form (no check/mate marks, no "="). */
 function legalMap(chess: Chess): Map<string, string> {
   const map = new Map<string, string>();
-  for (const san of chess.moves()) map.set(san.replace(/[+#]/g, "").replace("=", ""), san);
+  for (const san of chess.moves()) {
+    const bare = san.replace(/[+#]/g, "").replace("=", "");
+    map.set(bare, san);
+    // Capture without the "x" (chessgames' move table: "dc4", "Bc4").
+    // A quiet move of the same spelling cannot be legal at the same
+    // time, so the key never collides.
+    if (bare.includes("x")) map.set(bare.replace("x", ""), san);
+  }
   return map;
 }
 
@@ -276,13 +290,13 @@ class Ranker {
  * the longest legal continuation: a side line dies within a few plies,
  * the main line does not.
  */
-function scanLine(text: string, start: number): { moves: string[]; result?: string; end: number } {
-  const chess = new Chess();
+function scanLine(text: string, start: number, fen?: string): { moves: string[]; result?: string; end: number } {
+  const chess = new Chess(fen);
   const moves: string[] = [];
   const ranker = new Ranker(text);
   let pos = start;
-  let n = 1;
-  let black = false;
+  let n = parseInt(chess.fen().split(" ")[5], 10) || 1;
+  let black = chess.turn() === "b";
   for (;;) {
     const cands = candidates(chess, text, pos, n, black, moves.length === 0);
     if (cands.length === 0) break;
@@ -344,14 +358,44 @@ function headersBefore(text: string, at: number): Record<string, string> {
   return headers;
 }
 
-function movetext(moves: string[]): string {
+function movetext(moves: string[], fen?: string): string {
   const parts: string[] = [];
+  let n = 1;
+  let black = false;
+  if (fen) {
+    const f = fen.split(" ");
+    black = f[1] === "b";
+    n = parseInt(f[5], 10) || 1;
+  }
   for (let i = 0; i < moves.length; i++) {
-    if (i % 2 === 0) parts.push(`${i / 2 + 1}.`);
+    if (i === 0 && black) parts.push(`${n}...`);
+    else if (!black) parts.push(`${n}.`);
     parts.push(moves[i]);
+    if (black) n += 1;
+    black = !black;
   }
   return parts.join(" ");
 }
+
+/** chess.js wants six fields; PGN tags sometimes carry four. */
+function normalizeFen(fen: string): string {
+  const f = fen.trim().split(/\s+/);
+  while (f.length < 6) f.push(f.length === 4 ? "0" : "1");
+  return f.join(" ");
+}
+
+/** Loadable by chess.js, i.e. standard chess. X-FEN castling (Chess960) is not. */
+function loadableFen(fen: string): string | null {
+  try {
+    return new Chess(normalizeFen(fen)).fen();
+  } catch {
+    return null;
+  }
+}
+
+const FEN_TAG = /\[FEN\s+"([^"]+)"\]/g;
+const VARIANT_TAG = /\[Variant\s+"(?!Standard|Normal|chess"|From Position)[^"]*"\]/i;
+const START_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
 function labelFor(headers: Record<string, string>, moves: string[]): string {
   const n = Math.ceil(moves.length / 2);
@@ -363,25 +407,67 @@ function labelFor(headers: Record<string, string>, moves: string[]): string {
 }
 
 
+/** First few move-like tokens after `from`, no legality: to fingerprint a game we cannot replay. */
+function roughPrefix(text: string, from: number, count: number): string[] {
+  const out: string[] = [];
+  const re = /(?:\d{1,3}\.(?:\.\.)?\s*)?([KQRBNO][a-h1-8x=+#O-]*|[a-h][a-h1-8x=+#QRBN]*)/g;
+  re.lastIndex = from;
+  let m: RegExpExecArray | null;
+  while (out.length < count && (m = re.exec(text.slice(0, from + 400)))) {
+    if (m.index < from) continue;
+    out.push(m[1].replace(/[x+#=]/g, ""));
+  }
+  return out;
+}
+
 export function findGames(texts: string[]): FoundGame[] {
   const games: FoundGame[] = [];
   const seen = new Set<string>();
 
   for (const raw of texts) {
     const text = stripAnnotations(raw);
-    // Every "1." (or "1 e4", "1e4") is a possible game start. Lines
-    // whose text spans overlap are the same game seen from different
-    // anchors (a "1. d4 was better" quote inside commentary, or a
-    // quoted alternative first move): games do not nest, so only the
-    // longest line of an overlapping group survives.
-    const lines: { start: number; end: number; moves: string[]; result?: string }[] = [];
+    type Line = { start: number; end: number; moves: string[]; result?: string; fen?: string };
+    const lines: Line[] = [];
+    const unsupported: string[][] = [];
+
+    // Games that declare a starting position. Standard chess: scan
+    // from the first marker for that position's move number and side.
+    // Anything chess.js cannot load (Chess960's X-FEN castling, other
+    // variants) is fingerprinted so that a half-legal read of the same
+    // moves from the standard start is suppressed below: a wrong game
+    // is worse than none.
+    const variant = VARIANT_TAG.test(text);
+    for (const tag of text.matchAll(FEN_TAG)) {
+      const after = tag.index + tag[0].length;
+      const fen = variant ? null : loadableFen(tag[1]);
+      if (!fen) {
+        unsupported.push(roughPrefix(text, after, 4));
+        continue;
+      }
+      if (fen === START_FEN) continue; // ordinary game, the "1." scan covers it
+      const f = fen.split(" ");
+      const n0 = parseInt(f[5], 10) || 1;
+      const black = f[1] === "b";
+      const [at] = markers(text, after, n0, black, 1);
+      if (at === undefined) continue;
+      const line = scanLine(text, at, fen);
+      if (line.moves.length >= MIN_PLIES) lines.push({ start: at, ...line, fen });
+    }
+
+    // Every "1." (or "1 e4", "1e4") is a possible game start.
     for (const start of markers(text, 0, 1, false, Infinity)) {
       const line = scanLine(text, start);
       if (line.moves.length < MIN_PLIES) continue;
+      if (unsupported.some((u) => u.length >= 4 && u.every((m, i) => line.moves[i]?.replace(/[x+#=]/g, "") === m))) continue;
       lines.push({ start, ...line });
     }
+
+    // Lines whose text spans overlap are the same game seen from
+    // different anchors (a "1. d4 was better" quote inside commentary,
+    // or a quoted alternative first move): games do not nest, so only
+    // the longest line of an overlapping group survives.
     lines.sort((a, b) => b.moves.length - a.moves.length || a.start - b.start);
-    const kept: typeof lines = [];
+    const kept: Line[] = [];
     for (const line of lines) {
       if (kept.some((k) => line.start < k.end && k.start < line.end)) continue;
       kept.push(line);
@@ -390,7 +476,7 @@ export function findGames(texts: string[]): FoundGame[] {
 
     for (const line of kept) {
       const moves = line.moves;
-      const key = moves.join(" ");
+      const key = (line.fen ? line.fen + "|" : "") + moves.join(" ");
       if (seen.has(key)) continue;
       // The same game often appears twice on a page (move table plus a
       // PGN textarea), sometimes truncated. Keep only the longest
@@ -398,7 +484,7 @@ export function findGames(texts: string[]): FoundGame[] {
       // that are prefixes of this one.
       if ([...seen].some((k) => k.startsWith(key + " "))) continue;
       for (let g = games.length - 1; g >= 0; g--) {
-        const k = games[g].moves.join(" ");
+        const k = (games[g].startFen ? games[g].startFen + "|" : "") + games[g].moves.join(" ");
         if (key.startsWith(k + " ")) {
           games.splice(g, 1);
           seen.delete(k);
@@ -409,10 +495,19 @@ export function findGames(texts: string[]): FoundGame[] {
       // A result token closing the move list counts as a header when
       // the page has no PGN tag for it.
       if (!headers.Result && line.result) headers.Result = line.result;
+      if (line.fen) {
+        headers.SetUp = "1";
+        headers.FEN = line.fen;
+      } else {
+        delete headers.SetUp;
+        delete headers.FEN;
+      }
       const tagLines = Object.entries(headers).map(([k, v]) => `[${k} "${v}"]`);
       const pgn =
-        (tagLines.length ? tagLines.join("\n") + "\n\n" : "") + movetext(moves) + (headers.Result ? ` ${headers.Result}` : "");
-      games.push({ moves, headers, pgn, label: labelFor(headers, moves) });
+        (tagLines.length ? tagLines.join("\n") + "\n\n" : "") +
+        movetext(moves, line.fen) +
+        (headers.Result ? ` ${headers.Result}` : "");
+      games.push({ moves, headers, pgn, label: labelFor(headers, moves), ...(line.fen ? { startFen: line.fen } : {}) });
     }
   }
   // Longest first: on a page with one main game plus snippets, the
@@ -420,8 +515,15 @@ export function findGames(texts: string[]): FoundGame[] {
   return games.sort((a, b) => b.moves.length - a.moves.length);
 }
 
+/**
+ * Lichess parses the path as PGN, tag pairs included; "_" and "+" are
+ * turned into spaces server-side, so everything goes through
+ * encodeURIComponent ("+" in checks becomes %2B).
+ */
 export function lichessGameUrl(game: FoundGame): string {
-  return `https://lichess.org/analysis/pgn/${game.moves.map(encodeURIComponent).join("_")}`;
+  const moves = game.moves.map(encodeURIComponent).join("_");
+  const fenTag = game.startFen ? encodeURIComponent(`[FEN "${game.startFen}"]`) + "_" : "";
+  return `https://lichess.org/analysis/pgn/${fenTag}${moves}`;
 }
 
 /*
@@ -445,7 +547,6 @@ export function lichessGameUrl(game: FoundGame): string {
  */
 export const COACHESS_CONTRACT_VERSION = 1;
 const COACHESS_POSITION = "https://coachess.app/coach/position";
-const START_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 const MAX_URL = 2000;
 const RESULT_VALUES = new Set(["1-0", "0-1", "1/2-1/2"]);
 
@@ -468,7 +569,7 @@ export function coachessGameUrl(game: FoundGame, povBlack = false): string {
 
   const build = (plies: number) => {
     const moves = game.moves.slice(0, plies).map(encodeURIComponent).join("%2C");
-    const parts = [`fen=${encodeURIComponent(START_FEN)}`, `moves=${moves}`];
+    const parts = [`fen=${encodeURIComponent(game.startFen ?? START_FEN)}`, `moves=${moves}`];
     if (povBlack) parts.push("pov=black");
     parts.push(...meta, utm("game-import"));
     return `${COACHESS_POSITION}?${parts.join("&")}`;

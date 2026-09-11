@@ -105,7 +105,7 @@ const placementCache = new WeakMap<FoundGame, string[]>();
 function placements(game: FoundGame): string[] {
   let cached = placementCache.get(game);
   if (!cached) {
-    const chess = new Chess();
+    const chess = new Chess(game.startFen);
     cached = [chess.fen().split(" ")[0]];
     for (const m of game.moves) {
       chess.move(m);
@@ -176,7 +176,14 @@ function gamesEl(): HTMLElement | null {
       b.addEventListener("click", () => go(to));
       return b;
     };
-    const moveNo = ply === 0 ? "Start" : `${Math.ceil(ply / 2)}.${ply % 2 === 0 ? ".." : ""} ${game.moves[ply - 1]}`;
+    // Move numbering follows the starting position (studies may begin
+    // at move 23 with Black to move).
+    const f = (game.startFen ?? "").split(" ");
+    const n0 = parseInt(f[5], 10) || 1;
+    const blackFirst = f[1] === "b";
+    const idx = ply - 1 + (blackFirst ? 1 : 0); // half-move index as if White had started
+    const moveNo =
+      ply === 0 ? "Start" : `${n0 + Math.floor(idx / 2)}.${idx % 2 === 1 ? ".." : ""} ${game.moves[ply - 1]}`;
     const counter = el("span", "move-counter", `${moveNo}`);
     counter.append(el("span", "dim", ` ${ply} / ${game.moves.length}`));
     moveRow.append(
