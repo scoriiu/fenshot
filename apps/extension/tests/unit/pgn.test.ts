@@ -19,6 +19,14 @@ const FISCHER_SPASSKY = `[Event "F/S Return Match"]
 
 const RUY = ["e4", "e5", "Nf3", "Nc6", "Bb5", "a6", "Ba4", "Nf6", "O-O", "Be7"];
 
+/**
+ * chessgames.com with kibitz commentary between moves (gid=1008361,
+ * Byrne–Fischer 1956). Commentary quotes other numbered moves,
+ * including three different "18." continuations before the real one.
+ */
+const BYRNE_FISCHER_ANNOTATED =
+  "1.Nf3Nf62.c4g63.Nc3Bg74.d4O-O5.Bf4d56.Qb3dxc47.Qxc4c68.e4Nbd79.Rd1Nb610.Qc5Bg411.Bg511. Be2 followed by 12. O-O would have been more prudent. The bishop move played allows a sudden crescendo of tactical points to be uncovered by Fischer. -- Wade11...Na4!12.Qa3On 12. Nxa4 Nxe4 and White faces considerable difficulties.12...Nxc3At first glance, one might think that this move only helps White create a stronger pawn center; however, Fischer\u2019s plan is quite the opposite. By eliminating the Knight on c3, it becomes possible to sacrifice the exchange via Nxe4 and smash White\u2019s center, while the King remains trapped in the center.13.bxc3Nxe4The natural continuation of Black\u2019s plan.14.Bxe7Qb615.Bc4Nxc316.Bc5Rfe8+17.Kf1Be6!! If this is the game of the century, then 17...Be6!! must be the counter of the century. Fischer offers his queen in exchange for a fierce attack with his minor pieces. Declining this offer is not so easy: 18. Bxe6 leads to a \u2019Philidor Mate\u2019 (smothered mate) with ...Qb5+ 19. Kg1 Ne2+ 20. Kf1 Ng3+ 21. Kg1 Qf1+ 22. Rxf1 Ne2#. Other ways to decline the queen also run into trouble: e.g., 18. Qxc3 Qxc518.Bxb6Bxc4+19.Kg1Ne2+20.Kf1Nxd4+This tactical scenario, where a king is repeatedly revealed to checks, is sometimes called a \"windmill.\"21.Kg1Ne2+22.Kf1Nc3+23.Kg1axb624.Qb4Ra425.Qxb6Nxd126.h3Rxa227.Kh2Nxf228.Re1Rxe129.Qd8+Bf830.Nxe1Bd531.Nf3Ne432.Qb8b5Every piece and pawn of the black camp is defended. The white queen has nothing to do.33.h4h534.Ne5Kg735.Kg1Bc5+36.Kf1Ng3+Now Byrne is hopelessly entangled in Fischer\u2019s mating net.37.Ke1Bb4+38.Kd1Bb3+39.Kc1Ne2+40.Kb1Nc3+41.Kc1Rc2#0-1";
+
 function one(text: string | string[]): FoundGame {
   const games = findGames(Array.isArray(text) ? text : [text]);
   expect(games, `expected exactly one game in: ${JSON.stringify(text).slice(0, 80)}`).toHaveLength(1);
@@ -33,6 +41,26 @@ describe("findGames: real-world layouts", () => {
     expect(g.moves.at(-1)).toBe("Rh3#");
     expect(g.headers.Result).toBe("0-1");
     expect(g.label).toBe("Game (42 moves)");
+  });
+
+  it("chessgames.com with commentary between moves quoting other numbered lines", () => {
+    const g = one(BYRNE_FISCHER_ANNOTATED);
+    expect(g.moves).toHaveLength(82);
+    expect(g.moves.slice(20, 26)).toEqual(["Bg5", "Na4", "Qa3", "Nxc3", "bxc3", "Nxe4"]);
+    // Move 18: commentary offers Bxe6 and Qxc3 first; the game went Bxb6.
+    expect(g.moves[34]).toBe("Bxb6");
+    expect(g.moves[35]).toBe("Bxc4+");
+    expect(g.moves.at(-1)).toBe("Rc2#");
+    expect(g.headers.Result).toBe("0-1");
+    expect(g.label).toBe("Game (41 moves)");
+  });
+
+  it("commentary with spaced moves in an otherwise spaced game", () => {
+    const g = one(
+      "1. e4 e5 2. Nf3 Nc6 3. Bb5 (3. Bc4 is the Italian) a6 4. Ba4 Better than 4. Bxc6 dxc6 which gives nothing. 4... Nf6 5. O-O Be7 6. Re1 b5 1/2-1/2",
+    );
+    expect(g.moves).toEqual([...RUY, "Re1", "b5"]);
+    expect(g.headers.Result).toBe("1/2-1/2");
   });
 
   it("chessgames.com inline-dotted with spaces", () => {
@@ -92,7 +120,7 @@ describe("findGames: normalisation", () => {
   it("promotion with and without '='", () => {
     const pre = "1. e4 d5 2. exd5 c6 3. dxc6 Nf6 4. cxb7 Nbd7 5. bxa8=Q Nb6 6. Qxc8";
     expect(one(pre).moves[8]).toBe("bxa8=Q");
-    expect(one(pre.replace("bxa8=Q", "bxa8Q")).moves[8]).toBe("bxa8Q");
+    expect(one(pre.replace("bxa8=Q", "bxa8Q")).moves[8]).toBe("bxa8=Q"); // canonical SAN out
   });
 
   it("unicode ½-½ result normalised", () => {

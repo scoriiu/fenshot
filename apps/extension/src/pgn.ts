@@ -10,11 +10,15 @@
  *    strings; it must not close over anything from this module because
  *    it is serialised and executed in the page's isolated world.
  *
- * 2. `findGames` runs in the popup: it scans the strings for numbered
- *    move sequences and replays each candidate through chess.js. Only
- *    sequences that replay legally become results, which is what keeps
- *    false positives at zero without any model: random text almost
- *    never forms a legal game.
+ * 2. `findGames` runs in the popup. From every "1." it follows the
+ *    main line by move number: at each ply the candidates are the
+ *    legal moves found after the expected number (or, for Black,
+ *    directly after White's move), and when there are several, the
+ *    one with the longest legal continuation wins. That is what lets
+ *    it read pages where commentary sits between the moves and even
+ *    quotes other numbered lines (chessgames kibitzing), and it is
+ *    what keeps false positives near zero without any model: random
+ *    text almost never forms a legal game.
  */
 
 import { Chess } from "chess.js";
@@ -46,118 +50,295 @@ export function collectPageText(): string[] {
   return out;
 }
 
+
 const SAN =
   /^(?:O-O(?:-O)?|0-0(?:-0)?|[KQRBN][a-h]?[1-8]?x?[a-h][1-8]|[a-h](?:x[a-h])?(?:[2-7]|[18](?:=?[QRBN])?))[+#]?[!?]{0,2}$/;
-// "1." "1..." and bare "1" (lichess renders numbers without a dot).
-const MOVE_NO = /^(\d{1,3})(?:\.(?:\.\.)?)?$/;
-const MOVE_NO_INLINE = /^(\d{1,3})\.(\.\.)?(\S+)$/;
-const RESULT = /^(?:1-0|0-1|1\/2-1\/2|½-½|\*)$/;
+const RESULT_AT = /^(1-0|0-1|1\/2-1\/2|\u00bd-\u00bd|\*)(?![\w-])/;
+// Whitespace, "!?" marks, NAGs, "e.p.", and evaluation glyphs that sites
+// print right after a move (±, ∓, =, +-, -+, ⩲, ⩱, ∞).
+const NOISE_AT = /^(?:\s|[!?]|\$\d+|e\.p\.|\[\d+\]|[\u00b1\u2213\u2a72\u2a71\u221e]|\+-|-\+|=\+|\+=|=|[-+](?![0-9]))*/;
+/** A result token anywhere (not inside a PGN tag's quotes). */
+const RESULT_ANY = /(?<!")(1-0|0-1|1\/2-1\/2|\u00bd-\u00bd|\*)(?![\w-"])/g;
+// A new game starts here: the forward search for a move number must
+// not cross it, or an unfinished game would splice onto the next one.
+const BOUNDARY = /(?<![0-9a-h])1\.(?!\.)|\[Event\s/g;
 const TAG = /\[(\w+)\s+"([^"]*)"\]/g;
 
 const MIN_PLIES = 6;
+/** How far ahead (chars) the next move number may be: room for a paragraph of commentary. */
+const WINDOW = 2500;
+/** How many occurrences of the expected number are tried before giving up. */
+const MAX_CANDIDATES = 4;
+/**
+ * Plies of lookahead used to rank competing candidates: effectively
+ * the rest of the game. Memoisation on (text position, board) keeps
+ * this bounded; the Ranker budget is the safety net.
+ */
+const LOOKAHEAD = 600;
+const MAX_SAN_LEN = 10;
 
-/** Drop comments, variations and NAGs so the tokenizer sees only moves. */
+/**
+ * Drop {comments}, (variations) and $NAGs. PGN's ";" rest-of-line
+ * comments are deliberately not handled: page text is often one long
+ * line, and a semicolon in prose would wipe the rest of the game.
+ */
 function stripAnnotations(s: string): string {
-  let t = s.replace(/\{[^}]*\}/g, " ").replace(/;[^\n]*/g, " ").replace(/\$\d+/g, " ");
+  let t = s
+    .replace(/\{[^}]*\}/g, " ")
+    .replace(/\$\d+/g, " ")
+    // Figurines (♘f3, ♞f6) to letters; pawn figurines just vanish.
+    .replace(/[\u2654\u265a]/g, "K")
+    .replace(/[\u2655\u265b]/g, "Q")
+    .replace(/[\u2656\u265c]/g, "R")
+    .replace(/[\u2657\u265d]/g, "B")
+    .replace(/[\u2658\u265e]/g, "N")
+    .replace(/[\u2659\u265f]/g, "")
+    // En/em dashes in results and castling ("1–0", "O–O").
+    .replace(/[\u2013\u2014]/g, "-");
   // Variations may nest; peel from the inside out.
   for (let i = 0; i < 6 && /\([^()]*\)/.test(t); i++) t = t.replace(/\([^()]*\)/g, " ");
   return t;
 }
 
-/**
- * From a "1." anchor, read forward token by token, collecting SAN moves
- * until something that is not a move, move number or result shows up.
- */
-function readSequence(tokens: string[], start: number): { moves: string[]; result?: string } {
-  const moves: string[] = [];
-  for (let i = start; i < tokens.length; i++) {
-    const tok = tokens[i];
-    if (MOVE_NO.test(tok)) continue;
-    if (RESULT.test(tok)) return { moves, result: tok === "\u00bd-\u00bd" ? "1/2-1/2" : tok };
-    const inline = MOVE_NO_INLINE.exec(tok);
-    const san = inline ? inline[3] : tok;
-    if (!SAN.test(san)) break;
-    moves.push(san.replace(/[!?]+$/, "").replace(/^0-0-0$/, "O-O-O").replace(/^0-0$/, "O-O"));
-  }
-  return { moves };
+function skipNoise(text: string, pos: number): number {
+  return pos + NOISE_AT.exec(text.slice(pos, pos + 64))![0].length;
 }
 
-const SAN_SRC = SAN.source.slice(1, -1); // unanchored, for splitting glued pairs
-const RESULT_SRC = "1-0|0-1|1/2-1/2|\u00bd-\u00bd|\\*";
-// Two moves first: "Kf1g5" also parses as one (over-disambiguated)
-// SAN move, so the single-move form is only a fallback for line ends.
-const PAIR = new RegExp(`^(${SAN_SRC})(${SAN_SRC})(${RESULT_SRC})?$`);
-const SINGLE = new RegExp(`^(${SAN_SRC})(${RESULT_SRC})?$`);
+interface Step {
+  san: string;
+  end: number;
+  /** No whitespace between the move number (or previous move) and this move. */
+  glued: boolean;
+}
+
+/** Canonical SAN by its bare form (no check/mate marks, no "="). */
+function legalMap(chess: Chess): Map<string, string> {
+  const map = new Map<string, string>();
+  for (const san of chess.moves()) map.set(san.replace(/[+#]/g, "").replace("=", ""), san);
+  return map;
+}
 
 /**
- * Sites that render each move in its own element (chessgames.com) give
- * an innerText with no whitespace at all: "1.e4e52.f4exf43.Bc4Qh4+4.".
- * The only reliable separator is the dot after a move number, since a
- * SAN move never contains one. Walk the numbers in order, cut each
- * segment at the next "<n+1>." and split it into white/black moves.
- * Returns null when the token is not such a run.
+ * Longest SAN-shaped prefix at `pos` that is legal. Ranks are single
+ * digits, so a move glued to the next number ("Rxe129.") still cuts
+ * correctly; an over-disambiguated read ("Kf1g5") is not legal and
+ * the shorter "Kf1" wins. One move generation per call site (the
+ * `legal` map), no board mutation.
  */
-function explodeGlued(tok: string): string[] | null {
-  const head = /^(\d{1,3})(\.(?:\.\.)?)?(?=\S)/.exec(tok);
-  if (!head || MOVE_NO.test(tok)) return null;
-  // Lichess-style runs have no dots at all ("1e4e52Nf3"); when the
-  // token has dots, the next number must carry one too, which removes
-  // nearly all ambiguity between "e5" + "2." and "e52".
-  const dotted = tok.includes(".");
-  const out: string[] = [];
-  let n = parseInt(head[1], 10);
-  let pos = 0;
-  for (;;) {
-    const num = `${n}`;
-    if (!tok.startsWith(num, pos)) break;
-    pos += num.length;
-    if (tok.startsWith("...", pos)) pos += 3;
-    else if (tok.startsWith(".", pos)) pos += 1;
-    const next = `${n + 1}${dotted ? "." : ""}`;
-    // Every occurrence of the next move number is a candidate cut; the
-    // first one that leaves a valid white+black pair before it wins.
-    let cut = -1;
-    let pair: RegExpExecArray | null = null;
-    for (let p = tok.indexOf(next, pos + 1); p >= 0; p = tok.indexOf(next, p + 1)) {
-      pair = PAIR.exec(tok.slice(pos, p));
-      if (pair) {
-        cut = p;
-        break;
+function parseMoveAt(chess: Chess, legal: Map<string, string>, text: string, pos: number): Step | null {
+  const max = Math.min(MAX_SAN_LEN, text.length - pos);
+  for (let len = max; len >= 2; len--) {
+    const sub = text.slice(pos, pos + len);
+    if (!SAN.test(sub)) continue;
+    const bare = sub
+      .replace(/[!?]+$/, "")
+      .replace(/^0-0-0/, "O-O-O")
+      .replace(/^0-0/, "O-O")
+      .replace(/[+#]/g, "")
+      .replace("=", "");
+    const san = legal.get(bare);
+    if (san) return { san, end: pos + len, glued: false };
+    // Over-disambiguated forms ("Nbd7" where "Nd7" is unique) are not
+    // in the map; chess.js accepts them, so ask it, but only for those.
+    if (/^[KQRBN][a-h1-8]/.test(bare) && bare.length >= 4) {
+      try {
+        const mv = chess.move(bare);
+        chess.undo();
+        return { san: mv.san, end: pos + len, glued: false };
+      } catch {
+        /* not a move */
       }
     }
-    if (cut < 0) {
-      // Last segment: one or two moves, optional result, then the end.
-      const rest = tok.slice(pos);
-      const m = PAIR.exec(rest) ?? SINGLE.exec(rest);
-      if (!m) return out.length ? out : null;
-      out.push(`${n}.`, ...m.slice(1).filter((s): s is string => !!s));
-      break;
-    }
-    out.push(`${n}.`, pair![1], pair![2]);
-    if (pair![3]) out.push(pair![3]);
-    pos = cut;
-    n += 1;
   }
-  return out.length ? out : null;
+  return null;
 }
 
-/** Replay; on the first illegal move, keep the legal prefix. */
-function replay(moves: string[]): string[] {
-  const chess = new Chess();
-  const ok: string[] = [];
-  for (const m of moves) {
-    try {
-      chess.move(m);
-      ok.push(m);
-    } catch {
-      break;
+/**
+ * Positions right after every plausible marker for move `n` within the
+ * window: "12." / "12 " / "12e4" (bare, glued) for White, "12..." for
+ * Black. A marker at the cursor is always accepted; further ahead it
+ * must not be preceded by a digit, so "1." inside "11." or a year never
+ * counts. Letters before it are fine: chessgames glues commentary to
+ * the next marker ("-- Wade11...Na4").
+ */
+function markers(text: string, from: number, n: number, black: boolean, limit = MAX_CANDIDATES): number[] {
+  const out: number[] = [];
+  const num = String(n);
+  // Anchors (n = 1) are searched over the whole text; later numbers
+  // only within a window, and never across the start of another game.
+  let stop = n === 1 ? text.length : Math.min(text.length, from + WINDOW);
+  if (n > 1) {
+    BOUNDARY.lastIndex = from;
+    const b = BOUNDARY.exec(text);
+    if (b && b.index < stop) stop = b.index;
+  }
+  for (let i = text.indexOf(num, from); i >= 0 && i < stop && out.length < limit; i = text.indexOf(num, i + 1)) {
+    // A digit right before is a rank ("Qxc5" + "18.") only when a file
+    // letter precedes it; otherwise it is part of a longer number.
+    if (i > from && /[0-9]/.test(text[i - 1]) && !/[a-h]/.test(text[i - 2] ?? "")) continue;
+    const after = text.slice(i + num.length, i + num.length + 3);
+    if (black) {
+      if (after === "...") out.push(i + num.length + 3);
+    } else if (after.startsWith("...")) {
+      continue;
+    } else if (after.startsWith(".")) {
+      out.push(i + num.length + 1);
+    } else if (/^[\s]/.test(after) || /^[KQRBNOa-h]/.test(after)) {
+      out.push(i + num.length);
     }
   }
-  return ok;
+  return out;
+}
+
+/**
+ * All legal moves that could be the next ply: after each marker for
+ * the expected number, and (for Black, whose number is usually
+ * omitted) directly at the cursor.
+ */
+function candidates(chess: Chess, text: string, pos: number, n: number, black: boolean, first = false): Step[] {
+  const out: Step[] = [];
+  const seenEnd = new Set<number>();
+  const legal = legalMap(chess);
+  const tryAt = (p: number) => {
+    const at = skipNoise(text, p);
+    const step = parseMoveAt(chess, legal, text, at);
+    if (!step || seenEnd.has(step.end)) return;
+    step.glued = !/\s/.test(text.slice(p, at));
+    // The same SAN at two places is two candidates: "6.Bg5 or 6.Be3
+    // are playable; the game went 6.Bg5 e6" continues only from the
+    // second one. Lookahead tells them apart.
+    seenEnd.add(step.end);
+    out.push(step);
+  };
+  // White's move is always introduced by its number, so prose that
+  // happens to start with a legal move never counts; Black's usually
+  // follows directly. The very first ply comes right after the "1."
+  // marker the caller found: direct only, other games' "1." are not
+  // candidates for this one.
+  if (first) {
+    tryAt(pos);
+    return out;
+  }
+  if (black) tryAt(pos);
+  for (const p of markers(text, pos, n, black)) tryAt(p);
+  return out;
+}
+
+/** Result token right after a move (past annotations), normalised. */
+function resultAt(text: string, pos: number): string | undefined {
+  const p = skipNoise(text, pos);
+  const r = RESULT_AT.exec(text.slice(p, p + 8));
+  if (!r) return undefined;
+  return r[1] === "\u00bd-\u00bd" ? "1/2-1/2" : r[1];
+}
+
+/**
+ * Depth of the longest legal line reachable from a position in the
+ * text, up to `left` plies. Forks are searched, not guessed: a quoted
+ * alternative that keeps going for a while still loses to the main
+ * line if the main line goes further. Memoised on (text position,
+ * board) so converging paths cost once; a budget bounds pathological
+ * texts, after which the search degrades to greedy.
+ */
+class Ranker {
+  /** key -> [depth, budget it was computed with]. */
+  private memo = new Map<string, [number, number]>();
+  private budget = 6_000;
+  constructor(private text: string) {}
+
+  depth(chess: Chess, pos: number, n: number, black: boolean, left: number): number {
+    if (left === 0 || resultAt(this.text, pos)) return 0;
+    const key = `${pos}|${n}|${black}|${chess.fen().split(" ").slice(0, 3).join(" ")}`;
+    const hit = this.memo.get(key);
+    // Reusable when it ended naturally (depth below its cap) or was
+    // computed with at least this much budget; a capped value from a
+    // shallower visit would understate the line.
+    if (hit && (hit[0] < hit[1] || hit[1] >= left)) return Math.min(hit[0], left);
+    const cands = candidates(chess, this.text, pos, n, black);
+    let best = 0;
+    for (const c of cands) {
+      this.budget -= 1;
+      chess.move(c.san);
+      const d = 1 + this.depth(chess, c.end, black ? n + 1 : n, !black, left - 1);
+      chess.undo();
+      if (d > best) best = d;
+      if (best === left || this.budget <= 0) break; // cannot do better / out of budget: greedy from here
+    }
+    this.memo.set(key, [best, left]);
+    return best;
+  }
+}
+
+/**
+ * Follow the main line from a "1." marker. Commentary between moves,
+ * even commentary that quotes other numbered moves ("18. Bxe6 leads
+ * to..."), is survived by asking, at every ply, which candidate has
+ * the longest legal continuation: a side line dies within a few plies,
+ * the main line does not.
+ */
+function scanLine(text: string, start: number): { moves: string[]; result?: string; end: number } {
+  const chess = new Chess();
+  const moves: string[] = [];
+  const ranker = new Ranker(text);
+  let pos = start;
+  let n = 1;
+  let black = false;
+  for (;;) {
+    const cands = candidates(chess, text, pos, n, black, moves.length === 0);
+    if (cands.length === 0) break;
+    let best = cands[0];
+    if (cands.length > 1) {
+      // Longest legal continuation wins. Iterative deepening: most
+      // quoted alternatives die within a few plies, so compare at a
+      // small horizon first and only search deeper while candidates
+      // are still level. On a final tie (typically near the end of the
+      // game, where a quoted alternative can finish just as long), a
+      // move glued to its number beats a spaced one: sites that
+      // interleave commentary render the real moves glued and the
+      // quotes as prose. Then text order.
+      let alive = cands;
+      for (let cap = 6; ; cap *= 2) {
+        const horizon = Math.min(cap, LOOKAHEAD);
+        const depths = alive.map((c) => {
+          chess.move(c.san);
+          const d = 1 + ranker.depth(chess, c.end, black ? n + 1 : n, !black, horizon - 1);
+          chess.undo();
+          return d;
+        });
+        const top = Math.max(...depths);
+        alive = alive.filter((_, i) => depths[i] === top);
+        if (alive.length === 1 || top < horizon || horizon === LOOKAHEAD) break;
+      }
+      best = alive.find((c) => c.glued) ?? alive[0];
+    }
+    chess.move(best.san);
+    moves.push(best.san);
+    pos = best.end;
+    const r = resultAt(text, pos);
+    if (r) return { moves, result: r, end: pos };
+    if (black) n += 1;
+    black = !black;
+  }
+  // No more moves. If the expected number is still ahead, the line was
+  // cut by an unreadable move and the game's outcome is not ours to
+  // claim. Otherwise a result may follow after a few words ("Rc2#
+  // White resigned. 0-1"), as long as no new game starts first.
+  if (markers(text, pos, n, black, 1).length > 0) return { moves, end: pos };
+  const tail = text.slice(pos, pos + 200);
+  BOUNDARY.lastIndex = 0;
+  const b = BOUNDARY.exec(tail);
+  RESULT_ANY.lastIndex = 0;
+  const r = RESULT_ANY.exec(tail);
+  if (r && (!b || r.index < b.index)) return { moves, result: r[1] === "\u00bd-\u00bd" ? "1/2-1/2" : r[1], end: pos };
+  return { moves, end: pos };
 }
 
 function headersBefore(text: string, at: number): Record<string, string> {
-  const window = text.slice(Math.max(0, at - 1500), at);
+  let window = text.slice(Math.max(0, at - 1500), at);
+  // Tags belong to this game only if no earlier game ended in between.
+  const ends = [...window.matchAll(RESULT_ANY)];
+  const last = ends.at(-1);
+  if (last) window = window.slice(last.index + last[0].length);
   const headers: Record<string, string> = {};
   for (const m of window.matchAll(TAG)) headers[m[1]] = m[2];
   return headers;
@@ -181,34 +362,34 @@ function labelFor(headers: Record<string, string>, moves: string[]): string {
   return `${who}${year ? `, ${year}` : ""} (${n} move${n === 1 ? "" : "s"})`;
 }
 
+
 export function findGames(texts: string[]): FoundGame[] {
   const games: FoundGame[] = [];
   const seen = new Set<string>();
 
   for (const raw of texts) {
     const text = stripAnnotations(raw);
-    // Every "1." (or "1.e4") is a possible game start. Tokenise once,
-    // remember token offsets so headers can be looked up by position.
-    const tokens: string[] = [];
-    const offsets: number[] = [];
-    for (const m of text.matchAll(/\S+/g)) {
-      const glued = explodeGlued(m[0]);
-      if (glued) {
-        for (const g of glued) {
-          tokens.push(g);
-          offsets.push(m.index!);
-        }
-      } else {
-        tokens.push(m[0]);
-        offsets.push(m.index!);
-      }
+    // Every "1." (or "1 e4", "1e4") is a possible game start. Lines
+    // whose text spans overlap are the same game seen from different
+    // anchors (a "1. d4 was better" quote inside commentary, or a
+    // quoted alternative first move): games do not nest, so only the
+    // longest line of an overlapping group survives.
+    const lines: { start: number; end: number; moves: string[]; result?: string }[] = [];
+    for (const start of markers(text, 0, 1, false, Infinity)) {
+      const line = scanLine(text, start);
+      if (line.moves.length < MIN_PLIES) continue;
+      lines.push({ start, ...line });
     }
-    for (let i = 0; i < tokens.length; i++) {
-      const t = tokens[i];
-      if (t !== "1." && t !== "1" && !/^1\.[^.]/.test(t)) continue;
-      const seq = readSequence(tokens, i);
-      const moves = replay(seq.moves);
-      if (moves.length < MIN_PLIES) continue;
+    lines.sort((a, b) => b.moves.length - a.moves.length || a.start - b.start);
+    const kept: typeof lines = [];
+    for (const line of lines) {
+      if (kept.some((k) => line.start < k.end && k.start < line.end)) continue;
+      kept.push(line);
+    }
+    kept.sort((a, b) => a.start - b.start);
+
+    for (const line of kept) {
+      const moves = line.moves;
       const key = moves.join(" ");
       if (seen.has(key)) continue;
       // The same game often appears twice on a page (move table plus a
@@ -224,12 +405,10 @@ export function findGames(texts: string[]): FoundGame[] {
         }
       }
       seen.add(key);
-      const headers = headersBefore(text, offsets[i]);
-      // A result token closing the move list (chessgames, most tables)
-      // counts as a header when the page has no PGN tag for it, and
-      // only when the replay consumed the whole line: a truncated line
-      // has no known outcome.
-      if (!headers.Result && seq.result && moves.length === seq.moves.length) headers.Result = seq.result;
+      const headers = headersBefore(text, Math.max(0, line.start - 2));
+      // A result token closing the move list counts as a header when
+      // the page has no PGN tag for it.
+      if (!headers.Result && line.result) headers.Result = line.result;
       const tagLines = Object.entries(headers).map(([k, v]) => `[${k} "${v}"]`);
       const pgn =
         (tagLines.length ? tagLines.join("\n") + "\n\n" : "") + movetext(moves) + (headers.Result ? ` ${headers.Result}` : "");
