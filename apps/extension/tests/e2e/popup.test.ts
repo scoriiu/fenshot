@@ -138,16 +138,16 @@ describe("popup end-to-end", () => {
       const mini = popup.locator(".board.mini");
       expect(await mini.locator(".sq").count()).toBe(64);
       const counter = popup.locator(".move-counter");
-      expect(await counter.textContent()).toBe("23. Be7# 45 / 45");
+      expect(await counter.textContent()).toBe("23. Be7#");
       await popup.locator('button.nav[title="Previous move"]').click();
-      expect(await counter.textContent()).toBe("22... Nxf6 44 / 45");
+      expect(await counter.textContent()).toBe("22... Nxf6");
       await popup.locator('button.nav[title="Start"]').click();
-      expect(await counter.textContent()).toBe("Start 0 / 45");
+      expect(await counter.textContent()).toBe("Start");
       expect(await popup.locator('button.nav[title="Start"]').isDisabled()).toBe(true);
       await popup.keyboard.press("ArrowRight");
-      expect(await popup.locator(".move-counter").textContent()).toBe("1. e4 1 / 45");
+      expect(await popup.locator(".move-counter").textContent()).toBe("1. e4");
       await popup.keyboard.press("End");
-      expect(await popup.locator(".move-counter").textContent()).toBe("23. Be7# 45 / 45");
+      expect(await popup.locator(".move-counter").textContent()).toBe("23. Be7#");
 
       const game = popup.locator(".game-actions a").first();
       expect(await game.textContent()).toBe("Analyze on Coachess");
@@ -205,7 +205,7 @@ describe("popup end-to-end", () => {
       await next.click();
       expect(await title.textContent()).toBe("2 of 2");
       expect(await label.textContent()).toBe("Game (4 moves)");
-      expect(await popup.locator(".move-counter").textContent()).toBe("4. Qxf7# 7 / 7");
+      expect(await popup.locator(".move-counter").textContent()).toBe("4. Qxf7#");
       expect(await next.isDisabled()).toBe(true);
       // Actions follow the selected game.
       const secondHref = await popup.locator(".game-actions a").first().getAttribute("href");
@@ -249,13 +249,13 @@ describe("popup end-to-end: starting positions", () => {
       await popup.waitForSelector(".games");
       expect(await popup.locator(".game-label").textContent()).toBe("Composer \u2013 Solver (5 moves)");
       const counter = popup.locator(".move-counter");
-      expect(await counter.textContent()).toBe("7... Nxe4 9 / 9");
+      expect(await counter.textContent()).toBe("7... Nxe4");
       await popup.locator('button.nav[title="Start"]').click();
-      expect(await counter.textContent()).toBe("Start 0 / 9");
+      expect(await counter.textContent()).toBe("Start");
       await popup.keyboard.press("ArrowRight");
-      expect(await counter.textContent()).toBe("3... Bc5 1 / 9");
+      expect(await counter.textContent()).toBe("3... Bc5");
       await popup.keyboard.press("ArrowRight");
-      expect(await counter.textContent()).toBe("4. c3 2 / 9");
+      expect(await counter.textContent()).toBe("4. c3");
       // Board at "Start" shows the FEN position: white bishop on c4 (rank 4, file c).
       await popup.locator('button.nav[title="Start"]').click();
       const c4 = popup.locator(".board.mini .sq").nth(4 * 8 + 2); // rank index 4 from the top = rank 4

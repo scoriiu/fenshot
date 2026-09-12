@@ -250,8 +250,7 @@ function gamesEl(): HTMLElement | null {
     const idx = ply - 1 + (blackFirst ? 1 : 0); // half-move index as if White had started
     const moveNo =
       ply === 0 ? "Start" : `${n0 + Math.floor(idx / 2)}.${idx % 2 === 1 ? ".." : ""} ${game.moves[ply - 1]}`;
-    const counter = el("span", "move-counter", `${moveNo}`);
-    counter.append(el("span", "dim", ` ${ply} / ${game.moves.length}`));
+    const counter = el("span", "move-counter", moveNo);
     moveRow.append(
       navBtn("\u23ee", "Start", 0, ply === 0),
       navBtn("\u25c0", "Previous move", ply - 1, ply === 0),
