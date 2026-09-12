@@ -110,12 +110,15 @@ describe("popup end-to-end", () => {
     try {
       // Board read from the screenshot (the fixture embeds a lichess screenshot).
       await popup.waitForSelector(".board");
-      const primary = popup.locator(".actions .btn.primary");
+      // Both cards share the button layout; scope to the position card.
+      const position = popup.locator(".card:not(.games)");
+      const primary = position.locator(".actions .btn.primary");
       await expect.poll(() => primary.textContent()).toBe("Analyze on Coachess");
       const posHref = (await primary.getAttribute("href"))!;
       expect(posHref).toMatch(/^https:\/\/coachess\.app\/coach\/position\?fen=/);
       expect(posHref).toContain("utm_campaign=position");
-      await expect.poll(() => popup.locator(".actions .btn:not(.primary)").first().textContent()).toBe("Lichess");
+      await expect.poll(() => position.locator(".actions .btn:not(.primary)").first().textContent()).toBe("Lichess");
+      expect(await position.locator(".caption.fen").textContent()).toMatch(/^r1bqk1nr\//);
 
       // Game from the page text.
       await popup.waitForSelector(".games");
