@@ -497,3 +497,28 @@ describe("6. lichess PGN viewer (blog / study pages), real innerText", () => {
     expect(g.label).toBe("Bengal_Tiger_2011 \u2013 nguacongamco, 2026 (32 moves)");
   });
 });
+
+describe("7. lichess study chapter: variation longer than the rest of the main line", () => {
+  // https://lichess.org/study/pJ5rfjK0 chapter "4. Nd4", as the analysis
+  // board renders it: main line one token per line, variations glued.
+  // The 7. Qe2 variation (10 plies) is longer than the main line after
+  // 7. Be2 (6 plies): length alone picks the wrong game.
+  const page = [
+    "1.", "e4", "e5", "2.", "Nf3", "d5", "3.", "exd5", "e4", "4.", "Nd4", "Qxd5", "5.", "Nb3", "Qe5!",
+    "white can't play f5 or d5 because en passant with discovered check",
+    "6.", "Nc3", "Nf6", "7.", "Be2",
+    "7.Qe2Nc68.d4exd39.Qxe5+Nxe510.Bxd3Nxd3+11.cxd3Bf5Black has the bishop pair and more active development",
+    "7.", "...", "Nc6!", "7...Bd68.O-O??Qxh2#", "8.", "O-O", "Bd6", "9.", "g3", "Bh3",
+    "white lacks development and black gets the pawn back",
+  ].join("\n");
+
+  it("follows the main line", () => {
+    const g = only(page);
+    expect(g.moves).toEqual(["e4", "e5", "Nf3", "d5", "exd5", "e4", "Nd4", "Qxd5", "Nb3", "Qe5", "Nc3", "Nf6", "Be2", "Nc6", "O-O", "Bd6", "g3", "Bh3"]);
+  });
+
+  it("the PGN with parentheses parses to the same line", () => {
+    const pgn = `[Event "Elephant Gambit: A complete repertoire"]\n[Result "*"]\n\n{ Hello } 1. e4 e5 2. Nf3 d5 3. exd5 e4 4. Nd4 Qxd5 5. Nb3 Qe5! { comment } { [%cal Bd2d4] } 6. Nc3 Nf6 7. Be2 (7. Qe2 Nc6 8. d4 exd3 9. Qxe5+ Nxe5 10. Bxd3 Nxd3+ 11. cxd3 Bf5 $17 { Black has the bishop pair }) 7... Nc6! (7... Bd6 8. O-O?? Qxh2#) 8. O-O Bd6 9. g3 Bh3 $15 { white lacks development } *`;
+    expect(only(pgn).moves).toHaveLength(18);
+  });
+});

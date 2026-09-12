@@ -312,17 +312,23 @@ function scanLine(text: string, start: number, fen?: string): { moves: string[];
     if (cands.length === 0) break;
     let best = cands[0];
     if (cands.length > 1) {
-      // Longest legal continuation wins. Iterative deepening: most
-      // quoted alternatives die within a few plies, so compare at a
-      // small horizon first and only search deeper while candidates
-      // are still level. On a final tie (a transposition, or a quoted
-      // alternative near the end of the game that finishes just as
-      // long), prefer the candidate whose formatting matches the line
-      // so far: chessgames glues its main line and spaces the kibitz,
-      // the lichess viewer spaces its main line and glues variations;
-      // either way the main line is consistent with itself. Then text
-      // order.
+      // Formatting first: the main line is consistent with itself
+      // (chessgames glues its moves to the numbers and the kibitz is
+      // spaced prose; the lichess viewer puts main-line tokens on
+      // their own lines and glues variations), so candidates that
+      // match the moves accepted so far are preferred outright. This
+      // matters in studies, where a variation is often longer than
+      // the rest of the main line; picking it would produce a wrong
+      // game, whereas a misread main line only produces a shorter
+      // one. Then the longest legal continuation, by iterative
+      // deepening: most quoted alternatives die within a few plies,
+      // so compare at a small horizon first and only search deeper
+      // while candidates are still level. Then text order.
       let alive = cands;
+      if (gluedVotes !== 0) {
+        const styled = cands.filter((c) => c.glued === gluedVotes > 0);
+        if (styled.length > 0) alive = styled;
+      }
       for (let cap = 6; ; cap *= 2) {
         const horizon = Math.min(cap, LOOKAHEAD);
         const depths = alive.map((c) => {
@@ -335,8 +341,7 @@ function scanLine(text: string, start: number, fen?: string): { moves: string[];
         alive = alive.filter((_, i) => depths[i] === top);
         if (alive.length === 1 || top < horizon || horizon === LOOKAHEAD) break;
       }
-      if (gluedVotes !== 0) best = alive.find((c) => c.glued === gluedVotes > 0) ?? alive[0];
-      else best = alive[0];
+      best = alive[0];
     }
     gluedVotes += best.glued ? 1 : -1;
     chess.move(best.san);
