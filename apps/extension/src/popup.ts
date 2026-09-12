@@ -239,12 +239,13 @@ function gamesEl(): HTMLElement | null {
       navBtn("\u23ed", "End", plies.length - 1, ply === plies.length - 1),
     );
 
-    const actions = el("div", "game-actions");
+    // Same button layout as the position card: primary across, two below.
+    const actions = el("div", "actions game-actions");
     actions.append(
-      link(coachessGameUrl(game, povBlack), "btn small primary", "Coachess"),
-      link(lichessGameUrl(game), "btn small", "Lichess"),
+      link(coachessGameUrl(game, povBlack), "btn primary", "Analyze on Coachess"),
+      link(lichessGameUrl(game), "btn", "Lichess"),
     );
-    const copy = el("button", "btn small", "Copy PGN");
+    const copy = el("button", "btn", "Copy PGN");
     copy.addEventListener("click", async () => {
       await navigator.clipboard.writeText(game.pgn);
       copy.textContent = "Copied";
@@ -252,7 +253,9 @@ function gamesEl(): HTMLElement | null {
     });
     actions.append(copy);
 
-    box.replaceChildren(head, el("div", "game-label", game.label), board, moveRow, actions);
+    // Label under the stepper, not above the board: both cards' boards
+    // sit at the same height side by side.
+    box.replaceChildren(head, board, moveRow, el("div", "caption game-label", game.label), actions);
   };
   draw();
   return box;
@@ -390,6 +393,9 @@ function renderResult(state: ResultState) {
   blackBtn.addEventListener("click", () => renderResult({ ...state, turn: "b" }));
   turnRow.append(whiteBtn, blackBtn);
   content.push(turnRow);
+  const fenLine = el("div", "caption fen", fen);
+  fenLine.title = fen;
+  content.push(fenLine);
 
   // Coachess is the primary destination. An illegal read still goes to
   // the Lichess editor first, since that is where squares get fixed.

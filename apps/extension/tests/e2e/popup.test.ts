@@ -144,7 +144,7 @@ describe("popup end-to-end", () => {
       expect(await popup.locator(".move-counter").textContent()).toBe("23. Be7# 45 / 45");
 
       const game = popup.locator(".game-actions a").first();
-      expect(await game.textContent()).toBe("Coachess");
+      expect(await game.textContent()).toBe("Analyze on Coachess");
       expect(await game.getAttribute("class")).toContain("primary");
       const href = new URL((await game.getAttribute("href"))!);
       expect(href.origin + href.pathname).toBe("https://coachess.app/coach/position");

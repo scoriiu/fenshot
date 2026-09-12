@@ -21,7 +21,7 @@ body.wide {
 }
 
 .wrap {
-  padding: 14px 14px 12px;
+  padding: 12px 14px 10px;
 }
 
 .brand {
@@ -275,12 +275,14 @@ body.two {
 
 .cols {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  /* minmax(0, ...) so a nowrap caption cannot widen its column. */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 12px;
   align-items: start;
 }
 
 .card {
+  min-width: 0;
   padding: 10px 12px 12px;
   border-radius: 12px;
   background: #111827;
@@ -289,7 +291,8 @@ body.two {
 
 .card-head {
   display: flex;
-  align-items: baseline;
+  align-items: center;
+  height: 22px; /* fixed: the pager must not push the game board down */
   gap: 8px;
   margin-bottom: 8px;
   padding-bottom: 8px;
@@ -325,9 +328,15 @@ body:not(.two) .card.games {
   align-self: center;
 }
 
+.pager button.nav {
+  width: 24px;
+  height: 20px;
+  font-size: 14px;
+}
+
 button.nav {
-  width: 28px;
-  height: 24px;
+  width: 30px;
+  height: 30px;
   border-radius: 6px;
   border: 1px solid #334155;
   background: #1e293b;
@@ -354,13 +363,26 @@ button.nav:disabled {
   color: #94a3b8;
 }
 
-.game-label {
-  font-size: 12px;
-  color: #cbd5e1;
-  margin-bottom: 6px;
+/* One caption line under each card's control row, same height in both. */
+.caption {
+  height: 18px;
+  line-height: 18px;
+  margin-top: 6px;
+  font-size: 11px;
+  text-align: center;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.caption.fen {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: #64748b;
+}
+
+.game-label {
+  color: #cbd5e1;
+  font-size: 12px;
 }
 
 .board.mini {
@@ -373,7 +395,38 @@ button.nav:disabled {
   align-items: center;
   justify-content: center;
   gap: 4px;
-  margin: 8px 0;
+  margin-top: 10px; /* same as .turn */
+}
+
+/* The game card: a cooler nuance than the position card, so the two
+   sources read as different at a glance without shouting. */
+.card.games {
+  background: #0f1a2b;
+  border-color: rgba(56, 189, 248, 0.22);
+}
+
+.card.games .card-title {
+  color: #7dd3fc;
+}
+
+.card.games .board.mini {
+  border-color: rgba(56, 189, 248, 0.25);
+}
+
+.card.games .sq.light {
+  background: #dfe6ec;
+}
+
+.card.games .sq.dark {
+  background: #86a2b6;
+}
+
+.card.games button.nav {
+  border-color: rgba(56, 189, 248, 0.25);
+}
+
+.card.games button.nav:hover:not(:disabled) {
+  color: #7dd3fc;
 }
 
 .move-counter {
@@ -390,19 +443,6 @@ button.nav:disabled {
   font-weight: 400;
 }
 
-.game-actions {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 6px;
-}
-
-.game-actions .btn.primary {
-  grid-column: auto;
-}
-
-.games .btn.small {
-  padding: 0;
-}
 
 .footer {
   margin-top: 10px;
