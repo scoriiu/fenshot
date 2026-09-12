@@ -95,9 +95,32 @@ function render(...content: HTMLElement[]) {
   brand.append(el("span", "name", "fenshot"), el("span", "tag", "screenshot in, FEN out"));
   const footer = el("div", "footer");
   footer.append("runs on your device \u00b7 ", link("https://github.com/scoriiu/fenshot", "", "open source"));
-  wrap.append(brand, ...content, footer);
+  if (document.body.classList.contains("two")) {
+    // Wide layout: the footer line fits in the brand row, which buys
+    // the height for a source line under each card title.
+    footer.classList.add("inline");
+    brand.append(footer);
+    wrap.append(brand, ...content);
+  } else {
+    wrap.append(brand, ...content, footer);
+  }
   app.replaceChildren(wrap);
 }
+
+/** Card header: title, one plain sentence saying where the content came from, optional controls. */
+function cardHead(title: string, source: string, ...controls: HTMLElement[]): HTMLElement {
+  const head = el("div", "card-head");
+  const row = el("div", "card-row");
+  row.append(el("span", "card-title", title), ...controls);
+  head.append(row, el("div", "card-sub", source));
+  return head;
+}
+
+const POSITION_SOURCE: Record<ScanOrigin, string> = {
+  page: "read from the image on this tab",
+  area: "read from the area you selected",
+  image: "read from the image you provided",
+};
 
 /**
  * Two sources, two cards. The position read from the screenshot and
@@ -106,7 +129,7 @@ function render(...content: HTMLElement[]) {
  came from. Side by side when both exist (no scrolling, same board
  * size in both), single column otherwise, which is the 0.3 layout.
  */
-function renderScreen(position: HTMLElement[]) {
+function renderScreen(position: HTMLElement[], origin: ScanOrigin | null) {
   const game = gamesEl();
   if (!game) {
     document.body.classList.remove("two");
@@ -116,9 +139,7 @@ function renderScreen(position: HTMLElement[]) {
   document.body.classList.add("two");
   const cols = el("div", "cols");
   const left = el("section", "card");
-  const lh = el("div", "card-head");
-  lh.append(el("span", "card-title", "Position"), el("span", "card-src", "from the board on screen"));
-  left.append(lh, ...position);
+  left.append(cardHead("Position", origin ? POSITION_SOURCE[origin] : "nothing read from the image on this tab"), ...position);
   cols.append(left, game);
   render(cols);
 }
@@ -155,9 +176,7 @@ function gamesEl(): HTMLElement | null {
     // cannot replay: silence would look like a failure to read the page.
     if (pageUnsupported === 0) return null;
     const note = el("section", "card games");
-    const head = el("div", "card-head");
-    head.append(el("span", "card-title", "Game"), el("span", "card-src", "from the move list"));
-    note.append(head);
+    note.append(cardHead("Game", "read from the move list printed on this tab"));
     note.append(
       el(
         "p",
@@ -179,13 +198,10 @@ function gamesEl(): HTMLElement | null {
     if (gameView.ply < 0 || gameView.ply >= plies.length) gameView.ply = plies.length - 1;
     const ply = gameView.ply;
 
-    const head = el("div", "card-head");
-    head.append(
-      el("span", "card-title", "Game"),
-      el("span", "card-src", n === 1 ? "from the move list" : `${gameView.index + 1} of ${n} on this page`),
-    );
+    const controls: HTMLElement[] = [];
     if (n > 1) {
       const pager = el("div", "pager");
+      pager.append(el("span", "pager-count", `${gameView.index + 1} of ${n}`));
       const prev = el("button", "nav", "\u2039");
       prev.title = "Previous game";
       prev.disabled = gameView.index === 0;
@@ -203,8 +219,13 @@ function gamesEl(): HTMLElement | null {
         draw();
       });
       pager.append(prev, next);
-      head.append(pager);
+      controls.push(pager);
     }
+    const head = cardHead(
+      "Game",
+      n === 1 ? "read from the move list printed on this tab" : "read from the move lists printed on this tab",
+      ...controls,
+    );
 
     const board = boardEl(plies[ply], povBlack);
     board.classList.add("mini");
@@ -303,7 +324,7 @@ function renderHub(title: string, hint?: string) {
   paths.append(uploadBtn);
 
   const pasteHint = el("p", "paste-hint", `or paste a screenshot with ${pasteKey} \u00b7 drag & drop works too`);
-  renderScreen([state, paths, pasteHint]);
+  renderScreen([state, paths, pasteHint], null);
 }
 
 async function scanBlob(blob: Blob, origin: ScanOrigin) {
@@ -422,7 +443,7 @@ function renderResult(state: ResultState) {
     content.push(rescan);
   }
 
-  renderScreen(content);
+  renderScreen(content, state.origin);
 }
 
 /**

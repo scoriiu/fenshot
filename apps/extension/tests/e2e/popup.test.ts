@@ -125,7 +125,10 @@ describe("popup end-to-end", () => {
       // Two cards side by side, each saying where it came from.
       expect(await popup.evaluate(() => document.body.classList.contains("two"))).toBe(true);
       expect(await popup.locator(".card-title").allTextContents()).toEqual(["Position", "Game"]);
-      expect(await popup.locator(".games .card-src").textContent()).toBe("from the move list");
+      expect(await popup.locator(".card-sub").allTextContents()).toEqual([
+        "read from the image on this tab",
+        "read from the move list printed on this tab",
+      ]);
       expect(await popup.locator(".pager").count()).toBe(0);
       // Fits without scrolling in a popup: Chrome caps popups at 600px tall.
       expect(await popup.evaluate(() => document.querySelector(".wrap")!.getBoundingClientRect().height)).toBeLessThanOrEqual(600);
@@ -186,17 +189,21 @@ describe("popup end-to-end", () => {
     try {
       await popup.waitForSelector(".paths");
       await popup.waitForSelector(".games");
-      const title = popup.locator(".games .card-src");
+      const title = popup.locator(".games .pager-count");
       const label = popup.locator(".game-label");
       const prev = popup.locator('button.nav[title="Previous game"]');
       const next = popup.locator('button.nav[title="Next game"]');
-      expect(await title.textContent()).toBe("1 of 2 on this page");
+      expect(await title.textContent()).toBe("1 of 2");
+      expect(await popup.locator(".card-sub").allTextContents()).toEqual([
+        "nothing read from the image on this tab",
+        "read from the move lists printed on this tab",
+      ]);
       expect(await label.textContent()).toBe("Game (7 moves)");
       expect(await prev.isDisabled()).toBe(true);
       const firstHref = await popup.locator(".game-actions a").first().getAttribute("href");
 
       await next.click();
-      expect(await title.textContent()).toBe("2 of 2 on this page");
+      expect(await title.textContent()).toBe("2 of 2");
       expect(await label.textContent()).toBe("Game (4 moves)");
       expect(await popup.locator(".move-counter").textContent()).toBe("4. Qxf7# 7 / 7");
       expect(await next.isDisabled()).toBe(true);
@@ -206,7 +213,7 @@ describe("popup end-to-end", () => {
       expect(new URL(secondHref!).searchParams.get("moves")).toBe("e4,e5,Qh5,Nc6,Bc4,Nf6,Qxf7#");
 
       await prev.click();
-      expect(await title.textContent()).toBe("1 of 2 on this page");
+      expect(await title.textContent()).toBe("1 of 2");
       // The hub's own recovery paths are still there, untouched.
       expect(await popup.locator(".paths .btn").allTextContents()).toEqual([
         "Select the board on this page",
