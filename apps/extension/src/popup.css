@@ -268,30 +268,61 @@ body.wide {
   color: #fbbf24;
 }
 
-.games {
-  margin-top: 12px;
-  padding-top: 10px;
-  border-top: 1px solid rgba(51, 65, 85, 0.6);
+/* Two cards side by side: position (screenshot) and game (move list). */
+body.two {
+  width: 680px;
 }
 
-.games-head {
+.cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.card {
+  padding: 10px 12px 12px;
+  border-radius: 12px;
+  background: #111827;
+  border: 1px solid rgba(51, 65, 85, 0.7);
+}
+
+.card-head {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 6px;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(51, 65, 85, 0.6);
 }
 
-.games-title {
+.card-title {
   font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
+  font-weight: 700;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
+  color: #fbbf24;
+}
+
+.card-src {
+  font-size: 11px;
   color: #64748b;
+  flex: 1;
+}
+
+.card .state.compact {
+  padding: 10px 4px 8px;
+}
+
+/* Game card standing alone (nothing read from the screen, but a game found). */
+body:not(.two) .card.games {
+  margin-top: 10px;
 }
 
 .pager {
   display: flex;
   gap: 4px;
+  align-self: center;
 }
 
 button.nav {
@@ -333,9 +364,8 @@ button.nav:disabled {
 }
 
 .board.mini {
-  width: 232px;
-  margin: 0 auto;
-  border-radius: 6px;
+  width: 100%;
+  border-radius: 8px;
 }
 
 .moves {

@@ -119,8 +119,13 @@ describe("popup end-to-end", () => {
 
       // Game from the page text.
       await popup.waitForSelector(".games");
-      expect(await popup.locator(".games-title").textContent()).toBe("Game on this page");
+      // Two cards side by side, each saying where it came from.
+      expect(await popup.evaluate(() => document.body.classList.contains("two"))).toBe(true);
+      expect(await popup.locator(".card-title").allTextContents()).toEqual(["Position", "Game"]);
+      expect(await popup.locator(".games .card-src").textContent()).toBe("from the move list");
       expect(await popup.locator(".pager").count()).toBe(0);
+      // Fits without scrolling in a popup: Chrome caps popups at 600px tall.
+      expect(await popup.evaluate(() => document.querySelector(".wrap")!.getBoundingClientRect().height)).toBeLessThanOrEqual(600);
       expect(await popup.locator(".game-label").textContent()).toBe("Game (23 moves)");
 
       // Mini board opens at the final position (Be7#), steppable both ways.
@@ -178,17 +183,17 @@ describe("popup end-to-end", () => {
     try {
       await popup.waitForSelector(".paths");
       await popup.waitForSelector(".games");
-      const title = popup.locator(".games-title");
+      const title = popup.locator(".games .card-src");
       const label = popup.locator(".game-label");
       const prev = popup.locator('button.nav[title="Previous game"]');
       const next = popup.locator('button.nav[title="Next game"]');
-      expect(await title.textContent()).toBe("Game 1 of 2");
+      expect(await title.textContent()).toBe("1 of 2 on this page");
       expect(await label.textContent()).toBe("Game (7 moves)");
       expect(await prev.isDisabled()).toBe(true);
       const firstHref = await popup.locator(".game-actions a").first().getAttribute("href");
 
       await next.click();
-      expect(await title.textContent()).toBe("Game 2 of 2");
+      expect(await title.textContent()).toBe("2 of 2 on this page");
       expect(await label.textContent()).toBe("Game (4 moves)");
       expect(await popup.locator(".move-counter").textContent()).toBe("4. Qxf7# 7 / 7");
       expect(await next.isDisabled()).toBe(true);
@@ -198,7 +203,7 @@ describe("popup end-to-end", () => {
       expect(new URL(secondHref!).searchParams.get("moves")).toBe("e4,e5,Qh5,Nc6,Bc4,Nf6,Qxf7#");
 
       await prev.click();
-      expect(await title.textContent()).toBe("Game 1 of 2");
+      expect(await title.textContent()).toBe("1 of 2 on this page");
       // The hub's own recovery paths are still there, untouched.
       expect(await popup.locator(".paths .btn").allTextContents()).toEqual([
         "Select the board on this page",
@@ -217,6 +222,8 @@ describe("popup end-to-end", () => {
       // Give the game scan a moment to land; it must not add anything.
       await popup.waitForTimeout(1000);
       expect(await popup.locator(".games").count()).toBe(0);
+      expect(await popup.evaluate(() => document.body.classList.contains("two"))).toBe(false);
+      expect(await popup.evaluate(() => document.body.offsetWidth)).toBe(340);
       expect(await popup.locator(".state p").first().textContent()).toBe("No chessboard found on this page.");
     } finally {
       await popup.close();
@@ -261,7 +268,7 @@ describe("popup end-to-end: unsupported games", () => {
     const { page, popup } = await openPopupOn("chess960.html");
     try {
       await popup.waitForSelector(".games");
-      expect(await popup.locator(".games-title").textContent()).toBe("Game on this page");
+      expect(await popup.locator(".games .card-title").textContent()).toBe("Game");
       expect(await popup.locator(".games-note").textContent()).toContain("Chess960");
       expect(await popup.locator(".game-actions").count()).toBe(0);
       expect(await popup.locator(".board.mini").count()).toBe(0);

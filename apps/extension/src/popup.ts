@@ -99,6 +99,30 @@ function render(...content: HTMLElement[]) {
   app.replaceChildren(wrap);
 }
 
+/**
+ * Two sources, two cards. The position read from the screenshot and
+ * the game read from the page's move list are different things, and
+ * a user should never wonder which is which: each card says where it
+ came from. Side by side when both exist (no scrolling, same board
+ * size in both), single column otherwise, which is the 0.3 layout.
+ */
+function renderScreen(position: HTMLElement[]) {
+  const game = gamesEl();
+  if (!game) {
+    document.body.classList.remove("two");
+    render(...position);
+    return;
+  }
+  document.body.classList.add("two");
+  const cols = el("div", "cols");
+  const left = el("section", "card");
+  const lh = el("div", "card-head");
+  lh.append(el("span", "card-title", "Position"), el("span", "card-src", "from the board on screen"));
+  left.append(lh, ...position);
+  cols.append(left, game);
+  render(cols);
+}
+
 /** Which game is shown and at which ply; survives screen re-renders. */
 const gameView = { index: 0, ply: -1 };
 const placementCache = new WeakMap<FoundGame, string[]>();
@@ -130,8 +154,10 @@ function gamesEl(): HTMLElement | null {
     // Nothing importable, but say so when there is a game that fenshot
     // cannot replay: silence would look like a failure to read the page.
     if (pageUnsupported === 0) return null;
-    const note = el("div", "games");
-    note.append(el("div", "games-title", "Game on this page"));
+    const note = el("section", "card games");
+    const head = el("div", "card-head");
+    head.append(el("span", "card-title", "Game"), el("span", "card-src", "from the move list"));
+    note.append(head);
     note.append(
       el(
         "p",
@@ -141,7 +167,7 @@ function gamesEl(): HTMLElement | null {
     );
     return note;
   }
-  const box = el("div", "games");
+  const box = el("section", "card games");
   // The board read tells us which side the page shows at the bottom;
   // the game is shown and opened from the same point of view.
   const povBlack = !!lastResult && lastResult.origin === "page" && lastResult.flipped;
@@ -153,8 +179,11 @@ function gamesEl(): HTMLElement | null {
     if (gameView.ply < 0 || gameView.ply >= plies.length) gameView.ply = plies.length - 1;
     const ply = gameView.ply;
 
-    const head = el("div", "games-head");
-    head.append(el("span", "games-title", n === 1 ? "Game on this page" : `Game ${gameView.index + 1} of ${n}`));
+    const head = el("div", "card-head");
+    head.append(
+      el("span", "card-title", "Game"),
+      el("span", "card-src", n === 1 ? "from the move list" : `${gameView.index + 1} of ${n} on this page`),
+    );
     if (n > 1) {
       const pager = el("div", "pager");
       const prev = el("button", "nav", "\u2039");
@@ -271,8 +300,7 @@ function renderHub(title: string, hint?: string) {
   paths.append(uploadBtn);
 
   const pasteHint = el("p", "paste-hint", `or paste a screenshot with ${pasteKey} \u00b7 drag & drop works too`);
-  const games = gamesEl();
-  render(state, paths, pasteHint, ...(games ? [games] : []));
+  renderScreen([state, paths, pasteHint]);
 }
 
 async function scanBlob(blob: Blob, origin: ScanOrigin) {
@@ -388,10 +416,7 @@ function renderResult(state: ResultState) {
     content.push(rescan);
   }
 
-  const games = gamesEl();
-  if (games) content.push(games);
-
-  render(...content);
+  renderScreen(content);
 }
 
 /**
@@ -405,6 +430,7 @@ function renderCrop() {
   const bitmap = pageBitmap;
   if (!bitmap) return;
   refreshScreen = null; // never yank the user out of a drag
+  document.body.classList.remove("two");
   document.body.classList.add("wide");
 
   const maxW = 600;
