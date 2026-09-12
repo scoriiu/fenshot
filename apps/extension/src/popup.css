@@ -452,11 +452,29 @@ button.nav:disabled {
 
 .move-counter {
   min-width: 118px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
   font-size: 12px;
-  font-weight: 600;
-  color: #cbd5e1;
+  color: #64748b;
   font-variant-numeric: tabular-nums;
+}
+
+.move-counter .num {
+  margin-right: 2px;
+}
+
+.move-counter .san {
+  padding: 2px 6px;
+  border-radius: 5px;
+  color: #94a3b8;
+}
+
+.move-counter .san.active {
+  background: rgba(125, 211, 252, 0.14);
+  color: #f8fafc;
+  font-weight: 600;
 }
 
 

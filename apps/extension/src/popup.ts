@@ -242,15 +242,23 @@ function gamesEl(): HTMLElement | null {
       b.addEventListener("click", () => go(to));
       return b;
     };
-    // Move numbering follows the starting position (studies may begin
-    // at move 23 with Black to move).
+    // The current move pair, "9. g3 Bh3", with the move the board shows
+    // highlighted; at the start the first pair is shown, nothing lit.
+    // Numbering follows the starting position (a study may begin at
+    // move 23 with Black to move).
     const f = (game.startFen ?? "").split(" ");
     const n0 = parseInt(f[5], 10) || 1;
-    const blackFirst = f[1] === "b";
-    const idx = ply - 1 + (blackFirst ? 1 : 0); // half-move index as if White had started
-    const moveNo =
-      ply === 0 ? "Start" : `${n0 + Math.floor(idx / 2)}.${idx % 2 === 1 ? ".." : ""} ${game.moves[ply - 1]}`;
-    const counter = el("span", "move-counter", moveNo);
+    const shift = f[1] === "b" ? 1 : 0; // half-move index as if White had started
+    const cur = Math.max(ply, 1) - 1 + shift;
+    const pair = Math.floor(cur / 2);
+    const whiteIdx = pair * 2 - shift; // index into game.moves, may be -1 for a Black-first game
+    const counter = el("span", "move-counter");
+    counter.append(el("span", "num", `${n0 + pair}.${whiteIdx < 0 ? ".." : ""}`));
+    for (const i of [whiteIdx, whiteIdx + 1]) {
+      if (i < 0 || i >= game.moves.length) continue;
+      const m = el("span", i === ply - 1 ? "san active" : "san", game.moves[i]);
+      counter.append(m);
+    }
     moveRow.append(
       navBtn("\u23ee", "Start", 0, ply === 0),
       navBtn("\u25c0", "Previous move", ply - 1, ply === 0),
