@@ -278,11 +278,13 @@ body.two {
   /* minmax(0, ...) so a nowrap caption cannot widen its column. */
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 12px;
-  align-items: start;
+  align-items: stretch;
 }
 
 .card {
   min-width: 0;
+  display: flex;
+  flex-direction: column;
   padding: 10px 12px 12px;
   border-radius: 12px;
   background: #111827;
@@ -332,6 +334,17 @@ body.two {
 .footer.inline {
   margin: 0 0 0 auto;
   font-size: 11px;
+}
+
+.card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hub on the left of a game card: centre what little it has. */
+.card.hub .card-body {
+  justify-content: center;
 }
 
 .card .state.compact {

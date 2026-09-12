@@ -138,8 +138,12 @@ function renderScreen(position: HTMLElement[], origin: ScanOrigin | null) {
   }
   document.body.classList.add("two");
   const cols = el("div", "cols");
-  const left = el("section", "card");
-  left.append(cardHead("Position", origin ? POSITION_SOURCE[origin] : "nothing read from the image on this tab"), ...position);
+  // Both cards stretch to the same height; the hub (no position read)
+  // has less content, so its body is centred in the free space.
+  const left = el("section", origin ? "card" : "card hub");
+  const body = el("div", "card-body");
+  body.append(...position);
+  left.append(cardHead("Position", origin ? POSITION_SOURCE[origin] : "nothing read from the image on this tab"), body);
   cols.append(left, game);
   render(cols);
 }
