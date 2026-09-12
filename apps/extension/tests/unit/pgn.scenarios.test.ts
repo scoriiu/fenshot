@@ -9,6 +9,7 @@
  */
 import { describe, expect, it } from "vitest";
 import { Chess } from "chess.js";
+import { readFileSync } from "node:fs";
 import { findGames, scanGames, coachessGameUrl, lichessGameUrl } from "../../src/pgn";
 
 const only = (text: string | string[]) => {
@@ -467,5 +468,32 @@ This game is type: UNORTHODOX.`;
     const games = findGames([`Here: 1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 1-0\n\n${KC_960_PAGE}`]);
     expect(games).toHaveLength(1);
     expect(games[0].moves[0]).toBe("e4");
+  });
+});
+
+describe("6. lichess PGN viewer (blog / study pages), real innerText", () => {
+  // https://lichess.org/@/Lichess/blog/lichess-game-of-the-month-june-26/a3FwhC4X
+  // Main line rendered one token per line ("13." / "..." / "e5??" after a
+  // comment), variations glued ("13...Nc5[%anno ...]14.f6gxf6"), nested
+  // ones in parentheses, [%anno]/[%clk]/[%cal] commands left in the text.
+  const page = readFileSync(new URL("./fixtures/lichess-blog-gotm-june-2026.innertext.txt", import.meta.url), "utf8");
+
+  it("follows the main line through 30+ inline variations, including a transposition", () => {
+    const g = only(page);
+    expect(g.moves).toHaveLength(63);
+    // 6...Nbd7 (game) not 6...e6 (variation that transposes): a true tie in
+    // length, resolved by formatting consistency with the line so far.
+    expect(g.moves.slice(10, 16)).toEqual(["Bg5", "Nbd7", "f4", "Qc7", "Qf3", "e6"]);
+    // 13...e5?? (game) over three annotated alternatives.
+    expect(g.moves[25]).toBe("e5");
+    expect(g.moves.slice(-3)).toEqual(["Qd5", "d2", "Qxd2"]);
+    expect(g.headers.Result).toBe("1-0");
+  });
+
+  it("the study PGN itself (Get PGN button) parses identically", () => {
+    const pgn = readFileSync(new URL("./fixtures/lichess-gotm-june-2026.pgn", import.meta.url), "utf8");
+    const g = only(pgn);
+    expect(g.moves).toHaveLength(63);
+    expect(g.label).toBe("Bengal_Tiger_2011 \u2013 nguacongamco, 2026 (32 moves)");
   });
 });

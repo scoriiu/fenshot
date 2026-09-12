@@ -1,0 +1,271 @@
+Accessibility - Enable blind mode
+lichess.org
+PLAY
+PUZZLES
+LEARN
+WATCH
+COMMUNITY
+TOOLS
+DONATE
+SIGN IN
+REGISTER
+Community
+By month
+By topic
+By Lichess
+My likes
+Lichess Game of the Month: June '26
+Lichess
+4 Aug 2026
+405
+64,810 views
+English (US)
+Chess
+Analysis
+Lichess
+A queen sacrifice — with check!
+
+By July 12th, several of your best games of June were shared via our forum post.
+
+Our team went on to carefully check all submitted games and found that the game of @Bengal_Tiger_2011 was outstanding. Congrats!
+
+The Turkish chess trainer and FM Nazmi Can Doğan, alias @NaSil, had a deeper look into the game and commented a lot for you to learn from. Check it out:
+
+Move 32, white, queen takes D 2, 07:35 remaining. 1-0 Black resigns.
+A8 emptyB8 emptyC8 emptyD8 emptyE8 emptyF8 emptyG8 emptyH8 empty
+A7 emptyB7 emptyC7 emptyD7 emptyE7 emptyF7 black pawnG7 black kingH7 black pawn
+A6 black pawnB6 emptyC6 emptyD6 black pawnE6 emptyF6 emptyG6 emptyH6 empty
+A5 emptyB5 black pawnC5 emptyD5 emptyE5 emptyF5 emptyG5 white pawnH5 black queen
+A4 emptyB4 emptyC4 emptyD4 emptyE4 emptyF4 emptyG4 emptyH4 empty
+A3 emptyB3 emptyC3 emptyD3 emptyE3 emptyF3 emptyG3 white kingH3 empty
+A2 emptyB2 emptyC2 emptyD2 white queenE2 emptyF2 emptyG2 white bishopH2 white pawn
+A1 emptyB1 emptyC1 emptyD1 emptyE1 emptyF1 emptyG1 emptyH1 white rook
+nguacongamco
+(2291)
+08:12
+1
+2
+3
+4
+5
+6
+7
+8
+a
+b
+c
+d
+e
+f
+g
+h
+Bengal_Tiger_2011
+(2428)
+07:35
+[%anno "FM NaSil", nasil] The Najdorf is historically one of the lines with the most spectacular games and brilliancies. There are many sharp lines, every step in the wrong direction can lead to what I call a "brilliancy". In the June 2026 Lichess Game Of The Month, we'll witness a similar scenario. White chose one of the most direct and theoretically well-developed variations of the Najdorf, meaning Black needed to show deep theoretical knowledge.
+1.
+e4
+c5
+2.
+Nf3
+d6
+3.
+d4
+cxd4
+4.
+Nxd4
+Nf6
+5.
+Nc3
+a6
+6.
+Bg5
+Nbd7
+[%anno "FM NaSil", nasil] This move has an independent value, but the game continuation will transpose to the classical main line.
+6...e67.f4Nbd7(7...Qb6[%anno "FM NaSil", nasil] The famous poisoned pawn variation is the main line.)8.Qf3Qc79.O-O-O[%anno "FM NaSil", nasil] would transpose to the game continuation.
+7.
+f4
+Qc7
+8.
+Qf3
+e6
+[%anno "FM NaSil", nasil] If Black really wanted to play in the spirit of 6...♘bd7 system, 8...h6 is the way to go.
+8...h69.Bxf6(9.Bh4g5![%anno "FM NaSil", nasil] This is the point of Black's previous move.10.fxg5hxg511.Bxg5Qc5![%anno "FM NaSil", nasil] with the pawn on e7, Black can create counterplay.12.Be3Ne513.Qe2Neg414.Bg1Bh6!⇆[%anno "FM NaSil", nasil] Black has full compensation and scored nicely from this position due to active play on the dark squares.)Nxf610.f5[%anno "FM NaSil", nasil] to prevent ...♗g4 and meet ...e5 with fxe6 e.p.Qc511.O-O-Og5!∞[%anno "FM NaSil", nasil] Last important detail to ensure the development of the kingside.
+9.
+O-O-O
+Be7
+9...b5[%anno "FM NaSil", nasil] It is very hard to master all these move orders and nuances, but it is definitely very instructive to study these lines.10.g4[%anno "FM NaSil", nasil] If White wants to continue as in the game, the game sharpens immediately.(10.Bd3[%anno "FM NaSil", nasil] The main move for a good reason.Bb711.Rhe1Be712.Qg3b413.Nd5[%anno "FM NaSil", nasil] The main line which is known for a very long time.)b4!(10...Bb711.Bxf6b4!N12.Ncb5axb513.Nxb5Qb814.Bh4Rxa2[%anno "FM NaSil", nasil] Stockfish likes Black's position.)11.Nd5!?[%anno "FM NaSil", nasil] A typical sacrifice, but Black has defensive resources as well. In fact Stockfish likes Black's chances.exd512.exd5Be713.Re1Kf814.Nc6Bd815.Bxf6Nxf616.g5Ng817.h4=∞Grobler, David J - Romm, Mikhail Yakovlevich, 1/2-1/2, DJ-CT18/pr06, 2011, https://lichess.org/Ftg4qkVX
+10.
+g4
+b5
+[%anno "FM NaSil", nasil] Pawns storms begin!
+11.
+Bxf6
+Nxf6
+11...Bxf6[%anno "FM NaSil", nasil] with d6-square weakened, this move would allow12.Bxb5!axb5?13.Ndxb5Qc614.Rxd6[%anno "FM NaSil", nasil] White has a winning attack.Qb715.Rxe6+!+−
+12.
+g5
+Nd7
+13.
+f5!
+...
+[%anno "FM NaSil", nasil] Now we're in the discussion dating back to 1960s.
+13.
+...
+e5??
+[%anno "FM NaSil", nasil] This looks bad as it leaves d5-square for white's knight with tempo.
+13...Nc5[%anno "FM NaSil", nasil] Fischer preferred this move and it's considered the best for a while as far as I remember.14.f6gxf615.gxf6Bf816.Rg1![%anno "FM NaSil", nasil] But this move came much later in the 1980s.h5(16...b417.Nd5![%anno "FM NaSil", nasil] The same stuff!)17.a3Rb8?!18.Re1![%anno "FM NaSil", nasil] ♘d5 is almost inevitable. This move refutes the line. A modern masterpiece was played as follows.Nd7[%anno "FM NaSil", nasil] To block the e-file, but this allows...19.Nxe6!!fxe620.f7+Ke721.Rg6!Qc522.Rxe6+!!Kxe623.Nd5!Nf624.Qxf6+Kd725.Qxh8Bb726.Bh3+Kc627.Qf6a528.Qe6Bc829.Qe8+Vallejo Pons, F. - Wynn Zaw Htun, 1-0, 16th BCC Open 2016, https://lichess.org/l6hp1iu7
+13...O-O![%anno "FM NaSil", nasil] This move was played in 2010 when silicon monsters started to point at this move! Nobody dared to castle into the storm until that point.14.fxe6(14.Rg1[%anno "FM NaSil", nasil] The main line.b4[%anno "FM NaSil", nasil] A typical device to play ...e5 without allowing ♘d5.15.Nce2e516.f6[%anno "FM NaSil", nasil] more than 250 games from this chaotic position in Lichess Masters Database.)fxe615.Nxe6Rxf316.Nxc7Bxg5+17.Kb1Rb818.Ne6Bf619.Rxd6Rb6!Huschenbeth, Niclas - Hamitevici, Vladimir, 0-1, Wch U20 49th, 2010, https://lichess.org/MvZIyPc0[%anno "FM NaSil", nasil] This was the first game where 13...0-0 was played.
+13...Bxg5+14.Kb1Ne515.Qh5Qd8[%anno "FM NaSil", nasil] One of the older lines where White stands in good shape after16.h4Bf617.fxe6O-O18.Bh3!±[%anno "FM NaSil", nasil] There are many games starting from this position as well. d5-square is a nice post for White's forces and with the last move White ensures to capture the opponent's bishop pair.
+14.
+f6
+...
+[%anno "FM NaSil", nasil] Destroying black's pawn structure before playing ♘d5 and vacating f5-square. Stockfish prefers a more direct approach.
+14.Nd5Qa7(14...Qb715.Nxe7)15.f6exd416.Nxe7+−
+14.
+...
+exd4!
+15.
+Nd5
+Qa5?
+[%anno "FM NaSil", nasil] There's a good defensive possibility.
+15...Qc5!16.b4![%anno "FM NaSil", nasil] Only move! Otherwise with ...♘e5 coming, Black would have nothing to fear.(16.Nxe7?Qxg5+⩱)Ne517.fxg7(17.Qf2Qa718.Nxe7+−)Rg818.Qh5Qc619.Qxh7+−[%anno "FM NaSil", nasil] Black has some chances for counterplay even though Stockfish shows a winning advantage to White.
+16.
+Nxe7!
+...
+16.fxe7?Qxa2⇆
+16.
+...
+Qxa2
+[%anno "FM NaSil", nasil] Black could prevent fxg7 possibility.
+16...gxf617.Nf5!(17.gxf6?Qxa2[%anno "FM NaSil", nasil] Now it's fine for Black.)Qxa218.Nxd6+Ke719.Rxd4+−
+17.
+Nd5?
+...
+[%anno "FM NaSil", nasil] Returning the favor.
+17.fxg7[%anno "FM NaSil", nasil] would trap the rook, but instead White decided to go for the other rook.
+17.
+...
+Ne5
+[%anno "FM NaSil", nasil] Stockfish doesn't like this move but, it seems to me like a good practical try. Now a highly critical position arises!
+17...g618.Rxd4Qa1+19.Kd2Qxb220.Rb4Qe521.Nc7+Kd822.Nxa8Bb723.Qa3!+−[%anno "FM NaSil", nasil] If this move did not exist, Black would have hopes of surviving. This line was Stockfish's main line for the defense.
+17...Rg8[%anno "FM NaSil", nasil] would possibly be a better defense.18.Nc7+Kf819.Nxa8Qa1+20.Kd2Qa5+[%anno "FM NaSil", nasil] would ask some practical questions.
+18.
+fxg7!!
+...
+[%anno "FM NaSil", nasil] White has no intention of missing the opportunity this time. This move involves a queen sacrifice with check!
+18.Qf2?Be6!19.fxg7Rg820.Nf6+Ke721.Nxg8+Rxg8=∞[%anno "FM NaSil", nasil] Black would have fairly nice compensation for the exchange.
+18.
+...
+Qa1+
+18...Nxf3[%anno "FM NaSil", nasil] Who is faster?19.gxh8=Q+Kd720.Bh3+![%anno "FM NaSil", nasil] Winning resource!Kc621.Qe8+Kb722.Qxf7+[%anno "FM NaSil", nasil] White mates first.
+19.
+Kd2
+Nxf3+
+20.
+Ke2
+d3+!
+[%anno "FM NaSil", nasil] Good defense!
+20...Qxd1+21.Kxd1Rg822.Nf6++−[%anno "FM NaSil", nasil] White's knight saves the day one more time and g-pawn is unstoppable!
+21.
+Kf2!
+...
+[%anno "FM NaSil", nasil] Last detail, Black is out of checks now.
+21.cxd3??Qxb2+-+
+21.
+...
+Qxb2
+22.
+Nf6+!
+...
+[%anno "FM NaSil", nasil] White's knight wins the house once again.
+22.
+...
+Ke7
+22...Qxf623.gxf6Rg8[%anno "FM NaSil", nasil] If Black's knight were not hanging, this line would be fine for Black.24.Kxf3+−[%anno "FM NaSil", nasil] A picturesque position: Black is a pawn up, can take another one, but the rook on g8 is paralyzed, the protected passer on g7 grants White a winning position.
+23.
+gxh8=Q
+Qxc2+?
+[%anno "FM NaSil", nasil] White wins easily after this move. Stockfish indicates a better defense.
+23...Qd4+[%anno "FM NaSil", nasil] Black can even win the queen in some lines, but it is not enough.24.Kxf3Bg4+25.Nxg4Rxh826.Bxd3+−[%anno "FM NaSil", nasil] White has rook, bishop and knight for the queen, thus winning.
+24.
+Kg3
+Bb7
+25.
+Nd5+!
+...
+[%anno "FM NaSil", nasil] Clearing the f6-square.
+25.
+...
+Bxd5
+26.
+Qf6+
+Kf8
+27.
+Qxf3
+Bxe4
+[%anno "FM NaSil", nasil] Black is lost anyway.
+28.
+Qxe4
+Qxd1
+29.
+Qxa8+
+Kg7
+30.
+Bg2
+Qh5
+31.
+Qd5
+d2
+32.
+Qxd2
+1-0 Black resigns.
+1-0
+
+You can now submit your best Game of the Month July on the pinned topic in our forums until August 12!
+
+Conditions to submit your Game of the Month July:
+
+Only standard games (no variants)
+Only games that have been played in July 2026
+Only one game per user (additional games will be ignored)
+
+Although variant games aren't allowed here, some of our official variant teams are hosting their own Game of the Month contests — check them out:
+
+Racing Kings Contest
+
+Stay tuned to our forums for the next announcement.
+
+How did you like this Game of the Month and the contest? Let us know in the comments!
+
+MastodonGitHubDiscordBlueskyYouTubeTwitch
+
+Lichess is a charity and entirely free/libre open source software. We depend on user donations to support our operating costs, development, and content. Without our generous community, we would not be able to keep the site running. Thank you for joining us!
+
+
+DISCUSS THIS BLOG POST IN THE FORUM
+You may also like
+16 Aug 2024
+CM HGabor
+How titled players lie to you
+This post is a word of warning for the average club player. As the chess world is becoming increasin…
+19 Apr 2025
+Lichess
+Interview: Ju Wenjun - Women's World Chess Champion 2025
+Lichess interviewed GM Ju Wenjun after she won her fifth Women's World Chess Championship title.
+8 Sept 2021
+thibault
+How I started building Lichess
+I get this question sometimes. How did you decide to make a chess server? The truth is, I didn't.
+14 Nov 2025
+Lichess
+FIDE World Cup R4: Praggnanandhaa, Keymer, Vachier-Lagrave, Blübaum Eliminated
+GM Daniil Dubov eliminated GM Praggnanandhaa R, while GM Andrey Esipenko got the better of GM Vincen…
+8 May 2025
+ChessMonitor_Stats
+Where do Grandmasters play Chess? - Lichess vs. Chess.com
+This is the first large-scale analysis of Grandmaster activity across Chess.com and Lichess from 200…
+20 Mar 2025
+FM MathiCasa
+Chess Football: A Fun and Creative Variant
+Where chess pieces become "players" and the traditional chessboard turns into a soccer field

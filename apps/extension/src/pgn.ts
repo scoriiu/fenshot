@@ -92,6 +92,8 @@ const MAX_SAN_LEN = 10;
 function stripAnnotations(s: string): string {
   let t = s
     .replace(/\{[^}]*\}/g, " ")
+    .replace(/\[%[^\]]*\]/g, " ") // [%clk 0:10:00], [%anno ...], [%cal ...] survive in rendered text
+    .replace(/\u2026/g, "...") // "13…" as the lichess viewer prints Black's number
     .replace(/\$\d+/g, " ")
     // Figurines (♘f3, ♞f6) to letters; pawn figurines just vanish.
     .replace(/[\u2654\u265a]/g, "K")
@@ -193,10 +195,13 @@ function markers(text: string, from: number, n: number, black: boolean, limit = 
     // A digit right before is a rank ("Qxc5" + "18.") only when a file
     // letter precedes it; otherwise it is part of a longer number.
     if (i > from && /[0-9]/.test(text[i - 1]) && !/[a-h]/.test(text[i - 2] ?? "")) continue;
-    const after = text.slice(i + num.length, i + num.length + 3);
+    const after = text.slice(i + num.length, i + num.length + 8);
+    // Black's number: "13...", "13. ...", or "13." / "..." on separate
+    // lines, which is how the lichess viewer renders it after a comment.
+    const dots = /^\.?\s*\.\.\./.exec(after);
     if (black) {
-      if (after === "...") out.push(i + num.length + 3);
-    } else if (after.startsWith("...")) {
+      if (dots) out.push(i + num.length + dots[0].length);
+    } else if (dots) {
       continue;
     } else if (after.startsWith(".")) {
       out.push(i + num.length + 1);
@@ -300,6 +305,8 @@ function scanLine(text: string, start: number, fen?: string): { moves: string[];
   let pos = start;
   let n = parseInt(chess.fen().split(" ")[5], 10) || 1;
   let black = chess.turn() === "b";
+  /** Formatting of the accepted moves so far: >0 mostly glued to their numbers, <0 mostly spaced. */
+  let gluedVotes = 0;
   for (;;) {
     const cands = candidates(chess, text, pos, n, black, moves.length === 0);
     if (cands.length === 0) break;
@@ -308,11 +315,13 @@ function scanLine(text: string, start: number, fen?: string): { moves: string[];
       // Longest legal continuation wins. Iterative deepening: most
       // quoted alternatives die within a few plies, so compare at a
       // small horizon first and only search deeper while candidates
-      // are still level. On a final tie (typically near the end of the
-      // game, where a quoted alternative can finish just as long), a
-      // move glued to its number beats a spaced one: sites that
-      // interleave commentary render the real moves glued and the
-      // quotes as prose. Then text order.
+      // are still level. On a final tie (a transposition, or a quoted
+      // alternative near the end of the game that finishes just as
+      // long), prefer the candidate whose formatting matches the line
+      // so far: chessgames glues its main line and spaces the kibitz,
+      // the lichess viewer spaces its main line and glues variations;
+      // either way the main line is consistent with itself. Then text
+      // order.
       let alive = cands;
       for (let cap = 6; ; cap *= 2) {
         const horizon = Math.min(cap, LOOKAHEAD);
@@ -326,8 +335,10 @@ function scanLine(text: string, start: number, fen?: string): { moves: string[];
         alive = alive.filter((_, i) => depths[i] === top);
         if (alive.length === 1 || top < horizon || horizon === LOOKAHEAD) break;
       }
-      best = alive.find((c) => c.glued) ?? alive[0];
+      if (gluedVotes !== 0) best = alive.find((c) => c.glued === gluedVotes > 0) ?? alive[0];
+      else best = alive[0];
     }
+    gluedVotes += best.glued ? 1 : -1;
     chess.move(best.san);
     moves.push(best.san);
     pos = best.end;
