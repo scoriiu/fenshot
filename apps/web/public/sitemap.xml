@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://fenshot.com/</loc>
-    <lastmod>2026-08-07</lastmod>
+    <loc>https://fenshot.com/</loc><lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://fenshot.com/extension/</loc>
-    <lastmod>2026-08-07</lastmod>
+    <loc>https://fenshot.com/extension/</loc><lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url><loc>https://fenshot.com/chess-image-to-board/</loc></url>
-  <url><loc>https://fenshot.com/chess-screenshot-to-fen/</loc></url>
-  <url><loc>https://fenshot.com/photo-of-chess-board-to-fen/</loc></url>
-  <url><loc>https://fenshot.com/chess-book-diagram-to-fen/</loc></url>
-  <url><loc>https://fenshot.com/chesscom-screenshot-to-lichess/</loc></url>
+  <url><loc>https://fenshot.com/chess-image-to-board/</loc><lastmod>2026-09-28</lastmod></url>
+  <url><loc>https://fenshot.com/chess-screenshot-to-fen/</loc><lastmod>2026-09-28</lastmod></url>
+  <url><loc>https://fenshot.com/photo-of-chess-board-to-fen/</loc><lastmod>2026-09-28</lastmod></url>
+  <url><loc>https://fenshot.com/chess-book-diagram-to-fen/</loc><lastmod>2026-09-28</lastmod></url>
+  <url><loc>https://fenshot.com/chesscom-screenshot-to-lichess/</loc><lastmod>2026-09-28</lastmod></url>
 </urlset>

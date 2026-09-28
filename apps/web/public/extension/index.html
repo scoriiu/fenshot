@@ -24,6 +24,54 @@
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
 }
 </script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Is the extension free?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes. fenshot is free and open source under the MIT license. There is no account, no quota and nothing to upgrade."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Does it upload my screen?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. It reads the visible tab only when you click the icon, and the recognition runs entirely on your device. The extension makes no network requests and collects no data."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Which browsers does it support?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Chrome, Firefox and Edge on desktop. On a phone, the web version at fenshot.com does the same job without an install."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can it import a whole game, not just a position?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes. On a page that shows a game as a move list, such as chessgames.com, Lichess, a chess.com article or a blog, fenshot finds it, checks that every move is legal, and lets you step through it or open it on Coachess or Lichess."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What happens when it cannot read a board?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "It says so instead of guessing, and sends you to an editor where you can fix the squares before analyzing."
+   }
+  }
+ ]
+}
+</script>
 <style>
   :root {
     --bg: #0c1117;
@@ -38,12 +86,16 @@
     color: var(--text);
     font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
     min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     padding: 24px;
   }
-  .card { max-width: 460px; text-align: center; }
+  .card { max-width: 460px; margin: 56px auto 0; text-align: center; }
+  .content { max-width: 680px; margin: 64px auto 48px; line-height: 1.65; font-size: 15px; color: #cbd5e1; }
+  .content h1 { color: #fef3c7; font-size: 24px; margin: 0 0 12px; }
+  .content h2 { color: #fef3c7; font-size: 19px; margin: 32px 0 10px; }
+  .content h3 { color: #e2e8f0; font-size: 16px; margin: 18px 0 6px; }
+  .content p, .content ul, .content ol { margin: 0 0 12px; }
+  .content ul, .content ol { padding-left: 20px; }
+  .content a { color: #fbbf24; }
   .brand { font-size: 30px; font-weight: 700; color: #f1f5f9; letter-spacing: -0.02em; }
   .brand span { color: var(--accent); }
   .tag { color: var(--muted); font-size: 14px; margin-top: 6px; }
@@ -87,6 +139,31 @@
     <a href="https://github.com/scoriiu/fenshot" target="_blank" rel="noreferrer">source on github</a>
   </div>
 </div>
+
+<main class="content">
+  <h1>Chess board to FEN in one click, on any page</h1>
+  <p>See a chess position anywhere, on Lichess, chess.com, a YouTube video, a book PDF or a blog post, and want to analyze it? Click the fenshot icon. The extension captures the visible tab, reads the board with a neural network that runs inside your browser, and shows you the position. From there you can analyze it on Coachess, open it on Lichess, or copy the FEN to use anywhere.</p>
+
+  <h2>Whole games, not just positions</h2>
+  <p>On a page that shows a game as a move list, such as chessgames.com, Lichess, a chess.com article or a blog, fenshot finds it, checks that every move is legal, and shows it on a small board you can step through. One click opens the full game on Coachess or Lichess, or copies the PGN. Several games on one page? Page through them.</p>
+
+  <h2>Private by design</h2>
+  <ul>
+    <li>The screenshot and the page text are read only when you click the icon, and only from that tab.</li>
+    <li>Recognition runs entirely on your device. Nothing leaves your browser.</li>
+    <li>No account, no analytics, no tracking, no network requests.</li>
+    <li>Fully open source under MIT: <a href="https://github.com/scoriiu/fenshot">github.com/scoriiu/fenshot</a>.</li>
+  </ul>
+
+  <h2>Works with</h2>
+  <p>Lichess and chess.com in their common themes, book diagrams, and most piece sets. When a position is hard to read, fenshot says so instead of pretending, and routes you to an editor to fix the squares.</p>
+
+  <h2>Common questions</h2>
+  <h3>Is the extension free?</h3><p>Yes. fenshot is free and open source under the MIT license. There is no account, no quota and nothing to upgrade.</p><h3>Does it upload my screen?</h3><p>No. It reads the visible tab only when you click the icon, and the recognition runs entirely on your device. The extension makes no network requests and collects no data.</p><h3>Which browsers does it support?</h3><p>Chrome, Firefox and Edge on desktop. On a phone, the web version at fenshot.com does the same job without an install.</p><h3>Can it import a whole game, not just a position?</h3><p>Yes. On a page that shows a game as a move list, such as chessgames.com, Lichess, a chess.com article or a blog, fenshot finds it, checks that every move is legal, and lets you step through it or open it on Coachess or Lichess.</p><h3>What happens when it cannot read a board?</h3><p>It says so instead of guessing, and sends you to an editor where you can fix the squares before analyzing.</p>
+
+  <h2>No install?</h2>
+  <p>Paste any chess screenshot on <a href="/">fenshot.com</a> for the same recognition in the page, or read the guides for <a href="/chess-screenshot-to-fen/">screenshots</a>, <a href="/photo-of-chess-board-to-fen/">photos of a board</a> and <a href="/chess-book-diagram-to-fen/">book diagrams</a>.</p>
+</main>
 <script>
   var STORES = {
     Chrome: "https://chromewebstore.google.com/detail/fenshot-chess-board-to-fe/fpkdijjlnafehkdkjmkppcekocjdomkc",

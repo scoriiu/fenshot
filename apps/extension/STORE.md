@@ -9,7 +9,10 @@ fenshot: chess board to FEN, one click
 
 ## Short description (132 chars max for CWS)
 
-Reads the chess position on any page and opens it for analysis. Runs entirely on your device, nothing is uploaded.
+<!-- 2026-09-28: leads with "chess screenshot to FEN", the phrase people
+     search (Search Console on fenshot.com). Paste into all three stores. -->
+
+Chess screenshot to FEN in one click: reads the board on any page, and whole games from move lists. Runs entirely on your device.
 
 ## Detailed description
 
@@ -20,13 +23,20 @@ The extension screenshots the visible tab, reads the board with a neural
 network that runs entirely inside your browser, and shows you the
 position. From there:
 
-- Analyze on Lichess, one click to the analysis board
-- Open in Coachess for coached analysis
+- Analyze on Coachess, one click to coached analysis
+- Open on Lichess
 - Copy the FEN to use anywhere
 
+Whole games too. On a page that shows a game as a move list, such as
+chessgames.com, lichess, a chess.com article or a blog, fenshot finds
+it, checks that every move is legal, and shows it on a small board you
+can step through. One click opens the full game on Coachess or Lichess,
+or copies the PGN. Several games on one page? Page through them.
+
 Privacy, for real:
-- The screenshot is taken only when you click the icon (activeTab permission)
-- Recognition runs 100% on your device, the image never leaves your browser
+- The screenshot and the page text are read only when you click the icon
+  (activeTab permission), and only from that tab
+- Recognition runs 100% on your device, nothing leaves your browser
 - No account, no analytics, no tracking, no network requests
 - Fully open source (MIT): github.com/scoriiu/fenshot
 
@@ -48,19 +58,51 @@ https://fenshot.com/extension-privacy.html
 
 ## Permission justification (CWS review form)
 
-activeTab: the extension's single function is reading the chessboard
-visible on the current tab. activeTab grants a one-time screenshot of
-that tab, only when the user clicks the toolbar icon. No host
-permissions, no content scripts, no background access.
+activeTab: the extension's single function is reading the chess content
+visible on the current tab. activeTab grants one-time access to that
+tab, only when the user clicks the toolbar icon. No host permissions,
+no background access.
+
+scripting: used together with activeTab, and only on the click, to run
+one small function in the current tab that returns the page's visible
+text (document.body.innerText, textarea values, <pre> blocks). The
+extension scans that text for a chess game written as a move list. The
+function is self-contained, injects nothing persistent, modifies
+nothing on the page, and the text is processed locally and discarded
+when the popup closes. Source: apps/extension/src/pgn.ts
+(collectPageText).
 
 ## Single purpose statement (CWS review form)
 
-Reads the chess position from the visible tab and opens it for analysis.
+Reads the chess position, and any chess game, from the visible tab and
+opens it for analysis.
 
 ## Data disclosure (CWS "data usage" form)
 
 Collects no data of any kind. All processing is local. Check "does not
 collect or use data".
+
+Note for reviewers who read link URLs: the "Coachess" buttons open
+coachess.app with utm_source=fenshot&utm_medium=extension in the URL.
+That is a static tag identifying the extension as the referrer, added
+only to links the user clicks; it carries no identifier and no data
+about the user or the page.
+
+## Firefox (AMO) notes
+
+- Source code is required because the build step bundles the ONNX
+  runtime. Upload the `fenshot-source-<version>.zip` produced by
+  `git archive` (see "Packaging" below); the README covers the build.
+- data_collection_permissions in the manifest stays `required: ["none"]`.
+
+## Packaging
+
+    cd apps/extension
+    npm run package                      # -> fenshot-extension-<version>.zip (upload to all stores)
+    git archive -o apps/extension/fenshot-source-<version>.zip HEAD   # from repo root, for AMO
+
+Both zips are gitignored. Bump `version` in package.json and
+public/manifest.json together.
 
 ## Assets
 
