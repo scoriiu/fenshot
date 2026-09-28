@@ -108,12 +108,31 @@ function render(...content: HTMLElement[]) {
 }
 
 /** Card header: title, one plain sentence saying where the content came from, optional controls. */
-function cardHead(title: string, source: string, ...controls: HTMLElement[]): HTMLElement {
+function cardHead(title: string, source: string | HTMLElement, ...controls: HTMLElement[]): HTMLElement {
   const head = el("div", "card-head");
   const row = el("div", "card-row");
   row.append(el("span", "card-title", title), ...controls);
-  head.append(row, el("div", "card-sub", source));
+  head.append(row, typeof source === "string" ? el("div", "card-sub", source) : source);
   return head;
+}
+
+/** A read the user should double-check. `short` fits the one-line card
+ *  header in the two-card layout; `full` is the sentence shown as a
+ *  block in the single-card layout and as the header's tooltip. */
+interface ReadWarning {
+  short: string;
+  full: string;
+}
+
+/** In the two-card layout the cards are aligned row for row inside a
+ *  popup Chrome caps at 600px tall, so a warning block in one card
+ *  pushed the popup over the cap and made it scroll (CI on Linux,
+ *  2026-09-28: 657px). The warning takes the header's fixed-height
+ *  source line instead, which is where "can I trust this card" belongs. */
+function warningSub(w: ReadWarning): HTMLElement {
+  const sub = el("div", "card-sub warn", w.short);
+  sub.title = w.full;
+  return sub;
 }
 
 const POSITION_SOURCE: Record<ScanOrigin, string> = {
@@ -129,11 +148,11 @@ const POSITION_SOURCE: Record<ScanOrigin, string> = {
  came from. Side by side when both exist (no scrolling, same board
  * size in both), single column otherwise, which is the 0.3 layout.
  */
-function renderScreen(position: HTMLElement[], origin: ScanOrigin | null) {
+function renderScreen(position: HTMLElement[], origin: ScanOrigin | null, warning: ReadWarning | null = null) {
   const game = gamesEl();
   if (!game) {
     document.body.classList.remove("two");
-    render(...position);
+    render(...(warning ? [position[0], el("div", "warning", warning.full), ...position.slice(1)] : position));
     return;
   }
   document.body.classList.add("two");
@@ -143,7 +162,8 @@ function renderScreen(position: HTMLElement[], origin: ScanOrigin | null) {
   const left = el("section", origin ? "card" : "card hub");
   const body = el("div", "card-body");
   body.append(...position);
-  left.append(cardHead("Position", origin ? POSITION_SOURCE[origin] : "nothing read from the image on this tab"), body);
+  const source = origin ? POSITION_SOURCE[origin] : "nothing read from the image on this tab";
+  left.append(cardHead("Position", warning ? warningSub(warning) : source), body);
   cols.append(left, game);
   render(cols);
 }
@@ -403,10 +423,14 @@ function renderResult(state: ResultState) {
   } catch {
     legalityWarning = "This position is not fully legal as read. Open it in the editor to fix squares.";
   }
-  const reliabilityWarning = state.scan.reliable
+  const reliabilityWarning: ReadWarning | null = state.scan.reliable
     ? null
-    : "This piece set is hard to read, some squares are probably wrong. Verify before trusting the analysis.";
-  const warning = reliabilityWarning ?? legalityWarning;
+    : {
+        short: "Hard to read: some squares may be wrong",
+        full: "This piece set is hard to read, some squares are probably wrong. Verify before trusting the analysis.",
+      };
+  const warning: ReadWarning | null =
+    reliabilityWarning ?? (legalityWarning ? { short: "Not fully legal as read: fix in the editor", full: legalityWarning } : null);
 
   const lichessFen = fen.replaceAll(" ", "_");
   const analysisUrl = legalityWarning
@@ -415,7 +439,6 @@ function renderResult(state: ResultState) {
   const coachessUrl = coachessPositionUrl(fen, state.flipped);
 
   const content: HTMLElement[] = [boardEl(state.placement, state.flipped)];
-  if (warning) content.push(el("div", "warning", warning));
 
   const turnRow = el("div", "turn");
   turnRow.append(el("span", "label", "to move"));
@@ -454,7 +477,7 @@ function renderResult(state: ResultState) {
     content.push(rescan);
   }
 
-  renderScreen(content, state.origin);
+  renderScreen(content, state.origin, warning);
 }
 
 /**

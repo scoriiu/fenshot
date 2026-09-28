@@ -324,6 +324,10 @@ body.two {
   text-overflow: ellipsis;
 }
 
+.card-sub.warn {
+  color: #fda4af;
+}
+
 .pager-count {
   font-size: 11px;
   color: #94a3b8;
