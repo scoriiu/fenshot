@@ -9,7 +9,10 @@ fenshot: chess board to FEN, one click
 
 ## Short description (132 chars max for CWS)
 
-Reads the chess position on any page, and whole games from move lists, then opens them for analysis. Runs entirely on your device.
+<!-- 2026-09-28: leads with "chess screenshot to FEN", the phrase people
+     search (Search Console on fenshot.com). Paste into all three stores. -->
+
+Chess screenshot to FEN in one click: reads the board on any page, and whole games from move lists. Runs entirely on your device.
 
 ## Detailed description
 
