@@ -421,6 +421,7 @@ function boardEl(placement: string, flipped: boolean): HTMLElement {
 }
 
 function renderResult(state: ResultState) {
+  console.error("DIAG renderResult", JSON.stringify({ same: lastResult === state, reliable: state.scan.reliable, min: (state.scan as unknown as { minConfidence?: number }).minConfidence }));
   if (lastResult !== state && state.scan.reliable) recordSuccessfulRead(window.localStorage);
   lastResult = state;
   refreshScreen = () => renderResult(state);

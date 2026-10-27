@@ -57,6 +57,7 @@ function write(s: Storage, key: string, value: string): void {
 
 /** Record one successful read. Returns true when the ask should be shown now. */
 export function recordSuccessfulRead(s: Storage): boolean {
+  console.error("DIAG record", JSON.stringify({ done: read(s, KEY_DONE), count: read(s, KEY_COUNT) }));
   if (read(s, KEY_DONE)) return false;
   const n = (Number(read(s, KEY_COUNT)) || 0) + 1;
   write(s, KEY_COUNT, String(n));
