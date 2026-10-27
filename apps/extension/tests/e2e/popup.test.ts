@@ -268,6 +268,12 @@ describe("popup end-to-end: rating ask", () => {
     const first = await openPopupOn("chessgames.html");
     try {
       await first.popup.waitForSelector(POSITION_BOARD);
+      // TEMP DIAGNOSTIC (branch ci-diagnose-rating-ask, never merged)
+      console.log("DIAG", JSON.stringify(await first.popup.evaluate(() => ({
+        warning: document.querySelector(".warning")?.textContent ?? null,
+        reads: localStorage.getItem("fenshot:reads"),
+        fen: document.querySelector(".caption.fen")?.textContent ?? null,
+      }))));
       // Earlier tests in this file may have read boards on the same
       // extension instance; only the fact of counting is asserted here.
       expect(Number(await first.popup.evaluate(() => localStorage.getItem("fenshot:reads")))).toBeGreaterThanOrEqual(1);
