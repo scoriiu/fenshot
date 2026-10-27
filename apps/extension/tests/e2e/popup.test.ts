@@ -273,6 +273,9 @@ describe("popup end-to-end: rating ask", () => {
         warning: document.querySelector(".warning")?.textContent ?? null,
         reads: localStorage.getItem("fenshot:reads"),
         fen: document.querySelector(".caption.fen")?.textContent ?? null,
+        keys: Object.fromEntries(Object.keys(localStorage).map((k) => [k, localStorage.getItem(k)])),
+        probe: (() => { try { localStorage.setItem("diag-probe", "1"); return localStorage.getItem("diag-probe"); } catch (e) { return "THROWS: " + String(e); } })(),
+        origin: location.origin,
       }))));
       // Earlier tests in this file may have read boards on the same
       // extension instance; only the fact of counting is asserted here.
