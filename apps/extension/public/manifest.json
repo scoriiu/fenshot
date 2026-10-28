@@ -2,12 +2,23 @@
   "manifest_version": 3,
   "name": "fenshot: chess board to FEN, one click",
   "homepage_url": "https://fenshot.com/",
-  "version": "0.4.6",
+  "version": "0.5.0",
   "description": "Chess screenshot to FEN in one click: reads the board on any page, and whole games from move lists. Runs entirely on your device.",
+  "minimum_chrome_version": "121",
   "permissions": [
     "activeTab",
     "scripting"
   ],
+  "optional_host_permissions": [
+    "https://www.chess.com/*",
+    "https://lichess.org/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "scripts": [
+      "background.js"
+    ]
+  },
   "action": {
     "default_popup": "index.html",
     "default_title": "Read the chessboard on this page",

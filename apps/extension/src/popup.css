@@ -516,3 +516,15 @@ button.nav:disabled {
 .footer a {
   color: #64748b;
 }
+
+.site-row {
+  margin-top: 6px;
+  text-align: center;
+  font-size: 11px;
+  color: #475569;
+}
+
+.site-row .linkish {
+  font-size: 11px;
+  padding: 0;
+}

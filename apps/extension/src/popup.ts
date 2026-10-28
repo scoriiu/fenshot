@@ -6,7 +6,7 @@
  * popup never dead-ends: the user can drag a box around the board on
  * the captured page, upload an image, or paste a screenshot. All of
  * it stays on the device; no persistent content scripts, no host
- * permissions.
+ * permissions (except the opt-in Kibitzo button, see site-access.ts).
  *
  * In parallel with the screenshot, the popup reads the page's text
  * (one-shot chrome.scripting call, also covered by activeTab) and looks
@@ -25,6 +25,7 @@ import {
   type BoardScanResult,
 } from "@scoriiu/fenshot";
 import { pieceElement } from "./pieces";
+import { disableSiteButton, enableSiteButton, siteButtonGranted, syncSiteButton } from "./site-access";
 import {
   collectPageText,
   scanGames,
@@ -101,18 +102,39 @@ function render(...content: HTMLElement[]) {
     // sits a few px under it). Only on a result screen.
     footer.append(ratingAskEl(footer));
   } else {
-    footer.append("runs on your device \u00b7 ", link("https://github.com/scoriiu/fenshot", "", "open source"));
+    footer.append("runs on your device \u00b7 ", link("https://github.com/scoriiu/fenshot", "", "open source"), ` \u00b7 v${chrome.runtime.getManifest().version}`);
   }
   if (document.body.classList.contains("two")) {
     // Wide layout: the footer line fits in the brand row, which buys
     // the height for a source line under each card title.
     footer.classList.add("inline");
     brand.append(footer);
-    wrap.append(brand, ...content);
+    wrap.append(brand, ...content, siteButtonRow());
   } else {
-    wrap.append(brand, ...content, footer);
+    wrap.append(brand, ...content, footer, siteButtonRow());
   }
   app.replaceChildren(wrap);
+}
+
+/**
+ * One quiet line under every screen: the opt-in Kibitzo button on
+ * chess.com and Lichess (site-access.ts). Filled in once the browser says
+ * whether access is granted, so it never flashes the wrong state.
+ */
+function siteButtonRow(): HTMLElement {
+  const row = el("div", "site-row");
+  const paint = (on: boolean) => {
+    const toggle = el("button", on ? "linkish" : "linkish strong", on ? "Turn off" : "Turn on");
+    toggle.addEventListener("click", async () => {
+      toggle.disabled = true;
+      if (on) await disableSiteButton();
+      else await enableSiteButton();
+      paint(await siteButtonGranted());
+    });
+    row.replaceChildren(on ? "Analyze in Kibitzo button on chess.com and Lichess: on \u00b7 " : "Add an Analyze in Kibitzo button to chess.com and Lichess \u00b7 ", toggle);
+  };
+  void syncSiteButton().then(paint, () => row.remove());
+  return row;
 }
 
 /** Card header: title, one plain sentence saying where the content came from, optional controls. */
