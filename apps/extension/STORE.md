@@ -163,7 +163,10 @@ Nothing else changes: no new permissions, no data leaves your device
 ## Packaging
 
     cd apps/extension
-    npm run package                      # -> fenshot-extension-<version>.zip (upload to all stores)
+    npm run package                      # -> two zips from one build:
+    #   fenshot-extension-<version>-chromium.zip   Chrome Web Store + Edge (background.service_worker only;
+    #                                              Edge rejects background.scripts in MV3)
+    #   fenshot-extension-<version>-firefox.zip    AMO (background.scripts, which Firefox needs)
     git archive -o apps/extension/fenshot-source-<version>.zip HEAD   # from repo root, for AMO
 
 Both zips are gitignored. Bump `version` in package.json and
