@@ -36,7 +36,8 @@ function knightIcon(): SVGSVGElement {
   svg.setAttribute("width", "16");
   svg.setAttribute("height", "16");
   svg.setAttribute("aria-hidden", "true");
-  svg.style.cssText = "flex-shrink:0;vertical-align:-3px;margin-right:6px;transform:scaleX(-1)";
+  // Inline on the label's baseline: the knight's base sits on the text's baseline.
+  svg.style.cssText = "vertical-align:baseline;margin-right:.4em;transform:scaleX(-1)";
   for (const d of KNIGHT_PATHS) {
     const p = document.createElementNS(SVG_NS, "path");
     p.setAttribute("d", d);
@@ -52,7 +53,10 @@ function linkEl(href: string): HTMLAnchorElement {
   a.target = "_blank";
   a.rel = "noopener";
   a.title = "Open this finished game on Kibitzo's free analysis board";
-  a.append(knightIcon(), LABEL);
+  const label = document.createElement("span");
+  label.style.whiteSpace = "nowrap";
+  label.append(knightIcon(), LABEL);
+  a.append(label);
   return a;
 }
 
@@ -76,41 +80,59 @@ function chessComPlayers(): string[] {
  * to the same family without competing with their green call to action
  * (founder 2026-10-28). Fallbacks measured on chess.com that day.
  */
-const CC_SECONDARY_COLORS = {
-  backgroundImage: "linear-gradient(rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
-  boxShadow: "rgba(255, 255, 255, 0.08) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.14) 0px 1px 2px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px",
-  color: "rgba(255, 255, 255, 0.85)",
+const CC_SECONDARY = {
+  bg: "linear-gradient(180deg, rgba(255, 255, 255, .1) 0%, rgba(255, 255, 255, .05) 100%)",
+  bgHover: "linear-gradient(180deg, rgba(255, 255, 255, .14) 0%, rgba(255, 255, 255, .05) 100%), linear-gradient(180deg, rgba(255, 255, 255, .05) 0%, rgba(255, 255, 255, 0) 100%)",
+  shadow: "inset 0 .1rem 0 0 rgba(255, 255, 255, .08), 0 .1rem .2rem 0 rgba(0, 0, 0, .14), 0 .2rem .4rem 0 rgba(0, 0, 0, .1)",
+  shadowHover: "inset 0 .1rem 0 0 rgba(255, 255, 255, .14), 0 .1rem .2rem 0 rgba(0, 0, 0, .14), 0 .2rem .4rem 0 rgba(0, 0, 0, .1)",
+  text: "rgba(255, 255, 255, .85)",
+  textHover: "#FFFFFF",
+  iconHover: "rgba(255, 255, 255, .85)",
 };
 const CC_REVIEW_SHAPE = { borderRadius: "10px", font: '800 22px/1 "Chess Sans", sans-serif', height: 64 };
 
-function chessComLook(review: HTMLElement) {
-  const shape = getComputedStyle(review);
-  const h = Math.round(review.getBoundingClientRect().height);
-  const native = document.querySelector('[class*="cc-button-secondary"]');
-  const tone = native ? getComputedStyle(native) : null;
+/** chess.com's secondary button variables (rest and hover), read live so the theme follows theirs. */
+function chessComTone(): typeof CC_SECONDARY {
+  const native = [...document.querySelectorAll('[class*="cc-button-secondary"]')].find((e) => e.getBoundingClientRect().width > 0);
+  if (!native) return CC_SECONDARY;
+  const cs = getComputedStyle(native);
+  const v = (name: string, fallback: string) => cs.getPropertyValue(name).trim() || fallback;
   return {
-    backgroundImage: tone && tone.backgroundImage !== "none" ? tone.backgroundImage : CC_SECONDARY_COLORS.backgroundImage,
-    boxShadow: tone && tone.boxShadow !== "none" ? tone.boxShadow : CC_SECONDARY_COLORS.boxShadow,
-    color: tone?.color || CC_SECONDARY_COLORS.color,
-    borderRadius: shape.borderRadius || CC_REVIEW_SHAPE.borderRadius,
-    font: shape.fontFamily ? `${shape.fontWeight} ${shape.fontSize}/1 ${shape.fontFamily}` : CC_REVIEW_SHAPE.font,
+    bg: v("--cc-bg-color", CC_SECONDARY.bg),
+    bgHover: v("--cc-bg-color-hover", CC_SECONDARY.bgHover),
+    shadow: v("--cc-bg-box-shadow", CC_SECONDARY.shadow),
+    shadowHover: v("--cc-bg-box-shadow-hover", CC_SECONDARY.shadowHover),
+    text: v("--textColor", CC_SECONDARY.text),
+    textHover: v("--textColorHover", CC_SECONDARY.textHover),
+    iconHover: v("--iconColorHover", CC_SECONDARY.iconHover),
+  };
+}
+
+function chessComShape(review: HTMLElement) {
+  const cs = getComputedStyle(review);
+  const h = Math.round(review.getBoundingClientRect().height);
+  return {
+    borderRadius: cs.borderRadius || CC_REVIEW_SHAPE.borderRadius,
+    font: cs.fontFamily ? `${cs.fontWeight} ${cs.fontSize}/1 ${cs.fontFamily}` : CC_REVIEW_SHAPE.font,
     height: h > 0 ? h : CC_REVIEW_SHAPE.height,
   };
 }
 
 function chessComButton(href: string, review: HTMLElement): HTMLElement {
-  const look = chessComLook(review);
+  const tone = chessComTone();
+  const shape = chessComShape(review);
   const host = document.createElement("div");
   host.setAttribute(MARK, "");
   const root = host.attachShadow({ mode: "closed" });
   const style = document.createElement("style");
   style.textContent = `
     :host { all: initial; display: block; }
-    a { box-sizing: border-box; display: flex; align-items: center; justify-content: center; width: 100%; height: ${look.height}px;
-        border-radius: ${look.borderRadius}; background-image: ${look.backgroundImage}; box-shadow: ${look.boxShadow};
-        color: ${look.color}; text-decoration: none; font: ${look.font}; }
-    a:hover { filter: brightness(1.2); }
-    svg { width: 24px; height: 24px; margin-right: 10px; }`;
+    a { box-sizing: border-box; display: flex; align-items: center; justify-content: center; width: 100%; height: ${shape.height}px;
+        border-radius: ${shape.borderRadius}; background: ${tone.bg}; box-shadow: ${tone.shadow};
+        color: ${tone.text}; text-decoration: none; font: ${shape.font}; }
+    a:hover { background: ${tone.bgHover}; box-shadow: ${tone.shadowHover}; color: ${tone.textHover}; }
+    a:hover svg { color: ${tone.iconHover}; }
+    svg { width: 1em; height: 1em; }`;
   root.append(style, linkEl(href));
   return host;
 }
