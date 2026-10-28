@@ -16,7 +16,8 @@ const MARK = "data-kibitzo-button";
 const LABEL = "Analyze in Kibitzo";
 const USERNAME = /^[A-Za-z0-9_-]{2,30}$/;
 
-type Guarded = typeof globalThis & { __kibitzoSiteButton?: boolean };
+/** Set while running; the stop hook lets the popup remove the button live (site-access.ts). */
+type Guarded = typeof globalThis & { __kibitzoSiteButton?: boolean; __kibitzoSiteButtonStop?: () => void };
 
 function openUrl(params: Record<string, string>): string {
   return `${ORIGIN}/coach/open?${new URLSearchParams(params).toString()}&${UTM}`;
@@ -154,7 +155,14 @@ function start() {
   place();
   // Both sites are single-page apps: post-game UI appears without a page
   // load. One childList observer, batched to a frame; cheap queries only.
-  new MutationObserver(schedule).observe(document.body, { childList: true, subtree: true });
+  const observer = new MutationObserver(schedule);
+  observer.observe(document.body, { childList: true, subtree: true });
+  g.__kibitzoSiteButtonStop = () => {
+    observer.disconnect();
+    document.querySelectorAll(`[${MARK}]`).forEach((el) => el.remove());
+    g.__kibitzoSiteButton = false;
+    g.__kibitzoSiteButtonStop = undefined;
+  };
 }
 
 start();

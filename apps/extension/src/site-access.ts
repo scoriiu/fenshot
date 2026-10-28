@@ -45,7 +45,18 @@ export async function enableSiteButton(): Promise<boolean> {
   return true;
 }
 
+/** Runs in the content script's world: remove the button and stop watching. */
+function stopSiteButton() {
+  (globalThis as typeof globalThis & { __kibitzoSiteButtonStop?: () => void }).__kibitzoSiteButtonStop?.();
+}
+
 export async function disableSiteButton(): Promise<void> {
+  // Open tabs first, while we still have access to them: afterwards the
+  // button would linger until each page reloads.
+  const tabs = await chrome.tabs.query({ url: SITE_ORIGINS }).catch(() => []);
+  await Promise.allSettled(
+    tabs.filter((t) => t.id !== undefined).map((t) => chrome.scripting.executeScript({ target: { tabId: t.id! }, func: stopSiteButton })),
+  );
   await chrome.permissions.remove({ origins: SITE_ORIGINS });
   await syncSiteButton();
 }
