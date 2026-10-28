@@ -94,7 +94,8 @@ function link(href: string, className: string, text: string): HTMLAnchorElement 
 function render(...content: HTMLElement[]) {
   const wrap = el("div", "wrap");
   const brand = el("div", "brand");
-  brand.append(el("span", "name", "fenshot"), el("span", "tag", "screenshot in, FEN out"), siteButtonPill());
+  brand.append(el("span", "name", "fenshot"), el("span", "tag", "screenshot in, FEN out"));
+  const pill = siteButtonPill();
   const footer = el("div", "footer");
   if (lastResult && ratingAskPending(window.localStorage)) {
     // The one-time rating ask takes the footer line (same height, no
@@ -113,6 +114,9 @@ function render(...content: HTMLElement[]) {
   } else {
     wrap.append(brand, ...content, footer);
   }
+  // Always the last item of the brand row: its right end, never between
+  // the name and the inline footer.
+  brand.append(pill);
   app.replaceChildren(wrap);
 }
 
@@ -135,10 +139,12 @@ function siteButtonPill(): HTMLElement {
     siteButtonOn = on;
     const here = await onGameSite;
     pill.className = `site-pill ${on ? "on" : here ? "invite" : "off"}`;
-    pill.textContent = on ? "Kibitzo button on" : "Add Kibitzo button";
-    pill.title = on
-      ? "Analyze in Kibitzo appears on finished chess.com and Lichess games. Click to turn it off."
-      : "Adds an Analyze in Kibitzo button to finished games on chess.com and Lichess.";
+    pill.textContent = on ? "Analyze button" : "+ Analyze button";
+    const tip = on
+      ? "Analyze in Kibitzo appears under finished chess.com and Lichess games. Click to turn it off."
+      : "Adds an Analyze in Kibitzo button under finished games on chess.com and Lichess. One click opens the game on a free analysis board.";
+    pill.dataset.tip = tip;
+    pill.setAttribute("aria-label", tip);
     pill.hidden = false;
     pill.disabled = false;
   };

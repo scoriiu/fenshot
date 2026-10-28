@@ -533,6 +533,40 @@ button.nav:disabled {
   white-space: nowrap;
 }
 
+/* Styled tooltip, instant, right-aligned under the pill so it never
+   leaves the popup. Replaces the slow native title. */
+.site-pill {
+  position: relative;
+}
+
+.site-pill::after {
+  content: attr(data-tip);
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  width: 230px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  background: #111827;
+  color: #cbd5e1;
+  font-size: 11.5px;
+  font-weight: 500;
+  line-height: 1.45;
+  text-align: left;
+  white-space: normal;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 120ms ease;
+  z-index: 20;
+}
+
+.site-pill:hover::after,
+.site-pill:focus-visible::after {
+  opacity: 1;
+}
+
 .site-pill:hover {
   color: #cbd5e1;
   border-color: #475569;
@@ -548,9 +582,16 @@ button.nav:disabled {
   background: #fbbf24;
 }
 
+/* After the inline footer (wide layout) the footer's auto margin already
+   pushes both right; a second auto margin would split the space. */
+.footer.inline + .site-pill {
+  margin-left: 10px;
+}
+
+/* On: quiet. It already did its job; a small green dot is the only signal. */
 .site-pill.on {
-  border-color: rgba(16, 185, 129, 0.4);
-  color: #34d399;
+  border-color: #1e293b;
+  color: #64748b;
 }
 
 .site-pill.on::before {
@@ -560,6 +601,6 @@ button.nav:disabled {
   height: 6px;
   margin-right: 6px;
   border-radius: 50%;
-  background: #34d399;
+  background: rgba(52, 211, 153, 0.75);
   vertical-align: 1px;
 }
