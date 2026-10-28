@@ -22,12 +22,35 @@ function openUrl(params: Record<string, string>): string {
   return `${ORIGIN}/coach/open?${new URLSearchParams(params).toString()}&${UTM}`;
 }
 
+const SVG_NS = "http://www.w3.org/2000/svg";
+/** Kibitzo's knight (public/favicon.svg), one colour: inline, so no site CSP can block it. */
+const KNIGHT_PATHS = [
+  "M25.192 23.015c-.1654 6.9672-11.758 5.2189-11.516 18.104l22.86.1184c-2.094-6.442 9.69-25.16-11.931-32.258v-.0001s-2.4381-2.601-5.9655-2.8237l.2227 3.5347-4.5583 4.5816c-2.6294 3.1455-8.7347 8.3784-7.7513 9.6111 3.1158 5.3041 6.3306 4.4316 6.3306 4.4316 4.2418-4.5433 5.8193-2.0894 12.309-5.2997z",
+  "M25 36.457s-9.1309.048-11.691 1.6192c-1.7273 1.0602-2.1348 3.6514-1.8998 6.3237h27.182c.235-2.6723-.1725-5.2636-1.8999-6.3237-2.5597-1.5711-11.691-1.6192-11.691-1.6192z",
+];
+
+function knightIcon(): SVGSVGElement {
+  const svg = document.createElementNS(SVG_NS, "svg");
+  svg.setAttribute("viewBox", "6 5 38 40");
+  svg.setAttribute("width", "16");
+  svg.setAttribute("height", "16");
+  svg.setAttribute("aria-hidden", "true");
+  svg.style.cssText = "flex-shrink:0;vertical-align:-3px;margin-right:6px;transform:scaleX(-1)";
+  for (const d of KNIGHT_PATHS) {
+    const p = document.createElementNS(SVG_NS, "path");
+    p.setAttribute("d", d);
+    p.setAttribute("fill", "currentColor");
+    svg.append(p);
+  }
+  return svg;
+}
+
 function linkEl(href: string): HTMLAnchorElement {
   const a = document.createElement("a");
   a.href = href;
   a.target = "_blank";
   a.rel = "noopener";
-  a.textContent = LABEL;
+  a.append(knightIcon(), LABEL);
   return a;
 }
 

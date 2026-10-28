@@ -517,14 +517,49 @@ button.nav:disabled {
   color: #64748b;
 }
 
-.site-row {
-  margin-top: 6px;
-  text-align: center;
-  font-size: 11px;
-  color: #475569;
+.site-pill {
+  margin-left: auto;
+  align-self: center;
+  flex-shrink: 0;
+  height: 22px;
+  padding: 0 9px;
+  border-radius: 999px;
+  border: 1px solid #334155;
+  background: transparent;
+  color: #64748b;
+  font: 600 11px/20px inherit;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
 }
 
-.site-row .linkish {
-  font-size: 11px;
-  padding: 0;
+.site-pill:hover {
+  color: #cbd5e1;
+  border-color: #475569;
+}
+
+.site-pill.invite {
+  background: #f59e0b;
+  border-color: #f59e0b;
+  color: #0c1117;
+}
+
+.site-pill.invite:hover {
+  background: #fbbf24;
+}
+
+.site-pill.on {
+  border-color: rgba(16, 185, 129, 0.4);
+  color: #34d399;
+}
+
+.site-pill.on::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 6px;
+  border-radius: 50%;
+  background: #34d399;
+  vertical-align: 1px;
 }

@@ -94,7 +94,7 @@ function link(href: string, className: string, text: string): HTMLAnchorElement 
 function render(...content: HTMLElement[]) {
   const wrap = el("div", "wrap");
   const brand = el("div", "brand");
-  brand.append(el("span", "name", "fenshot"), el("span", "tag", "screenshot in, FEN out"));
+  brand.append(el("span", "name", "fenshot"), el("span", "tag", "screenshot in, FEN out"), siteButtonPill());
   const footer = el("div", "footer");
   if (lastResult && ratingAskPending(window.localStorage)) {
     // The one-time rating ask takes the footer line (same height, no
@@ -109,32 +109,47 @@ function render(...content: HTMLElement[]) {
     // the height for a source line under each card title.
     footer.classList.add("inline");
     brand.append(footer);
-    wrap.append(brand, ...content, siteButtonRow());
+    wrap.append(brand, ...content);
   } else {
-    wrap.append(brand, ...content, footer, siteButtonRow());
+    wrap.append(brand, ...content, footer);
   }
   app.replaceChildren(wrap);
 }
 
 /**
- * One quiet line under every screen: the opt-in Kibitzo button on
- * chess.com and Lichess (site-access.ts). Filled in once the browser says
- * whether access is granted, so it never flashes the wrong state.
+ * The opt-in Kibitzo button on chess.com and Lichess (site-access.ts), as
+ * a pill in the brand row: the popup is capped at 600px tall, so it takes
+ * no height. It speaks up on those two sites while off. Painted once the
+ * browser says whether access is granted, so it never flashes a wrong state.
  */
-function siteButtonRow(): HTMLElement {
-  const row = el("div", "site-row");
-  const paint = (on: boolean) => {
-    const toggle = el("button", on ? "linkish" : "linkish strong", on ? "Turn off" : "Turn on");
-    toggle.addEventListener("click", async () => {
-      toggle.disabled = true;
-      if (on) await disableSiteButton();
-      else await enableSiteButton();
-      paint(await siteButtonGranted());
-    });
-    row.replaceChildren(on ? "Analyze in Kibitzo button on chess.com and Lichess: on \u00b7 " : "Add an Analyze in Kibitzo button to chess.com and Lichess \u00b7 ", toggle);
+let siteButtonOn: boolean | null = null;
+const onGameSite = chrome.tabs
+  .query({ active: true, currentWindow: true })
+  .then(([tab]) => /^https:\/\/(www\.chess\.com|lichess\.org)\//.test(tab?.url ?? ""))
+  .catch(() => false);
+
+function siteButtonPill(): HTMLElement {
+  const pill = el("button", "site-pill");
+  pill.hidden = true;
+  const paint = async (on: boolean) => {
+    siteButtonOn = on;
+    const here = await onGameSite;
+    pill.className = `site-pill ${on ? "on" : here ? "invite" : "off"}`;
+    pill.textContent = on ? "Kibitzo button on" : "Add Kibitzo button";
+    pill.title = on
+      ? "Analyze in Kibitzo appears on finished chess.com and Lichess games. Click to turn it off."
+      : "Adds an Analyze in Kibitzo button to finished games on chess.com and Lichess.";
+    pill.hidden = false;
+    pill.disabled = false;
   };
-  void syncSiteButton().then(paint, () => row.remove());
-  return row;
+  pill.addEventListener("click", async () => {
+    pill.disabled = true;
+    if (siteButtonOn) await disableSiteButton();
+    else await enableSiteButton();
+    await paint(await siteButtonGranted());
+  });
+  void (siteButtonOn === null ? syncSiteButton() : Promise.resolve(siteButtonOn)).then(paint, () => pill.remove());
+  return pill;
 }
 
 /** Card header: title, one plain sentence saying where the content came from, optional controls. */
