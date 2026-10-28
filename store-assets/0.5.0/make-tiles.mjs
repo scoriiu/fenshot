@@ -1,6 +1,6 @@
 // Promo tiles (0.5.0): small 440x280 and marquee 1400x560, 24-bit PNG (no
 // alpha). Store guidance: little text, strong shapes, legible at half size,
-// no screenshots. Rendered at 2x, downscaled by compose-tiles in Python.
+// no screenshots. Rendered at 2x into raw/; compose.py downscales them.
 // Run from the fenshot repo root: node store-assets/0.5.0/make-tiles.mjs
 import { chromium } from "playwright";
 import { readFileSync } from "node:fs";
@@ -20,7 +20,7 @@ function board(placement, size) {
 }
 
 const KNIGHT = `<svg viewBox="6 5 38 40" style="width:1em;height:1em;vertical-align:baseline;margin-right:.45em;transform:scaleX(-1)"><path fill="currentColor" d="M25.192 23.015c-.1654 6.9672-11.758 5.2189-11.516 18.104l22.86.1184c-2.094-6.442 9.69-25.16-11.931-32.258v-.0001s-2.4381-2.601-5.9655-2.8237l.2227 3.5347-4.5583 4.5816c-2.6294 3.1455-8.7347 8.3784-7.7513 9.6111 3.1158 5.3041 6.3306 4.4316 6.3306 4.4316 4.2418-4.5433 5.8193-2.0894 12.309-5.2997z"/><path fill="currentColor" d="M25 36.457s-9.1309.048-11.691 1.6192c-1.7273 1.0602-2.1348 3.6514-1.8998 6.3237h27.182c.235-2.6723-.1725-5.2636-1.8999-6.3237-2.5597-1.5711-11.691-1.6192-11.691-1.6192z"/></svg>`;
-const ICON = readFileSync("store-assets/0.5.0/fenshot-store-icon-128.png").toString("base64");
+const ICON = readFileSync("store-assets/0.5.0/1-store-icon-128x128.png").toString("base64");
 
 const base = `
   * { box-sizing: border-box; margin: 0; }

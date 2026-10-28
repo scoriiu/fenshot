@@ -22,7 +22,7 @@ rect(14, 14, 18, 18, 3, (245, 158, 11, 255))
 rect(32, 32, 18, 18, 3, (245, 158, 11, 255))
 rect(32, 14, 18, 18, 3, (40, 52, 74, 255))
 rect(14, 32, 18, 18, 3, (40, 52, 74, 255))
-out = "store-assets/0.5.0/fenshot-store-icon-128.png"
+out = "store-assets/0.5.0/1-store-icon-128x128.png"
 img.resize((128, 128), Image.LANCZOS).save(out)
 icon = Image.open(out)
 print(out, icon.size, icon.mode, "artwork bbox", icon.split()[3].point(lambda v: 255 if v > 10 else 0).getbbox())

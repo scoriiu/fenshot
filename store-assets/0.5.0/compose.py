@@ -82,13 +82,24 @@ def result():
     save(img, "4-result")
 
 
+NAMES = {"1-hero": "2-screenshot-1-hero", "2-chesscom": "3-screenshot-2-chesscom", "3-lichess": "4-screenshot-3-lichess", "4-result": "5-screenshot-4-result"}
+
+
 def save(img, name):
-    out = f"{DIR}/fenshot-0.5.0-{name}-1280x800.png"
+    out = f"{DIR}/{NAMES[name]}-1280x800.png"
     img.resize((1280, 800), Image.LANCZOS).save(out)
     print(out)
+
+
+def tiles():
+    for raw, out, size in (("small-440x280", "6-small-promo-tile-440x280", (440, 280)), ("marquee-1400x560", "7-marquee-promo-tile-1400x560", (1400, 560))):
+        im = Image.open(f"{DIR}/raw/tile-{raw}@2x.png").convert("RGB").resize(size, Image.LANCZOS)
+        im.save(f"{DIR}/{out}.png")
+        print(f"{DIR}/{out}.png")
 
 
 hero()
 chesscom()
 lichess()
 result()
+tiles()
