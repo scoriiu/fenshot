@@ -16,8 +16,13 @@ Chess screenshot to FEN in one click: reads the board on any page, and whole gam
 
 ## Detailed description
 
-New: whole games. On chessgames.com, Lichess, a chess.com article or a
-blog, one click reads the full game and opens it for review.
+New: an Analyze in Kibitzo button on chess.com and Lichess. Turn it on
+once, and every finished game gets a button under Game Review (chess.com)
+or in the game panel (Lichess) that opens it on a free analysis board.
+Optional, off until you switch it on.
+
+Whole games: on chessgames.com, Lichess, a chess.com article or a blog,
+one click reads the full game and opens it for review.
 
 Turn any chessboard you see into a position you can analyze. One click, on any page.
 
@@ -33,6 +38,7 @@ When a page shows a game as a move list (chessgames.com, Lichess, chess.com arti
 
 PRIVATE BY DESIGN
 • Reads the page only when you click the icon, and only that tab
+• The optional Analyze button runs only on chess.com and Lichess, only after you turn it on, and only adds a link: it never reads your moves during a game
 • The neural network runs 100% on your device. Nothing is uploaded
 • No account, no analytics, no tracking
 • Open source (MIT): github.com/scoriiu/fenshot
@@ -56,8 +62,26 @@ https://fenshot.com/extension-privacy.html
 
 activeTab: the extension's single function is reading the chess content
 visible on the current tab. activeTab grants one-time access to that
-tab, only when the user clicks the toolbar icon. No host permissions,
-no background access.
+tab, only when the user clicks the toolbar icon. No host permissions
+by default.
+
+optional_host_permissions (https://www.chess.com/*, https://lichess.org/*):
+requested only when the user clicks "+ Analyze button" in the popup,
+never at install. Once granted, one small content script
+(site-button.js) runs on those two sites and adds an "Analyze in
+Kibitzo" link next to a FINISHED game's own review controls (chess.com's
+Game Review button, Lichess's post-game panel). It reads only the game
+id, the player names shown and the board orientation, to build that
+link; it never reads or changes anything during a game in progress, and
+sends nothing anywhere itself. Turning the switch off removes the access
+and the button. Source: apps/extension/src/site-button.ts,
+site-access.ts.
+
+background (service worker): three listeners (permissions.onAdded,
+permissions.onRemoved, runtime.onInstalled) that register or unregister
+the content script above so it always matches the access the user has
+granted. No network, no storage, no timers. Source:
+apps/extension/src/background.ts.
 
 scripting: used together with activeTab, and only on the click, to run
 one small function in the current tab that returns the page's visible
@@ -78,6 +102,11 @@ opens it for analysis.
 Collects no data of any kind. All processing is local. Check "does not
 collect or use data".
 
+The optional Analyze button is a plain link the user clicks; the
+extension transmits nothing. The link carries the game's public id and
+the two usernames shown on that public game page, so kibitzo.com can
+open that game.
+
 Note for reviewers who read link URLs: the "Kibitzo" buttons open
 kibitzo.com with utm_source=fenshot&utm_medium=extension in the URL.
 That is a static tag identifying the extension as the referrer, added
@@ -90,6 +119,25 @@ about the user or the page.
   runtime. Upload the `fenshot-source-<version>.zip` produced by
   `git archive` (see "Packaging" below); the README covers the build.
 - data_collection_permissions in the manifest stays `required: ["none"]`.
+
+## Release notes (0.5.0)
+
+New, optional: an "Analyze in Kibitzo" button on finished chess.com and
+Lichess games. Click "+ Analyze button" in the popup to turn it on; the
+browser asks once for access to those two sites. Each finished game then
+gets one button that opens it on a free analysis board. Turn it off from
+the same place and it disappears at once. Never shown during a game.
+The popup also shows its version now.
+
+Notes to reviewer (AMO): new optional_host_permissions for
+https://www.chess.com/* and https://lichess.org/*, requested at runtime
+from the popup only (never at install), plus a background script that
+keeps the registered content script in step with the granted access.
+New files: src/site-button.ts (content script, built standalone by
+vite.scripts.config.ts), src/site-access.ts, src/background.ts. No data
+collection: the button is a link; data_collection_permissions stays
+"none". Build steps: npm run build (now three vite builds, see
+package.json); see the README in the source zip.
 
 ## Release notes (0.4.6, covers 0.4.5)
 
