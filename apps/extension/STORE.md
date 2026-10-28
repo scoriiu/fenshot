@@ -16,17 +16,15 @@ Chess screenshot to FEN in one click: reads the board on any page, and whole gam
 
 ## Detailed description
 
-New: an Analyze in Kibitzo button on chess.com and Lichess. Turn it on
-once, and every finished game gets a button under Game Review (chess.com)
-or in the game panel (Lichess) that opens it on a free analysis board.
-Optional, off until you switch it on.
-
-Whole games: on chessgames.com, Lichess, a chess.com article or a blog,
-one click reads the full game and opens it for review.
+<!-- 2026-10-28 (0.5.0): pasted into the CWS dashboard as is. The NEW block
+     sits right after the opening lines: only those show before "Read more". -->
 
 Turn any chessboard you see into a position you can analyze. One click, on any page.
 
 Watching a YouTube video, reading a book PDF, scrolling a blog or a chess.com article? Click the fenshot icon. It reads the board on your screen and gives you the position.
+
+NEW: ANALYZE BUTTON ON CHESS.COM AND LICHESS
+Turn it on once from the popup ("+ Analyze button"). Every finished game then gets an Analyze in Kibitzo button, under Game Review on chess.com and in the game panel on Lichess. One click opens the game on a free analysis board. Optional, off until you switch it on, and never shown during a game.
 
 WHAT YOU GET
 • Analyze on Kibitzo: the position opens with a coach that explains it in plain words
@@ -38,7 +36,7 @@ When a page shows a game as a move list (chessgames.com, Lichess, chess.com arti
 
 PRIVATE BY DESIGN
 • Reads the page only when you click the icon, and only that tab
-• The optional Analyze button runs only on chess.com and Lichess, only after you turn it on, and only adds a link: it never reads your moves during a game
+• The optional Analyze button runs only on chess.com and Lichess, only after you turn it on, and only adds a link
 • The neural network runs 100% on your device. Nothing is uploaded
 • No account, no analytics, no tracking
 • Open source (MIT): github.com/scoriiu/fenshot
