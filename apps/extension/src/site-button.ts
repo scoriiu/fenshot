@@ -70,52 +70,60 @@ function chessComPlayers(): string[] {
   return m ? [m[1], m[2]].filter((u) => USERNAME.test(u)) : [];
 }
 
-/** chess.com's own grey secondary button, measured 2026-10-28: the fallback when none is on the page to copy. */
-const CC_SECONDARY = {
+/**
+ * Our button is Game Review's twin in shape (height, corners, font, read
+ * live from it) in chess.com's own grey secondary colours, so it belongs
+ * to the same family without competing with their green call to action
+ * (founder 2026-10-28). Fallbacks measured on chess.com that day.
+ */
+const CC_SECONDARY_COLORS = {
   backgroundImage: "linear-gradient(rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
   boxShadow: "rgba(255, 255, 255, 0.08) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.14) 0px 1px 2px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px",
   color: "rgba(255, 255, 255, 0.85)",
-  borderRadius: "10px",
-  fontFamily: '"Chess Sans", sans-serif',
 };
+const CC_REVIEW_SHAPE = { borderRadius: "10px", font: '800 22px/1 "Chess Sans", sans-serif', height: 64 };
 
-/** Copy a live secondary button's look, so the theme (light or dark) follows chess.com's. */
-function chessComSecondaryLook(): typeof CC_SECONDARY {
+function chessComLook(review: HTMLElement) {
+  const shape = getComputedStyle(review);
+  const h = Math.round(review.getBoundingClientRect().height);
   const native = document.querySelector('[class*="cc-button-secondary"]');
-  if (!native) return CC_SECONDARY;
-  const cs = getComputedStyle(native);
+  const tone = native ? getComputedStyle(native) : null;
   return {
-    backgroundImage: cs.backgroundImage !== "none" ? cs.backgroundImage : CC_SECONDARY.backgroundImage,
-    boxShadow: cs.boxShadow !== "none" ? cs.boxShadow : CC_SECONDARY.boxShadow,
-    color: cs.color || CC_SECONDARY.color,
-    borderRadius: cs.borderRadius || CC_SECONDARY.borderRadius,
-    fontFamily: cs.fontFamily || CC_SECONDARY.fontFamily,
+    backgroundImage: tone && tone.backgroundImage !== "none" ? tone.backgroundImage : CC_SECONDARY_COLORS.backgroundImage,
+    boxShadow: tone && tone.boxShadow !== "none" ? tone.boxShadow : CC_SECONDARY_COLORS.boxShadow,
+    color: tone?.color || CC_SECONDARY_COLORS.color,
+    borderRadius: shape.borderRadius || CC_REVIEW_SHAPE.borderRadius,
+    font: shape.fontFamily ? `${shape.fontWeight} ${shape.fontSize}/1 ${shape.fontFamily}` : CC_REVIEW_SHAPE.font,
+    height: h > 0 ? h : CC_REVIEW_SHAPE.height,
   };
 }
 
-function chessComButton(href: string): HTMLElement {
-  const look = chessComSecondaryLook();
+function chessComButton(href: string, review: HTMLElement): HTMLElement {
+  const look = chessComLook(review);
   const host = document.createElement("div");
   host.setAttribute(MARK, "");
   const root = host.attachShadow({ mode: "closed" });
   const style = document.createElement("style");
   style.textContent = `
     :host { all: initial; display: block; }
-    a { box-sizing: border-box; display: flex; align-items: center; justify-content: center; width: 100%; height: 48px;
+    a { box-sizing: border-box; display: flex; align-items: center; justify-content: center; width: 100%; height: ${look.height}px;
         border-radius: ${look.borderRadius}; background-image: ${look.backgroundImage}; box-shadow: ${look.boxShadow};
-        color: ${look.color}; text-decoration: none; font: 600 17px/1 ${look.fontFamily}; }
-    a:hover { filter: brightness(1.15); }`;
+        color: ${look.color}; text-decoration: none; font: ${look.font}; }
+    a:hover { filter: brightness(1.2); }
+    svg { width: 24px; height: 24px; margin-right: 10px; }`;
   root.append(style, linkEl(href));
   return host;
 }
 
 /**
- * The sidebar's Game Review grid only: chess.com renders it once a game
- * has ended, and it stays. The game-over popup is left alone: it is
- * chess.com's moment, and a button in it pushed its centred content up.
+ * Next to chess.com's Game Review BUTTON only (its button component marks
+ * it with data-variant): signed-in pages also link the review from a
+ * move-quality summary strip, which must not get a second button. The
+ * game-over popup is left alone: it is chess.com's moment, and a button in
+ * it pushed its centred content up.
  */
 function placeChessCom() {
-  for (const review of document.querySelectorAll<HTMLAnchorElement>('a[href*="tab=review"]')) {
+  for (const review of document.querySelectorAll<HTMLAnchorElement>('a[href*="tab=review"][data-variant]')) {
     if (review.closest('[class*="game-over-modal"]')) continue;
     const id = review.getAttribute("href")?.match(CC_REVIEW)?.[1];
     const grid = review.parentElement;
@@ -125,7 +133,7 @@ function placeChessCom() {
     const flipped = document.querySelector("wc-chess-board.flipped") !== null;
     const params: Record<string, string> = { site: "chesscom", id, p: players.join(",") };
     if (flipped) params.pov = "black";
-    grid.append(chessComButton(openUrl(params)));
+    grid.append(chessComButton(openUrl(params), review));
   }
 }
 
