@@ -26,8 +26,8 @@ const base = `
   * { box-sizing: border-box; margin: 0; }
   body { background: #0c1117; font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; overflow: hidden;
          background-image: radial-gradient(ellipse 70% 80% at 85% 50%, rgba(245,158,11,.10), transparent 70%); }
-  .board { display: grid; grid-template-columns: repeat(8, 1fr); border-radius: 6px; overflow: hidden; box-shadow: 0 18px 50px rgba(0,0,0,.55); }
-  .board div { display: flex; } .board svg { width: 100%; height: 100%; }
+  .board { display: grid; grid-template-columns: repeat(8, 1fr); grid-template-rows: repeat(8, 1fr); border-radius: 6px; overflow: hidden; box-shadow: 0 18px 50px rgba(0,0,0,.55); }
+  .board div { display: flex; min-height: 0; } .board svg { width: 100%; height: 100%; }
   .frame { position: relative; padding: 14px; }
   .frame i { position: absolute; width: 34px; height: 34px; border: 4px solid #f59e0b; }
   .frame i:nth-child(1) { top: 0; left: 0; border-right: 0; border-bottom: 0; border-radius: 8px 0 0 0; }
