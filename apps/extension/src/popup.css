@@ -523,7 +523,7 @@ button.nav:disabled {
   flex-shrink: 0;
   height: 22px;
   padding: 0 9px;
-  border-radius: 999px;
+  border-radius: 6px;
   border: 1px solid #334155;
   background: transparent;
   color: #64748b;

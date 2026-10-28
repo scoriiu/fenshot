@@ -50,6 +50,7 @@ function linkEl(href: string): HTMLAnchorElement {
   a.href = href;
   a.target = "_blank";
   a.rel = "noopener";
+  a.title = "Open this finished game on Kibitzo's free analysis board";
   a.append(knightIcon(), LABEL);
   return a;
 }
