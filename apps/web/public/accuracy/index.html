@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>How accurate is fenshot? An open, reproducible chess image benchmark</title>
+<meta name="description" content="How often fenshot reads a chess screenshot exactly right, measured on real chess.com, Lichess and Reddit images with known positions. Method, failures and the code to re-run it, all public." />
+<link rel="canonical" href="https://fenshot.com/accuracy/" />
+<link rel="icon" href="/favicon.ico" sizes="32x32" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="How accurate is fenshot? An open chess image benchmark" />
+<meta property="og:description" content="Measured on real chess.com, Lichess and Reddit images with known positions. Method, failures and code, all public." />
+<meta property="og:url" content="https://fenshot.com/accuracy/" />
+<meta property="og:image" content="https://fenshot.com/og.png" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "fenshot chess image recognition benchmark",
+  "url": "https://fenshot.com/accuracy/",
+  "description": "Chess images with known positions, drawn by chess.com and Lichess or posted on Reddit, used to measure how often fenshot reads the position exactly right, how often it warns when unsure, and how often it is wrong without a warning.",
+  "license": "https://github.com/scoriiu/fenshot/blob/main/LICENSE",
+  "isAccessibleForFree": true,
+  "creator": { "@type": "Organization", "@id": "https://kibitzo.com/#organization", "name": "Kibitzo", "url": "https://kibitzo.com/" },
+  "about": { "@id": "https://fenshot.com/#software" },
+  "distribution": { "@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://github.com/scoriiu/fenshot/tree/main/tools/benchmark" }
+}
+</script>
+<style>
+:root { --bg:#0c1117; --text:#e2e8f0; --muted:#94a3b8; --amber:#f59e0b; --amber-l:#fbbf24; --card:#131923; --line:#1e293b }
+* { box-sizing:border-box }
+body { margin:0; background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; line-height:1.65 }
+main { max-width:760px; margin:0 auto; padding:48px 20px 64px }
+h1 { color:#fef3c7; font-size:30px; line-height:1.2; margin:0 0 8px }
+h2 { color:#fef3c7; font-size:21px; margin:36px 0 10px }
+p, li { color:#cbd5e1; font-size:15px }
+a { color:var(--amber-l) }
+.lead { font-size:17px; color:#e2e8f0 }
+.crumb { color:var(--muted); font-size:13px; margin-bottom:22px }
+.crumb a { color:var(--muted) }
+.tiles { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin:24px 0 8px }
+.tile { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:16px }
+.tile .num { color:#fef3c7; font-size:28px; font-weight:700; line-height:1.1 }
+.tile .of { color:var(--muted); font-size:13px; margin-top:2px }
+.tile .what { color:#cbd5e1; font-size:14px; margin-top:8px; line-height:1.45 }
+.scroll { overflow-x:auto; margin:12px 0; border:1px solid var(--line); border-radius:16px }
+table { border-collapse:collapse; width:100%; font-size:13px; min-width:560px }
+th, td { padding:9px 10px; text-align:end; border-bottom:1px solid var(--line); color:#cbd5e1; white-space:nowrap }
+th:first-child, td:first-child { text-align:start; white-space:normal }
+thead th { color:var(--muted); font-weight:600; background:var(--card) }
+tbody tr:last-child td { border-bottom:0 }
+td.bad { color:#fda4af }
+dl.meta { display:grid; grid-template-columns:auto 1fr; gap:4px 14px; font-size:14px; color:var(--muted); margin:18px 0 0 }
+dl.meta dd { margin:0; color:#cbd5e1 }
+code { background:var(--card); border:1px solid var(--line); border-radius:6px; padding:1px 6px; font-size:13px }
+footer { color:#64748b; font-size:13px; margin-top:44px; border-top:1px solid var(--line); padding-top:18px }
+@media (min-width:640px) { .tiles { grid-template-columns:repeat(4,1fr) } }
+</style>
+</head>
+<body>
+<main>
+<p class="crumb"><a href="/">fenshot</a> / Accuracy</p>
+<h1>How accurate is fenshot?</h1>
+<p class="lead">We measure it on chess images where the right answer is known: boards drawn by chess.com and Lichess themselves, and real screenshots posted on Reddit. Below are the results, the method, and every place where fenshot fails. The test, the data and the results are open source, so anyone can re-run them.</p>
+
+<div class="tiles">
+  <div class="tile"><div class="num" data-bm="tile.pages.pct">98.3%</div><div class="of" data-bm="tile.pages.n">118 / 120</div><div class="what">chess.com and Lichess pages in their default look, read exactly right</div></div>
+  <div class="tile"><div class="num" data-bm="tile.reddit.pct">82.9%</div><div class="of" data-bm="tile.reddit.n">405 / 488</div><div class="what">real Reddit screenshots read right, at least</div></div>
+  <div class="tile"><div class="num" data-bm="tile.warned.pct">96.7%</div><div class="of" data-bm="tile.warned.n">88 / 91</div><div class="what">wrong reads on site-drawn boards that came with a warning to check</div></div>
+  <div class="tile"><div class="num" data-bm="tile.noboard.pct">100%</div><div class="of" data-bm="tile.noboard.n">40 / 40</div><div class="what">pages with no chess board where fenshot did not invent one</div></div>
+</div>
+<dl class="meta"><dt>Last run</dt><dd data-bm="date">2026-11-08</dd><dt>Model</dt><dd data-bm="model">chess-tiles-v2</dd><dt>Images</dt><dd data-bm="images">948</dd></dl>
+
+<h2>Results by source</h2>
+<p>"Right" means every one of the 64 squares matches. A warning means fenshot told the user the read may be wrong and offered the editor to fix it. The red column, wrong with no warning, is the one that matters most.</p>
+<div class="scroll">
+<table>
+<thead><tr><th>Source</th><th>Images</th><th>Right</th><th>Right, but warned</th><th>Wrong, warned</th><th>Wrong, no warning</th><th>No board found</th></tr></thead>
+<tbody>
+<tr><td>chess.com analysis page, desktop and phone</td><td data-bm="row.chesscom-page.images">60</td><td data-bm="row.chesscom-page.exact">58</td><td data-bm="row.chesscom-page.exact-warned">0</td><td data-bm="row.chesscom-page.wrong-warned">2</td><td class="bad" data-bm="row.chesscom-page.wrong-silent">0</td><td data-bm="row.chesscom-page.missed">0</td></tr>
+<tr><td>Lichess analysis page, desktop and phone</td><td data-bm="row.lichess-page.images">60</td><td data-bm="row.lichess-page.exact">60</td><td data-bm="row.lichess-page.exact-warned">0</td><td data-bm="row.lichess-page.wrong-warned">0</td><td class="bad" data-bm="row.lichess-page.wrong-silent">0</td><td data-bm="row.lichess-page.missed">0</td></tr>
+<tr><td>Lichess page with other piece sets and boards</td><td data-bm="row.lichess-page-themed.images">60</td><td data-bm="row.lichess-page-themed.exact">31</td><td data-bm="row.lichess-page-themed.exact-warned">2</td><td data-bm="row.lichess-page-themed.wrong-warned">27</td><td class="bad" data-bm="row.lichess-page-themed.wrong-silent">0</td><td data-bm="row.lichess-page-themed.missed">0</td></tr>
+<tr><td>chess.com board images, 14 piece sets and 12 boards</td><td data-bm="row.chesscom-image.images">240</td><td data-bm="row.chesscom-image.exact">163</td><td data-bm="row.chesscom-image.exact-warned">15</td><td data-bm="row.chesscom-image.wrong-warned">59</td><td class="bad" data-bm="row.chesscom-image.wrong-silent">3</td><td data-bm="row.chesscom-image.missed">0</td></tr>
+<tr><td>Reddit screenshots, r/chess, r/chessbeginners, r/TournamentChess</td><td data-bm="row.reddit.images">488</td><td data-bm="row.reddit.exact">378</td><td data-bm="row.reddit.exact-warned">27</td><td data-bm="row.reddit.wrong-warned">51</td><td class="bad" data-bm="row.reddit.wrong-silent">20</td><td data-bm="row.reddit.missed">12</td></tr>
+<tr><td>Piece artwork it was trained on</td><td data-bm="row.seen.images">363</td><td data-bm="row.seen.exact">298</td><td data-bm="row.seen.exact-warned">17</td><td data-bm="row.seen.wrong-warned">45</td><td class="bad" data-bm="row.seen.wrong-silent">3</td><td data-bm="row.seen.missed">0</td></tr>
+<tr><td>Piece artwork it has never seen</td><td data-bm="row.unseen.images">57</td><td data-bm="row.unseen.exact">14</td><td data-bm="row.unseen.exact-warned">0</td><td data-bm="row.unseen.wrong-warned">43</td><td class="bad" data-bm="row.unseen.wrong-silent">0</td><td data-bm="row.unseen.missed">0</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>Where fenshot struggles</h2>
+<ul>
+  <li><strong>3D piece sets.</strong> chess.com's 3D wood and 3D plastic pieces are almost never read right. They were left out of training on purpose, and fenshot warns instead of guessing.</li>
+  <li><strong>Print-style and textured boards.</strong> chess.com's newspaper board and Lichess's marble, grey and purple boards can shift the read by one row. fenshot nearly always warns when this happens.</li>
+  <li><strong>Unusual piece sets.</strong> Lichess's horsey, cardinal and monarchy pieces are often misread; monarchy was never in training.</li>
+  <li><strong>Glass and neo wood pieces.</strong> The only wrong reads without a warning on the drawn boards came from chess.com's glass and neo wood piece sets.</li>
+  <li><strong>Busy real screenshots.</strong> Misses on Reddit include phone screenshots with overlays, very small boards, and images with more than one board.</li>
+</ul>
+<p>When a read is uncertain, fenshot shows a warning and opens the editor next to the original image, so a wrong square takes seconds to fix. The common case, a chess.com or Lichess screenshot in the default look, is read right nearly every time.</p>
+
+<h2>How we measured</h2>
+<ul>
+  <li><strong>Positions.</strong> Real positions from the Lichess puzzle database: equal numbers of opening, middlegame and endgame positions, chosen by a fixed rule, not by hand.</li>
+  <li><strong>Images we did not draw.</strong> Every board is drawn by the site itself from the position we give it: chess.com's board image service, screenshots of chess.com's and Lichess's analysis pages at desktop and phone sizes, and Lichess with its own piece set and board settings changed. Each chess.com page was checked to show the position we asked for before it was kept.</li>
+  <li><strong>Pages without a board.</strong> Encyclopedia articles, news sites, documentation and chess site pages with no board, including checkerboards, graph paper and tiles, to test that fenshot does not invent a position.</li>
+  <li><strong>Reddit.</strong> Chess images posted on Reddit, where the Chessvision.ai Reddit bot also replied with its reading. Where fenshot and the bot agree, the read counts as right; a random sample of these was compared to the image by eye and no mismatch was found. Every disagreement counts against fenshot, even when fenshot was the one that was right, so the Reddit figure is a floor. The set only includes images the bot answered, which may leave out the hardest ones.</li>
+  <li><strong>Same code as the product.</strong> The test runs the exact recognizer and model that the website and the extension use, including the confidence check that decides when to warn.</li>
+  <li><strong>Honest about training.</strong> The model was trained on piece and board artwork from chess.com and Lichess, drawn on synthetic positions. None of the test positions, pages or screenshots were used in training, and the table separates artwork it has seen from artwork it has not.</li>
+</ul>
+
+<h2>Re-run it yourself</h2>
+<p>The benchmark lives in the open source repository under <a href="https://github.com/scoriiu/fenshot/tree/main/tools/benchmark">tools/benchmark</a>: the list of positions, every image's source and fingerprint, the Reddit posts with both readings, and the results above, image by image. Rebuild the images with <code>npx tsx tools/benchmark/build.ts</code> and score them with <code>npx tsx tools/benchmark/run.ts</code>.</p>
+
+<footer>fenshot is MIT open source, made by the team behind <a href="https://kibitzo.com?ref=fenshot-accuracy">Kibitzo</a>. <a href="/">Try fenshot</a> · <a href="/extension/">Browser extension</a></footer>
+</main>
+</body>
+</html>

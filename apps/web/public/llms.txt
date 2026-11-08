@@ -23,10 +23,23 @@
 - Website (fenshot.com): counts anonymous page views only (self-hosted, cookieless Umami).
 - Works best with top-down 2D boards: screenshots, video frames, book and PDF diagrams. A straight-overhead photo of a physical board can work; photos taken at an angle are unreliable.
 
+## Accuracy
+
+<!-- benchmark:start -->
+- Measured 2026-11-08 on 948 images with known positions (model chess-tiles-v2); method, data and code: https://fenshot.com/accuracy/ and https://github.com/scoriiu/fenshot/tree/main/tools/benchmark
+- chess.com and Lichess analysis pages in their default look, desktop and phone: 118 / 120 read exactly right (98.3%).
+- Real chess screenshots posted on Reddit: at least 405 / 488 read right (82.9%); every disagreement with an independent reader counts as a fenshot error.
+- Other piece sets and boards (300 images, 24 piece sets, 22 boards, including 3D sets never seen in training): 211 read right (70.3%).
+- Over all 420 images drawn by chess.com and Lichess, 88 / 91 wrong reads came with a warning to check (96.7%); 3 were wrong without one.
+- Pages with no chess board: fenshot invented no position on 40 / 40.
+- Weak spots: 3D piece sets, print-style and textured boards (chess.com newspaper; Lichess marble, grey, purple), and unusual piece sets (Lichess horsey, cardinal, monarchy).
+<!-- benchmark:end -->
+
 ## Links
 
 - [Web app](https://fenshot.com/): paste or drop a chess image, get the FEN and a board
 - [Browser extension](https://fenshot.com/extension/): Chrome, Firefox and Edge
+- [Accuracy benchmark](https://fenshot.com/accuracy/): open, reproducible results on real chess.com, Lichess and Reddit images
 - [Chess screenshot to FEN](https://fenshot.com/chess-screenshot-to-fen/)
 - [Chess image to board](https://fenshot.com/chess-image-to-board/)
 - [Photo of a chess board to FEN](https://fenshot.com/photo-of-chess-board-to-fen/)

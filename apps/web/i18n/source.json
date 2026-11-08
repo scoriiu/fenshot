@@ -1,4 +1,11 @@
 {
+  "2998580709": {
+    "text": "\"Right\" means every one of the 64 squares matches. A warning means fenshot told the user the read may be wrong and offered the editor to fix it. The red column, wrong with no warning, is the one that matters most.",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
   "d17421b81d": {
     "text": "Chess Image to FEN: screenshot or photo to a playable board | fenshot",
     "kind": "title",
@@ -311,6 +318,342 @@
     "kind": "text",
     "pages": [
       "/"
+    ]
+  },
+  "17568f5468": {
+    "text": "<a href=\"/accuracy/\" style=\"color:#fbbf24\">How accurate is fenshot</a>: an open benchmark on real chess.com, Lichess and Reddit images",
+    "kind": "text",
+    "pages": [
+      "/"
+    ]
+  },
+  "87a978873d": {
+    "text": "How accurate is fenshot? An open, reproducible chess image benchmark",
+    "kind": "title",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "92c0da8ca4": {
+    "text": "How often fenshot reads a chess screenshot exactly right, measured on real chess.com, Lichess and Reddit images with known positions. Method, failures and the code to re-run it, all public.",
+    "kind": "description",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "a26532c575": {
+    "text": "How accurate is fenshot? An open chess image benchmark",
+    "kind": "meta",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "e6db5afaa5": {
+    "text": "Measured on real chess.com, Lichess and Reddit images with known positions. Method, failures and code, all public.",
+    "kind": "meta",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "728b1d09d6": {
+    "text": "Chess images with known positions, drawn by chess.com and Lichess or posted on Reddit, used to measure how often fenshot reads the position exactly right, how often it warns when unsure, and how often it is wrong without a warning.",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "1069ae4f4d": {
+    "text": "<a href=\"/\">fenshot</a> / Accuracy",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "9c9190ee62": {
+    "text": "How accurate is fenshot?",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "3d22282e87": {
+    "text": "We measure it on chess images where the right answer is known: boards drawn by chess.com and Lichess themselves, and real screenshots posted on Reddit. Below are the results, the method, and every place where fenshot fails. The test, the data and the results are open source, so anyone can re-run them.",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "c6d8d995f2": {
+    "text": "chess.com and Lichess pages in their default look, read exactly right",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "aae5a9dc81": {
+    "text": "real Reddit screenshots read right, at least",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "44ba75c2b6": {
+    "text": "wrong reads on site-drawn boards that came with a warning to check",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "0597b196a3": {
+    "text": "pages with no chess board where fenshot did not invent one",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "333c63a502": {
+    "text": "Last run",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "68c2cc7f0c": {
+    "text": "Model",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "f1c57bf04c": {
+    "text": "chess-tiles-v2",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "09e871c98f": {
+    "text": "Images",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "e3b8ee2f42": {
+    "text": "Results by source",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "6da13addb0": {
+    "text": "Source",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "954daa8b00": {
+    "text": "Right",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "7db8c7e527": {
+    "text": "Right, but warned",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "f8fc490fcd": {
+    "text": "Wrong, warned",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "6f3a3d0bc3": {
+    "text": "Wrong, no warning",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "d88677e278": {
+    "text": "No board found",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "97f4dccbc5": {
+    "text": "chess.com analysis page, desktop and phone",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "5c8ed0ff73": {
+    "text": "Lichess analysis page, desktop and phone",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "4cd5e82e5d": {
+    "text": "Lichess page with other piece sets and boards",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "bce886dc4a": {
+    "text": "chess.com board images, 14 piece sets and 12 boards",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "31aba4c4a5": {
+    "text": "Reddit screenshots, r/chess, r/chessbeginners, r/TournamentChess",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "a9edb52fbd": {
+    "text": "Piece artwork it was trained on",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "6de742226e": {
+    "text": "Piece artwork it has never seen",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "f582b2d162": {
+    "text": "Where fenshot struggles",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "f6d531b3f8": {
+    "text": "<strong>3D piece sets.</strong> chess.com's 3D wood and 3D plastic pieces are almost never read right. They were left out of training on purpose, and fenshot warns instead of guessing.",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "2c3d6d13a0": {
+    "text": "<strong>Print-style and textured boards.</strong> chess.com's newspaper board and Lichess's marble, grey and purple boards can shift the read by one row. fenshot nearly always warns when this happens.",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "599ad77e52": {
+    "text": "<strong>Unusual piece sets.</strong> Lichess's horsey, cardinal and monarchy pieces are often misread; monarchy was never in training.",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "4a99b2ccdc": {
+    "text": "<strong>Glass and neo wood pieces.</strong> The only wrong reads without a warning on the drawn boards came from chess.com's glass and neo wood piece sets.",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "18caf9ba00": {
+    "text": "<strong>Busy real screenshots.</strong> Misses on Reddit include phone screenshots with overlays, very small boards, and images with more than one board.",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "e0335578b7": {
+    "text": "When a read is uncertain, fenshot shows a warning and opens the editor next to the original image, so a wrong square takes seconds to fix. The common case, a chess.com or Lichess screenshot in the default look, is read right nearly every time.",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "01652776dc": {
+    "text": "How we measured",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "944a9c26bb": {
+    "text": "<strong>Positions.</strong> Real positions from the Lichess puzzle database: equal numbers of opening, middlegame and endgame positions, chosen by a fixed rule, not by hand.",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "b6dc52bad1": {
+    "text": "<strong>Images we did not draw.</strong> Every board is drawn by the site itself from the position we give it: chess.com's board image service, screenshots of chess.com's and Lichess's analysis pages at desktop and phone sizes, and Lichess with its own piece set and board settings changed. Each chess.com page was checked to show the position we asked for before it was kept.",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "28b8ea3ca7": {
+    "text": "<strong>Pages without a board.</strong> Encyclopedia articles, news sites, documentation and chess site pages with no board, including checkerboards, graph paper and tiles, to test that fenshot does not invent a position.",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "8819fcbc28": {
+    "text": "<strong>Reddit.</strong> Chess images posted on Reddit, where the Chessvision.ai Reddit bot also replied with its reading. Where fenshot and the bot agree, the read counts as right; a random sample of these was compared to the image by eye and no mismatch was found. Every disagreement counts against fenshot, even when fenshot was the one that was right, so the Reddit figure is a floor. The set only includes images the bot answered, which may leave out the hardest ones.",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "3b3326ac27": {
+    "text": "<strong>Same code as the product.</strong> The test runs the exact recognizer and model that the website and the extension use, including the confidence check that decides when to warn.",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "f8c1f2e630": {
+    "text": "<strong>Honest about training.</strong> The model was trained on piece and board artwork from chess.com and Lichess, drawn on synthetic positions. None of the test positions, pages or screenshots were used in training, and the table separates artwork it has seen from artwork it has not.",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "6eb5a6aba3": {
+    "text": "Re-run it yourself",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "60b87f560c": {
+    "text": "The benchmark lives in the open source repository under <a href=\"https://github.com/scoriiu/fenshot/tree/main/tools/benchmark\">tools/benchmark</a>: the list of positions, every image's source and fingerprint, the Reddit posts with both readings, and the results above, image by image. Rebuild the images with <code>npx tsx tools/benchmark/build.ts</code> and score them with <code>npx tsx tools/benchmark/run.ts</code>.",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "55102ba0a1": {
+    "text": "fenshot is MIT open source, made by the team behind <a href=\"https://kibitzo.com?ref=fenshot-accuracy\">Kibitzo</a>. <a href=\"/\">Try fenshot</a> · <a href=\"/extension/\">Browser extension</a>",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
     ]
   },
   "d5718eaa27": {
@@ -1048,8 +1391,8 @@
       "/extension/"
     ]
   },
-  "d5bc9088d2": {
-    "text": "Lichess and chess.com in their common themes, book diagrams, and most piece sets. When a position is hard to read, fenshot says so instead of pretending, and routes you to an editor to fix the squares.",
+  "a1b400f306": {
+    "text": "Lichess and chess.com in their common themes, book diagrams, and most piece sets. When a position is hard to read, fenshot says so instead of pretending, and routes you to an editor to fix the squares. How often each case happens is measured in the <a href=\"/accuracy/\">open accuracy benchmark</a>.",
     "kind": "text",
     "pages": [
       "/extension/"
