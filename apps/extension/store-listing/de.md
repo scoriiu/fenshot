@@ -8,17 +8,12 @@ Schach-Screenshot zu FEN per Klick: liest das Brett auf jeder Seite und ganze Pa
 
 ## Detailed description
 
-Neu: ein Button „In Kibitzo analysieren“ auf chess.com und Lichess. Einmal
-einschalten, und jede beendete Partie bekommt einen Button unter Game Review (chess.com)
-oder im Partiefenster (Lichess), der sie auf einem kostenlosen Analysebrett öffnet.
-Optional, aus, bis du ihn einschaltest.
-
-Ganze Partien: auf chessgames.com, Lichess, in einem chess.com-Artikel oder einem Blog
-liest ein Klick die komplette Partie und öffnet sie zur Analyse.
-
 Mach aus jedem Schachbrett, das du siehst, eine Stellung, die du analysieren kannst. Ein Klick, auf jeder Seite.
 
 Du schaust ein YouTube-Video, liest ein Schachbuch als PDF, scrollst durch einen Blog oder einen chess.com-Artikel? Klick auf das fenshot-Symbol. Es liest das Brett auf deinem Bildschirm und gibt dir die Stellung.
+
+NEU: ANALYSE-BUTTON AUF CHESS.COM UND LICHESS
+Einmal im Popup einschalten („+ Analyse-Button“), und jede beendete Partie bekommt einen Button „In Kibitzo analysieren“, unter Game Review (chess.com) oder im Partiefenster (Lichess). Ein Klick öffnet sie auf einem kostenlosen Analysebrett. Optional, aus, bis du ihn einschaltest, und nie während einer Partie sichtbar.
 
 DAS BEKOMMST DU
 • Auf Kibitzo analysieren: Die Stellung öffnet sich mit einem Coach, der sie in einfachen Worten erklärt
@@ -30,7 +25,7 @@ Wenn eine Seite eine Partie als Zugliste zeigt (chessgames.com, Lichess, chess.c
 
 PRIVAT VON GRUND AUF
 • Liest die Seite nur, wenn du auf das Symbol klickst, und nur diesen Tab
-• Der optionale Analyse-Button läuft nur auf chess.com und Lichess, nur nachdem du ihn eingeschaltet hast, und fügt nur einen Link hinzu: Er liest während einer Partie nie deine Züge
+• Der optionale Analyse-Button läuft nur auf chess.com und Lichess, nur nachdem du ihn eingeschaltet hast, und fügt nur einen Link hinzu
 • Das neuronale Netz läuft zu 100 % auf deinem Gerät. Nichts wird hochgeladen
 • Kein Konto, keine Analytics, kein Tracking
 • Open Source (MIT): github.com/scoriiu/fenshot
