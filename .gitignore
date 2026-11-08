@@ -6,3 +6,4 @@ dist/
 apps/web/src/ort/
 apps/extension/src/ort/
 apps/extension/*.zip
+apps/extension/dist-chromium/

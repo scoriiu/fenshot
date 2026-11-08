@@ -8,7 +8,7 @@
     "dev": "vite build --watch",
     "prebuild": "node scripts/sync-ort.mjs",
     "build": "tsc -p tsconfig.json --noEmit && vite build && SCRIPT=site-button vite build -c vite.scripts.config.ts && SCRIPT=background vite build -c vite.scripts.config.ts",
-    "package": "npm run build && cd dist && find . -name .DS_Store -delete && zip -qr ../fenshot-extension-$npm_package_version.zip . -x \".*\" \"*/.*\" && echo packaged: fenshot-extension-$npm_package_version.zip",
+    "package": "npm run build && node scripts/package.mjs",
     "test": "vitest run",
     "test:e2e": "npm run build && vitest run --config vitest.e2e.config.ts"
   },
