@@ -702,6 +702,16 @@ body {
   .install-hero {
     display: none;
   }
+  .header {
+    align-items: center;
+    padding-bottom: 20px;
+  }
+  .tagline {
+    display: none;
+  }
+  .header-end {
+    margin-inline-start: auto;
+  }
 }
 
 .footer {
