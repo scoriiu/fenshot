@@ -1,0 +1,972 @@
+{
+  "d17421b81d": {
+    "text": "Chess Image to FEN: screenshot or photo to a playable board | fenshot",
+    "pages": [
+      "/"
+    ]
+  },
+  "806619bcc1": {
+    "text": "Turn any chess image into a playable board: screenshots, photos of real boards, book diagrams. Free chess image to FEN converter that runs in your browser. Paste a picture, get the position, analyze it instantly.",
+    "pages": [
+      "/"
+    ]
+  },
+  "50e3dfcaec": {
+    "text": "fenshot: chess screenshot to FEN, free and open source",
+    "pages": [
+      "/"
+    ]
+  },
+  "65c835a7d6": {
+    "text": "Paste any chess screenshot or book diagram and it becomes an analyzable board. Runs entirely in your browser, free and open source, one click to Lichess.",
+    "pages": [
+      "/"
+    ]
+  },
+  "913456d40c": {
+    "text": "Paste any chess screenshot and it becomes an analyzable board. Free, open source, in your browser.",
+    "pages": [
+      "/"
+    ]
+  },
+  "0dcfc27e5d": {
+    "text": "Chess screenshot to FEN converter. Reads chess positions from screenshots, photos and book diagrams, entirely in the browser, and opens them on a playable analysis board.",
+    "pages": [
+      "/"
+    ]
+  },
+  "0e986d7023": {
+    "text": "What is a FEN?",
+    "pages": [
+      "/"
+    ]
+  },
+  "88db809876": {
+    "text": "FEN (Forsyth-Edwards Notation) is the standard one-line text format for a chess position. Every chess site and engine understands it. fenshot creates the FEN from any chess image so you never have to type a position square by square.",
+    "pages": [
+      "/"
+    ]
+  },
+  "f13c742f36": {
+    "text": "Does it work with photos of a real chess board?",
+    "pages": [
+      "/"
+    ]
+  },
+  "c33ebc2473": {
+    "text": "It works best with top-down 2D boards: screenshots, book diagrams, app captures. A straight-overhead photo of a physical board has the best chance, and imperfect scans can be fixed by hand before analyzing.",
+    "pages": [
+      "/"
+    ]
+  },
+  "66719fdd27": {
+    "text": "Can it read chess book diagrams?",
+    "pages": [
+      "/"
+    ]
+  },
+  "d0a0ca4392": {
+    "text": "Yes. Photograph or scan the printed diagram, paste the image, and the position becomes a live analyzable board.",
+    "pages": [
+      "/"
+    ]
+  },
+  "aad1b9a4e4": {
+    "text": "Is my image uploaded to a server?",
+    "pages": [
+      "/"
+    ]
+  },
+  "61c156ddd6": {
+    "text": "No. The recognition model runs entirely in your browser via WebAssembly. Nothing is transmitted.",
+    "pages": [
+      "/"
+    ]
+  },
+  "ea7c7e3c51": {
+    "text": "How do I analyze the position after scanning?",
+    "pages": [
+      "/"
+    ]
+  },
+  "9aa5dbad0c": {
+    "text": "Click Analyze and the position opens on a free analysis board with Stockfish running locally. You can also copy the FEN to any chess site.",
+    "pages": [
+      "/"
+    ]
+  },
+  "b81d839162": {
+    "text": "Chess image to FEN, in your browser",
+    "pages": [
+      "/"
+    ]
+  },
+  "92db178a1d": {
+    "text": "fenshot reads the position out of any chess picture and gives you a live, analyzable board. Paste a screenshot from chess.com or Lichess, a photo of a chess book diagram, or a position someone posted on Reddit or sent you in a chat. One click later you have the FEN string and a board you can actually move pieces on, with a free Stockfish engine.",
+    "pages": [
+      "/"
+    ]
+  },
+  "0c7c37d00a": {
+    "text": "Everything runs in your browser. The image is never uploaded anywhere: a small neural network reads the board locally, which is why the scan finishes in about a second. The whole tool is free and <a href=\"https://github.com/scoriiu/fenshot\" style=\"color:#fbbf24\">open source</a>.",
+    "pages": [
+      "/"
+    ]
+  },
+  "90b10d5d07": {
+    "text": "How to convert a chess screenshot to FEN",
+    "pages": [
+      "/"
+    ]
+  },
+  "85c788b95f": {
+    "text": "Copy any chess image: press <strong>Ctrl+V</strong> right on this page, drag a file in, or click the box to choose one.",
+    "pages": [
+      "/"
+    ]
+  },
+  "8772869eab": {
+    "text": "fenshot finds the board in the image and reads every piece, in your browser.",
+    "pages": [
+      "/"
+    ]
+  },
+  "6af4f1260b": {
+    "text": "Copy the FEN string, or open the position on a playable analysis board with an engine.",
+    "pages": [
+      "/"
+    ]
+  },
+  "8510371fd6": {
+    "text": "If you analyze positions often, the <a href=\"/extension/\" style=\"color:#fbbf24\">browser extension</a> reads the board straight off any webpage without screenshots: chess.com games, Lichess studies, YouTube videos, articles.",
+    "pages": [
+      "/"
+    ]
+  },
+  "f07ac22a9e": {
+    "text": "Common questions",
+    "pages": [
+      "/",
+      "/extension/"
+    ]
+  },
+  "8432868978": {
+    "text": "FEN (Forsyth–Edwards Notation) is the standard one-line text format for a chess position. Every chess site and engine understands it: paste a FEN into Lichess, chess.com or any analysis tool and the exact position appears. fenshot creates the FEN for you so you never have to type a position square by square.",
+    "pages": [
+      "/"
+    ]
+  },
+  "2210aea5af": {
+    "text": "It works best with top-down 2D boards: screenshots, book diagrams, app captures. Photos of physical boards taken at an angle are hit and miss; a straight-overhead photo has the best chance. When a scan is imperfect you can fix individual squares by hand before analyzing.",
+    "pages": [
+      "/"
+    ]
+  },
+  "9dd323fd0a": {
+    "text": "Yes. Printed diagrams are one of the main uses: photograph or scan the page, paste the image, and the position becomes a live board. Reading a gambit book with a phone next to it stops being a memory exercise.",
+    "pages": [
+      "/"
+    ]
+  },
+  "718c72f5d8": {
+    "text": "No. The recognition model runs entirely in your browser via WebAssembly. Nothing is transmitted, which you can verify in the network tab or the source code.",
+    "pages": [
+      "/"
+    ]
+  },
+  "86b3f11c30": {
+    "text": "Click \"Analyze\" and the position opens on a free analysis board with Stockfish running locally: best moves, evaluation, and full piece movement. You can also copy the FEN and take it to any site you prefer.",
+    "pages": [
+      "/"
+    ]
+  },
+  "eaae916be4": {
+    "text": "Which sites and formats does it recognize?",
+    "pages": [
+      "/"
+    ]
+  },
+  "32fd2e6bec": {
+    "text": "chess.com and Lichess screenshots in any theme, most chess apps, book and PDF diagrams, and the common piece sets used by chess websites and publications. If a particular set fails, the manual editor lets you correct it in seconds.",
+    "pages": [
+      "/"
+    ]
+  },
+  "eabb47fab2": {
+    "text": "More ways to use fenshot",
+    "pages": [
+      "/",
+      "/chess-book-diagram-to-fen/",
+      "/chess-image-to-board/",
+      "/chess-screenshot-to-fen/",
+      "/chesscom-screenshot-to-lichess/",
+      "/photo-of-chess-board-to-fen/"
+    ]
+  },
+  "99f200af6f": {
+    "text": "<a href=\"/chess-screenshot-to-fen/\" style=\"color:#fbbf24\">Chess screenshot to FEN</a>: chess.com, Lichess or video screenshots",
+    "pages": [
+      "/"
+    ]
+  },
+  "14d30653ed": {
+    "text": "<a href=\"/chess-image-to-board/\" style=\"color:#fbbf24\">Chess image to board</a>: any picture of a position",
+    "pages": [
+      "/"
+    ]
+  },
+  "0607bf4be8": {
+    "text": "<a href=\"/photo-of-chess-board-to-fen/\" style=\"color:#fbbf24\">Photo of a chess board to FEN</a>: a real board or a printed page",
+    "pages": [
+      "/"
+    ]
+  },
+  "f30988a042": {
+    "text": "<a href=\"/chess-book-diagram-to-fen/\" style=\"color:#fbbf24\">Chess book diagram to FEN</a>: diagrams from books and PDFs",
+    "pages": [
+      "/"
+    ]
+  },
+  "a84f059be5": {
+    "text": "<a href=\"/chesscom-screenshot-to-lichess/\" style=\"color:#fbbf24\">Chess.com screenshot to Lichess</a>: move a position between sites",
+    "pages": [
+      "/"
+    ]
+  },
+  "9f26d39e09": {
+    "text": "<a href=\"/extension/\" style=\"color:#fbbf24\">The fenshot browser extension</a>: read the board straight off any page, and whole games",
+    "pages": [
+      "/"
+    ]
+  },
+  "d5718eaa27": {
+    "text": "Chess Book Diagram to FEN: bring printed positions to life",
+    "pages": [
+      "/chess-book-diagram-to-fen/"
+    ]
+  },
+  "edc8f7fe88": {
+    "text": "Scan chess diagrams from books and PDFs into playable positions with FEN. Free browser tool: photograph the diagram, paste, analyze with an engine.",
+    "pages": [
+      "/chess-book-diagram-to-fen/"
+    ]
+  },
+  "fb5f4f132e": {
+    "text": "Chess Book Diagram to FEN, bring printed positions to life",
+    "pages": [
+      "/chess-book-diagram-to-fen/"
+    ]
+  },
+  "4dd52c85fa": {
+    "text": "<a href=\"/\">fenshot</a> / Chess book diagram to FEN",
+    "pages": [
+      "/chess-book-diagram-to-fen/"
+    ]
+  },
+  "fddbd3bc57": {
+    "text": "Chess book diagram to FEN",
+    "pages": [
+      "/chess-book-diagram-to-fen/"
+    ]
+  },
+  "ad3d964839": {
+    "text": "Every chess book is full of positions the author wants you to explore, and setting each one up is why most of us skim instead. Photograph the diagram, paste it here, and explore the position with an engine in seconds.",
+    "pages": [
+      "/chess-book-diagram-to-fen/"
+    ]
+  },
+  "eb0e477815": {
+    "text": "<a class=\"cta\" href=\"/\">Try it now, paste your image →</a>",
+    "pages": [
+      "/chess-book-diagram-to-fen/",
+      "/chess-image-to-board/",
+      "/chess-screenshot-to-fen/",
+      "/chesscom-screenshot-to-lichess/",
+      "/photo-of-chess-board-to-fen/"
+    ]
+  },
+  "4728f70b3c": {
+    "text": "How readers use it",
+    "pages": [
+      "/chess-book-diagram-to-fen/"
+    ]
+  },
+  "c8d3f2699b": {
+    "text": "Keep your phone or a browser tab next to the book. Each time a diagram matters, photograph it (or screenshot the PDF page), paste, and the position is live: check the author's line against the engine, wander into sidelines, or save the FEN into your notes.",
+    "pages": [
+      "/chess-book-diagram-to-fen/"
+    ]
+  },
+  "62ede71a81": {
+    "text": "PDFs and e-books too",
+    "pages": [
+      "/chess-book-diagram-to-fen/"
+    ]
+  },
+  "0ffc346806": {
+    "text": "For digital books, a plain screenshot of the diagram is even cleaner than a photo. Crop roughly around the board; fenshot finds the board inside the image on its own.",
+    "pages": [
+      "/chess-book-diagram-to-fen/"
+    ]
+  },
+  "0472d3266e": {
+    "text": "Building a study file",
+    "pages": [
+      "/chess-book-diagram-to-fen/"
+    ]
+  },
+  "919312958d": {
+    "text": "Copy each scanned FEN into your notes, a Lichess study, or a spreadsheet, and a chapter of positions becomes a personal training set. The FEN text format is understood by every chess tool, so the collection stays useful forever.",
+    "pages": [
+      "/chess-book-diagram-to-fen/"
+    ]
+  },
+  "20acb0f1b4": {
+    "text": "Free, open source, local",
+    "pages": [
+      "/chess-book-diagram-to-fen/"
+    ]
+  },
+  "7aeffb6a08": {
+    "text": "No account and no upload: the recognition happens in your browser. The project is MIT-licensed open source; the code and the model are public.",
+    "pages": [
+      "/chess-book-diagram-to-fen/"
+    ]
+  },
+  "93ddb19434": {
+    "text": "<a href=\"/chess-screenshot-to-fen/\">Chess screenshot to FEN</a>: chess.com, Lichess or video screenshots",
+    "pages": [
+      "/chess-book-diagram-to-fen/",
+      "/chess-image-to-board/",
+      "/chesscom-screenshot-to-lichess/",
+      "/photo-of-chess-board-to-fen/"
+    ]
+  },
+  "6b0eaf9955": {
+    "text": "<a href=\"/chess-image-to-board/\">Chess image to board</a>: any picture of a position",
+    "pages": [
+      "/chess-book-diagram-to-fen/",
+      "/chess-screenshot-to-fen/",
+      "/chesscom-screenshot-to-lichess/",
+      "/photo-of-chess-board-to-fen/"
+    ]
+  },
+  "eb5e0c77b6": {
+    "text": "<a href=\"/photo-of-chess-board-to-fen/\">Photo of a chess board to FEN</a>: a real board or a printed page",
+    "pages": [
+      "/chess-book-diagram-to-fen/",
+      "/chess-image-to-board/",
+      "/chess-screenshot-to-fen/",
+      "/chesscom-screenshot-to-lichess/"
+    ]
+  },
+  "7d66ccd253": {
+    "text": "<a href=\"/chesscom-screenshot-to-lichess/\">Chess.com screenshot to Lichess</a>: move a position between sites",
+    "pages": [
+      "/chess-book-diagram-to-fen/",
+      "/chess-image-to-board/",
+      "/chess-screenshot-to-fen/",
+      "/photo-of-chess-board-to-fen/"
+    ]
+  },
+  "c2a0051125": {
+    "text": "<a href=\"/extension/\">The fenshot browser extension</a>: read the board straight off any page, and whole games",
+    "pages": [
+      "/chess-book-diagram-to-fen/",
+      "/chess-image-to-board/",
+      "/chess-screenshot-to-fen/",
+      "/chesscom-screenshot-to-lichess/",
+      "/photo-of-chess-board-to-fen/"
+    ]
+  },
+  "f0f12bed1f": {
+    "text": "fenshot is MIT open source. The analysis board is powered by <a href=\"https://kibitzo.com?ref=fenshot-seo\">kibitzo.com</a>, where a coach can also review your full games.",
+    "pages": [
+      "/chess-book-diagram-to-fen/",
+      "/chess-image-to-board/",
+      "/chess-screenshot-to-fen/",
+      "/chesscom-screenshot-to-lichess/",
+      "/photo-of-chess-board-to-fen/"
+    ]
+  },
+  "de198ca200": {
+    "text": "Chess Image to Board: turn any picture into a playable position",
+    "pages": [
+      "/chess-image-to-board/"
+    ]
+  },
+  "7a099c0295": {
+    "text": "Convert a chess image to a real, playable board. Screenshots, photos, book diagrams: paste the picture, get the position with a free engine. In your browser, nothing uploaded.",
+    "pages": [
+      "/chess-image-to-board/"
+    ]
+  },
+  "659d614679": {
+    "text": "Chess Image to Board, turn any picture into a playable position",
+    "pages": [
+      "/chess-image-to-board/"
+    ]
+  },
+  "0acbf21767": {
+    "text": "<a href=\"/\">fenshot</a> / Chess image to board",
+    "pages": [
+      "/chess-image-to-board/"
+    ]
+  },
+  "f4882d6a3f": {
+    "text": "Chess image to board",
+    "pages": [
+      "/chess-image-to-board/"
+    ]
+  },
+  "690a2c0739": {
+    "text": "You have a picture of a chess position. You want a real board you can move pieces on. That is exactly what fenshot does: paste the image, and about a second later the position is live with a free engine underneath.",
+    "pages": [
+      "/chess-image-to-board/"
+    ]
+  },
+  "0fc2e562aa": {
+    "text": "What counts as a chess image?",
+    "pages": [
+      "/chess-image-to-board/"
+    ]
+  },
+  "4d0732b773": {
+    "text": "Call it what you like: a picture to board converter, a screenshot to board tool, a chess photo reader. The job is the same, and the input can be almost anything.",
+    "pages": [
+      "/chess-image-to-board/"
+    ]
+  },
+  "82f3e1c5a0": {
+    "text": "Anything where the board is drawn flat: a chess.com or Lichess screenshot in any theme, a frame from a YouTube video, a diagram photographed out of a book, a puzzle posted on Reddit or Twitter, a position a friend sent you in chat. If a human can read the position, fenshot usually can too.",
+    "pages": [
+      "/chess-image-to-board/"
+    ]
+  },
+  "ceabd009a0": {
+    "text": "From image to board in three steps",
+    "pages": [
+      "/chess-image-to-board/"
+    ]
+  },
+  "4d9c542b8c": {
+    "text": "Copy or save the image.",
+    "pages": [
+      "/chess-image-to-board/"
+    ]
+  },
+  "cdb9cedf6e": {
+    "text": "Paste it on <a href=\"/\">fenshot.com</a> (Ctrl+V works anywhere on the page) or drop the file in.",
+    "pages": [
+      "/chess-image-to-board/"
+    ]
+  },
+  "d1db3dac80": {
+    "text": "The board appears: play moves on it, run the engine, or copy the FEN to any chess site.",
+    "pages": [
+      "/chess-image-to-board/"
+    ]
+  },
+  "234def4c16": {
+    "text": "Why not just set the position up by hand?",
+    "pages": [
+      "/chess-image-to-board/"
+    ]
+  },
+  "233bac0ad1": {
+    "text": "Setting up a middlegame position square by square takes a few minutes and one misplaced pawn ruins the analysis. The scan takes a second and you can still correct any square by hand afterwards, so the fast path and the careful path are the same path.",
+    "pages": [
+      "/chess-image-to-board/"
+    ]
+  },
+  "0f211ed031": {
+    "text": "It stays on your machine",
+    "pages": [
+      "/chess-image-to-board/"
+    ]
+  },
+  "75dfc3210d": {
+    "text": "The recognition model runs in your browser via WebAssembly. The image is never uploaded, which is why it works offline once loaded and why there is no account, no quota and no cost.",
+    "pages": [
+      "/chess-image-to-board/"
+    ]
+  },
+  "79f7efe7d9": {
+    "text": "<a href=\"/chess-book-diagram-to-fen/\">Chess book diagram to FEN</a>: diagrams from books and PDFs",
+    "pages": [
+      "/chess-image-to-board/",
+      "/chess-screenshot-to-fen/",
+      "/chesscom-screenshot-to-lichess/",
+      "/photo-of-chess-board-to-fen/"
+    ]
+  },
+  "bf4dd843df": {
+    "text": "Chess Screenshot to FEN: free converter, runs in your browser",
+    "pages": [
+      "/chess-screenshot-to-fen/"
+    ]
+  },
+  "3af5137157": {
+    "text": "Paste a chess screenshot and get the FEN instantly. Works with chess.com, Lichess, videos and book diagrams. Free and open source; the image never leaves your browser.",
+    "pages": [
+      "/chess-screenshot-to-fen/"
+    ]
+  },
+  "05a34c26e7": {
+    "text": "Chess Screenshot to FEN, free converter, runs in your browser",
+    "pages": [
+      "/chess-screenshot-to-fen/"
+    ]
+  },
+  "3a191c3157": {
+    "text": "<a href=\"/\">fenshot</a> / Chess screenshot to FEN",
+    "pages": [
+      "/chess-screenshot-to-fen/"
+    ]
+  },
+  "e4287851fd": {
+    "text": "Chess screenshot to FEN",
+    "pages": [
+      "/chess-screenshot-to-fen/"
+    ]
+  },
+  "1a9e500903": {
+    "text": "The fastest way to get a FEN string out of a screenshot: paste the image, copy the FEN. No account, no upload, no manual square-by-square editor unless you want to fine-tune.",
+    "pages": [
+      "/chess-screenshot-to-fen/"
+    ]
+  },
+  "dd891f0962": {
+    "text": "From chess screenshot to board, not just to text",
+    "pages": [
+      "/chess-screenshot-to-fen/"
+    ]
+  },
+  "f12a9e615a": {
+    "text": "The FEN string is the portable part, but most of the time what you really want is the board itself. fenshot gives you both at once: the moment the screenshot is read, the position is standing on a live board you can play on. Screenshot to board in one paste, FEN included for wherever you take it next.",
+    "pages": [
+      "/chess-screenshot-to-fen/"
+    ]
+  },
+  "30b9ce2b67": {
+    "text": "What you get from one paste",
+    "pages": [
+      "/chess-screenshot-to-fen/"
+    ]
+  },
+  "4d994a79e8": {
+    "text": "fenshot reads the screenshot and hands you three things: the FEN string ready to copy, a live board you can play on with a free Stockfish engine, and one-click export to Lichess if you prefer analyzing there.",
+    "pages": [
+      "/chess-screenshot-to-fen/"
+    ]
+  },
+  "3eeb52325c": {
+    "text": "Works with the screenshots you actually have",
+    "pages": [
+      "/chess-screenshot-to-fen/"
+    ]
+  },
+  "34b6337919": {
+    "text": "chess.com and Lichess in any board theme, mobile app captures, stream and video frames, and printed diagrams photographed from a book. The recognizer was trained on the piece sets chess sites and publishers really use.",
+    "pages": [
+      "/chess-screenshot-to-fen/"
+    ]
+  },
+  "0aa4bbc40a": {
+    "text": "What is FEN, in one paragraph",
+    "pages": [
+      "/chess-screenshot-to-fen/"
+    ]
+  },
+  "c3d0a9a643": {
+    "text": "FEN (Forsyth–Edwards Notation) is the universal one-line text format for a chess position: piece placement, side to move, castling rights. Every serious chess tool accepts it. Once you have the FEN, the position travels anywhere: engines, databases, coaching sessions, forum posts.",
+    "pages": [
+      "/chess-screenshot-to-fen/"
+    ]
+  },
+  "ed760c6937": {
+    "text": "Fixing an imperfect scan",
+    "pages": [
+      "/chess-screenshot-to-fen/"
+    ]
+  },
+  "c96f7653fe": {
+    "text": "Hard-to-read piece sets sometimes produce a wrong square or two. The built-in editor shows the original image next to the board so you can correct squares in seconds, then copy the corrected FEN.",
+    "pages": [
+      "/chess-screenshot-to-fen/"
+    ]
+  },
+  "99ac6df62e": {
+    "text": "Chess.com Screenshot to Lichess Analysis: one paste",
+    "pages": [
+      "/chesscom-screenshot-to-lichess/"
+    ]
+  },
+  "af7de1f115": {
+    "text": "Move a position from a chess.com screenshot onto a Lichess analysis board (or a free built-in one) in one paste. No manual FEN entry, free, browser-based.",
+    "pages": [
+      "/chesscom-screenshot-to-lichess/"
+    ]
+  },
+  "e9199e293e": {
+    "text": "Chess.com Screenshot to Lichess Analysis, one paste",
+    "pages": [
+      "/chesscom-screenshot-to-lichess/"
+    ]
+  },
+  "30f1fecef2": {
+    "text": "<a href=\"/\">fenshot</a> / Chess.com screenshot to Lichess analysis",
+    "pages": [
+      "/chesscom-screenshot-to-lichess/"
+    ]
+  },
+  "f154c6863c": {
+    "text": "Chess.com screenshot to Lichess analysis",
+    "pages": [
+      "/chesscom-screenshot-to-lichess/"
+    ]
+  },
+  "94de4cdf89": {
+    "text": "Saw a position on chess.com and want to dig into it on an analysis board? Paste the screenshot here: analyze on the free built-in board, or send the position to Lichess with one click.",
+    "pages": [
+      "/chesscom-screenshot-to-lichess/"
+    ]
+  },
+  "c87fb5e5d9": {
+    "text": "The one-paste flow",
+    "pages": [
+      "/chesscom-screenshot-to-lichess/"
+    ]
+  },
+  "9efbde221c": {
+    "text": "Screenshot the chess.com board: browser, app, or a frame from a streamer's video.",
+    "pages": [
+      "/chesscom-screenshot-to-lichess/"
+    ]
+  },
+  "0c13a71847": {
+    "text": "Paste it on <a href=\"/\">fenshot.com</a>.",
+    "pages": [
+      "/chesscom-screenshot-to-lichess/"
+    ]
+  },
+  "a9bd1b93de": {
+    "text": "Click the Lichess button for a Lichess analysis board, or analyze right here with a local Stockfish, or copy the FEN for anywhere else.",
+    "pages": [
+      "/chesscom-screenshot-to-lichess/"
+    ]
+  },
+  "fdbfb26005": {
+    "text": "Any theme, both sides",
+    "pages": [
+      "/chesscom-screenshot-to-lichess/"
+    ]
+  },
+  "14fc9cf0c5": {
+    "text": "The reader handles chess.com's board themes and piece sets, and detects which side is at the bottom, so positions from either player's perspective come out correct.",
+    "pages": [
+      "/chesscom-screenshot-to-lichess/"
+    ]
+  },
+  "c05d7b136e": {
+    "text": "For repeat use: the extension",
+    "pages": [
+      "/chesscom-screenshot-to-lichess/"
+    ]
+  },
+  "54801375ec": {
+    "text": "If you do this daily, the <a href=\"/extension/\">fenshot browser extension</a> skips the screenshot: one click on any page with a visible board reads it directly. Works on chess.com, Lichess, YouTube and news articles.",
+    "pages": [
+      "/chesscom-screenshot-to-lichess/"
+    ]
+  },
+  "a02e07b33f": {
+    "text": "fenshot extension for Chrome, Firefox and Edge: read any chess board on your screen",
+    "pages": [
+      "/extension/"
+    ]
+  },
+  "52eb1ecf79": {
+    "text": "See a chess puzzle posted as a picture? One click reads the board and puts the position on a real board you can play on. Works on screenshots, chess sites and book diagrams. Free, open source, no account.",
+    "pages": [
+      "/extension/"
+    ]
+  },
+  "9f4be0a9e2": {
+    "text": "fenshot extension: chess board to FEN in one click",
+    "pages": [
+      "/extension/"
+    ]
+  },
+  "04a5efb9b7": {
+    "text": "Reads any chess board on your screen and opens it on a playable analysis board. Free, open source, runs locally. Chrome, Firefox, Edge.",
+    "pages": [
+      "/extension/"
+    ]
+  },
+  "8f42b8e59b": {
+    "text": "Browser extension that reads the chess position on any page or screenshot and opens it on a playable analysis board. Chess board image to FEN in one click.",
+    "pages": [
+      "/extension/"
+    ]
+  },
+  "c3c04d0fbc": {
+    "text": "Is the extension free?",
+    "pages": [
+      "/extension/"
+    ]
+  },
+  "f1cf9c2a2a": {
+    "text": "Yes. fenshot is free and open source under the MIT license. There is no account, no quota and nothing to upgrade.",
+    "pages": [
+      "/extension/"
+    ]
+  },
+  "c9ae1d77fa": {
+    "text": "Does it upload my screen?",
+    "pages": [
+      "/extension/"
+    ]
+  },
+  "64d28db043": {
+    "text": "No. It reads the visible tab only when you click the icon, and the recognition runs entirely on your device. The extension makes no network requests and collects no data.",
+    "pages": [
+      "/extension/"
+    ]
+  },
+  "653bd10ad1": {
+    "text": "Which browsers does it support?",
+    "pages": [
+      "/extension/"
+    ]
+  },
+  "e61e8d4a4a": {
+    "text": "Chrome, Firefox and Edge on desktop. On a phone, the web version at fenshot.com does the same job without an install.",
+    "pages": [
+      "/extension/"
+    ]
+  },
+  "eb6c6e9af3": {
+    "text": "Can it import a whole game, not just a position?",
+    "pages": [
+      "/extension/"
+    ]
+  },
+  "1d8e02f81d": {
+    "text": "Yes. On a page that shows a game as a move list, such as chessgames.com, Lichess, a chess.com article or a blog, fenshot finds it, checks that every move is legal, and lets you step through it or open it on Kibitzo or Lichess.",
+    "pages": [
+      "/extension/"
+    ]
+  },
+  "3736085b79": {
+    "text": "What happens when it cannot read a board?",
+    "pages": [
+      "/extension/"
+    ]
+  },
+  "cfd16ea440": {
+    "text": "It says so instead of guessing, and sends you to an editor where you can fix the squares before analyzing.",
+    "pages": [
+      "/extension/"
+    ]
+  },
+  "1304529a41": {
+    "text": "screenshot in, FEN out. free, open source, runs entirely in your browser.",
+    "pages": [
+      "/extension/"
+    ]
+  },
+  "5da52801fd": {
+    "text": "Add to {browser}",
+    "pages": [
+      "/extension/"
+    ]
+  },
+  "025376adf3": {
+    "text": "the extension is for desktop browsers. on your phone, the web version below does the same job, no install needed.",
+    "pages": [
+      "/extension/"
+    ]
+  },
+  "d948bd1377": {
+    "text": "one click to your browser's store.",
+    "pages": [
+      "/extension/"
+    ]
+  },
+  "52bd9883f3": {
+    "text": "prefer no install? <a href=\"/\">use the web version</a> · <a href=\"https://github.com/scoriiu/fenshot\" target=\"_blank\" rel=\"noreferrer\">source on github</a>",
+    "pages": [
+      "/extension/"
+    ]
+  },
+  "294715897e": {
+    "text": "Chess board to FEN in one click, on any page",
+    "pages": [
+      "/extension/"
+    ]
+  },
+  "96dcda84a8": {
+    "text": "See a chess position anywhere, on Lichess, chess.com, a YouTube video, a book PDF or a blog post, and want to analyze it? Click the fenshot icon. The extension captures the visible tab, reads the board with a neural network that runs inside your browser, and shows you the position. From there you can analyze it on Kibitzo, open it on Lichess, or copy the FEN to use anywhere.",
+    "pages": [
+      "/extension/"
+    ]
+  },
+  "ee0b0964a4": {
+    "text": "Whole games, not just positions",
+    "pages": [
+      "/extension/"
+    ]
+  },
+  "b26d515ce1": {
+    "text": "In the popup, next to the position it read, there is a second card: the game. It appears whenever the page shows a move list. One click on <strong>Analyze on Kibitzo</strong> there sends the whole game, not just the position, so the coach can review every move.",
+    "pages": [
+      "/extension/"
+    ]
+  },
+  "1c98616eac": {
+    "text": "On a page that shows a game as a move list, such as chessgames.com, Lichess, a chess.com article or a blog, fenshot finds it, checks that every move is legal, and shows it on a small board you can step through. One click opens the full game on Kibitzo or Lichess, or copies the PGN. Several games on one page? Page through them.",
+    "pages": [
+      "/extension/"
+    ]
+  },
+  "3aaa9fd1f2": {
+    "text": "Private by design",
+    "pages": [
+      "/extension/",
+      "/photo-of-chess-board-to-fen/"
+    ]
+  },
+  "784823fc4f": {
+    "text": "The screenshot and the page text are read only when you click the icon, and only from that tab.",
+    "pages": [
+      "/extension/"
+    ]
+  },
+  "8b1869532c": {
+    "text": "Recognition runs entirely on your device. Nothing leaves your browser.",
+    "pages": [
+      "/extension/"
+    ]
+  },
+  "51a5e9b208": {
+    "text": "No account, no analytics, no tracking, no network requests.",
+    "pages": [
+      "/extension/"
+    ]
+  },
+  "3116014ec3": {
+    "text": "Fully open source under MIT: <a href=\"https://github.com/scoriiu/fenshot\">github.com/scoriiu/fenshot</a>.",
+    "pages": [
+      "/extension/"
+    ]
+  },
+  "a129a012ae": {
+    "text": "Works with",
+    "pages": [
+      "/extension/"
+    ]
+  },
+  "d5bc9088d2": {
+    "text": "Lichess and chess.com in their common themes, book diagrams, and most piece sets. When a position is hard to read, fenshot says so instead of pretending, and routes you to an editor to fix the squares.",
+    "pages": [
+      "/extension/"
+    ]
+  },
+  "57a42afa6b": {
+    "text": "No install?",
+    "pages": [
+      "/extension/"
+    ]
+  },
+  "ac961ba97a": {
+    "text": "Paste any chess screenshot on <a href=\"/\">fenshot.com</a> for the same recognition in the page, or read the guides for <a href=\"/chess-screenshot-to-fen/\">screenshots</a>, <a href=\"/photo-of-chess-board-to-fen/\">photos of a board</a> and <a href=\"/chess-book-diagram-to-fen/\">book diagrams</a>.",
+    "pages": [
+      "/extension/"
+    ]
+  },
+  "4c14d57535": {
+    "text": "Photo of a Chess Board to FEN: analyze a real-life position",
+    "pages": [
+      "/photo-of-chess-board-to-fen/"
+    ]
+  },
+  "dd2475ab27": {
+    "text": "Photograph a chess position from a book or a real board and turn it into a FEN with a playable analysis board. Free, browser-based, nothing uploaded.",
+    "pages": [
+      "/photo-of-chess-board-to-fen/"
+    ]
+  },
+  "7e2b3c3faf": {
+    "text": "Photo of a Chess Board to FEN, analyze a real-life position",
+    "pages": [
+      "/photo-of-chess-board-to-fen/"
+    ]
+  },
+  "390bd81481": {
+    "text": "<a href=\"/\">fenshot</a> / Photo of a chess board to FEN",
+    "pages": [
+      "/photo-of-chess-board-to-fen/"
+    ]
+  },
+  "bc89ef9da9": {
+    "text": "Photo of a chess board to FEN",
+    "pages": [
+      "/photo-of-chess-board-to-fen/"
+    ]
+  },
+  "73b94f309b": {
+    "text": "Playing over the board, or reading a chess book, and want the engine's opinion? Photograph the position and paste it here: fenshot turns the photo into a live board with the FEN ready to copy.",
+    "pages": [
+      "/photo-of-chess-board-to-fen/"
+    ]
+  },
+  "91d70c80d8": {
+    "text": "What works best",
+    "pages": [
+      "/photo-of-chess-board-to-fen/"
+    ]
+  },
+  "f80d93a0ea": {
+    "text": "A photo of chess board positions comes in two kinds: flat pages and physical boards. Both can work; the flat kind works almost every time.",
+    "pages": [
+      "/photo-of-chess-board-to-fen/"
+    ]
+  },
+  "05ef5916bf": {
+    "text": "Flat, top-down views: book diagrams, magazine pages, tablet screens, printed worksheets. For a physical board, shoot from directly above the board rather than from your seat; perspective distortion is the main thing that confuses the reader.",
+    "pages": [
+      "/photo-of-chess-board-to-fen/"
+    ]
+  },
+  "2076b66e90": {
+    "text": "Book diagrams are the sweet spot",
+    "pages": [
+      "/photo-of-chess-board-to-fen/"
+    ]
+  },
+  "649ea7af81": {
+    "text": "Studying openings or endgames from a book stops being a set-up-the-board exercise: photograph the diagram, paste, analyze, and get back to reading. Ten diagrams in a chapter means ten seconds of scanning, not twenty minutes of setup.",
+    "pages": [
+      "/photo-of-chess-board-to-fen/"
+    ]
+  },
+  "529e583a25": {
+    "text": "When a photo comes out imperfect",
+    "pages": [
+      "/photo-of-chess-board-to-fen/"
+    ]
+  },
+  "7d10067656": {
+    "text": "Glare, angle, or an unusual piece design can produce a wrong square. The editor shows your photo beside the scanned board, so fixing a square takes one click; you are never worse off than typing the position from scratch.",
+    "pages": [
+      "/photo-of-chess-board-to-fen/"
+    ]
+  },
+  "3bf28c12ea": {
+    "text": "The photo never leaves your device. Recognition runs locally in the browser, so tournament preparation and private material stay private.",
+    "pages": [
+      "/photo-of-chess-board-to-fen/"
+    ]
+  }
+}

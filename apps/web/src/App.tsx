@@ -7,6 +7,8 @@ import {
   type BoardScanResult,
 } from "@scoriiu/fenshot";
 import { Board } from "./Board";
+import { useT } from "./i18n";
+import { LanguagePicker } from "./LanguagePicker";
 // src/ort/ is synced from onnxruntime-web by scripts/sync-ort.mjs
 // (predev/prebuild); ?url makes Vite emit the files as hashed assets.
 import ortMjsUrl from "./ort/ort-wasm-simd-threaded.mjs?url";
@@ -63,7 +65,8 @@ type Phase =
       imageUrl: string;
     };
 
-export default function App() {
+export default function App({ lang }: { lang: string }) {
+  const t = useT();
   const [phase, setPhase] = useState<Phase>({ kind: "idle" });
   const [copied, setCopied] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -155,9 +158,9 @@ export default function App() {
       new Chess(fen);
       return null;
     } catch {
-      return "This position is not fully legal, fix it in the Lichess editor.";
+      return t("notLegal");
     }
-  }, [fen]);
+  }, [fen, t]);
 
   const copyFen = async () => {
     if (!fen) return;
@@ -174,10 +177,13 @@ export default function App() {
         <h1 className="brand">
           <span className="brand-accent">fen</span>shot
         </h1>
-        <p className="tagline">Chess screenshot in. FEN out. Nothing leaves your browser.</p>
-        <a className="gh-link" href="https://github.com/scoriiu/fenshot" target="_blank" rel="noreferrer">
-          GitHub
-        </a>
+        <p className="tagline">{t("tagline")}</p>
+        <div className="header-end">
+          <LanguagePicker current={lang} />
+          <a className="gh-link" href="https://github.com/scoriiu/fenshot" target="_blank" rel="noreferrer">
+            {t("github")}
+          </a>
+        </div>
       </header>
 
       {!result && (
@@ -196,17 +202,22 @@ export default function App() {
           {phase.kind === "scanning" ? (
             <div className="scan-status">
               <div className="spinner" />
-              Reading the board…
+              {t("scanning")}
             </div>
           ) : (
             <>
-              <div className="drop-title">Paste a chessboard screenshot</div>
+              <div className="drop-title">{t("dropTitle")}</div>
               <div className="drop-sub">
-                <kbd>Ctrl</kbd>+<kbd>V</kbd> anywhere, drop an image here, or click to choose a file
+                {t("dropSub").split("{keys}").map((part, i) => (
+                  <span key={i}>
+                    {i > 0 && (<span dir="ltr"><kbd>Ctrl</kbd>+<kbd>V</kbd></span>)}
+                    {part}
+                  </span>
+                ))}
               </div>
-              <div className="drop-hint">chess.com · lichess · book diagrams · reddit posts</div>
+              <div className="drop-hint">{t("dropHint")}</div>
               {phase.kind === "noboard" && (
-                <div className="noboard">No chessboard found in that image. Try a tighter crop.</div>
+                <div className="noboard">{t("noBoard")}</div>
               )}
             </>
           )}
@@ -222,7 +233,7 @@ export default function App() {
             }}
           />
         </div>
-        <aside className="ext-panel" aria-label="The fenshot browser extension">
+        <aside className="ext-panel" aria-label={t("extensionPanel")}>
           <div className="demo-media">
             <video
               ref={demoVideoRef}
@@ -243,15 +254,12 @@ export default function App() {
                   void demoVideoRef.current?.play();
                 }}
               >
-                ▶ {demoSeen ? "Play demo" : "Replay demo"}
+                ▶ {demoSeen ? t("playDemo") : t("replayDemo")}
               </button>
             )}
           </div>
           <div className="ext-panel-body">
-            <p className="ext-panel-note">
-              Skip the screenshot next time. The extension reads the board on
-              any page, one click.
-            </p>
+            <p className="ext-panel-note">{t("extensionNote")}</p>
             <div className="ext-panel-buttons">
               {(Object.keys(STORES) as StoreName[]).map((name) => (
                 <a
@@ -264,15 +272,15 @@ export default function App() {
                   data-umami-event-store={name.toLowerCase()}
                 >
                   <BrowserIcon name={name} />
-                  {name === browser ? `Add to ${name}` : name}
+                  {name === browser ? t("addTo", { browser: name }) : name}
                 </a>
               ))}
             </div>
             <div className="ext-panel-meta">
-              <span>Free</span>
-              <span>Open source</span>
-              <span>No account</span>
-              <span>Nothing uploaded</span>
+              <span>{t("metaFree")}</span>
+              <span>{t("metaOpenSource")}</span>
+              <span>{t("metaNoAccount")}</span>
+              <span>{t("metaNothingUploaded")}</span>
             </div>
           </div>
         </aside>
@@ -284,9 +292,9 @@ export default function App() {
           <div className="media-row">
             <figure className="shot-card">
               <div className="shot-frame">
-                <img src={result.imageUrl} alt="Your screenshot" />
+                <img src={result.imageUrl} alt={t("yourScreenshot")} />
               </div>
-              <figcaption>Your screenshot</figcaption>
+              <figcaption>{t("yourScreenshot")}</figcaption>
             </figure>
             <div className="transform-arrow" aria-hidden>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -300,42 +308,41 @@ export default function App() {
                   <Board placement={result.placement} flipped={result.flipped} />
                 </div>
               </div>
-              <figcaption>What fenshot read · {Math.round(result.scan.meanConfidence * 100)}%</figcaption>
+              <figcaption>{t("whatFenshotRead", { pct: Math.round(result.scan.meanConfidence * 100) })}</figcaption>
             </figure>
           </div>
           <div className="result-panel">
             {!result.scan.reliable && (
               <div className="warning">
-                Low-confidence read (worst tile {Math.round(result.scan.minConfidence * 100)}%). Double-check the
-                pieces before trusting this.
+                {t("lowConfidence", { pct: Math.round(result.scan.minConfidence * 100) })}
               </div>
             )}
             {legality && <div className="warning">{legality}</div>}
 
-            <label className="fen-label">FEN</label>
+            <label className="fen-label">{t("fen")}</label>
             <div className="fen-row">
               <code className="fen">{fen}</code>
               <button className="btn btn-quiet" onClick={copyFen}>
-                {copied ? "Copied" : "Copy"}
+                {copied ? t("copied") : t("copy")}
               </button>
             </div>
 
             <div className="panel-bottom">
               <div className="controls">
                 <div className="control-group">
-                  <span className="control-label">Side to move</span>
+                  <span className="control-label">{t("sideToMove")}</span>
                   <div className="toggle">
                     <button
                       className={result.turn === "w" ? "on" : ""}
                       onClick={() => setPhase({ ...result, turn: "w" })}
                     >
-                      White
+                      {t("white")}
                     </button>
                     <button
                       className={result.turn === "b" ? "on" : ""}
                       onClick={() => setPhase({ ...result, turn: "b" })}
                     >
-                      Black
+                      {t("black")}
                     </button>
                   </div>
                 </div>
@@ -343,7 +350,7 @@ export default function App() {
                   className="btn btn-quiet"
                   onClick={() => setPhase({ ...result, flipped: !result.flipped })}
                 >
-                  Flip board
+                  {t("flipBoard")}
                 </button>
               </div>
 
@@ -353,13 +360,13 @@ export default function App() {
                     <path d="M3 12a9 9 0 1 0 3-6.7" />
                     <path d="M3 4v4h4" />
                   </svg>
-                  Scan another
+                  {t("scanAnother")}
                 </button>
                 <a className="btn" href={`https://lichess.org/analysis/standard/${lichessFen}`} target="_blank" rel="noreferrer">
-                  Analyze on Lichess
+                  {t("analyzeLichess")}
                 </a>
                 <a className="btn" href={`https://lichess.org/editor/${lichessFen}`} target="_blank" rel="noreferrer">
-                  Lichess editor
+                  {t("lichessEditor")}
                 </a>
                 <a
                   className="btn btn-primary"
@@ -367,7 +374,7 @@ export default function App() {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Analyze on Kibitzo
+                  {t("analyzeKibitzo")}
                 </a>
               </div>
             </div>
@@ -376,7 +383,7 @@ export default function App() {
       )}
 
       <footer className="footer">
-        MIT open source · built from the position import of{" "}
+        {t("footerBefore")}{" "}
         <a href="https://kibitzo.com?ref=fenshot-web" target="_blank" rel="noreferrer">
           kibitzo.com
         </a>

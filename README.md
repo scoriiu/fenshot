@@ -82,6 +82,16 @@ npm run dev           # run the demo app
 
 The test suite includes golden fixtures produced by the python reference pipeline and real screenshots with known FENs; the detector, the tile tensors, and the end-to-end reads are all locked.
 
+### Translations (fenshot.com)
+
+The site is served in 14 languages (`apps/web/i18n/locales.json`), each under `/<code>/` with `hreflang` alternates and a language picker. The English pages stay the single source:
+
+- **Pages** (`apps/web/index.html`, `apps/web/public/*/index.html`): `npm run i18n:extract -w web` writes every translatable segment to `i18n/source.json`, keyed by a hash of its English text. Translations live in `i18n/content/<code>.json`.
+- **App UI** (`src/App.tsx`): strings in `i18n/ui/en.json`, translations in `i18n/ui/<code>.json`.
+- `npm run i18n:check -w web` lists missing or stale translations and any that lost a tag, link or placeholder. After editing English text, extract, then translate what the check reports.
+- `npm run build -w web` generates every language and the sitemap, and fails on a missing translation (`I18N_ALLOW_MISSING=1` for a preview).
+- Mark text that must never be translated with `translate="no"`.
+
 ## Credits
 
 - Board detection algorithm: [Elucidation/tensorflow_chessbot](https://github.com/Elucidation/tensorflow_chessbot) (MIT).

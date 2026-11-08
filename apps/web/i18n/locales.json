@@ -1,0 +1,16 @@
+[
+  { "code": "en", "flag": "🇬🇧", "name": "English", "dir": "ltr", "og": "en_US" },
+  { "code": "es", "flag": "🇪🇸", "name": "Español", "dir": "ltr", "og": "es_ES" },
+  { "code": "de", "flag": "🇩🇪", "name": "Deutsch", "dir": "ltr", "og": "de_DE" },
+  { "code": "ru", "flag": "🇷🇺", "name": "Русский", "dir": "ltr", "og": "ru_RU" },
+  { "code": "fr", "flag": "🇫🇷", "name": "Français", "dir": "ltr", "og": "fr_FR" },
+  { "code": "pt", "flag": "🇧🇷", "name": "Português", "dir": "ltr", "og": "pt_BR" },
+  { "code": "it", "flag": "🇮🇹", "name": "Italiano", "dir": "ltr", "og": "it_IT" },
+  { "code": "zh", "flag": "🇨🇳", "name": "中文", "dir": "ltr", "og": "zh_CN" },
+  { "code": "tr", "flag": "🇹🇷", "name": "Türkçe", "dir": "ltr", "og": "tr_TR" },
+  { "code": "nl", "flag": "🇳🇱", "name": "Nederlands", "dir": "ltr", "og": "nl_NL" },
+  { "code": "pl", "flag": "🇵🇱", "name": "Polski", "dir": "ltr", "og": "pl_PL" },
+  { "code": "vi", "flag": "🇻🇳", "name": "Tiếng Việt", "dir": "ltr", "og": "vi_VN" },
+  { "code": "fa", "flag": "🇮🇷", "name": "فارسی", "dir": "rtl", "og": "fa_IR" },
+  { "code": "ar", "flag": "🇸🇦", "name": "العربية", "dir": "rtl", "og": "ar_SA" }
+]
