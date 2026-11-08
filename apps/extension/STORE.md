@@ -115,6 +115,13 @@ about the user or the page.
 
 ## Firefox (AMO) notes
 
+Build steps for the reviewer (verified 2026-11-08: a clean build from the
+source zip is byte-identical to the Firefox zip, `diff -rq`), Node 24 / npm 11:
+
+    npm ci                               # from the unzipped source root
+    npm run build -w @scoriiu/fenshot    # the recognizer package the extension imports
+    npm run build -w extension           # -> apps/extension/dist == the Firefox zip
+
 - Source code is required because the build step bundles the ONNX
   runtime. Upload the `fenshot-source-<version>.zip` produced by
   `git archive` (see "Packaging" below); the README covers the build.
