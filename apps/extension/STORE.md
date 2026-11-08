@@ -120,6 +120,29 @@ about the user or the page.
   `git archive` (see "Packaging" below); the README covers the build.
 - data_collection_permissions in the manifest stays `required: ["none"]`.
 
+## Translations (0.6.0)
+
+The extension follows the browser's language: es, de, ru, fr, pt_BR, it,
+zh_CN, tr, nl, pl, vi, fa, ar, and English otherwise (public/_locales,
+checked by `node scripts/i18n-check.mjs`). Store listings per language
+(name, short description, detailed description) are in store-listing/,
+to paste into each store's per-language listing fields. The reviewer
+forms below stay English.
+
+## Release notes (0.6.0)
+
+fenshot now speaks your language: the popup, the toolbar tooltip and the
+Analyze in Kibitzo button follow your browser's language, in Spanish,
+German, Russian, French, Portuguese, Italian, Chinese, Turkish, Dutch,
+Polish, Vietnamese, Persian and Arabic (right to left), and English
+otherwise.
+
+Notes to reviewer (AMO): no new permissions and no behaviour change. New
+files: public/_locales/*/messages.json (Chrome i18n format; manifest name,
+description and action title are __MSG_ references, default_locale en)
+and src/i18n.ts (chrome.i18n.getMessage with a bundled English fallback).
+Build steps unchanged: npm run build.
+
 ## Release notes (0.5.0)
 
 New, optional: an "Analyze in Kibitzo" button on finished chess.com and

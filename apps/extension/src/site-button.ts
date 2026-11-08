@@ -9,11 +9,12 @@
  * finished game's status line), and kibitzo.com refuses unfinished games
  * as a second gate. Nothing here runs a search or shows an evaluation.
  */
+import { t } from "./i18n";
 
 const ORIGIN = (import.meta.env.VITE_KIBITZO_ORIGIN as string | undefined) || "https://kibitzo.com";
 const UTM = "utm_source=fenshot&utm_medium=extension&utm_campaign=site-button";
 const MARK = "data-kibitzo-button";
-const LABEL = "Analyze in Kibitzo";
+const LABEL = t("siteButtonLabel");
 const USERNAME = /^[A-Za-z0-9_-]{2,30}$/;
 
 /** Set while running; the stop hook lets the popup remove the button live (site-access.ts). */
@@ -52,7 +53,7 @@ function linkEl(href: string): HTMLAnchorElement {
   a.href = href;
   a.target = "_blank";
   a.rel = "noopener";
-  a.title = "Open this finished game on Kibitzo's free analysis board";
+  a.title = t("siteButtonTitle");
   const label = document.createElement("span");
   label.style.whiteSpace = "nowrap";
   label.append(knightIcon(), LABEL);

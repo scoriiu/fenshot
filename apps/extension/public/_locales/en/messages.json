@@ -1,0 +1,254 @@
+{
+  "extName": {
+    "message": "fenshot: chess board to FEN, one click",
+    "description": "Extension name in the store and the browser. At most 75 characters; keep 'fenshot' first, lowercase."
+  },
+  "extDescription": {
+    "message": "Chess screenshot to FEN in one click: reads the board on any page, and whole games from move lists. Runs entirely on your device.",
+    "description": "Store short description. At most 132 characters."
+  },
+  "actionTitle": {
+    "message": "Read the chessboard on this page",
+    "description": "Tooltip of the toolbar icon."
+  },
+  "siteButtonLabel": {
+    "message": "Analyze in Kibitzo",
+    "description": "Button added under finished games on chess.com and Lichess. Short."
+  },
+  "siteButtonTitle": {
+    "message": "Open this finished game on Kibitzo's free analysis board",
+    "description": "Tooltip of that button."
+  },
+  "pillOn": {
+    "message": "Analyze button",
+    "description": "Popup switch label when the site button is on. Short."
+  },
+  "pillOff": {
+    "message": "+ Analyze button",
+    "description": "Same switch when off; keep the leading +. Short."
+  },
+  "pillOnTip": {
+    "message": "Analyze in Kibitzo appears under finished chess.com and Lichess games. Click to turn it off."
+  },
+  "pillOffTip": {
+    "message": "Adds an Analyze in Kibitzo button under finished games on chess.com and Lichess. One click opens the game on a free analysis board."
+  },
+  "position": {
+    "message": "Position",
+    "description": "Card title: the position read from the page."
+  },
+  "game": {
+    "message": "Game",
+    "description": "Card title: a whole game read from a move list."
+  },
+  "srcPage": {
+    "message": "read from the image on this tab",
+    "description": "Lowercase subtitle under 'Position'."
+  },
+  "srcArea": {
+    "message": "read from the area you selected",
+    "description": "Lowercase subtitle."
+  },
+  "srcImage": {
+    "message": "read from the image you provided",
+    "description": "Lowercase subtitle."
+  },
+  "srcNothing": {
+    "message": "nothing read from the image on this tab",
+    "description": "Lowercase subtitle."
+  },
+  "gameSource": {
+    "message": "read from the move list printed on this tab",
+    "description": "Lowercase subtitle under 'Game'."
+  },
+  "gameSourceMany": {
+    "message": "read from the move lists printed on this tab",
+    "description": "Lowercase subtitle, several games on the page."
+  },
+  "variantGame": {
+    "message": "This is a Chess960 (or other variant) game. fenshot imports standard chess games only."
+  },
+  "prevGame": {
+    "message": "Previous game"
+  },
+  "nextGame": {
+    "message": "Next game"
+  },
+  "navStart": {
+    "message": "Start",
+    "description": "Tooltip: jump to the first move."
+  },
+  "navPrev": {
+    "message": "Previous move"
+  },
+  "navNext": {
+    "message": "Next move"
+  },
+  "navEnd": {
+    "message": "End",
+    "description": "Tooltip: jump to the last move."
+  },
+  "analyzeKibitzo": {
+    "message": "Analyze on Kibitzo",
+    "description": "Primary button. Short."
+  },
+  "copyPgn": {
+    "message": "Copy PGN",
+    "description": "Button. Short."
+  },
+  "copyFen": {
+    "message": "Copy FEN",
+    "description": "Button. Short."
+  },
+  "copied": {
+    "message": "Copied",
+    "description": "Button feedback after copying. Short."
+  },
+  "selectBoard": {
+    "message": "Select the board on this page",
+    "description": "Button."
+  },
+  "uploadImage": {
+    "message": "Upload an image",
+    "description": "Button."
+  },
+  "readingPosition": {
+    "message": "Reading the position…"
+  },
+  "readingBoardPage": {
+    "message": "Reading the board on this page…"
+  },
+  "runsOnDevice": {
+    "message": "runs entirely on your device",
+    "description": "Lowercase hint under the loading message."
+  },
+  "noBoardPage": {
+    "message": "No chessboard found on this page."
+  },
+  "noBoardSelection": {
+    "message": "No chessboard in that selection."
+  },
+  "noBoardImage": {
+    "message": "No chessboard found in that image."
+  },
+  "somethingWrong": {
+    "message": "Something went wrong reading that image."
+  },
+  "pageBlocks": {
+    "message": "This page blocks screenshots."
+  },
+  "hintSelectBelow": {
+    "message": "if you can see one, select it below",
+    "description": "Lowercase hint."
+  },
+  "hintTighter": {
+    "message": "try a tighter box around just the board",
+    "description": "Lowercase hint."
+  },
+  "hintClearer": {
+    "message": "try a clearer shot, or another way below",
+    "description": "Lowercase hint."
+  },
+  "hintAnotherWay": {
+    "message": "try another way below",
+    "description": "Lowercase hint."
+  },
+  "hintUploadPaste": {
+    "message": "upload an image or paste one with $KEYS$",
+    "description": "Lowercase hint. $KEYS$ is the paste shortcut (Ctrl+V or ⌘V).",
+    "placeholders": {
+      "keys": {
+        "content": "$1",
+        "example": "Ctrl+V"
+      }
+    }
+  },
+  "legalityWarning": {
+    "message": "This position is not fully legal as read. Open it in the editor to fix squares."
+  },
+  "hardShort": {
+    "message": "Hard to read: some squares may be wrong",
+    "description": "Short warning line."
+  },
+  "hardFull": {
+    "message": "This piece set is hard to read, some squares are probably wrong. Verify before trusting the analysis."
+  },
+  "notLegalShort": {
+    "message": "Not fully legal as read: fix in the editor",
+    "description": "Short warning line."
+  },
+  "white": {
+    "message": "White",
+    "description": "Side to move."
+  },
+  "black": {
+    "message": "Black",
+    "description": "Side to move."
+  },
+  "fixInEditor": {
+    "message": "Fix in Lichess editor",
+    "description": "Button. Short."
+  },
+  "wrongBoard": {
+    "message": "Wrong board or messy read? Select the area",
+    "description": "Link-style button."
+  },
+  "useful": {
+    "message": "Useful?",
+    "description": "Footer, followed by 'Rate it'."
+  },
+  "rateIt": {
+    "message": "Rate it",
+    "description": "Link to the store rating."
+  },
+  "notNow": {
+    "message": "Not now"
+  },
+  "dragBox": {
+    "message": "Drag a box around the board",
+    "description": "Hint while selecting an area."
+  },
+  "cancel": {
+    "message": "Cancel"
+  },
+  "tagline": {
+    "message": "screenshot in, FEN out",
+    "description": "Lowercase slogan under the name in the popup header."
+  },
+  "toMove": {
+    "message": "to move",
+    "description": "Lowercase label before the White/Black toggle (side to move)."
+  },
+  "footerLocal": {
+    "message": "runs on your device",
+    "description": "Lowercase footer, followed by a link 'open source'."
+  },
+  "openSource": {
+    "message": "open source",
+    "description": "Lowercase footer link to the source code."
+  },
+  "pasteHint": {
+    "message": "or paste a screenshot with $KEYS$ · drag & drop works too",
+    "description": "Lowercase hint under the Upload button. $KEYS$ is the paste shortcut.",
+    "placeholders": {
+      "keys": {
+        "content": "$1",
+        "example": "Ctrl+V"
+      }
+    }
+  },
+  "pagerCount": {
+    "message": "$CURRENT$ of $TOTAL$",
+    "description": "Game pager, e.g. '2 of 3'.",
+    "placeholders": {
+      "current": {
+        "content": "$1",
+        "example": "2"
+      },
+      "total": {
+        "content": "$2",
+        "example": "3"
+      }
+    }
+  }
+}

@@ -17,6 +17,7 @@
  * linter and reviewers have nothing to question.
  */
 
+import { applyDocumentLanguage, t } from "./i18n";
 import { Chess } from "chess.js";
 import {
   createRecognizer,
@@ -40,6 +41,7 @@ import ortWasmUrl from "./ort/ort-wasm-simd-threaded.wasm?url";
 import modelUrl from "../../../packages/fenshot/model/chess-tiles-v2.onnx?url";
 
 const app = document.getElementById("app")!;
+applyDocumentLanguage(document);
 const isMac = navigator.platform.toUpperCase().includes("MAC");
 const pasteKey = isMac ? "\u2318V" : "Ctrl+V";
 
@@ -94,7 +96,7 @@ function link(href: string, className: string, text: string): HTMLAnchorElement 
 function render(...content: HTMLElement[]) {
   const wrap = el("div", "wrap");
   const brand = el("div", "brand");
-  brand.append(el("span", "name", "fenshot"), el("span", "tag", "screenshot in, FEN out"));
+  brand.append(el("span", "name", "fenshot"), el("span", "tag", t("tagline")));
   const pill = siteButtonPill();
   const footer = el("div", "footer");
   if (lastResult && ratingAskPending(window.localStorage)) {
@@ -103,7 +105,7 @@ function render(...content: HTMLElement[]) {
     // sits a few px under it). Only on a result screen.
     footer.append(ratingAskEl(footer));
   } else {
-    footer.append("runs on your device \u00b7 ", link("https://github.com/scoriiu/fenshot", "", "open source"), ` \u00b7 v${chrome.runtime.getManifest().version}`);
+    footer.append(`${t("footerLocal")} \u00b7 `, link("https://github.com/scoriiu/fenshot", "", t("openSource")), ` \u00b7 v${chrome.runtime.getManifest().version}`);
   }
   if (document.body.classList.contains("two")) {
     // Wide layout: the footer line fits in the brand row, which buys
@@ -139,10 +141,10 @@ function siteButtonPill(): HTMLElement {
     siteButtonOn = on;
     const here = await onGameSite;
     pill.className = `site-pill ${on ? "on" : here ? "invite" : "off"}`;
-    pill.textContent = on ? "Analyze button" : "+ Analyze button";
+    pill.textContent = on ? t("pillOn") : t("pillOff");
     const tip = on
-      ? "Analyze in Kibitzo appears under finished chess.com and Lichess games. Click to turn it off."
-      : "Adds an Analyze in Kibitzo button under finished games on chess.com and Lichess. One click opens the game on a free analysis board.";
+      ? t("pillOnTip")
+      : t("pillOffTip");
     pill.dataset.tip = tip;
     pill.setAttribute("aria-label", tip);
     pill.hidden = false;
@@ -187,9 +189,9 @@ function warningSub(w: ReadWarning): HTMLElement {
 }
 
 const POSITION_SOURCE: Record<ScanOrigin, string> = {
-  page: "read from the image on this tab",
-  area: "read from the area you selected",
-  image: "read from the image you provided",
+  page: t("srcPage"),
+  area: t("srcArea"),
+  image: t("srcImage"),
 };
 
 /**
@@ -213,8 +215,8 @@ function renderScreen(position: HTMLElement[], origin: ScanOrigin | null, warnin
   const left = el("section", origin ? "card" : "card hub");
   const body = el("div", "card-body");
   body.append(...position);
-  const source = origin ? POSITION_SOURCE[origin] : "nothing read from the image on this tab";
-  left.append(cardHead("Position", warning ? warningSub(warning) : source), body);
+  const source = origin ? POSITION_SOURCE[origin] : t("srcNothing");
+  left.append(cardHead(t("position"), warning ? warningSub(warning) : source), body);
   cols.append(left, game);
   render(cols);
 }
@@ -251,12 +253,12 @@ function gamesEl(): HTMLElement | null {
     // cannot replay: silence would look like a failure to read the page.
     if (pageUnsupported === 0) return null;
     const note = el("section", "card games");
-    note.append(cardHead("Game", "read from the move list printed on this tab"));
+    note.append(cardHead(t("game"), t("gameSource")));
     note.append(
       el(
         "p",
         "games-note",
-        "This is a Chess960 (or other variant) game. fenshot imports standard chess games only.",
+        t("variantGame"),
       ),
     );
     return note;
@@ -276,9 +278,9 @@ function gamesEl(): HTMLElement | null {
     const controls: HTMLElement[] = [];
     if (n > 1) {
       const pager = el("div", "pager");
-      pager.append(el("span", "pager-count", `${gameView.index + 1} of ${n}`));
+      pager.append(el("span", "pager-count", t("pagerCount", String(gameView.index + 1), String(n))));
       const prev = el("button", "nav", "\u2039");
-      prev.title = "Previous game";
+      prev.title = t("prevGame");
       prev.disabled = gameView.index === 0;
       prev.addEventListener("click", () => {
         gameView.index -= 1;
@@ -286,7 +288,7 @@ function gamesEl(): HTMLElement | null {
         draw();
       });
       const next = el("button", "nav", "\u203a");
-      next.title = "Next game";
+      next.title = t("nextGame");
       next.disabled = gameView.index === n - 1;
       next.addEventListener("click", () => {
         gameView.index += 1;
@@ -297,8 +299,8 @@ function gamesEl(): HTMLElement | null {
       controls.push(pager);
     }
     const head = cardHead(
-      "Game",
-      n === 1 ? "read from the move list printed on this tab" : "read from the move lists printed on this tab",
+      t("game"),
+      n === 1 ? t("gameSource") : t("gameSourceMany"),
       ...controls,
     );
 
@@ -335,24 +337,24 @@ function gamesEl(): HTMLElement | null {
       counter.append(m);
     }
     moveRow.append(
-      navBtn("\u23ee", "Start", 0, ply === 0),
-      navBtn("\u25c0", "Previous move", ply - 1, ply === 0),
+      navBtn("\u23ee", t("navStart"), 0, ply === 0),
+      navBtn("\u25c0", t("navPrev"), ply - 1, ply === 0),
       counter,
-      navBtn("\u25b6", "Next move", ply + 1, ply === plies.length - 1),
-      navBtn("\u23ed", "End", plies.length - 1, ply === plies.length - 1),
+      navBtn("\u25b6", t("navNext"), ply + 1, ply === plies.length - 1),
+      navBtn("\u23ed", t("navEnd"), plies.length - 1, ply === plies.length - 1),
     );
 
     // Same button layout as the position card: primary across, two below.
     const actions = el("div", "actions game-actions");
     actions.append(
-      link(coachessGameUrl(game, povBlack), "btn primary", "Analyze on Kibitzo"),
+      link(coachessGameUrl(game, povBlack), "btn primary", t("analyzeKibitzo")),
       link(lichessGameUrl(game), "btn", "Lichess"),
     );
-    const copy = el("button", "btn", "Copy PGN");
+    const copy = el("button", "btn", t("copyPgn"));
     copy.addEventListener("click", async () => {
       await navigator.clipboard.writeText(game.pgn);
-      copy.textContent = "Copied";
-      setTimeout(() => (copy.textContent = "Copy PGN"), 1500);
+      copy.textContent = t("copied");
+      setTimeout(() => (copy.textContent = t("copyPgn")), 1500);
     });
     actions.append(copy);
 
@@ -397,20 +399,20 @@ function renderHub(title: string, hint?: string) {
 
   const paths = el("div", "paths");
   if (pageBitmap) {
-    const areaBtn = el("button", "btn primary", "Select the board on this page");
+    const areaBtn = el("button", "btn primary", t("selectBoard"));
     areaBtn.addEventListener("click", () => renderCrop());
     paths.append(areaBtn);
   }
-  const uploadBtn = el("button", "btn", "Upload an image");
+  const uploadBtn = el("button", "btn", t("uploadImage"));
   uploadBtn.addEventListener("click", () => fileInput.click());
   paths.append(uploadBtn);
 
-  const pasteHint = el("p", "paste-hint", `or paste a screenshot with ${pasteKey} \u00b7 drag & drop works too`);
+  const pasteHint = el("p", "paste-hint", t("pasteHint", pasteKey));
   renderScreen([state, paths, pasteHint], null);
 }
 
 async function scanBlob(blob: Blob, origin: ScanOrigin) {
-  renderMessage("Reading the position\u2026", "runs entirely on your device", true);
+  renderMessage(t("readingPosition"), t("runsOnDevice"), true);
   try {
     const result = await getRecognizer().recognize(blob);
     // An automatic whole-page scan with an implausible read (no kings)
@@ -419,11 +421,11 @@ async function scanBlob(blob: Blob, origin: ScanOrigin) {
     // board is there, and the legality warning covers the rest.
     if (!result || (origin === "page" && !result.plausible)) {
       if (origin === "page") {
-        renderHub("No chessboard found on this page.", "if you can see one, select it below");
+        renderHub(t("noBoardPage"), t("hintSelectBelow"));
       } else if (origin === "area") {
-        renderHub("No chessboard in that selection.", "try a tighter box around just the board");
+        renderHub(t("noBoardSelection"), t("hintTighter"));
       } else {
-        renderHub("No chessboard found in that image.", "try a clearer shot, or another way below");
+        renderHub(t("noBoardImage"), t("hintClearer"));
       }
       return;
     }
@@ -437,7 +439,7 @@ async function scanBlob(blob: Blob, origin: ScanOrigin) {
     });
   } catch (err) {
     console.error(err);
-    renderHub("Something went wrong reading that image.", "try another way below");
+    renderHub(t("somethingWrong"), t("hintAnotherWay"));
   }
 }
 
@@ -473,16 +475,16 @@ function renderResult(state: ResultState) {
   try {
     new Chess(fen);
   } catch {
-    legalityWarning = "This position is not fully legal as read. Open it in the editor to fix squares.";
+    legalityWarning = t("legalityWarning");
   }
   const reliabilityWarning: ReadWarning | null = state.scan.reliable
     ? null
     : {
-        short: "Hard to read: some squares may be wrong",
-        full: "This piece set is hard to read, some squares are probably wrong. Verify before trusting the analysis.",
+        short: t("hardShort"),
+        full: t("hardFull"),
       };
   const warning: ReadWarning | null =
-    reliabilityWarning ?? (legalityWarning ? { short: "Not fully legal as read: fix in the editor", full: legalityWarning } : null);
+    reliabilityWarning ?? (legalityWarning ? { short: t("notLegalShort"), full: legalityWarning } : null);
 
   const lichessFen = fen.replaceAll(" ", "_");
   const analysisUrl = legalityWarning
@@ -493,10 +495,10 @@ function renderResult(state: ResultState) {
   const content: HTMLElement[] = [boardEl(state.placement, state.flipped)];
 
   const turnRow = el("div", "turn");
-  turnRow.append(el("span", "label", "to move"));
-  const whiteBtn = el("button", state.turn === "w" ? "active" : "", "White");
+  turnRow.append(el("span", "label", t("toMove")));
+  const whiteBtn = el("button", state.turn === "w" ? "active" : "", t("white"));
   whiteBtn.addEventListener("click", () => renderResult({ ...state, turn: "w" }));
-  const blackBtn = el("button", state.turn === "b" ? "active" : "", "Black");
+  const blackBtn = el("button", state.turn === "b" ? "active" : "", t("black"));
   blackBtn.addEventListener("click", () => renderResult({ ...state, turn: "b" }));
   turnRow.append(whiteBtn, blackBtn);
   content.push(turnRow);
@@ -508,22 +510,22 @@ function renderResult(state: ResultState) {
   // the Lichess editor first, since that is where squares get fixed.
   const actions = el("div", "actions");
   if (legalityWarning) {
-    actions.append(link(analysisUrl, "btn primary", "Fix in Lichess editor"), link(coachessUrl, "btn", "Kibitzo"));
+    actions.append(link(analysisUrl, "btn primary", t("fixInEditor")), link(coachessUrl, "btn", "Kibitzo"));
   } else {
-    actions.append(link(coachessUrl, "btn primary", "Analyze on Kibitzo"), link(analysisUrl, "btn", "Lichess"));
+    actions.append(link(coachessUrl, "btn primary", t("analyzeKibitzo")), link(analysisUrl, "btn", "Lichess"));
   }
-  const copyBtn = el("button", "btn", "Copy FEN");
+  const copyBtn = el("button", "btn", t("copyFen"));
   copyBtn.addEventListener("click", async () => {
     await navigator.clipboard.writeText(fen);
-    copyBtn.textContent = "Copied";
-    setTimeout(() => (copyBtn.textContent = "Copy FEN"), 1500);
+    copyBtn.textContent = t("copied");
+    setTimeout(() => (copyBtn.textContent = t("copyFen")), 1500);
   });
   actions.append(copyBtn);
   content.push(actions);
 
   if (pageBitmap && state.origin !== "image") {
     const rescan = el("div", "rescan");
-    const fix = el("button", "linkish", "Wrong board or messy read? Select the area");
+    const fix = el("button", "linkish", t("wrongBoard"));
     fix.addEventListener("click", () => renderCrop());
     rescan.append(fix);
     content.push(rescan);
@@ -537,12 +539,12 @@ function ratingAskEl(footer: HTMLElement): HTMLElement {
   const row = el("span", "rating-ask");
   const restore = () => {
     settleRatingAsk(window.localStorage);
-    footer.replaceChildren("runs on your device \u00b7 ", link("https://github.com/scoriiu/fenshot", "", "open source"));
+    footer.replaceChildren(`${t("footerLocal")} \u00b7 `, link("https://github.com/scoriiu/fenshot", "", t("openSource")));
   };
-  row.append(el("span", "", "Useful? "));
-  const yes = link(STORE_URLS[detectStore(navigator.userAgent)], "linkish strong", "Rate it");
+  row.append(el("span", "", `${t("useful")} `));
+  const yes = link(STORE_URLS[detectStore(navigator.userAgent)], "linkish strong", t("rateIt"));
   yes.addEventListener("click", restore);
-  const no = el("button", "linkish", "Not now");
+  const no = el("button", "linkish", t("notNow"));
   no.addEventListener("click", restore);
   row.append(yes, " \u00b7 ", no);
   return row;
@@ -573,12 +575,12 @@ function renderCrop() {
   stage.append(canvas, sel);
 
   const bar = el("div", "crop-bar");
-  bar.append(el("span", "hint", "Drag a box around the board"));
-  const cancel = el("button", "btn small", "Cancel");
+  bar.append(el("span", "hint", t("dragBox")));
+  const cancel = el("button", "btn small", t("cancel"));
   cancel.addEventListener("click", () => {
     document.body.classList.remove("wide");
     if (lastResult) renderResult(lastResult);
-    else renderHub("No chessboard found on this page.", "if you can see one, select it below");
+    else renderHub(t("noBoardPage"), t("hintSelectBelow"));
   });
   bar.append(cancel);
 
@@ -704,7 +706,7 @@ async function findPageGames(): Promise<{ games: FoundGame[]; unsupported: numbe
 }
 
 async function main() {
-  renderMessage("Reading the board on this page\u2026", "runs entirely on your device", true);
+  renderMessage(t("readingBoardPage"), t("runsOnDevice"), true);
   // Game scan runs alongside the screenshot. If it lands after the
   // board result is already on screen, that screen is refreshed so the
   // games appear; if it lands first, the next render picks them up.
@@ -719,7 +721,7 @@ async function main() {
     pageBitmap = await createImageBitmap(blob);
   } catch (err) {
     console.error(err);
-    renderHub("This page blocks screenshots.", `upload an image or paste one with ${pasteKey}`);
+    renderHub(t("pageBlocks"), t("hintUploadPaste", pasteKey));
     return;
   }
   void scanBlob(blob, "page");

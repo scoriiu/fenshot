@@ -1,9 +1,10 @@
 {
   "manifest_version": 3,
-  "name": "fenshot: chess board to FEN, one click",
+  "default_locale": "en",
+  "name": "__MSG_extName__",
   "homepage_url": "https://fenshot.com/",
-  "version": "0.5.0",
-  "description": "Chess screenshot to FEN in one click: reads the board on any page, and whole games from move lists. Runs entirely on your device.",
+  "version": "0.6.0",
+  "description": "__MSG_extDescription__",
   "minimum_chrome_version": "121",
   "permissions": [
     "activeTab",
@@ -21,7 +22,7 @@
   },
   "action": {
     "default_popup": "index.html",
-    "default_title": "Read the chessboard on this page",
+    "default_title": "__MSG_actionTitle__",
     "default_icon": {
       "16": "icons/icon-16.png",
       "32": "icons/icon-32.png",
