@@ -43,7 +43,8 @@ const PICKER_CSS = `<style id="fs-lang-css">
 .fs-lang a:hover{background:rgba(148,163,184,.12)}
 .fs-lang a[aria-current=true]{color:#f59e0b}
 [dir=rtl] ul,[dir=rtl] ol{padding-left:0;padding-right:20px}
-</style>`;
+</style>
+<script id="fs-lang-js">(function(){var q="details.fs-lang[open],details.lang-picker[open]";document.addEventListener("pointerdown",function(e){document.querySelectorAll(q).forEach(function(d){if(!d.contains(e.target))d.open=false})});document.addEventListener("keydown",function(e){if(e.key==="Escape")document.querySelectorAll(q).forEach(function(d){d.open=false;var s=d.querySelector("summary");if(s)s.focus()})})})()</script>`;
 
 function picker(code, page) {
   const here = LOCALES.find((l) => l.code === code);
