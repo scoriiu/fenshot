@@ -53,4 +53,4 @@
 
 ## Languages
 
-Every page is available in English and in Spanish (/es/), German (/de/), Russian (/ru/), French (/fr/), Portuguese (/pt/), Italian (/it/), Chinese (/zh/), Turkish (/tr/), Dutch (/nl/), Polish (/pl/), Romanian (/ro/), Vietnamese (/vi/), Persian (/fa/) and Arabic (/ar/), for example https://fenshot.com/es/ and https://fenshot.com/de/extension/.
+Every page is available in English and in Spanish (/es/), German (/de/), Russian (/ru/), French (/fr/), Portuguese (/pt/), Italian (/it/), Chinese (/zh/), Turkish (/tr/), Dutch (/nl/), Polish (/pl/), Romanian (/ro/), Vietnamese (/vi/), Hebrew (/he/), Persian (/fa/) and Arabic (/ar/), for example https://fenshot.com/es/ and https://fenshot.com/de/extension/.

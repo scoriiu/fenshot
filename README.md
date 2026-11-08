@@ -86,7 +86,7 @@ The test suite includes golden fixtures produced by the python reference pipelin
 
 ### Translations (fenshot.com)
 
-The site is served in 15 languages (`apps/web/i18n/locales.json`), each under `/<code>/` with `hreflang` alternates and a language picker. The English pages stay the single source:
+The site is served in 16 languages (`apps/web/i18n/locales.json`), each under `/<code>/` with `hreflang` alternates and a language picker. The English pages stay the single source:
 
 - **Pages** (`apps/web/index.html`, `apps/web/public/*/index.html`): `npm run i18n:extract -w web` writes every translatable segment to `i18n/source.json`, keyed by a hash of its English text. Translations live in `i18n/content/<code>.json`.
 - **App UI** (`src/App.tsx`): strings in `i18n/ui/en.json`, translations in `i18n/ui/<code>.json`.
