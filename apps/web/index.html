@@ -6,7 +6,7 @@
     <title>Chess Image to FEN: screenshot or photo to a playable board | fenshot</title>
     <meta
       name="description"
-      content="Turn any chess image into a playable board: screenshots, photos of real boards, book diagrams. Free chess image to FEN converter that runs in your browser. Paste a picture, get the position, analyze it instantly."
+      content="Turn any chess image into a playable board: screenshots, photos, book diagrams. Free and open source, runs in your browser. Paste a picture, get the FEN."
     />
     <link rel="canonical" href="https://fenshot.com/" />
     <link rel="icon" href="./favicon.ico" sizes="32x32" />
@@ -58,8 +58,9 @@
         "mainEntity": [
           { "@type": "Question", "name": "What is a FEN?", "acceptedAnswer": { "@type": "Answer", "text": "FEN (Forsyth-Edwards Notation) is the standard one-line text format for a chess position. Every chess site and engine understands it. fenshot creates the FEN from any chess image so you never have to type a position square by square." } },
           { "@type": "Question", "name": "Does it work with photos of a real chess board?", "acceptedAnswer": { "@type": "Answer", "text": "It works best with top-down 2D boards: screenshots, book diagrams, app captures. A straight-overhead photo of a physical board has the best chance, and imperfect scans can be fixed by hand before analyzing." } },
-          { "@type": "Question", "name": "Can it read chess book diagrams?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Photograph or scan the printed diagram, paste the image, and the position becomes a live analyzable board." } },
+          { "@type": "Question", "name": "Can it read chess book diagrams?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Take a screenshot of the diagram in your PDF reader, or photograph or scan the printed page, paste the image, and the position becomes a live analyzable board." } },
           { "@type": "Question", "name": "Is my image uploaded to a server?", "acceptedAnswer": { "@type": "Answer", "text": "No. The recognition model runs entirely in your browser via WebAssembly. Nothing is transmitted." } },
+          { "@type": "Question", "name": "Is fenshot an alternative to chessvision.ai?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Both read a chess position from an image. fenshot is free and open source (MIT), runs entirely in your browser without uploading the image, needs no account and has no scan limit. Its browser extension also reads the board on any page in one click, and imports whole games from move lists." } },
           { "@type": "Question", "name": "How do I analyze the position after scanning?", "acceptedAnswer": { "@type": "Answer", "text": "Click Analyze and the position opens on a free analysis board with Stockfish running locally. You can also copy the FEN to any chess site." } }
         ]
       }
@@ -73,6 +74,7 @@
 
     <section id="seo-content" style="max-width:720px;margin:0 auto;padding:48px 20px 64px;color:#cbd5e1;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.65;font-size:15px">
       <h1 style="color:#fef3c7;font-size:26px;margin:0 0 12px">Chess image to FEN, in your browser</h1>
+      <p><strong>A free, open-source alternative to chessvision.ai:</strong> fenshot runs entirely in your browser, with no upload, no account and no scan limit.</p>
       <p>fenshot reads the position out of any chess picture and gives you a live, analyzable board. Paste a screenshot from chess.com or Lichess, a photo of a chess book diagram, or a position someone posted on Reddit or sent you in a chat. One click later you have the FEN string and a board you can actually move pieces on, with a free Stockfish engine.</p>
       <p>Everything runs in your browser. The image is never uploaded anywhere: a small neural network reads the board locally, which is why the scan finishes in about a second. The whole tool is free and <a href="https://github.com/scoriiu/fenshot" style="color:#fbbf24">open source</a>.</p>
 
@@ -84,19 +86,25 @@
       </ol>
       <p>If you analyze positions often, the <a href="/extension/" style="color:#fbbf24">browser extension</a> reads the board straight off any webpage without screenshots: chess.com games, Lichess studies, YouTube videos, articles.</p>
 
+      <h2 style="color:#fef3c7;font-size:22px;margin:32px 0 12px">Whole games, not just positions</h2>
+      <p>On a page that shows a game as a move list, such as chessgames.com, a Lichess study or a chess blog, the <a href="/extension/" style="color:#fbbf24">fenshot extension</a> imports the whole game in one click, checks that every move is legal, and opens it on Lichess or on Kibitzo for a full review.</p>
+
       <h2 style="color:#fef3c7;font-size:22px;margin:32px 0 12px">Common questions</h2>
       <h3 style="color:#e2e8f0;font-size:16px;margin:20px 0 6px">What is a FEN?</h3>
       <p>FEN (Forsyth–Edwards Notation) is the standard one-line text format for a chess position. Every chess site and engine understands it: paste a FEN into Lichess, chess.com or any analysis tool and the exact position appears. fenshot creates the FEN for you so you never have to type a position square by square.</p>
       <h3 style="color:#e2e8f0;font-size:16px;margin:20px 0 6px">Does it work with photos of a real chess board?</h3>
       <p>It works best with top-down 2D boards: screenshots, book diagrams, app captures. Photos of physical boards taken at an angle are hit and miss; a straight-overhead photo has the best chance. When a scan is imperfect you can fix individual squares by hand before analyzing.</p>
       <h3 style="color:#e2e8f0;font-size:16px;margin:20px 0 6px">Can it read chess book diagrams?</h3>
-      <p>Yes. Printed diagrams are one of the main uses: photograph or scan the page, paste the image, and the position becomes a live board. Reading a gambit book with a phone next to it stops being a memory exercise.</p>
+      <p>Yes. Printed books and PDF books are one of the main uses: take a screenshot of the diagram in your PDF reader, or photograph or scan the printed page, paste the image, and the position becomes a live board. Reading a gambit book with a phone next to it stops being a memory exercise.</p>
       <h3 style="color:#e2e8f0;font-size:16px;margin:20px 0 6px">Is my image uploaded to a server?</h3>
       <p>No. The recognition model runs entirely in your browser via WebAssembly. Nothing is transmitted, which you can verify in the network tab or the source code.</p>
       <h3 style="color:#e2e8f0;font-size:16px;margin:20px 0 6px">How do I analyze the position after scanning?</h3>
       <p>Click "Analyze" and the position opens on a free analysis board with Stockfish running locally: best moves, evaluation, and full piece movement. You can also copy the FEN and take it to any site you prefer.</p>
       <h3 style="color:#e2e8f0;font-size:16px;margin:20px 0 6px">Which sites and formats does it recognize?</h3>
       <p>chess.com and Lichess screenshots in any theme, most chess apps, book and PDF diagrams, and the common piece sets used by chess websites and publications. If a particular set fails, the manual editor lets you correct it in seconds.</p>
+
+      <h3 style="color:#e2e8f0;font-size:16px;margin:20px 0 6px">Is fenshot an alternative to chessvision.ai?</h3>
+      <p>Yes. Both read a chess position from an image. fenshot is free and open source (MIT), runs entirely in your browser without uploading the image, needs no account and has no scan limit. Its browser extension also reads the board on any page in one click, and imports whole games from move lists.</p>
 
       <h2 style="color:#fef3c7;font-size:22px;margin:32px 0 12px">More ways to use fenshot</h2>
       <ul style="padding-left:20px"><li><a href="/chess-screenshot-to-fen/" style="color:#fbbf24">Chess screenshot to FEN</a>: chess.com, Lichess or video screenshots</li><li><a href="/chess-image-to-board/" style="color:#fbbf24">Chess image to board</a>: any picture of a position</li><li><a href="/photo-of-chess-board-to-fen/" style="color:#fbbf24">Photo of a chess board to FEN</a>: a real board or a printed page</li><li><a href="/chess-book-diagram-to-fen/" style="color:#fbbf24">Chess book diagram to FEN</a>: diagrams from books and PDFs</li><li><a href="/chesscom-screenshot-to-lichess/" style="color:#fbbf24">Chess.com screenshot to Lichess</a>: move a position between sites</li><li><a href="/extension/" style="color:#fbbf24">The fenshot browser extension</a>: read the board straight off any page, and whole games</li></ul>

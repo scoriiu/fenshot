@@ -66,6 +66,22 @@ function isPagePath(href) {
 
 const missing = new Map();
 
+/** Structured data names the page it describes: its own URL and language
+ *  (AI search and rich results attribute facts per URL). The English
+ *  app entry also lists every language it is available in. */
+function localizeJsonLd(root, code, page) {
+  root.querySelectorAll('script[type="application/ld+json"]').forEach((el) => {
+    const data = el.__jsonld;
+    if (!data || Array.isArray(data)) return;
+    if (typeof data.url === "string" && data.url.startsWith(SITE)) {
+      const path = new URL(data.url).pathname;
+      if (pages.includes(path)) data.url = `${SITE}${urlOf(code, path)}`;
+    }
+    data.inLanguage = code;
+    if (data["@type"] === "SoftwareApplication") data.availableLanguage = LOCALES.map((l) => l.code);
+  });
+}
+
 function render(code, page, englishHtml) {
   const root = parseHtml(englishHtml);
   const dict = translations(code);
@@ -74,8 +90,11 @@ function render(code, page, englishHtml) {
       if (dict[key]) apply(dict[key]);
       else missing.set(`${code} ${key}`, text);
     });
-    flushJsonLd(root);
+  } else {
+    walk(root, () => {});
   }
+  localizeJsonLd(root, code, page);
+  flushJsonLd(root);
   const loc = LOCALES.find((l) => l.code === code);
   const html = root.querySelector("html");
   html.setAttribute("lang", code);
@@ -85,8 +104,9 @@ function render(code, page, englishHtml) {
   head.querySelector("#fs-lang-css")?.remove();
   head.querySelector('link[rel="canonical"]')?.setAttribute("href", `${SITE}${urlOf(code, page)}`);
   head.querySelector('meta[property="og:url"]')?.setAttribute("content", `${SITE}${urlOf(code, page)}`);
-  head.querySelector('meta[property="og:locale"]')?.remove();
-  head.insertAdjacentHTML("beforeend", `\n<meta property="og:locale" content="${loc.og}" />\n${hreflang(page)}\n${PICKER_CSS}\n`);
+  head.querySelectorAll('meta[property="og:locale"], meta[property="og:locale:alternate"]').forEach((n) => n.remove());
+  const ogAlternates = LOCALES.filter((l) => l.code !== code).map((l) => `<meta property="og:locale:alternate" content="${l.og}" />`).join("\n");
+  head.insertAdjacentHTML("beforeend", `\n<meta property="og:locale" content="${loc.og}" />\n${ogAlternates}\n${hreflang(page)}\n${PICKER_CSS}\n`);
 
   if (code !== "en") {
     root.querySelectorAll("a[href]").forEach((a) => {

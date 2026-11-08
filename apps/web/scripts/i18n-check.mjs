@@ -16,6 +16,7 @@ const codes = LOCALES.map((l) => l.code).filter((c) => c !== "en" && (!only.leng
 
 const vars = (s) => JSON.stringify([...s.matchAll(/\{[a-zA-Z]+\}/g)].map((m) => m[0]).sort());
 let problems = 0;
+const warnings = [];
 const report = (code, msg) => { problems++; console.log(`  ${code}: ${msg}`); };
 
 for (const code of codes) {
@@ -33,6 +34,12 @@ for (const code of codes) {
     if (!source[k]) continue;
     if (shape(t) !== shape(source[k].text)) report(code, `${k} lost or changed a tag/link/placeholder:\n      en: ${source[k].text.slice(0, 140)}\n      ${code}: ${t.slice(0, 140)}`);
     if (/—/.test(t)) report(code, `${k} uses an em dash`);
+    // Search results cut longer titles and descriptions (CJK characters
+    // are about twice as wide). A warning, not a failure: the full text
+    // still reaches crawlers.
+    const limit = { title: 70, description: 170 }[source[k].kind];
+    const width = [...t].reduce((n, ch) => n + (/[\u3000-\u9fff\uac00-\ud7af]/.test(ch) ? 2 : 1), 0);
+    if (limit && width > limit) warnings.push(`${code} ${source[k].kind} ${width}/${limit}: ${t.slice(0, 80)}`);
   }
 
   const uiMissing = Object.keys(uiEn).filter((k) => uiEn[k] !== "" && !ui[k]);
@@ -43,5 +50,6 @@ for (const code of codes) {
   }
   console.log(`${code}: ${problems === before ? "OK" : `${problems - before} problem(s)`}`);
 }
+if (warnings.length) console.log(`\n${warnings.length} length warning(s), shown cut in search results:\n  ${warnings.join("\n  ")}`);
 console.log(problems ? `\n${problems} problem(s)` : "\nall languages complete");
 process.exit(problems ? 1 : 0);

@@ -35,9 +35,9 @@ function isLeafBlock(el) {
 
 /** Calls visit({ key, text, apply }) for every segment of `root`. */
 export function walk(root, visit) {
-  const seg = (text, apply) => {
+  const seg = (text, apply, kind = "text") => {
     if (!text || !hasWords(text)) return;
-    visit({ key: keyOf(text), text: normalize(text), apply });
+    visit({ key: keyOf(text), text: normalize(text), apply, kind });
   };
 
   const visitEl = (el) => {
@@ -47,7 +47,7 @@ export function walk(root, visit) {
     if (SKIP.has(tag) || el.getAttribute("translate") === "no" || el.id === "root") return;
     if (tag === "meta") {
       const name = el.getAttribute("name") ?? el.getAttribute("property");
-      if (META.has(name)) seg(el.getAttribute("content"), (t) => el.setAttribute("content", t));
+      if (META.has(name)) seg(el.getAttribute("content"), (t) => el.setAttribute("content", t), name === "description" ? "description" : "meta");
       return;
     }
     for (const a of ATTRS) {
@@ -55,7 +55,7 @@ export function walk(root, visit) {
       if (v) seg(v, (t) => el.setAttribute(a, t));
     }
     if (!INLINE.has(tag) && isLeafBlock(el)) {
-      seg(el.innerHTML, (t) => el.set_content(t));
+      seg(el.innerHTML, (t) => el.set_content(t), tag === "title" ? "title" : "text");
       return;
     }
     el.childNodes.forEach((c) => c.nodeType === 1 && visitEl(c));

@@ -2,6 +2,8 @@
 
 **Screenshot in. FEN out.**
 
+A free, offline, open-source alternative to chessvision.ai: chess screenshot to FEN in your browser, plus a browser extension that reads any board on screen, and whole games from move lists, in one click.
+
 [![CI](https://github.com/scoriiu/fenshot/actions/workflows/ci.yml/badge.svg)](https://github.com/scoriiu/fenshot/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/%40scoriiu%2Ffenshot)](https://www.npmjs.com/package/@scoriiu/fenshot)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)

@@ -1,0 +1,36 @@
+# fenshot
+
+> fenshot turns a chess screenshot or picture into a FEN and a playable analysis board, entirely in the browser. It is free, open source (MIT), needs no account, uploads nothing and has no scan limit. A browser extension for Chrome, Firefox and Edge reads the chess board on any web page in one click, and imports whole games from move lists. A free, open-source alternative to chessvision.ai.
+
+## What it does
+
+- Reads a chess position from an image: chess.com and Lichess screenshots in any theme, stream and video frames, diagrams from printed or PDF chess books, positions posted on Reddit or in chats.
+- Outputs the FEN string, a live board with a free Stockfish engine, and one-click links to Lichess analysis, the Lichess board editor and Kibitzo.
+- Detects screenshots taken from Black's point of view and flips the read automatically.
+- Says when a read is unreliable instead of returning a silently wrong FEN; squares can be fixed in an editor.
+- Browser extension: captures the visible tab only when the icon is clicked, reads the board, and on pages that show a game as a move list (chessgames.com, Lichess, chess.com articles, blogs) imports the whole game as PGN, checks every move is legal, and opens it on Lichess or Kibitzo.
+
+## How it works
+
+- Board detection by gradient peak analysis (extended from tensorflow_chessbot), then a compact CNN (about 330k parameters, 1.3 MB ONNX) classifies the 64 squares with onnxruntime-web in WebAssembly.
+- Everything runs on the user's device. Images and positions are never sent anywhere. The extension has no analytics and makes no network requests; the website counts anonymous page views only (self-hosted, cookieless Umami).
+- Works best with top-down 2D boards. Photos of physical boards taken at an angle are unreliable.
+
+## Links
+
+- [Web app](https://fenshot.com/): paste or drop a chess image, get the FEN and a board
+- [Browser extension](https://fenshot.com/extension/): Chrome, Firefox and Edge
+- [Chess screenshot to FEN](https://fenshot.com/chess-screenshot-to-fen/)
+- [Chess image to board](https://fenshot.com/chess-image-to-board/)
+- [Photo of a chess board to FEN](https://fenshot.com/photo-of-chess-board-to-fen/)
+- [Chess book diagram to FEN](https://fenshot.com/chess-book-diagram-to-fen/)
+- [Chess.com screenshot to Lichess](https://fenshot.com/chesscom-screenshot-to-lichess/)
+- [Chrome Web Store](https://chromewebstore.google.com/detail/fenshot-chess-board-to-fe/fpkdijjlnafehkdkjmkppcekocjdomkc)
+- [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/fenshot/)
+- [Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/fenshot-chess-board-to-f/cjcpedpebpfcedbcfejppadobfohbaif)
+- [Source code (GitHub)](https://github.com/scoriiu/fenshot)
+- [npm package @scoriiu/fenshot](https://www.npmjs.com/package/@scoriiu/fenshot): the recognizer as a library
+
+## Languages
+
+Every page is available in English and in Spanish (/es/), German (/de/), Russian (/ru/), French (/fr/), Portuguese (/pt/), Italian (/it/), Chinese (/zh/), Turkish (/tr/), Dutch (/nl/), Polish (/pl/), Vietnamese (/vi/), Persian (/fa/) and Arabic (/ar/), for example https://fenshot.com/es/ and https://fenshot.com/de/extension/.

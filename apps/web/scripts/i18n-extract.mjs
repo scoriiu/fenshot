@@ -18,8 +18,8 @@ export function englishPages() {
 
 const catalog = {};
 for (const { path, file } of englishPages()) {
-  walk(parseHtml(readFileSync(file, "utf8")), ({ key, text }) => {
-    catalog[key] ??= { text, pages: [] };
+  walk(parseHtml(readFileSync(file, "utf8")), ({ key, text, kind }) => {
+    catalog[key] ??= { text, kind, pages: [] };
     if (!catalog[key].pages.includes(path)) catalog[key].pages.push(path);
   });
 }
