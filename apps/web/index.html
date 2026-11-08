@@ -34,19 +34,23 @@
       {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
+        "@id": "https://fenshot.com/#software",
         "name": "fenshot",
+        "alternateName": ["FenShot", "fenshot: chess image to FEN"],
         "url": "https://fenshot.com/",
         "description": "Chess screenshot to FEN converter. Reads chess positions from screenshots, photos and book diagrams, entirely in the browser, and opens them on a playable analysis board.",
         "applicationCategory": "UtilitiesApplication",
         "operatingSystem": "Any (web browser)",
         "browserRequirements": "Requires a modern browser with WebAssembly",
+        "isAccessibleForFree": true,
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
         "license": "https://github.com/scoriiu/fenshot/blob/main/LICENSE",
+        "codeRepository": "https://github.com/scoriiu/fenshot",
+        "publisher": { "@type": "Organization", "@id": "https://kibitzo.com/#organization", "name": "Kibitzo", "url": "https://kibitzo.com/" },
+        "hasPart": { "@id": "https://fenshot.com/extension/#software" },
         "sameAs": [
           "https://github.com/scoriiu/fenshot",
-          "https://chromewebstore.google.com/detail/fenshot-chess-board-to-fe/fpkdijjlnafehkdkjmkppcekocjdomkc",
-          "https://addons.mozilla.org/en-US/firefox/addon/fenshot/",
-          "https://microsoftedge.microsoft.com/addons/detail/fenshot-chess-board-to-f/cjcpedpebpfcedbcfejppadobfohbaif"
+          "https://www.npmjs.com/package/@scoriiu/fenshot"
         ]
       }
     </script>
@@ -75,7 +79,7 @@
     <section id="seo-content" style="max-width:720px;margin:0 auto;padding:48px 20px 64px;color:#cbd5e1;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.65;font-size:15px">
       <h1 style="color:#fef3c7;font-size:26px;margin:0 0 12px">Chess image to FEN, in your browser</h1>
       <p><strong>A free, open-source alternative to chessvision.ai:</strong> fenshot runs entirely in your browser, with no upload, no account and no scan limit.</p>
-      <p>fenshot reads the position out of any chess picture and gives you a live, analyzable board. Paste a screenshot from chess.com or Lichess, a photo of a chess book diagram, or a position someone posted on Reddit or sent you in a chat. One click later you have the FEN string and a board you can actually move pieces on, with a free Stockfish engine.</p>
+      <p>fenshot reads the position out of a chess screenshot, diagram or photo and gives you a live, analyzable board. Paste a screenshot from chess.com or Lichess, a photo of a chess book diagram, or a position someone posted on Reddit or sent you in a chat. One click later you have the FEN string and a board you can actually move pieces on, with a free Stockfish engine.</p>
       <p>Everything runs in your browser. The image is never uploaded anywhere: a small neural network reads the board locally, which is why the scan finishes in about a second. The whole tool is free and <a href="https://github.com/scoriiu/fenshot" style="color:#fbbf24">open source</a>.</p>
 
       <h2 style="color:#fef3c7;font-size:22px;margin:32px 0 12px">How to convert a chess screenshot to FEN</h2>

@@ -14,7 +14,6 @@
   "ea7c7e3c51": "Come analizzo la posizione dopo la scansione?",
   "9aa5dbad0c": "Clicca Analizza e la posizione si apre su una scacchiera di analisi gratuita con Stockfish in locale. Puoi anche copiare la FEN su qualsiasi sito di scacchi.",
   "b81d839162": "Da immagine di scacchi a FEN, nel tuo browser",
-  "92db178a1d": "fenshot legge la posizione da qualsiasi immagine di scacchi e ti dà una scacchiera viva da analizzare. Incolla uno screenshot da chess.com o Lichess, la foto di un diagramma di un libro di scacchi, o una posizione che qualcuno ha pubblicato su Reddit o ti ha mandato in chat. Un clic dopo hai la stringa FEN e una scacchiera su cui muovere davvero i pezzi, con il motore Stockfish gratuito.",
   "0c7c37d00a": "Tutto gira nel tuo browser. L'immagine non viene mai caricata da nessuna parte: una piccola rete neurale legge la scacchiera in locale, ed è per questo che la scansione finisce in circa un secondo. Lo strumento è completamente gratuito e <a href=\"https://github.com/scoriiu/fenshot\" style=\"color:#fbbf24\">open source</a>.",
   "90b10d5d07": "Come convertire uno screenshot di scacchi in FEN",
   "85c788b95f": "Copia un'immagine di scacchi qualsiasi: premi <strong>Ctrl+V</strong> direttamente in questa pagina, trascina dentro un file o clicca il riquadro per sceglierne uno.",
@@ -126,7 +125,6 @@
   "3aaa9fd1f2": "Privata per progettazione",
   "784823fc4f": "Lo screenshot e il testo della pagina vengono letti solo quando clicchi l'icona, e solo da quella scheda.",
   "8b1869532c": "Il riconoscimento avviene interamente sul tuo dispositivo. Nulla esce dal tuo browser.",
-  "51a5e9b208": "Nessun account, nessuna statistica, nessun tracciamento, nessuna richiesta di rete.",
   "3116014ec3": "Completamente open source con licenza MIT: <a href=\"https://github.com/scoriiu/fenshot\">github.com/scoriiu/fenshot</a>.",
   "a129a012ae": "Funziona con",
   "d5bc9088d2": "Lichess e chess.com nei loro temi più comuni, diagrammi dei libri e la maggior parte dei set di pezzi. Quando una posizione è difficile da leggere, fenshot te lo dice invece di fingere, e ti porta a un editor per correggere le caselle.",
@@ -159,5 +157,8 @@
   "4ef251a5b6": "Gratis per Chrome, Firefox ed Edge: un clic legge qualsiasi scacchiera o lista di mosse sullo schermo e la apre su Lichess. Open source, gira sul tuo dispositivo.",
   "0772ee6d8c": "Qualsiasi scacchiera sul tuo schermo su Lichess o in FEN, con un clic",
   "4e3b8227d9": "fenshot è un'estensione per il browser gratuita e open source per Chrome, Firefox ed Edge. Vedi una posizione di scacchi da qualche parte, su Lichess, su chess.com, in un video di YouTube, in un libro in PDF o in un articolo di un blog, e vuoi analizzarla? Clicca sull'icona di fenshot. L'estensione cattura la scheda visibile, legge la scacchiera con una rete neurale che gira dentro il tuo browser e ti mostra la posizione. Da lì puoi analizzarla su Kibitzo, aprirla su Lichess o copiare la FEN per usarla dove vuoi.",
-  "ff50590d0e": "Partite intere da chessgames.com, Lichess e blog, non solo posizioni"
+  "ff50590d0e": "Partite intere da chessgames.com, Lichess e blog, non solo posizioni",
+  "4e24c27dd4": "fenshot legge la posizione da uno screenshot, un diagramma o una foto di scacchi e ti dà una scacchiera viva da analizzare. Incolla uno screenshot da chess.com o Lichess, la foto di un diagramma di un libro di scacchi, o una posizione che qualcuno ha pubblicato su Reddit o ti ha mandato in chat. Un clic dopo hai la stringa FEN e una scacchiera su cui muovere davvero i pezzi, con il motore Stockfish gratuito.",
+  "eb69b933f5": "fenshot è realizzato dal team di <a href=\"https://kibitzo.com/\">Kibitzo</a>. Se lo conosci come FenShot by Kibitzo da <a href=\"https://kibitzo.com/extension\">kibitzo.com/extension</a>, è questa stessa estensione, con le stesse schede negli store, non una seconda.",
+  "0136092f1c": "L'estensione non ha account, statistiche o tracciamento, e non fa richieste di rete proprie. Il sito fenshot.com conta le visite in forma anonima, senza cookie."
 }

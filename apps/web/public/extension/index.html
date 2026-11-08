@@ -18,12 +18,32 @@
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
+  "@id": "https://fenshot.com/extension/#software",
   "name": "fenshot extension",
+  "alternateName": ["FenShot", "FenShot by Kibitzo", "fenshot: chess board to FEN, one click"],
   "url": "https://fenshot.com/extension/",
   "description": "Browser extension that reads the chess position on any page or screenshot and opens it on a playable analysis board. Chess board image to FEN in one click.",
   "applicationCategory": "BrowserApplication",
+  "applicationSubCategory": "Browser Extension",
   "operatingSystem": "Chrome, Firefox, Edge",
-  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "license": "https://github.com/scoriiu/fenshot/blob/main/LICENSE",
+  "codeRepository": "https://github.com/scoriiu/fenshot",
+  "publisher": { "@type": "Organization", "@id": "https://kibitzo.com/#organization", "name": "Kibitzo", "url": "https://kibitzo.com/" },
+  "isPartOf": { "@id": "https://fenshot.com/#software" },
+  "downloadUrl": [
+    "https://chromewebstore.google.com/detail/fenshot-chess-board-to-fe/fpkdijjlnafehkdkjmkppcekocjdomkc",
+    "https://addons.mozilla.org/en-US/firefox/addon/fenshot/",
+    "https://microsoftedge.microsoft.com/addons/detail/fenshot-chess-board-to-f/cjcpedpebpfcedbcfejppadobfohbaif"
+  ],
+  "sameAs": [
+    "https://chromewebstore.google.com/detail/fenshot-chess-board-to-fe/fpkdijjlnafehkdkjmkppcekocjdomkc",
+    "https://addons.mozilla.org/en-US/firefox/addon/fenshot/",
+    "https://microsoftedge.microsoft.com/addons/detail/fenshot-chess-board-to-f/cjcpedpebpfcedbcfejppadobfohbaif",
+    "https://kibitzo.com/extension",
+    "https://github.com/scoriiu/fenshot"
+  ]
 }
 </script>
 <script type="application/ld+json">
@@ -150,6 +170,7 @@
 <main class="content">
   <h1>Any chess board on your screen to Lichess or FEN, in one click</h1>
   <p>fenshot is a free, open-source browser extension for Chrome, Firefox and Edge. See a chess position anywhere, on Lichess, chess.com, a YouTube video, a book PDF or a blog post, and want to analyze it? Click the fenshot icon. The extension captures the visible tab, reads the board with a neural network that runs inside your browser, and shows you the position. From there you can analyze it on Kibitzo, open it on Lichess, or copy the FEN to use anywhere.</p>
+  <p>fenshot is made by the team behind <a href="https://kibitzo.com/">Kibitzo</a>. If you know it as FenShot by Kibitzo from <a href="https://kibitzo.com/extension">kibitzo.com/extension</a>, it is this same extension, with the same store listings, not a second one.</p>
 
   <h2 id="games">Whole games from chessgames.com, Lichess and blogs, not just positions</h2>
   <p>In the popup, next to the position it read, there is a second card: the game. It appears whenever the page shows a move list. One click on <strong>Analyze on Kibitzo</strong> there sends the whole game, not just the position, so the coach can review every move.</p>
@@ -159,7 +180,7 @@
   <ul>
     <li>The screenshot and the page text are read only when you click the icon, and only from that tab.</li>
     <li>Recognition runs entirely on your device. Nothing leaves your browser.</li>
-    <li>No account, no analytics, no tracking, no network requests.</li>
+    <li>The extension has no account, no analytics and no tracking, and makes no network requests of its own. The fenshot.com website counts anonymous page views, without cookies.</li>
     <li>Fully open source under MIT: <a href="https://github.com/scoriiu/fenshot">github.com/scoriiu/fenshot</a>.</li>
   </ul>
 

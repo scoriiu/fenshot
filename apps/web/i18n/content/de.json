@@ -14,7 +14,6 @@
   "ea7c7e3c51": "Wie analysiere ich die Stellung nach dem Scan?",
   "9aa5dbad0c": "Klick auf Analysieren und die Stellung öffnet sich auf einem kostenlosen Analysebrett, auf dem Stockfish lokal läuft. Du kannst die FEN auch kopieren und auf jeder Schachseite einfügen.",
   "b81d839162": "Schachbild in FEN, direkt im Browser",
-  "92db178a1d": "fenshot liest die Stellung aus jedem Schachbild und gibt dir ein analysierbares Brett. Füge einen Screenshot von chess.com oder Lichess ein, ein Foto eines Diagramms aus einem Schachbuch oder eine Stellung, die jemand auf Reddit gepostet oder dir im Chat geschickt hat. Einen Klick später hast du den FEN-String und ein Brett, auf dem du die Figuren wirklich ziehen kannst, samt kostenloser Stockfish-Engine.",
   "0c7c37d00a": "Alles läuft in deinem Browser. Das Bild wird nirgendwo hochgeladen: Ein kleines neuronales Netz liest das Brett lokal, deshalb ist der Scan in etwa einer Sekunde fertig. Das ganze Tool ist kostenlos und <a href=\"https://github.com/scoriiu/fenshot\" style=\"color:#fbbf24\">Open Source</a>.",
   "90b10d5d07": "So wandelst du einen Schach-Screenshot in FEN um",
   "85c788b95f": "Kopiere ein beliebiges Schachbild: Drück <strong>Ctrl+V</strong> direkt auf dieser Seite, zieh eine Datei hinein oder klick auf das Feld, um eine auszuwählen.",
@@ -126,7 +125,6 @@
   "3aaa9fd1f2": "Privat von Grund auf",
   "784823fc4f": "Screenshot und Seitentext werden nur gelesen, wenn du auf das Symbol klickst, und nur aus diesem Tab.",
   "8b1869532c": "Die Erkennung läuft komplett auf deinem Gerät. Nichts verlässt deinen Browser.",
-  "51a5e9b208": "Kein Konto, keine Analytics, kein Tracking, keine Netzwerkanfragen.",
   "3116014ec3": "Vollständig Open Source unter MIT: <a href=\"https://github.com/scoriiu/fenshot\">github.com/scoriiu/fenshot</a>.",
   "a129a012ae": "Funktioniert mit",
   "d5bc9088d2": "Lichess und chess.com in ihren gängigen Designs, Buchdiagrammen und den meisten Figurensätzen. Ist eine Stellung schwer lesbar, sagt fenshot das ehrlich, statt so zu tun als ob, und leitet dich zu einem Editor, um die Felder zu korrigieren.",
@@ -159,5 +157,8 @@
   "4ef251a5b6": "Kostenlos für Chrome, Firefox und Edge: Ein Klick liest jedes Schachbrett oder jede Zugliste am Bildschirm und öffnet sie auf Lichess. Open Source, lokal.",
   "0772ee6d8c": "Jedes Schachbrett auf deinem Bildschirm zu Lichess oder FEN, mit einem Klick",
   "4e3b8227d9": "fenshot ist eine kostenlose Open-Source-Browser-Erweiterung für Chrome, Firefox und Edge. Du siehst irgendwo eine Schachstellung, auf Lichess, chess.com, in einem YouTube-Video, einem PDF-Buch oder einem Blogartikel, und willst sie analysieren? Klick auf das fenshot Symbol. Die Erweiterung erfasst den sichtbaren Tab, liest das Brett mit einem neuronalen Netz, das in deinem Browser läuft, und zeigt dir die Stellung. Von dort kannst du sie auf Kibitzo analysieren, auf Lichess öffnen oder die FEN kopieren und überall nutzen.",
-  "ff50590d0e": "Ganze Partien von chessgames.com, Lichess und Blogs, nicht nur Stellungen"
+  "ff50590d0e": "Ganze Partien von chessgames.com, Lichess und Blogs, nicht nur Stellungen",
+  "4e24c27dd4": "fenshot liest die Stellung aus einem Schach-Screenshot, Diagramm oder Foto und gibt dir ein analysierbares Brett. Füge einen Screenshot von chess.com oder Lichess ein, ein Foto eines Diagramms aus einem Schachbuch oder eine Stellung, die jemand auf Reddit gepostet oder dir im Chat geschickt hat. Einen Klick später hast du den FEN-String und ein Brett, auf dem du die Figuren wirklich ziehen kannst, samt kostenloser Stockfish-Engine.",
+  "eb69b933f5": "fenshot kommt vom Team hinter <a href=\"https://kibitzo.com/\">Kibitzo</a>. Wenn du es als FenShot by Kibitzo von <a href=\"https://kibitzo.com/extension\">kibitzo.com/extension</a> kennst: Es ist dieselbe Erweiterung, mit denselben Store-Einträgen, keine zweite.",
+  "0136092f1c": "Die Erweiterung hat kein Konto, keine Analyse und kein Tracking und stellt keine eigenen Netzwerkanfragen. Die Website fenshot.com zählt anonyme Seitenaufrufe, ohne Cookies."
 }

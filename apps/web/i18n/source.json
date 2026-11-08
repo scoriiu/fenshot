@@ -139,8 +139,8 @@
       "/"
     ]
   },
-  "92db178a1d": {
-    "text": "fenshot reads the position out of any chess picture and gives you a live, analyzable board. Paste a screenshot from chess.com or Lichess, a photo of a chess book diagram, or a position someone posted on Reddit or sent you in a chat. One click later you have the FEN string and a board you can actually move pieces on, with a free Stockfish engine.",
+  "4e24c27dd4": {
+    "text": "fenshot reads the position out of a chess screenshot, diagram or photo and gives you a live, analyzable board. Paste a screenshot from chess.com or Lichess, a photo of a chess book diagram, or a position someone posted on Reddit or sent you in a chat. One click later you have the FEN string and a board you can actually move pieces on, with a free Stockfish engine.",
     "kind": "text",
     "pages": [
       "/"
@@ -977,6 +977,13 @@
       "/extension/"
     ]
   },
+  "eb69b933f5": {
+    "text": "fenshot is made by the team behind <a href=\"https://kibitzo.com/\">Kibitzo</a>. If you know it as FenShot by Kibitzo from <a href=\"https://kibitzo.com/extension\">kibitzo.com/extension</a>, it is this same extension, with the same store listings, not a second one.",
+    "kind": "text",
+    "pages": [
+      "/extension/"
+    ]
+  },
   "ff50590d0e": {
     "text": "Whole games from chessgames.com, Lichess and blogs, not just positions",
     "kind": "text",
@@ -1020,8 +1027,8 @@
       "/extension/"
     ]
   },
-  "51a5e9b208": {
-    "text": "No account, no analytics, no tracking, no network requests.",
+  "0136092f1c": {
+    "text": "The extension has no account, no analytics and no tracking, and makes no network requests of its own. The fenshot.com website counts anonymous page views, without cookies.",
     "kind": "text",
     "pages": [
       "/extension/"

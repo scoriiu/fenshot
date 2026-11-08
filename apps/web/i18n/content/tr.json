@@ -14,7 +14,6 @@
   "ea7c7e3c51": "Taramadan sonra pozisyonu nasıl analiz ederim?",
   "9aa5dbad0c": "Analiz Et'e tıklayın, pozisyon yerel olarak çalışan Stockfish ile ücretsiz bir analiz tahtasında açılır. FEN'i kopyalayıp istediğiniz satranç sitesine de götürebilirsiniz.",
   "b81d839162": "Satranç görselinden FEN, tarayıcınızda",
-  "92db178a1d": "fenshot, herhangi bir satranç resmindeki pozisyonu okur ve size canlı, analiz edilebilir bir tahta verir. chess.com ya da Lichess ekran görüntüsünü, bir satranç kitabı diyagramının fotoğrafını ya da Reddit'te paylaşılan veya sohbette gönderilen bir pozisyonu yapıştırın. Bir tık sonra elinizde FEN dizisi ve taşları gerçekten oynatabildiğiniz, ücretsiz Stockfish motorlu bir tahta olur.",
   "0c7c37d00a": "Her şey tarayıcınızda çalışır. Görsel hiçbir yere yüklenmez: tahtayı küçük bir sinir ağı yerel olarak okur, tarama da bu yüzden yaklaşık bir saniyede biter. Aracın tamamı ücretsiz ve <a href=\"https://github.com/scoriiu/fenshot\" style=\"color:#fbbf24\">açık kaynak</a>.",
   "90b10d5d07": "Satranç ekran görüntüsü FEN'e nasıl çevrilir",
   "85c788b95f": "Herhangi bir satranç görselini kopyalayın: bu sayfada doğrudan <strong>Ctrl+V</strong> tuşlarına basın, bir dosya sürükleyin ya da kutuya tıklayıp dosya seçin.",
@@ -126,7 +125,6 @@
   "3aaa9fd1f2": "Tasarımı gereği gizli",
   "784823fc4f": "Ekran görüntüsü ve sayfa metni yalnızca simgeye tıkladığınızda ve yalnızca o sekmeden okunur.",
   "8b1869532c": "Tanıma tamamen cihazınızda çalışır. Hiçbir şey tarayıcınızdan çıkmaz.",
-  "51a5e9b208": "Hesap yok, analitik yok, izleme yok, ağ isteği yok.",
   "3116014ec3": "MIT lisansıyla tamamen açık kaynak: <a href=\"https://github.com/scoriiu/fenshot\">github.com/scoriiu/fenshot</a>.",
   "a129a012ae": "Uyumlu olduğu yerler",
   "d5bc9088d2": "Yaygın temalarıyla Lichess ve chess.com, kitap diyagramları ve çoğu taş seti. Bir pozisyon zor okunuyorsa fenshot okumuş gibi yapmaz, bunu söyler ve kareleri düzeltebileceğiniz bir editöre yönlendirir.",
@@ -159,5 +157,8 @@
   "4ef251a5b6": "Chrome, Firefox ve Edge için ücretsiz: tek tık, ekrandaki her satranç tahtasını veya hamle listesini okur ve Lichess'te açar. Açık kaynak, cihazınızda çalışır.",
   "0772ee6d8c": "Ekranınızdaki her satranç tahtası tek tıkla Lichess'te veya FEN olarak",
   "4e3b8227d9": "fenshot; Chrome, Firefox ve Edge için ücretsiz ve açık kaynaklı bir tarayıcı eklentisidir. Lichess'te, chess.com'da, bir YouTube videosunda, PDF bir kitapta ya da bir blog yazısında bir satranç pozisyonu gördünüz ve analiz etmek mi istiyorsunuz? fenshot simgesine tıklayın. Eklenti görünen sekmeyi yakalar, tahtayı tarayıcınızın içinde çalışan bir sinir ağıyla okur ve size pozisyonu gösterir. Oradan Kibitzo'da analiz edebilir, Lichess'te açabilir ya da FEN'i kopyalayıp istediğiniz yerde kullanabilirsiniz.",
-  "ff50590d0e": "Sadece pozisyonlar değil: chessgames.com, Lichess ve bloglardan oyunların tamamı"
+  "ff50590d0e": "Sadece pozisyonlar değil: chessgames.com, Lichess ve bloglardan oyunların tamamı",
+  "4e24c27dd4": "fenshot, bir satranç ekran görüntüsündeki, diyagramındaki veya fotoğrafındaki pozisyonu okur ve size canlı, analiz edilebilir bir tahta verir. chess.com ya da Lichess ekran görüntüsünü, bir satranç kitabı diyagramının fotoğrafını ya da Reddit'te paylaşılan veya sohbette gönderilen bir pozisyonu yapıştırın. Bir tık sonra elinizde FEN dizisi ve taşları gerçekten oynatabildiğiniz, ücretsiz Stockfish motorlu bir tahta olur.",
+  "eb69b933f5": "fenshot, <a href=\"https://kibitzo.com/\">Kibitzo</a> ekibi tarafından yapıldı. Onu <a href=\"https://kibitzo.com/extension\">kibitzo.com/extension</a> sayfasından FenShot by Kibitzo olarak tanıyorsanız, aynı mağaza sayfalarına sahip bu aynı eklentidir, ikinci bir eklenti değildir.",
+  "0136092f1c": "Eklentide hesap, analiz ve izleme yoktur; kendi başına hiçbir ağ isteği yapmaz. fenshot.com sitesi, çerez kullanmadan anonim sayfa görüntülemelerini sayar."
 }

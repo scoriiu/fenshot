@@ -14,7 +14,6 @@
   "ea7c7e3c51": "识别后怎么分析局面？",
   "9aa5dbad0c": "点击“分析”，局面就会在免费的分析棋盘上打开，Stockfish 在本地运行。你也可以复制FEN，粘贴到任何国际象棋网站。",
   "b81d839162": "国际象棋图片转FEN，在浏览器中完成",
-  "92db178a1d": "fenshot 能从任何国际象棋图片中读出局面，给你一个可实时分析的棋盘。粘贴一张 chess.com 或 Lichess 的截图、一张国际象棋书中棋局图的照片，或者别人在 Reddit 上发的、在聊天里转给你的局面，一键之后，你就拿到FEN字符串和一个真正能走子的棋盘，还附带免费的 Stockfish 引擎。",
   "0c7c37d00a": "一切都在你的浏览器中运行。图片从不上传：一个小型神经网络在本地读取棋盘，所以大约一秒就能识别完成。整个工具免费且<a href=\"https://github.com/scoriiu/fenshot\" style=\"color:#fbbf24\">开源</a>。",
   "90b10d5d07": "如何把国际象棋截图转换成FEN",
   "85c788b95f": "复制任意国际象棋图片：直接在本页按 <strong>Ctrl+V</strong>，把文件拖进来，或点击方框选择文件。",
@@ -126,7 +125,6 @@
   "3aaa9fd1f2": "隐私优先的设计",
   "784823fc4f": "只有在你点击图标时，才会读取截图和页面文字，而且只读取当前标签页。",
   "8b1869532c": "识别完全在你的设备上进行，任何内容都不会离开你的浏览器。",
-  "51a5e9b208": "无需账号，没有统计分析，没有跟踪，没有网络请求。",
   "3116014ec3": "基于 MIT 许可证完全开源：<a href=\"https://github.com/scoriiu/fenshot\">github.com/scoriiu/fenshot</a>。",
   "a129a012ae": "支持",
   "d5bc9088d2": "常见主题的 Lichess 和 chess.com、书中的棋局图，以及大多数棋子样式。局面难以识别时，fenshot 会如实告诉你，而不是假装读懂了，并带你到编辑器修正格子。",
@@ -159,5 +157,8 @@
   "4ef251a5b6": "免费支持 Chrome、Firefox 和 Edge：一键读取屏幕上的任何棋盘或着法列表，并在 Lichess 打开。开源，在本地设备运行。",
   "0772ee6d8c": "屏幕上的任何棋盘，一键转到 Lichess 或 FEN",
   "4e3b8227d9": "fenshot 是一款免费开源的浏览器扩展，支持 Chrome、Firefox 和 Edge。在 Lichess、chess.com、YouTube 视频、PDF 棋书或博客文章里看到一个国际象棋局面，想分析一下？点击 fenshot 图标即可。扩展会截取当前可见的标签页，用在你浏览器内运行的神经网络读取棋盘，然后把局面展示给你。接下来，你可以在 Kibitzo 上分析，在 Lichess 打开，或者复制FEN到任何地方使用。",
-  "ff50590d0e": "不只是局面，还能导入 chessgames.com、Lichess 和博客上的整盘对局"
+  "ff50590d0e": "不只是局面，还能导入 chessgames.com、Lichess 和博客上的整盘对局",
+  "4e24c27dd4": "fenshot 能从国际象棋截图、棋局图或照片中读出局面，给你一个可实时分析的棋盘。粘贴一张 chess.com 或 Lichess 的截图、一张国际象棋书中棋局图的照片，或者别人在 Reddit 上发的、在聊天里转给你的局面，一键之后，你就拿到FEN字符串和一个真正能走子的棋盘，还附带免费的 Stockfish 引擎。",
+  "eb69b933f5": "fenshot 由 <a href=\"https://kibitzo.com/\">Kibitzo</a> 团队打造。如果你在 <a href=\"https://kibitzo.com/extension\">kibitzo.com/extension</a> 上见过 FenShot by Kibitzo，那就是这款扩展本身，商店页面也完全相同，并不是另一款扩展。",
+  "0136092f1c": "扩展没有账号、没有统计、没有追踪，自身也不发出任何网络请求。fenshot.com 网站会匿名统计页面访问量，不使用 Cookie。"
 }

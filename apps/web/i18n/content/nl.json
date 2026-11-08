@@ -14,7 +14,6 @@
   "ea7c7e3c51": "Hoe analyseer ik de stelling na het scannen?",
   "9aa5dbad0c": "Klik op Analyseren en de stelling opent op een gratis analysebord met Stockfish, lokaal op je apparaat. Je kunt de FEN ook kopiëren naar elke andere schaaksite.",
   "b81d839162": "Schaakafbeelding naar FEN, in je browser",
-  "92db178a1d": "fenshot leest de stelling uit elke schaakafbeelding en geeft je een live bord om te analyseren. Plak een screenshot van chess.com of Lichess, een foto van een diagram uit een schaakboek, of een stelling die iemand op Reddit plaatste of je in een chat stuurde. Eén klik later heb je de FEN en een bord waarop je echt stukken kunt verzetten, met een gratis Stockfish-engine.",
   "0c7c37d00a": "Alles draait in je browser. De afbeelding wordt nergens naartoe geüpload: een klein neuraal netwerk leest het bord lokaal, en daarom is de scan in ongeveer een seconde klaar. De hele tool is gratis en <a href=\"https://github.com/scoriiu/fenshot\" style=\"color:#fbbf24\">open source</a>.",
   "90b10d5d07": "Zo zet je een schaakscreenshot om naar FEN",
   "85c788b95f": "Kopieer een schaakafbeelding: druk op <strong>Ctrl+V</strong> op deze pagina, sleep een bestand hierheen of klik op het vak om er een te kiezen.",
@@ -126,7 +125,6 @@
   "3aaa9fd1f2": "Privé, zo ontworpen",
   "784823fc4f": "De screenshot en de paginatekst worden alleen gelezen als je op het icoon klikt, en alleen van dat tabblad.",
   "8b1869532c": "De herkenning gebeurt volledig op je apparaat. Niets verlaat je browser.",
-  "51a5e9b208": "Geen account, geen analytics, geen tracking, geen netwerkverzoeken.",
   "3116014ec3": "Volledig open source onder MIT: <a href=\"https://github.com/scoriiu/fenshot\">github.com/scoriiu/fenshot</a>.",
   "a129a012ae": "Werkt met",
   "d5bc9088d2": "Lichess en chess.com in hun gangbare thema's, boekdiagrammen en de meeste stukkensets. Is een stelling moeilijk te lezen, dan zegt fenshot dat eerlijk in plaats van te doen alsof, en stuurt je naar een editor om de velden te verbeteren.",
@@ -159,5 +157,8 @@
   "4ef251a5b6": "Gratis voor Chrome, Firefox en Edge: één klik leest elk schaakbord of elke zettenlijst op je scherm en opent die op Lichess. Open source, draait op je apparaat.",
   "0772ee6d8c": "Elk schaakbord op je scherm naar Lichess of FEN, in één klik",
   "4e3b8227d9": "fenshot is een gratis, open-source browserextensie voor Chrome, Firefox en Edge. Zie je ergens een schaakstelling, op Lichess, chess.com, in een YouTube-video, een boek-PDF of een blogpost, en wil je die analyseren? Klik op het fenshot-icoon. De extensie legt het zichtbare tabblad vast, leest het bord met een neuraal netwerk dat in je browser draait en toont je de stelling. Daarna kun je hem analyseren op Kibitzo, openen op Lichess of de FEN kopiëren om overal te gebruiken.",
-  "ff50590d0e": "Hele partijen van chessgames.com, Lichess en blogs, niet alleen stellingen"
+  "ff50590d0e": "Hele partijen van chessgames.com, Lichess en blogs, niet alleen stellingen",
+  "4e24c27dd4": "fenshot leest de stelling uit een schaakscreenshot, diagram of foto en geeft je een live bord om te analyseren. Plak een screenshot van chess.com of Lichess, een foto van een diagram uit een schaakboek, of een stelling die iemand op Reddit plaatste of je in een chat stuurde. Eén klik later heb je de FEN en een bord waarop je echt stukken kunt verzetten, met een gratis Stockfish-engine.",
+  "eb69b933f5": "fenshot is gemaakt door het team achter <a href=\"https://kibitzo.com/\">Kibitzo</a>. Ken je het als FenShot by Kibitzo van <a href=\"https://kibitzo.com/extension\">kibitzo.com/extension</a>? Dan is het deze zelfde extensie, met dezelfde vermeldingen in de stores, geen tweede.",
+  "0136092f1c": "De extensie heeft geen account, geen analytics en geen tracking, en doet zelf geen netwerkverzoeken. De website fenshot.com telt anonieme paginaweergaven, zonder cookies."
 }

@@ -14,7 +14,6 @@
   "ea7c7e3c51": "¿Cómo analizo la posición después de escanearla?",
   "9aa5dbad0c": "Haz clic en Analizar y la posición se abre en un tablero de análisis gratuito con Stockfish funcionando en local. También puedes copiar el FEN a cualquier web de ajedrez.",
   "b81d839162": "Imagen de ajedrez a FEN, en tu navegador",
-  "92db178a1d": "fenshot lee la posición de cualquier imagen de ajedrez y te da un tablero vivo para analizar. Pega una captura de chess.com o Lichess, la foto de un diagrama de un libro de ajedrez o una posición que alguien publicó en Reddit o te envió por chat. Un clic después tienes la cadena FEN y un tablero en el que puedes mover las piezas de verdad, con el motor Stockfish gratis.",
   "0c7c37d00a": "Todo funciona en tu navegador. La imagen nunca se sube a ningún sitio: una pequeña red neuronal lee el tablero en local, y por eso el escaneo termina en un segundo más o menos. La herramienta es gratuita y de <a href=\"https://github.com/scoriiu/fenshot\" style=\"color:#fbbf24\">código abierto</a>.",
   "90b10d5d07": "Cómo convertir una captura de pantalla de ajedrez a FEN",
   "85c788b95f": "Copia cualquier imagen de ajedrez: pulsa <strong>Ctrl+V</strong> en esta misma página, arrastra un archivo o haz clic en el recuadro para elegir uno.",
@@ -126,7 +125,6 @@
   "3aaa9fd1f2": "Privado por diseño",
   "784823fc4f": "La captura y el texto de la página solo se leen cuando haces clic en el icono, y solo de esa pestaña.",
   "8b1869532c": "El reconocimiento se ejecuta por completo en tu dispositivo. Nada sale de tu navegador.",
-  "51a5e9b208": "Sin cuenta, sin analíticas, sin rastreo, sin peticiones de red.",
   "3116014ec3": "Totalmente de código abierto con licencia MIT: <a href=\"https://github.com/scoriiu/fenshot\">github.com/scoriiu/fenshot</a>.",
   "a129a012ae": "Funciona con",
   "d5bc9088d2": "Lichess y chess.com con sus temas habituales, diagramas de libros y la mayoría de juegos de piezas. Cuando una posición es difícil de leer, fenshot lo dice en lugar de fingir, y te lleva a un editor para corregir las casillas.",
@@ -159,5 +157,8 @@
   "4ef251a5b6": "Gratis para Chrome, Firefox y Edge: un clic lee cualquier tablero o lista de jugadas en tu pantalla y lo abre en Lichess. Código abierto, funciona en tu equipo.",
   "0772ee6d8c": "Cualquier tablero de ajedrez de tu pantalla a Lichess o FEN, con un clic",
   "4e3b8227d9": "fenshot es una extensión gratuita y de código abierto para Chrome, Firefox y Edge. ¿Ves una posición de ajedrez en cualquier sitio, en Lichess, chess.com, un vídeo de YouTube, un libro en PDF o un artículo de blog, y quieres analizarla? Haz clic en el icono de fenshot. La extensión captura la pestaña visible, lee el tablero con una red neuronal que se ejecuta dentro de tu navegador y te muestra la posición. Desde ahí puedes analizarla en Kibitzo, abrirla en Lichess o copiar el FEN para usarlo donde quieras.",
-  "ff50590d0e": "Partidas completas de chessgames.com, Lichess y blogs, no solo posiciones"
+  "ff50590d0e": "Partidas completas de chessgames.com, Lichess y blogs, no solo posiciones",
+  "4e24c27dd4": "fenshot lee la posición de una captura, un diagrama o una foto de ajedrez y te da un tablero vivo para analizar. Pega una captura de chess.com o Lichess, la foto de un diagrama de un libro de ajedrez o una posición que alguien publicó en Reddit o te envió por chat. Un clic después tienes la cadena FEN y un tablero en el que puedes mover las piezas de verdad, con el motor Stockfish gratis.",
+  "eb69b933f5": "fenshot está hecho por el equipo de <a href=\"https://kibitzo.com/\">Kibitzo</a>. Si lo conoces como FenShot by Kibitzo por <a href=\"https://kibitzo.com/extension\">kibitzo.com/extension</a>, es esta misma extensión, con las mismas fichas en las tiendas, no una segunda.",
+  "0136092f1c": "La extensión no tiene cuenta, ni analíticas, ni rastreo, y no hace peticiones de red propias. El sitio fenshot.com cuenta visitas anónimas, sin cookies."
 }

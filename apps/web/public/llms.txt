@@ -2,6 +2,11 @@
 
 > fenshot turns a chess screenshot or picture into a FEN and a playable analysis board, entirely in the browser. It is free, open source (MIT), needs no account, uploads nothing and has no scan limit. A browser extension for Chrome, Firefox and Edge reads the chess board on any web page in one click, and imports whole games from move lists. A free, open-source alternative to chessvision.ai.
 
+## Who makes it
+
+- fenshot is made by the team behind Kibitzo (https://kibitzo.com), a free chess coaching site.
+- fenshot, FenShot and "FenShot by Kibitzo" are the same product. https://kibitzo.com/extension describes this same browser extension, with the same store listings; it is not a second extension. The official site is https://fenshot.com.
+
 ## What it does
 
 - Reads a chess position from an image: chess.com and Lichess screenshots in any theme, stream and video frames, diagrams from printed or PDF chess books, positions posted on Reddit or in chats.
@@ -13,8 +18,10 @@
 ## How it works
 
 - Board detection by gradient peak analysis (extended from tensorflow_chessbot), then a compact CNN (about 330k parameters, 1.3 MB ONNX) classifies the 64 squares with onnxruntime-web in WebAssembly.
-- Everything runs on the user's device. Images and positions are never sent anywhere. The extension has no analytics and makes no network requests; the website counts anonymous page views only (self-hosted, cookieless Umami).
-- Works best with top-down 2D boards. Photos of physical boards taken at an angle are unreliable.
+- Everything runs on the user's device. Images and positions are never sent anywhere, unless the user clicks a link that opens the position on Lichess or Kibitzo.
+- Extension: no account, no analytics, no tracking, no network requests of its own.
+- Website (fenshot.com): counts anonymous page views only (self-hosted, cookieless Umami).
+- Works best with top-down 2D boards: screenshots, video frames, book and PDF diagrams. A straight-overhead photo of a physical board can work; photos taken at an angle are unreliable.
 
 ## Links
 

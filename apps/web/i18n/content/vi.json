@@ -14,7 +14,6 @@
   "ea7c7e3c51": "Làm sao để phân tích thế cờ sau khi quét?",
   "9aa5dbad0c": "Nhấn Phân tích, thế cờ sẽ mở trên bàn cờ phân tích miễn phí với Stockfish chạy ngay trên máy. Bạn cũng có thể sao chép FEN sang bất kỳ trang cờ vua nào.",
   "b81d839162": "Ảnh cờ vua sang FEN, ngay trong trình duyệt",
-  "92db178a1d": "fenshot đọc thế cờ từ bất kỳ ảnh cờ vua nào và trả về một bàn cờ sống để phân tích. Dán ảnh chụp màn hình từ chess.com hay Lichess, ảnh chụp sơ đồ trong sách cờ, hoặc một thế cờ ai đó đăng trên Reddit hay gửi cho bạn qua tin nhắn. Chỉ một cú nhấp, bạn có chuỗi FEN và một bàn cờ thật sự đi quân được, kèm engine Stockfish miễn phí.",
   "0c7c37d00a": "Mọi thứ chạy trong trình duyệt của bạn. Ảnh không bao giờ được tải lên đâu cả: một mạng nơ-ron nhỏ đọc bàn cờ ngay trên máy, vì vậy việc quét chỉ mất khoảng một giây. Toàn bộ công cụ miễn phí và <a href=\"https://github.com/scoriiu/fenshot\" style=\"color:#fbbf24\">mã nguồn mở</a>.",
   "90b10d5d07": "Cách chuyển ảnh chụp màn hình cờ vua sang FEN",
   "85c788b95f": "Sao chép một ảnh cờ vua bất kỳ: nhấn <strong>Ctrl+V</strong> ngay trên trang này, kéo thả tệp vào, hoặc nhấp vào khung để chọn tệp.",
@@ -126,7 +125,6 @@
   "3aaa9fd1f2": "Riêng tư ngay từ thiết kế",
   "784823fc4f": "Ảnh chụp màn hình và nội dung trang chỉ được đọc khi bạn nhấp vào biểu tượng, và chỉ từ tab đó.",
   "8b1869532c": "Việc nhận diện diễn ra hoàn toàn trên thiết bị của bạn. Không có gì rời khỏi trình duyệt.",
-  "51a5e9b208": "Không tài khoản, không phân tích hành vi, không theo dõi, không yêu cầu mạng.",
   "3116014ec3": "Mã nguồn mở hoàn toàn theo giấy phép MIT: <a href=\"https://github.com/scoriiu/fenshot\">github.com/scoriiu/fenshot</a>.",
   "a129a012ae": "Dùng được với",
   "d5bc9088d2": "Lichess và chess.com với các giao diện phổ biến, sơ đồ trong sách và hầu hết các bộ quân. Khi một thế cờ khó đọc, fenshot nói thẳng thay vì giả vờ, và đưa bạn đến trình chỉnh sửa để sửa các ô.",
@@ -159,5 +157,8 @@
   "4ef251a5b6": "Miễn phí cho Chrome, Firefox và Edge: một cú nhấp đọc mọi bàn cờ hay danh sách nước đi trên màn hình và mở trên Lichess. Mã nguồn mở, chạy trên máy bạn.",
   "0772ee6d8c": "Mọi bàn cờ trên màn hình sang Lichess hoặc FEN, chỉ một cú nhấp",
   "4e3b8227d9": "fenshot là tiện ích trình duyệt miễn phí, mã nguồn mở cho Chrome, Firefox và Edge. Bắt gặp một thế cờ ở đâu đó, trên Lichess, chess.com, trong video YouTube, sách PDF hay bài blog, và muốn phân tích nó? Nhấn vào biểu tượng fenshot. Tiện ích chụp lại tab đang hiển thị, đọc bàn cờ bằng một mạng nơ-ron chạy ngay trong trình duyệt và hiển thị thế cờ cho bạn. Từ đó bạn có thể phân tích trên Kibitzo, mở trên Lichess, hoặc sao chép FEN để dùng ở bất cứ đâu.",
-  "ff50590d0e": "Cả ván đấu từ chessgames.com, Lichess và blog, không chỉ thế cờ"
+  "ff50590d0e": "Cả ván đấu từ chessgames.com, Lichess và blog, không chỉ thế cờ",
+  "4e24c27dd4": "fenshot đọc thế cờ từ ảnh chụp màn hình, sơ đồ hoặc ảnh chụp cờ vua và trả về một bàn cờ sống để phân tích. Dán ảnh chụp màn hình từ chess.com hay Lichess, ảnh chụp sơ đồ trong sách cờ, hoặc một thế cờ ai đó đăng trên Reddit hay gửi cho bạn qua tin nhắn. Chỉ một cú nhấp, bạn có chuỗi FEN và một bàn cờ thật sự đi quân được, kèm engine Stockfish miễn phí.",
+  "eb69b933f5": "fenshot do đội ngũ đứng sau <a href=\"https://kibitzo.com/\">Kibitzo</a> làm ra. Nếu bạn biết nó với tên FenShot by Kibitzo trên <a href=\"https://kibitzo.com/extension\">kibitzo.com/extension</a>, thì đó chính là tiện ích này, cùng các trang trên cửa hàng, không phải một tiện ích khác.",
+  "0136092f1c": "Tiện ích không có tài khoản, không thống kê, không theo dõi và không tự gửi yêu cầu mạng nào. Trang fenshot.com đếm lượt xem trang ẩn danh, không dùng cookie."
 }

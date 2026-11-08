@@ -14,7 +14,6 @@
   "ea7c7e3c51": "Jak przeanalizować pozycję po skanowaniu?",
   "9aa5dbad0c": "Kliknij Analizuj, a pozycja otworzy się na darmowej szachownicy analizy z lokalnie działającym Stockfish. Możesz też skopiować FEN na dowolny serwis szachowy.",
   "b81d839162": "Obraz szachowy na FEN, w twojej przeglądarce",
-  "92db178a1d": "fenshot odczytuje pozycję z dowolnego obrazka szachowego i daje ci żywą szachownicę do analizy. Wklej zrzut ekranu z chess.com lub Lichess, zdjęcie diagramu z książki szachowej albo pozycję, którą ktoś wrzucił na Reddit lub przesłał ci na czacie. Jedno kliknięcie i masz zapis FEN oraz szachownicę, na której naprawdę możesz przesuwać bierki, z darmowym silnikiem Stockfish.",
   "0c7c37d00a": "Wszystko działa w twojej przeglądarce. Obraz nigdzie nie jest wysyłany: mała sieć neuronowa odczytuje szachownicę lokalnie, dlatego skanowanie trwa około sekundy. Całe narzędzie jest darmowe i <a href=\"https://github.com/scoriiu/fenshot\" style=\"color:#fbbf24\">open source</a>.",
   "90b10d5d07": "Jak zamienić zrzut ekranu szachowy na FEN",
   "85c788b95f": "Skopiuj dowolny obraz szachowy: naciśnij <strong>Ctrl+V</strong> na tej stronie, przeciągnij plik albo kliknij pole, aby go wybrać.",
@@ -126,7 +125,6 @@
   "3aaa9fd1f2": "Prywatność od podstaw",
   "784823fc4f": "Zrzut ekranu i tekst strony są odczytywane tylko wtedy, gdy klikniesz ikonę, i tylko z tej karty.",
   "8b1869532c": "Rozpoznawanie działa w całości na twoim urządzeniu. Nic nie opuszcza twojej przeglądarki.",
-  "51a5e9b208": "Bez konta, bez analityki, bez śledzenia, bez żądań sieciowych.",
   "3116014ec3": "W pełni open source na licencji MIT: <a href=\"https://github.com/scoriiu/fenshot\">github.com/scoriiu/fenshot</a>.",
   "a129a012ae": "Współpracuje z",
   "d5bc9088d2": "Lichess i chess.com w popularnych motywach, diagramy z książek i większość zestawów bierek. Gdy pozycja jest trudna do odczytania, fenshot mówi o tym wprost, zamiast udawać, i kieruje cię do edytora, w którym poprawisz pola.",
@@ -159,5 +157,8 @@
   "4ef251a5b6": "Za darmo dla Chrome, Firefox i Edge: jedno kliknięcie odczytuje szachownicę lub listę ruchów z ekranu i otwiera ją na Lichess. Open source, działa lokalnie.",
   "0772ee6d8c": "Dowolna szachownica z ekranu na Lichess lub FEN, jednym kliknięciem",
   "4e3b8227d9": "fenshot to darmowe rozszerzenie przeglądarki open source dla Chrome, Firefox i Edge. Widzisz gdzieś pozycję szachową, na Lichess, chess.com, w filmie na YouTube, w książce PDF albo we wpisie na blogu, i chcesz ją przeanalizować? Kliknij ikonę fenshot. Rozszerzenie przechwytuje widoczną kartę, odczytuje szachownicę siecią neuronową działającą w twojej przeglądarce i pokazuje ci pozycję. Potem możesz przeanalizować ją na Kibitzo, otworzyć na Lichess albo skopiować FEN i użyć go gdziekolwiek.",
-  "ff50590d0e": "Całe partie z chessgames.com, Lichess i blogów, nie tylko pozycje"
+  "ff50590d0e": "Całe partie z chessgames.com, Lichess i blogów, nie tylko pozycje",
+  "4e24c27dd4": "fenshot odczytuje pozycję ze zrzutu ekranu, diagramu lub zdjęcia szachowego i daje ci żywą szachownicę do analizy. Wklej zrzut ekranu z chess.com lub Lichess, zdjęcie diagramu z książki szachowej albo pozycję, którą ktoś wrzucił na Reddit lub przesłał ci na czacie. Jedno kliknięcie i masz zapis FEN oraz szachownicę, na której naprawdę możesz przesuwać bierki, z darmowym silnikiem Stockfish.",
+  "eb69b933f5": "fenshot tworzy zespół <a href=\"https://kibitzo.com/\">Kibitzo</a>. Jeśli znasz go jako FenShot by Kibitzo ze strony <a href=\"https://kibitzo.com/extension\">kibitzo.com/extension</a>, to jest to samo rozszerzenie, z tymi samymi stronami w sklepach, a nie drugie.",
+  "0136092f1c": "Rozszerzenie nie ma konta, analityki ani śledzenia i nie wysyła własnych zapytań sieciowych. Strona fenshot.com liczy anonimowe wyświetlenia, bez plików cookie."
 }

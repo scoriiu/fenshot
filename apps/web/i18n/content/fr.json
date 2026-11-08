@@ -14,7 +14,6 @@
   "ea7c7e3c51": "Comment analyser la position après la lecture ?",
   "9aa5dbad0c": "Cliquez sur Analyser et la position s'ouvre sur un échiquier d'analyse gratuit, avec Stockfish en local. Vous pouvez aussi copier la FEN vers n'importe quel site d'échecs.",
   "b81d839162": "Image d'échecs en FEN, dans votre navigateur",
-  "92db178a1d": "fenshot lit la position sur n'importe quelle image d'échecs et vous donne un échiquier vivant, prêt à analyser. Collez une capture d'écran de chess.com ou de Lichess, la photo d'un diagramme de livre d'échecs, ou une position publiée sur Reddit ou reçue dans une conversation. Un clic plus tard, vous avez la FEN et un échiquier sur lequel vous pouvez vraiment déplacer les pièces, avec un moteur Stockfish gratuit.",
   "0c7c37d00a": "Tout se passe dans votre navigateur. L'image n'est jamais envoyée nulle part : un petit réseau de neurones lit l'échiquier en local, c'est pourquoi la lecture prend environ une seconde. L'outil est entièrement gratuit et <a href=\"https://github.com/scoriiu/fenshot\" style=\"color:#fbbf24\">open source</a>.",
   "90b10d5d07": "Comment convertir une capture d'écran d'échecs en FEN",
   "85c788b95f": "Copiez une image d'échecs : appuyez sur <strong>Ctrl+V</strong> directement sur cette page, glissez-y un fichier, ou cliquez sur le cadre pour en choisir un.",
@@ -126,7 +125,6 @@
   "3aaa9fd1f2": "Confidentiel par conception",
   "784823fc4f": "La capture et le texte de la page ne sont lus que lorsque vous cliquez sur l'icône, et uniquement dans cet onglet.",
   "8b1869532c": "La reconnaissance se fait entièrement sur votre appareil. Rien ne quitte votre navigateur.",
-  "51a5e9b208": "Pas de compte, pas de statistiques, pas de pistage, aucune requête réseau.",
   "3116014ec3": "Entièrement open source sous licence MIT : <a href=\"https://github.com/scoriiu/fenshot\">github.com/scoriiu/fenshot</a>.",
   "a129a012ae": "Compatible avec",
   "d5bc9088d2": "Lichess et chess.com dans leurs thèmes courants, les diagrammes de livres et la plupart des jeux de pièces. Quand une position est difficile à lire, fenshot vous le dit au lieu de faire semblant, et vous dirige vers un éditeur pour corriger les cases.",
@@ -159,5 +157,8 @@
   "4ef251a5b6": "Gratuit pour Chrome, Firefox et Edge : un clic lit n'importe quel échiquier ou liste de coups à l'écran et l'ouvre sur Lichess. Open source, tourne en local.",
   "0772ee6d8c": "N'importe quel échiquier à l'écran vers Lichess ou FEN, en un clic",
   "4e3b8227d9": "fenshot est une extension de navigateur gratuite et open source pour Chrome, Firefox et Edge. Vous voyez une position d'échecs quelque part, sur Lichess, chess.com, dans une vidéo YouTube, un livre PDF ou un article de blog, et vous voulez l'analyser ? Cliquez sur l'icône fenshot. L'extension capture l'onglet visible, lit l'échiquier grâce à un réseau de neurones qui tourne dans votre navigateur, et vous affiche la position. Vous pouvez ensuite l'analyser sur Kibitzo, l'ouvrir sur Lichess ou copier la FEN pour l'utiliser où vous voulez.",
-  "ff50590d0e": "Des parties entières depuis chessgames.com, Lichess et les blogs, pas seulement des positions"
+  "ff50590d0e": "Des parties entières depuis chessgames.com, Lichess et les blogs, pas seulement des positions",
+  "4e24c27dd4": "fenshot lit la position sur une capture d'écran, un diagramme ou une photo d'échecs et vous donne un échiquier vivant, prêt à analyser. Collez une capture d'écran de chess.com ou de Lichess, la photo d'un diagramme de livre d'échecs, ou une position publiée sur Reddit ou reçue dans une conversation. Un clic plus tard, vous avez la FEN et un échiquier sur lequel vous pouvez vraiment déplacer les pièces, avec un moteur Stockfish gratuit.",
+  "eb69b933f5": "fenshot est conçu par l'équipe de <a href=\"https://kibitzo.com/\">Kibitzo</a>. Si vous le connaissez sous le nom FenShot by Kibitzo via <a href=\"https://kibitzo.com/extension\">kibitzo.com/extension</a>, c'est la même extension, avec les mêmes fiches dans les boutiques, pas une deuxième.",
+  "0136092f1c": "L'extension n'a ni compte, ni statistiques, ni pistage, et n'effectue aucune requête réseau de son côté. Le site fenshot.com compte des visites anonymes, sans cookies."
 }
