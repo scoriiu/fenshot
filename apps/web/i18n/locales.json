@@ -10,6 +10,7 @@
   { "code": "tr", "flag": "🇹🇷", "name": "Türkçe", "dir": "ltr", "og": "tr_TR" },
   { "code": "nl", "flag": "🇳🇱", "name": "Nederlands", "dir": "ltr", "og": "nl_NL" },
   { "code": "pl", "flag": "🇵🇱", "name": "Polski", "dir": "ltr", "og": "pl_PL" },
+  { "code": "ro", "flag": "🇷🇴", "name": "Română", "dir": "ltr", "og": "ro_RO" },
   { "code": "vi", "flag": "🇻🇳", "name": "Tiếng Việt", "dir": "ltr", "og": "vi_VN" },
   { "code": "fa", "flag": "🇮🇷", "name": "فارسی", "dir": "rtl", "og": "fa_IR" },
   { "code": "ar", "flag": "🇸🇦", "name": "العربية", "dir": "rtl", "og": "ar_SA" }

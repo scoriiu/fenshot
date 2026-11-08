@@ -122,6 +122,10 @@ about the user or the page.
 
 ## Translations (0.6.0)
 
+Romanian (ro) was added after 0.6.0 was submitted: public/_locales/ro and
+store-listing/ro.md ship with the next release (bump the version, package,
+then paste store-listing/ro.md into the Romanian listing).
+
 The extension follows the browser's language: es, de, ru, fr, pt_BR, it,
 zh_CN, tr, nl, pl, vi, fa, ar, and English otherwise (public/_locales,
 checked by `node scripts/i18n-check.mjs`). Store listings per language
