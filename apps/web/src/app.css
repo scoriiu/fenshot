@@ -663,7 +663,11 @@ body {
 }
 
 .install-btn {
-  width: 148px;
+  /* min-width, not width: "Toevoegen aan Chrome" and other translations
+     are longer than "Add to Chrome" and overflowed a fixed 148px. */
+  min-width: 148px;
+  padding: 0 16px;
+  white-space: nowrap;
   height: 42px;
   display: inline-flex;
   align-items: center;
