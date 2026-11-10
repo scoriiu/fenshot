@@ -140,6 +140,14 @@ checked by `node scripts/i18n-check.mjs`). Store listings per language
 to paste into each store's per-language listing fields. The reviewer
 forms below stay English.
 
+## Release notes (0.6.1)
+
+Now also in Romanian and Hebrew (right to left). No other changes.
+
+Notes to reviewer (AMO): translations only: two new folders,
+public/_locales/ro and public/_locales/he. No code, permission or
+behaviour change. Build steps unchanged (see Firefox (AMO) notes).
+
 ## Release notes (0.6.0)
 
 fenshot now speaks your language: the popup, the toolbar tooltip and the
