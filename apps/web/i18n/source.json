@@ -376,8 +376,8 @@
       "/accuracy/"
     ]
   },
-  "3d22282e87": {
-    "text": "We measure it on chess images where the right answer is known: boards drawn by chess.com and Lichess themselves, and real screenshots posted on Reddit. Below are the results, the method, and every place where fenshot fails. The test, the data and the results are open source, so anyone can re-run them.",
+  "11f9ff1c48": {
+    "text": "We measure it on chess images where the right answer is known: boards drawn by chess.com and Lichess themselves, book diagrams typeset the way printed books are, and real screenshots posted on Reddit. Below are the results, the method, and every place where fenshot fails. The test, the data and the results are open source, so anyone can re-run them.",
     "kind": "text",
     "pages": [
       "/accuracy/"
@@ -397,8 +397,8 @@
       "/accuracy/"
     ]
   },
-  "44ba75c2b6": {
-    "text": "wrong reads on site-drawn boards that came with a warning to check",
+  "000e6be597": {
+    "text": "wrong reads on drawn boards and book diagrams that came with a warning to check",
     "kind": "text",
     "pages": [
       "/accuracy/"
@@ -516,6 +516,13 @@
       "/accuracy/"
     ]
   },
+  "fef56748ca": {
+    "text": "Book diagrams typeset with LaTeX, hatched squares",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
   "31aba4c4a5": {
     "text": "Reddit screenshots, r/chess, r/chessbeginners, r/TournamentChess",
     "kind": "text",
@@ -537,8 +544,78 @@
       "/accuracy/"
     ]
   },
+  "ca5021ff5c": {
+    "text": "What changed since the first run",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "9ac1ca7c95": {
+    "text": "<strong>10 November 2026.</strong> The first run showed that fenshot could not find the board in printed-style diagrams: the hatching inside the dark squares hid the board's grid from it. On marbled boards the read could also slide by one square. fenshot now takes a second look at a softened copy of the image whenever the first look is not clearly right. The piece reader itself is unchanged.",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "ca9af655fc": {
+    "text": "Read right",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "23ea0554a5": {
+    "text": "First run",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "e3b8204056": {
+    "text": "Now",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "381fb9c909": {
+    "text": "Book diagrams",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "906d31b3b4": {
+    "text": "chess.com and Lichess in other piece sets and boards",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "a44a19e23a": {
+    "text": "chess.com and Lichess pages in their default look",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "64a810da1c": {
+    "text": "Reddit screenshots",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
   "f582b2d162": {
     "text": "Where fenshot struggles",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "3e9fbd5a7a": {
+    "text": "<strong>Board direction in endgames.</strong> fenshot reads the squares, then works out which side is at the bottom from where the pawns stand. In endgames that goes wrong in about 4 to 7 positions out of 100: every square is right, but the board is turned around, and there is no warning. Every wrong read without a warning on the drawn boards is of this kind.",
     "kind": "text",
     "pages": [
       "/accuracy/"
@@ -551,22 +628,15 @@
       "/accuracy/"
     ]
   },
-  "2c3d6d13a0": {
-    "text": "<strong>Print-style and textured boards.</strong> chess.com's newspaper board and Lichess's marble, grey and purple boards can shift the read by one row. fenshot nearly always warns when this happens.",
+  "8c07c3f0de": {
+    "text": "<strong>Small book diagrams.</strong> When the squares of a printed diagram are about 30 pixels wide or less, fenshot often gets one to three squares wrong, and warns.",
     "kind": "text",
     "pages": [
       "/accuracy/"
     ]
   },
-  "599ad77e52": {
-    "text": "<strong>Unusual piece sets.</strong> Lichess's horsey, cardinal and monarchy pieces are often misread; monarchy was never in training.",
-    "kind": "text",
-    "pages": [
-      "/accuracy/"
-    ]
-  },
-  "4a99b2ccdc": {
-    "text": "<strong>Glass and neo wood pieces.</strong> The only wrong reads without a warning on the drawn boards came from chess.com's glass and neo wood piece sets.",
+  "be04d91f14": {
+    "text": "<strong>Unusual piece sets.</strong> Lichess's horsey and monarchy pieces are misread; monarchy was never in training.",
     "kind": "text",
     "pages": [
       "/accuracy/"
@@ -600,8 +670,15 @@
       "/accuracy/"
     ]
   },
-  "b6dc52bad1": {
-    "text": "<strong>Images we did not draw.</strong> Every board is drawn by the site itself from the position we give it: chess.com's board image service, screenshots of chess.com's and Lichess's analysis pages at desktop and phone sizes, and Lichess with its own piece set and board settings changed. Each chess.com page was checked to show the position we asked for before it was kept.",
+  "68560f3a85": {
+    "text": "<strong>Images we did not draw.</strong> Every site board is drawn by the site itself from the position we give it: chess.com's board image service, screenshots of chess.com's and Lichess's analysis pages at desktop and phone sizes, and Lichess with its own piece set and board settings changed. Each chess.com page was checked to show the position we asked for before it was kept.",
+    "kind": "text",
+    "pages": [
+      "/accuracy/"
+    ]
+  },
+  "ae11dba574": {
+    "text": "<strong>Book diagrams.</strong> 120 diagrams typeset with LaTeX in the chess fonts printed books use, with hatched dark squares: full pages with text, tight crops, a scanned-page look, small diagrams, and Black's side. They cover hatched diagrams only; books that print solid grey squares are not in the set yet.",
     "kind": "text",
     "pages": [
       "/accuracy/"

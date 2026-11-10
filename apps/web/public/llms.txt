@@ -26,13 +26,14 @@
 ## Accuracy
 
 <!-- benchmark:start -->
-- Measured 2026-11-08 on 948 images with known positions (model chess-tiles-v2); method, data and code: https://fenshot.com/accuracy/ and https://github.com/scoriiu/fenshot/tree/main/tools/benchmark
+- Measured 2026-11-10 on 1068 images with known positions (model chess-tiles-v2); method, data and code: https://fenshot.com/accuracy/ and https://github.com/scoriiu/fenshot/tree/main/tools/benchmark
 - chess.com and Lichess analysis pages in their default look, desktop and phone: 118 / 120 read exactly right (98.3%).
-- Real chess screenshots posted on Reddit: at least 405 / 488 read right (82.9%); every disagreement with an independent reader counts as a fenshot error.
-- Other piece sets and boards (300 images, 24 piece sets, 22 boards, including 3D sets never seen in training): 211 read right (70.3%).
-- Over all 420 images drawn by chess.com and Lichess, 88 / 91 wrong reads came with a warning to check (96.7%); 3 were wrong without one.
+- Real chess screenshots posted on Reddit: at least 419 / 488 read right (85.8%); every disagreement with an independent reader counts as a fenshot error.
+- Other piece sets and boards (300 images, 24 piece sets, 22 boards, including 3D sets never seen in training): 249 read right (83%).
+- Book diagrams typeset with LaTeX, hatched squares (120 images): 88 read right (73.3%), 33 of them with a warning to check; small diagrams are the weak spot.
+- Over all 540 drawn boards and book diagrams, 81 / 85 wrong reads came with a warning to check (95.2%); 4 were wrong without one, all of them endgames read with the board turned around.
 - Pages with no chess board: fenshot invented no position on 40 / 40.
-- Weak spots: 3D piece sets, print-style and textured boards (chess.com newspaper; Lichess marble, grey, purple), and unusual piece sets (Lichess horsey, cardinal, monarchy).
+- Weak spots: board direction in endgames (about 4 to 7 positions in 100, no warning), 3D piece sets, small book diagrams, and unusual piece sets (Lichess horsey, monarchy).
 <!-- benchmark:end -->
 
 ## Links

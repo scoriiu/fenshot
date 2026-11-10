@@ -1,0 +1,128 @@
+[
+ {
+  "date": "2026-11-08",
+  "model": "chess-tiles-v2",
+  "change": "First run. Scored again on 2026-11-10 with the book diagrams added and the legality warning counted as a warning.",
+  "benchmark": {
+   "withBoard": {
+    "images": 540,
+    "exact": 312,
+    "exact-warned": 18,
+    "wrong-warned": 170,
+    "wrong-silent": 3,
+    "missed": 37
+   },
+   "withoutBoard": {
+    "images": 40,
+    "rejected": 38,
+    "warned": 2
+   },
+   "bySource": {
+    "book-diagram": {
+     "images": 120,
+     "exact-warned": 1,
+     "wrong-warned": 82,
+     "missed": 37
+    },
+    "chesscom-image": {
+     "images": 240,
+     "exact": 163,
+     "exact-warned": 15,
+     "wrong-warned": 59,
+     "wrong-silent": 3
+    },
+    "chesscom-page": {
+     "images": 60,
+     "exact": 58,
+     "wrong-warned": 2
+    },
+    "lichess-page": {
+     "images": 60,
+     "exact": 60
+    },
+    "lichess-page-themed": {
+     "images": 60,
+     "exact": 31,
+     "exact-warned": 2,
+     "wrong-warned": 27
+    },
+    "no-board": {
+     "images": 40,
+     "rejected": 38,
+     "warned": 2
+    }
+   }
+  },
+  "reddit": {
+   "images": 488,
+   "exact": 377,
+   "exact-warned": 28,
+   "wrong-warned": 52,
+   "wrong-silent": 19,
+   "missed": 12
+  }
+ },
+ {
+  "date": "2026-11-10",
+  "model": "chess-tiles-v2",
+  "change": "Board finder: second look on blurred copies (hatched boards, diagonal slips). Same model.",
+  "benchmark": {
+   "withBoard": {
+    "images": 540,
+    "exact": 402,
+    "exact-warned": 53,
+    "wrong-warned": 81,
+    "wrong-silent": 4
+   },
+   "withoutBoard": {
+    "images": 40,
+    "rejected": 38,
+    "warned": 2
+   },
+   "bySource": {
+    "book-diagram": {
+     "images": 120,
+     "exact": 55,
+     "exact-warned": 33,
+     "wrong-warned": 32
+    },
+    "chesscom-image": {
+     "images": 240,
+     "exact": 188,
+     "exact-warned": 14,
+     "wrong-warned": 35,
+     "wrong-silent": 3
+    },
+    "chesscom-page": {
+     "images": 60,
+     "exact": 58,
+     "wrong-warned": 2
+    },
+    "lichess-page": {
+     "images": 60,
+     "exact": 60
+    },
+    "lichess-page-themed": {
+     "images": 60,
+     "exact": 41,
+     "exact-warned": 6,
+     "wrong-warned": 12,
+     "wrong-silent": 1
+    },
+    "no-board": {
+     "images": 40,
+     "rejected": 38,
+     "warned": 2
+    }
+   }
+  },
+  "reddit": {
+   "exact": 390,
+   "exact-warned": 29,
+   "wrong-warned": 45,
+   "wrong-silent": 19,
+   "missed": 5,
+   "images": 488
+  }
+ }
+]

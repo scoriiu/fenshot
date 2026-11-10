@@ -7,11 +7,11 @@
  ],
  "rule": "Agreement with the independent reading counts as right; every disagreement counts against fenshot (a floor). 18 random agreements were compared to the image by eye: no mismatch found.",
  "summary": {
-  "exact": 378,
-  "wrong-warned": 51,
-  "exact-warned": 27,
-  "wrong-silent": 20,
-  "missed": 12,
+  "exact": 390,
+  "exact-warned": 29,
+  "wrong-warned": 45,
+  "wrong-silent": 19,
+  "missed": 5,
   "images": 488,
   "spotCheckedAgreements": 18,
   "spotCheckMismatches": 0
@@ -155,9 +155,9 @@
    "sha256": "90ea5d8809d8423af01ece5c270479f7d2334f60126b3c216b06764673e1e320",
    "independentReading": "6R1/8/4Q3/8/1P3k2/8/6K1/1R6",
    "independentSource": "chessvision-ai-bot comment 19sa0ri1p0abl",
-   "fenshotReading": "6R1/8/4Q3/8/1P3k2/6P1/6K1/1R6",
+   "fenshotReading": "6R1/8/4Q3/8/1P3k2/8/6K1/1R6",
    "fenshotWarned": true,
-   "outcome": "wrong-warned",
+   "outcome": "exact-warned",
    "spotChecked": false
   },
   {
@@ -166,9 +166,9 @@
    "sha256": "0fc30b632f5fdc47a683b19d63589b033ad04137e353a9d5562e4b447c6563f2",
    "independentReading": "rn2kb1r/pQp2ppp/4p1q1/3p4/3P1B2/2PPPN1P/P4PP1/R4RK1",
    "independentSource": "chessvision-ai-bot comment 19sa0jh3sl5xh",
-   "fenshotReading": "r3kb1r/pQp2ppp/4p1q1/3p4/3P1B2/2PPPN1P/P4PP1/R4RK1",
-   "fenshotWarned": true,
-   "outcome": "wrong-warned",
+   "fenshotReading": "rn2kb1r/pQp2ppp/4p1q1/3p4/3P1B2/2PPPN1P/P4PP1/R4RK1",
+   "fenshotWarned": false,
+   "outcome": "exact",
    "spotChecked": false
   },
   {
@@ -529,9 +529,9 @@
    "sha256": "d5751ff71a079e87a1f6409de96d476c58a7d7f9d8e6a8747452ca2988d56b70",
    "independentReading": "2kr1qnr/pp1n3p/2p2p2/5N2/1b1p2P1/7P/5PR1/2BK4",
    "independentSource": "chessvision-ai-bot comment 19s7mddhyaun7",
-   "fenshotReading": null,
-   "fenshotWarned": false,
-   "outcome": "missed",
+   "fenshotReading": "2kr1qnr/pp1n3p/2p2p2/5N2/1b1p2P1/7P/5PQ1/2BK4",
+   "fenshotWarned": true,
+   "outcome": "wrong-warned",
    "spotChecked": false
   },
   {
@@ -617,9 +617,9 @@
    "sha256": "5ef1a1a7b2336fa7bd0a1ddccb77bb050fb632b2434ab0df38172228c68b6153",
    "independentReading": "rnbqkb1r/pppp1ppp/8/4P3/6n1/8/PPPNPPPP/R1BQKBNR",
    "independentSource": "chessvision-ai-bot comment 19s6vmvitceyt",
-   "fenshotReading": "rnbqkb1r/pppp1ppp/8/4P3/6n1/8/PPPNPPPP/R1BQKB1r",
+   "fenshotReading": "rnbqkb1r/pppp1ppp/8/4P3/6n1/8/PPPNPPPP/R1BQKBNR",
    "fenshotWarned": true,
-   "outcome": "wrong-warned",
+   "outcome": "exact-warned",
    "spotChecked": false
   },
   {
@@ -695,8 +695,8 @@
    "independentReading": "r1bqk1nr/p1pp1ppp/1pn5/2b1p3/2B1P3/5N2/PPPP1PPP/RNBQ1RK1",
    "independentSource": "chessvision-ai-bot comment 19s6j5afjrlr5",
    "fenshotReading": "r1bqk1nr/p1pp1ppp/1pn5/2b1p3/2B1P3/5N2/PPPP1PPP/RNBQ1RK1",
-   "fenshotWarned": true,
-   "outcome": "exact-warned",
+   "fenshotWarned": false,
+   "outcome": "exact",
    "spotChecked": false
   },
   {
@@ -705,9 +705,9 @@
    "sha256": "c355ee809b6203360a082eaab00551bb64b3676a1e69cc219ac1d571ec3529f6",
    "independentReading": "2b2r1k/4p1bp/1pq3p1/5p2/1B1PP3/8/r4PPP/2R3K1",
    "independentSource": "chessvision-ai-bot comment 19s6f4ahpa2p0",
-   "fenshotReading": "2b2r1k/4p1bp/1pq3p1/5p2/1B1PP3/8/r4PPP/2R3N1",
-   "fenshotWarned": true,
-   "outcome": "wrong-warned",
+   "fenshotReading": "2b2r1k/4p1bp/1pq3p1/5p2/1B1PP3/8/r4PPP/2R3K1",
+   "fenshotWarned": false,
+   "outcome": "exact",
    "spotChecked": false
   },
   {
@@ -728,8 +728,8 @@
    "independentReading": "8/6q1/8/4P1P1/8/4B3/r2P2N1/8",
    "independentSource": "chessvision-ai-bot comment 19s6dbz0s6l5w",
    "fenshotReading": "8/6q1/8/4P1P1/8/4B3/r2P2N1/8",
-   "fenshotWarned": false,
-   "outcome": "exact",
+   "fenshotWarned": true,
+   "outcome": "exact-warned",
    "spotChecked": false
   },
   {
@@ -772,8 +772,8 @@
    "independentReading": "r2qk2r/1pp1bppp/p2p1nn1/3Pp3/Q1P1P3/2N1BB2/PP3PPP/R3K2R",
    "independentSource": "chessvision-ai-bot comment 19s606ohhrkm9",
    "fenshotReading": "r2qk2r/1pp1bppp/p2p1nn1/3Pp3/Q1P1P3/2N1BB2/PP3PPP/R3K2R",
-   "fenshotWarned": true,
-   "outcome": "exact-warned",
+   "fenshotWarned": false,
+   "outcome": "exact",
    "spotChecked": false
   },
   {
@@ -782,9 +782,9 @@
    "sha256": "e4af6b56243ba2d73702c5cf92817861bb3721e53d3303e6071e8be76cf798ad",
    "independentReading": "1r1qkb1r/pp2pp1p/2n2n2/8/4N1b1/1P1P1P2/PBP3PP/RN1QKB1R",
    "independentSource": "chessvision-ai-bot comment 19s5vixtucy78",
-   "fenshotReading": null,
-   "fenshotWarned": false,
-   "outcome": "missed",
+   "fenshotReading": "1r1qkb1q/pp2pp1p/2n2n2/8/4N1b1/1P1P1P2/PBP3PP/QN1QKB1R",
+   "fenshotWarned": true,
+   "outcome": "wrong-warned",
    "spotChecked": false
   },
   {
@@ -816,8 +816,8 @@
    "independentReading": "1b4rk/1p3p2/5P1p/p2q1B1r/P2p4/3P1R1P/1P4Q1/5R1K",
    "independentSource": "chessvision-ai-bot comment 19s5poz77r484",
    "fenshotReading": "1b4rk/1p3p2/5P1p/p2q1B1r/P2p4/3P1R1P/1P4Q1/5R1K",
-   "fenshotWarned": true,
-   "outcome": "exact-warned",
+   "fenshotWarned": false,
+   "outcome": "exact",
    "spotChecked": false
   },
   {
@@ -914,9 +914,9 @@
    "sha256": "6dac88688e0b011fbd480103eadf752077e62d807168f3e13357cf138c45f142",
    "independentReading": "rnbqkbnr/pp2pppp/2p5/3p4/4P3/8/PPPP1PPP/RNBQKBNR",
    "independentSource": "chessvision-ai-bot comment 19s51meh9vo82",
-   "fenshotReading": "rnbqkbnr/pp2pppp/2p5/3p4/4P3/8/PPPP1PPP/RNBQKBNR",
+   "fenshotReading": "rnbqkbnR/pp2pppp/2p5/3p4/4P3/8/PPPP1PPP/RNBQKBNR",
    "fenshotWarned": true,
-   "outcome": "exact-warned",
+   "outcome": "wrong-warned",
    "spotChecked": false
   },
   {
@@ -948,8 +948,8 @@
    "independentReading": "r6r/7p/p3R3/1ppb2kP/5Pp1/3B2P1/PPP5/2K4R",
    "independentSource": "chessvision-ai-bot comment 19s4rdb3j3rpf",
    "fenshotReading": "r6r/7p/p3R3/1ppb2kP/5Pp1/3B2P1/PPP5/2K4R",
-   "fenshotWarned": true,
-   "outcome": "exact-warned",
+   "fenshotWarned": false,
+   "outcome": "exact",
    "spotChecked": false
   },
   {
@@ -1046,9 +1046,9 @@
    "sha256": "3f90b941416c5906babfc27ed1091184f54b51719962407eaf1a5d7c19c30600",
    "independentReading": "2kr1bnr/ppp1pppp/2n1q3/1B1pPb2/3P4/2N2Q2/PPP2PPP/R1B1K1NR",
    "independentSource": "chessvision-ai-bot comment 19s47yq69zt6q",
-   "fenshotReading": "2kr1bnr/ppp1pppp/2n1q3/1B1pPb2/3P4/2N2Q2/PPP2PPP/R1B1K1NR",
+   "fenshotReading": "2kR1bnr/ppp1pppp/2n1q3/1B1pPb2/3P4/2N2Q2/PPP2PPP/R1B1K1NR",
    "fenshotWarned": true,
-   "outcome": "exact-warned",
+   "outcome": "wrong-warned",
    "spotChecked": false
   },
   {
@@ -1244,7 +1244,7 @@
    "sha256": "0aa03d54acfae29dd1e0ab85ce5c7becd3daccf94313db44cadd18a3b2200eb4",
    "independentReading": "rnb1R1nr/pppp1ppp/8/4B3/1b1P4/2PQPN2/PP3PPP/RN2Q2R",
    "independentSource": "chessvision-ai-bot comment 19s2upp7cpn8g",
-   "fenshotReading": "rnb1R1nr/pppp1ppp/8/4B3/1b1P4/2PQPN2/PP3PPP/RN5R",
+   "fenshotReading": "rnb1K1nr/pppp1ppp/8/4B3/1b1P4/2PQPN2/PP3PPP/RN5R",
    "fenshotWarned": true,
    "outcome": "wrong-warned",
    "spotChecked": false
@@ -1321,7 +1321,7 @@
    "sha256": "2dd9a4c29d342c63c94530609f675d7a5597ae510f6fe8a3051ef1c88fe2c78f",
    "independentReading": "4k2r/5pp1/2n5/8/3P4/8/1B1P4/4b1nn",
    "independentSource": "chessvision-ai-bot comment 19s23yby5sm69",
-   "fenshotReading": "4ppp1/1n6/8/2P5/8/B1P5/3B1n1Q/6B1",
+   "fenshotReading": "6pp/3n4/8/4P3/8/2B1P3/5B1n/1K6",
    "fenshotWarned": true,
    "outcome": "wrong-warned",
    "spotChecked": false
@@ -1332,9 +1332,9 @@
    "sha256": "f953339d51bf3463d8a1b0dea3f0fb9f85305225a2afb721da4a5f6b49ec31b0",
    "independentReading": "r2qkbnr/2p2pp1/p1np3p/1p2N2b/4P3/1BN4P/PPPP1PP1/R1BQ1RK1",
    "independentSource": "chessvision-ai-bot comment 19s1m8yl41b7m",
-   "fenshotReading": "r2qkbnr/2p2pp1/p1np3p/1p2N2b/4P3/1BN4P/PPPP1PP1/R1BQ1RQ1",
+   "fenshotReading": "r2qkbnr/2p2pp1/p1np3p/1p2N2b/4P3/1BN4P/PPPP1PP1/R1BQ1RK1",
    "fenshotWarned": true,
-   "outcome": "wrong-warned",
+   "outcome": "exact-warned",
    "spotChecked": false
   },
   {
@@ -1542,8 +1542,8 @@
    "independentReading": "r2qkb1r/pppbnp1p/2np1Np1/1B2p3/4P3/5N1P/PPPP1PP1/R1BQK2R",
    "independentSource": "chessvision-ai-bot comment 19s0aq3g7gmci",
    "fenshotReading": "r2qkb1r/pppbnp1p/2np1Np1/1B2p3/4P3/5N1P/PPPP1PP1/R1BQK2R",
-   "fenshotWarned": true,
-   "outcome": "exact-warned",
+   "fenshotWarned": false,
+   "outcome": "exact",
    "spotChecked": false
   },
   {
@@ -2169,8 +2169,8 @@
    "independentReading": "r2r2k1/pp2bppp/2q1pn2/4R3/3p4/2NP2Q1/PPP2PPP/R1B3K1",
    "independentSource": "chessvision-ai-bot comment 19rwosh3aglph",
    "fenshotReading": "r2r2k1/pp2bppp/2q1pn2/4R3/3p4/2NP2Q1/PPP2PPP/R1B3K1",
-   "fenshotWarned": true,
-   "outcome": "exact-warned",
+   "fenshotWarned": false,
+   "outcome": "exact",
    "spotChecked": false
   },
   {
@@ -2179,9 +2179,9 @@
    "sha256": "dc9abc05738f5708ac4562dd6279fed87310f1127d4afd3a426d02eae554557e",
    "independentReading": "rnbqkbnQ/pppp1p1p/6p1/8/4P3/8/PPPP1PPP/RNB1KBNR",
    "independentSource": "chessvision-ai-bot comment 19rwnwbeadcma",
-   "fenshotReading": "8/7P/8/1RNBK1BN/1PPP1PPP/8/4P3/8",
-   "fenshotWarned": true,
-   "outcome": "wrong-warned",
+   "fenshotReading": "rnbqkbnQ/pppp1p1p/6p1/8/4P3/8/PPPP1PPP/RNB1KBNR",
+   "fenshotWarned": false,
+   "outcome": "exact",
    "spotChecked": false
   },
   {
@@ -2608,9 +2608,9 @@
    "sha256": "2ae2b1a3349cfba4027505c970a931ba8503d5559dca8c36404cb2c5b58ae1e5",
    "independentReading": "r1bqk2r/pppp1ppp/2nb4/2n1N2Q/2B5/8/PPPP1PPP/RNB1R1K1",
    "independentSource": "chessvision-ai-bot comment 19rtsgcfjs0zl",
-   "fenshotReading": "2nk4/2n1N2Q/2B5/8/PPPP1PPP/RNB1R1K1/8/3R4",
+   "fenshotReading": "r1bqk2r/pppp1ppp/2nb4/2n1N2Q/2B5/8/PPPP1PPP/RNB1R1K1",
    "fenshotWarned": true,
-   "outcome": "wrong-warned",
+   "outcome": "exact-warned",
    "spotChecked": false
   },
   {
@@ -2674,9 +2674,9 @@
    "sha256": "eafa1d5b9a991db016d50f9d4d3cf4c2b2b2249731d6264eb0d49de848a6c53b",
    "independentReading": "rn2kb1r/1p3ppp/p1pp3n/7q/N2BP1b1/5NP1/PPPQBP1P/2KR3R",
    "independentSource": "chessvision-ai-bot comment 19rt9b280uyio",
-   "fenshotReading": null,
-   "fenshotWarned": false,
-   "outcome": "missed",
+   "fenshotReading": "rn2kb1r/1p3ppp/p1pp3n/7q/N2BP1b1/5NP1/PPPQBP1P/2KR3R",
+   "fenshotWarned": true,
+   "outcome": "exact-warned",
    "spotChecked": false
   },
   {
@@ -2685,9 +2685,9 @@
    "sha256": "74fa75e21a7d025267e6152dba849bdb00b50eb47c183b51a05316c2066c6d37",
    "independentReading": "8/8/3p4/1p1P1k2/1P1P4/4K3/8/8",
    "independentSource": "chessvision-ai-bot comment 19rt4575bgarl",
-   "fenshotReading": null,
-   "fenshotWarned": false,
-   "outcome": "missed",
+   "fenshotReading": "8/1B6/3p4/1p1P1k2/1P1PB3/4K3/8/8",
+   "fenshotWarned": true,
+   "outcome": "wrong-warned",
    "spotChecked": false
   },
   {
@@ -2795,9 +2795,9 @@
    "sha256": "9bd078d96e83dddc487cb3d55ffb9b1b9fc67ab923792b8c59341df988163647",
    "independentReading": "r1bq1rk1/1pp1bppp/p1p2n2/4p3/4P1P1/1PP2P2/PB1P3P/RN1QK1NR",
    "independentSource": "chessvision-ai-bot comment 19rtxppjrqqzn",
-   "fenshotReading": "r1Bq1rk1/1pp1bppp/p1p2n2/4p3/4P1P1/1PP2P2/PB1P3P/RN1QK1NR",
-   "fenshotWarned": true,
-   "outcome": "wrong-warned",
+   "fenshotReading": "r1bq1rk1/1pp1bppp/p1p2n2/4p3/4P1P1/1PP2P2/PB1P3P/RN1QK1NR",
+   "fenshotWarned": false,
+   "outcome": "exact",
    "spotChecked": false
   },
   {
@@ -2917,8 +2917,8 @@
    "independentReading": "8/8/8/5k1p/2p2p1P/7K/5q2/8",
    "independentSource": "chessvision-ai-bot comment 19rrqgy79b8oy",
    "fenshotReading": "8/8/8/5k1p/2p2p1P/7K/5q2/8",
-   "fenshotWarned": true,
-   "outcome": "exact-warned",
+   "fenshotWarned": false,
+   "outcome": "exact",
    "spotChecked": false
   },
   {
@@ -2982,7 +2982,7 @@
    "sha256": "d146236297e3dd64c8c2a481a60ef83edcada238675b6a30bdb2bd4709d39d58",
    "independentReading": "k1B2kK1/BPBB1BBB/2nB1K1n/8/1PBNP3/B1N4P/2P2PP1/B1BRR2K",
    "independentSource": "chessvision-ai-bot comment 19rrcnbhqkqsg",
-   "fenshotReading": "8/8/7b/8/1p1p4/2p5/2Q5/4b3",
+   "fenshotReading": "K1K2KK1/KKKK1KKK/2kK1K1K/8/1KQKK3/K1K4K/2K2KK1/Q1QKK2Q",
    "fenshotWarned": true,
    "outcome": "wrong-warned",
    "spotChecked": false
@@ -3059,9 +3059,9 @@
    "sha256": "e88551efa0bac37c1f2d28305b7b00bee98a860cc2d0640c50ff106a9266f730",
    "independentReading": "r4rk1/pp3Bpp/2pp4/4p1qn/4P1b1/2NPP3/PPP2QPP/R4RK1",
    "independentSource": "chessvision-ai-bot comment 19rqpynfuqo1u",
-   "fenshotReading": "p3Bpp1/1pp5/3p1qn1/3P1b2/1NPP4/PP2QPP1/4RK2/8",
+   "fenshotReading": "r4rk1/pp3Bpp/2pp4/4p1qn/4P1b1/2NPP3/PPP2QPP/R4RK1",
    "fenshotWarned": true,
-   "outcome": "wrong-warned",
+   "outcome": "exact-warned",
    "spotChecked": false
   },
   {
@@ -3070,7 +3070,7 @@
    "sha256": "36fb8ace3d8205ddefe47bf294af823a3625edf98f1a703991c45840284cd87e",
    "independentReading": "1KR1Q2R/PPP2PPP/5N2/4B3/8/2N5/PPPqb2P/R1b1RK2",
    "independentSource": "chessvision-ai-bot comment 19rqpyt16t2o0",
-   "fenshotReading": "2Kr1b1r/p2bqPpP/5n2/8/3B4/2N5/PPP2PPP/R2Q1RK1",
+   "fenshotReading": "2kr1b1r/p2bqppp/5n2/8/3B4/2N5/PPP2PPP/R2Q1RK1",
    "fenshotWarned": true,
    "outcome": "wrong-warned",
    "spotChecked": false
@@ -3246,7 +3246,7 @@
    "sha256": "d07c2a5ceab980fd3af7589a9201ca67e5582b462b4c7e0c8d29c7667d2bc594",
    "independentReading": "Bn1r2k1/p4ppp/bp6/4P3/8/1n6/PP3KPP/8",
    "independentSource": "chessvision-ai-bot comment 19rpftqasquo2",
-   "fenshotReading": "1q1q4/6b1/1b6/8/8/8/8/8",
+   "fenshotReading": "Kq1q2R1/b4Bbb/1b6/4B3/8/1n6/BB4BB/8",
    "fenshotWarned": true,
    "outcome": "wrong-warned",
    "spotChecked": false
@@ -3258,8 +3258,8 @@
    "independentReading": "4r1k1/pp4pp/1q2pr2/2bpN3/8/1PP3n1/P2N1PPP/R2Q1RK1",
    "independentSource": "chessvision-ai-bot comment 19rpa811az9mr",
    "fenshotReading": "4r1k1/pp4pp/1q2pr2/2bpN3/8/1PP3n1/P2N1PPP/R2Q1RK1",
-   "fenshotWarned": true,
-   "outcome": "exact-warned",
+   "fenshotWarned": false,
+   "outcome": "exact",
    "spotChecked": false
   },
   {
@@ -3587,7 +3587,7 @@
    "sha256": "3f55fae7f846e9ad4ffce8ffb9bd71def1333bed6b707dc689502ba7893cf4de",
    "independentReading": "r3k2r/pp1n1ppp/4p3/q1npP3/5B2/k1N2N2/1PPQ1PPP/2KR3R",
    "independentSource": "chessvision-ai-bot comment 19s5erkjhty3p",
-   "fenshotReading": "r3k2r/pp1n1ppp/4p3/q1npP3/5B2/b1N2N2/1PPQ1PPP/2KR3R",
+   "fenshotReading": "r3k2r/pp1n1ppp/4p3/q1npP3/5B2/p1N2N2/1PPQ1PPP/2KR3R",
    "fenshotWarned": true,
    "outcome": "wrong-warned",
    "spotChecked": false
@@ -3609,9 +3609,9 @@
    "sha256": "fac44c06f3c32d9355e78f1e2ba2d5ad8b8ecaed651c5433d687c4f91be4977e",
    "independentReading": "8/8/8/8/7P/1k1K4/8/8",
    "independentSource": "chessvision-ai-bot comment 19s58aya9axr9",
-   "fenshotReading": "7P/8/8/8/7P/1k1K4/8/8",
+   "fenshotReading": "8/8/8/8/7P/1k1K4/8/8",
    "fenshotWarned": true,
-   "outcome": "wrong-warned",
+   "outcome": "exact-warned",
    "spotChecked": false
   },
   {
@@ -3774,9 +3774,9 @@
    "sha256": "3058a9205faf0454bba743ead94524e9f27d4caf502fa0c92c95707276abcd9b",
    "independentReading": "R2bbk2/Q6p/3P1p2/6p1/4P3/5NP1/5P1P/6K1",
    "independentSource": "chessvision-ai-bot comment 19s2hjzxslx5v",
-   "fenshotReading": null,
-   "fenshotWarned": false,
-   "outcome": "missed",
+   "fenshotReading": "R2bbk2/Q6p/3P1p2/6p1/4P3/5NP1/5P1p/6K1",
+   "fenshotWarned": true,
+   "outcome": "wrong-warned",
    "spotChecked": false
   },
   {
@@ -3829,7 +3829,7 @@
    "sha256": "2dd9a4c29d342c63c94530609f675d7a5597ae510f6fe8a3051ef1c88fe2c78f",
    "independentReading": "4k2r/5pp1/2n5/8/3P4/8/1B1P4/4b1nn",
    "independentSource": "chessvision-ai-bot comment 19s1wlci1vbcy",
-   "fenshotReading": "4ppp1/1n6/8/2P5/8/B1P5/3B1n1Q/6B1",
+   "fenshotReading": "6pp/3n4/8/4P3/8/2B1P3/5B1n/1K6",
    "fenshotWarned": true,
    "outcome": "wrong-warned",
    "spotChecked": false
@@ -3884,9 +3884,9 @@
    "sha256": "ab036da8a43f6c28c1bd2abd20206666408544e1f79df03bc41b12254927e0dc",
    "independentReading": "r1b1qrk1/ppN2ppp/2np1n2/2b1p1B1/2B1P3/3P1N2/PPP2PPP/R2QK2R",
    "independentSource": "chessvision-ai-bot comment 19s1plai5tf0h",
-   "fenshotReading": "r1b1qrk1/ppN2ppp/2nP1n2/2b1p1B1/2B1P3/3P1N2/PPP2PPP/R2QK2R",
+   "fenshotReading": "r1b1qrk1/ppN2ppp/2np1n2/2b1p1B1/2B1P3/3P1N2/PPP2PPP/R2QK2R",
    "fenshotWarned": true,
-   "outcome": "wrong-warned",
+   "outcome": "exact-warned",
    "spotChecked": false
   },
   {
@@ -4104,7 +4104,7 @@
    "sha256": "f52fe904473f1493ae35ceaadc21d3b65aca2b152f46ed3e78456051dd599ca0",
    "independentReading": "rnbqkbnR/pppppppp/8/8/8/8/PPPPPPPP/QNbQKBNQ",
    "independentSource": "chessvision-ai-bot comment 19rzgy5y80tdx",
-   "fenshotReading": "rnbQkbnr/pppppppp/8/8/8/8/PPPPPPPP/NNBQKBNN",
+   "fenshotReading": "rnbQkbnR/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR",
    "fenshotWarned": true,
    "outcome": "wrong-warned",
    "spotChecked": false
@@ -4126,9 +4126,9 @@
    "sha256": "b7f749a6dad5d49d8eb646afc582b636bca350e289464f1c3f2dcaa5099ea603",
    "independentReading": "r1bqkbnq/p1pppQ1p/1p4p1/8/2BnP3/8/PPPP1PPP/qNb1K1nQ",
    "independentSource": "chessvision-ai-bot comment 19rzflzodoi69",
-   "fenshotReading": null,
-   "fenshotWarned": false,
-   "outcome": "missed",
+   "fenshotReading": "r1bqkbnr/p1pppQ1p/1p4p1/8/2bnP3/8/PPPP1PPP/Rnb1K1NR",
+   "fenshotWarned": true,
+   "outcome": "wrong-warned",
    "spotChecked": false
   },
   {
@@ -4192,9 +4192,9 @@
    "sha256": "8093402c39bd354cd41faf516e5ccfefafb8079861df08dcaab0e36c134b2d6d",
    "independentReading": "r2q1rk1/1pp2ppp/p3p3/5bN1/B4P2/2P1Q3/PPn2PPP/R4RK1",
    "independentSource": "chessvision-ai-bot comment 19ry9u7ee2dgi",
-   "fenshotReading": "r2q1rk1/1pp2ppp/p3p3/5bN1/B4P2/2P1Q3/Ppn2PPP/R4RK1",
+   "fenshotReading": "r2q1rk1/1pp2ppp/p3p3/5bN1/B4P2/2P1Q3/PPn2PPP/R4RK1",
    "fenshotWarned": true,
-   "outcome": "wrong-warned",
+   "outcome": "exact-warned",
    "spotChecked": false
   },
   {
@@ -4456,9 +4456,9 @@
    "sha256": "ed3052845b2ef2ff46166502cd74b907fd36d2972606e877c2f770adead3cf3f",
    "independentReading": "rb6/k1p4R/P1P5/PpK5/8/8/8/5B2",
    "independentSource": "chessvision-ai-bot comment 19ru8yc7rfuub",
-   "fenshotReading": "1P6/8/8/8/8/8/8/8",
+   "fenshotReading": "rb6/k1p4R/P1P5/PpK5/8/8/8/5B2",
    "fenshotWarned": true,
-   "outcome": "wrong-warned",
+   "outcome": "exact-warned",
    "spotChecked": false
   },
   {
@@ -4479,8 +4479,8 @@
    "independentReading": "7k/pp3B2/2p3Pp/6qK/5Q2/7P/P1p5/8",
    "independentSource": "chessvision-ai-bot comment 19ru095nj5sed",
    "fenshotReading": "7k/pp3B2/2p3Pp/6qK/5Q2/7P/P1p5/8",
-   "fenshotWarned": true,
-   "outcome": "exact-warned",
+   "fenshotWarned": false,
+   "outcome": "exact",
    "spotChecked": false
   },
   {
@@ -4786,9 +4786,9 @@
    "sha256": "129f5130762cbb2ddf78c9597997bf34611f9b68cefa7d4d8e7fb1f4833a935e",
    "independentReading": "4k2K/8/8/8/8/8/6q1/1q3q2",
    "independentSource": "chessvision-ai-bot comment 19rpfcd5wb1id",
-   "fenshotReading": null,
-   "fenshotWarned": false,
-   "outcome": "missed",
+   "fenshotReading": "2q3q1/1q6/8/8/8/8/8/K2k4",
+   "fenshotWarned": true,
+   "outcome": "wrong-warned",
    "spotChecked": false
   },
   {
@@ -4896,7 +4896,7 @@
    "sha256": "79927ab212083cc98f86cbe125d73cbf78c06fa5ca27fb2da472d0fc4e89a772",
    "independentReading": "r1bnk2r/p2pn1pp/2pq1p2/QpbPp3/4P3/NBP2N2/P4PPP/R1BR2k1",
    "independentSource": "chessvision-ai-bot comment 19ro5l6t9j57k",
-   "fenshotReading": "R2nk2r/p2pn1pp/2pq1p2/QpqPp3/4P3/Q1B2N2/B4PPP/3R2Q1",
+   "fenshotReading": "1p2pn1p/3pq1p1/1QpbPp2/5P2/1NBP2N1/1P4PP/1R1BR2K/8",
    "fenshotWarned": true,
    "outcome": "wrong-warned",
    "spotChecked": false
@@ -5116,9 +5116,9 @@
    "sha256": "d1cdcab36db87abec0d8bf0df9db01ec50ac507aacbe5144b7d0a5a82af3701d",
    "independentReading": "2rq1rk1/pp1b1p1p/5bp1/n2pN3/1Q1P1B2/3B4/PP3PPP/R3R1K1",
    "independentSource": "chessvision-ai-bot comment 19rkzja6y5cas",
-   "fenshotReading": "8/3rq1rk/1pp1b1p1/6bp/1n2pN2/2Q1P1B1/4B3/1PP3PP",
-   "fenshotWarned": false,
-   "outcome": "wrong-silent",
+   "fenshotReading": "2rq1rk1/pp1b1p1p/5bp1/n2pN3/1Q1P1B2/3B4/PP3PPP/R3R1K1",
+   "fenshotWarned": true,
+   "outcome": "exact-warned",
    "spotChecked": false
   },
   {
@@ -5314,9 +5314,9 @@
    "sha256": "1bc413f12aa9cb154ab35fe5ce3d28671bed1288c74a47c9553d37b0b9aedd87",
    "independentReading": "2Q3bb/R4rkp/4n1p1/1p1pPp2/1P3P2/2P3P1/1KP4P/5qBB",
    "independentSource": "chessvision-ai-bot comment j0yudag",
-   "fenshotReading": "4rkp1/3n1p2/p1pPp3/P3P3/1P3P2/KP4P1/4qBB1/8",
+   "fenshotReading": "2Q3bb/R4rkp/4n1p1/1p1pPp2/1P3P2/2P3P1/1KP4P/5qBB",
    "fenshotWarned": true,
-   "outcome": "wrong-warned",
+   "outcome": "exact-warned",
    "spotChecked": false
   },
   {

@@ -12,7 +12,10 @@ https://fenshot.com/accuracy/.
 | `cases.json` | Every drawn image: source URL or capture recipe, true placement, sha256 |
 | `results.json` | The score of every image in `cases.json`, plus the summary |
 | `reddit-results.json` | The Reddit set: post, image URL, sha256, the bot's reading, fenshot's reading, outcome |
+| `history.json` | The summary of every published run, oldest first: the "What changed" table on the page |
 | `build.ts` | Rebuilds the images (chess.com board images, chess.com and Lichess page screenshots, pages with no board) |
+| `build-books.py` | Typesets the book diagrams with LaTeX (needs pdflatex with the chessboard, skak and skaknew packages, and pdftoppm) |
+| `diagnose.ts` | For each failing case: was the board located wrong, or were the pieces read wrong? |
 | `run.ts` | Scores the shipping recognizer and model on the images |
 | `publish.mjs` | Writes the numbers into `apps/web/public/accuracy/index.html` and `llms.txt` |
 | `reddit-*.{mjs,ts,py}` | Collects the Reddit set, crops boards for the eye check, finalizes `reddit-results.json` |
@@ -24,8 +27,9 @@ Reddit posters. The recipes and fingerprints let anyone rebuild the same set.
 
 ```
 npx tsx tools/benchmark/build.ts      # images -> .tmp/benchmark/images, cases.json
+python3 tools/benchmark/build-books.py   # the book diagrams, merged into cases.json
 npx tsx tools/benchmark/run.ts        # results.json
-node tools/benchmark/publish.mjs      # page + llms.txt numbers
+node tools/benchmark/publish.mjs      # page + llms.txt numbers (add the run to history.json first)
 ```
 
 The Reddit set:
@@ -42,7 +46,7 @@ python3 tools/benchmark/reddit-finalize.py
 ## Outcomes
 
 - **exact**: all 64 squares right, no warning.
-- **exact-warned**: all squares right, but the user is told to check.
+- **exact-warned**: all squares right, but the user is told to check. A warning is what the apps show: the low-confidence warning, or the "not a legal position, fix it in the editor" warning (chess.js rejects the position).
 - **wrong-warned**: a square is wrong, and the user is told to check (the editor opens).
 - **wrong-silent**: a square is wrong with no warning. The failure that matters.
 - **missed**: no board found.
@@ -50,8 +54,11 @@ python3 tools/benchmark/reddit-finalize.py
 
 ## Rules that keep it honest
 
-- No image is drawn by fenshot code. chess.com pages are checked to show the
-  requested position before they are kept.
+- No image is drawn by fenshot's own drawing code. Site boards are drawn by the
+  sites; book diagrams are typeset by LaTeX. chess.com pages are checked to show
+  the requested position before they are kept.
+- A change to the recognizer ships only if nothing that was right becomes wrong
+  on the benchmark, and the Reddit set is scored before and after as well.
 - Positions are picked by rule, never by hand, and never re-picked after scoring.
 - Reddit truth: where fenshot and the chessvision-ai-bot agree, the read counts
   as right (18 random agreements were compared to the image by eye: no mismatch).

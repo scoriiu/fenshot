@@ -8,6 +8,8 @@ import { readFileSync, writeFileSync } from "node:fs";
 const PAGE = "apps/web/public/accuracy/index.html";
 const bench = JSON.parse(readFileSync("tools/benchmark/results.json", "utf8"));
 const reddit = JSON.parse(readFileSync("tools/benchmark/reddit-results.json", "utf8"));
+/** One entry per benchmark run, oldest first: what the "What changed" table compares. */
+const history = JSON.parse(readFileSync("tools/benchmark/history.json", "utf8"));
 const s = bench.summary;
 
 const right = (t) => (t.exact ?? 0) + (t["exact-warned"] ?? 0);
@@ -43,6 +45,15 @@ const rows = {
   seen: s.byTraining["artwork seen in training"],
   unseen: s.byTraining["artwork never seen in training"],
 };
+const [first, latest] = [history[0], history[history.length - 1]];
+const ratio = (t) => `${right(t)} / ${t.images}`;
+for (const [when, run] of [["before", first], ["after", latest]]) {
+  const by = run.benchmark.bySource;
+  values[`hist.book.${when}`] = ratio(by["book-diagram"]);
+  values[`hist.themed.${when}`] = ratio(sum(by["chesscom-image"], by["lichess-page-themed"]));
+  values[`hist.pages.${when}`] = ratio(sum(by["chesscom-page"], by["lichess-page"]));
+  values[`hist.reddit.${when}`] = ratio(run.reddit);
+}
 for (const [row, t] of Object.entries(rows)) {
   for (const col of ["images", "exact", "exact-warned", "wrong-warned", "wrong-silent", "missed"]) {
     values[`row.${row}.${col}`] = String(t[col] ?? 0);
@@ -61,17 +72,17 @@ if (unused.length) throw new Error(`values with no element: ${unused.join(", ")}
 writeFileSync(PAGE, html);
 
 const LLMS = "apps/web/public/llms.txt";
+const themed = sum(rows["chesscom-image"], rows["lichess-page-themed"]);
+const book = rows["book-diagram"];
 const facts = [
   `- Measured ${values.date} on ${values.images} images with known positions (model ${values.model}); method, data and code: https://fenshot.com/accuracy/ and https://github.com/scoriiu/fenshot/tree/main/tools/benchmark`,
   `- chess.com and Lichess analysis pages in their default look, desktop and phone: ${values["tile.pages.n"]} read exactly right (${values["tile.pages.pct"]}).`,
   `- Real chess screenshots posted on Reddit: at least ${values["tile.reddit.n"]} read right (${values["tile.reddit.pct"]}); every disagreement with an independent reader counts as a fenshot error.`,
-  (() => {
-    const themed = sum(rows["chesscom-image"], rows["lichess-page-themed"]);
-    return `- Other piece sets and boards (${themed.images} images, 24 piece sets, 22 boards, including 3D sets never seen in training): ${right(themed)} read right (${pct(right(themed), themed.images)}).`;
-  })(),
-  `- Over all ${drawn.images} images drawn by chess.com and Lichess, ${values["tile.warned.n"]} wrong reads came with a warning to check (${values["tile.warned.pct"]}); ${drawn["wrong-silent"] ?? 0} were wrong without one.`,
+  `- Other piece sets and boards (${themed.images} images, 24 piece sets, 22 boards, including 3D sets never seen in training): ${right(themed)} read right (${pct(right(themed), themed.images)}).`,
+  `- Book diagrams typeset with LaTeX, hatched squares (${book.images} images): ${right(book)} read right (${pct(right(book), book.images)}), ${book["exact-warned"] ?? 0} of them with a warning to check; small diagrams are the weak spot.`,
+  `- Over all ${drawn.images} drawn boards and book diagrams, ${values["tile.warned.n"]} wrong reads came with a warning to check (${values["tile.warned.pct"]}); ${drawn["wrong-silent"] ?? 0} were wrong without one, all of them endgames read with the board turned around.`,
   `- Pages with no chess board: fenshot invented no position on ${values["tile.noboard.n"]}.`,
-  "- Weak spots: 3D piece sets, print-style and textured boards (chess.com newspaper; Lichess marble, grey, purple), and unusual piece sets (Lichess horsey, cardinal, monarchy).",
+  "- Weak spots: board direction in endgames (about 4 to 7 positions in 100, no warning), 3D piece sets, small book diagrams, and unusual piece sets (Lichess horsey, monarchy).",
 ];
 const llms = readFileSync(LLMS, "utf8").replace(/<!-- benchmark:start -->[\s\S]*<!-- benchmark:end -->/, `<!-- benchmark:start -->\n${facts.join("\n")}\n<!-- benchmark:end -->`);
 writeFileSync(LLMS, llms);

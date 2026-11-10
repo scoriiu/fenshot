@@ -63,15 +63,15 @@ footer { color:#64748b; font-size:13px; margin-top:44px; border-top:1px solid va
 <main>
 <p class="crumb"><a href="/">fenshot</a> / Accuracy</p>
 <h1>How accurate is fenshot?</h1>
-<p class="lead">We measure it on chess images where the right answer is known: boards drawn by chess.com and Lichess themselves, and real screenshots posted on Reddit. Below are the results, the method, and every place where fenshot fails. The test, the data and the results are open source, so anyone can re-run them.</p>
+<p class="lead">We measure it on chess images where the right answer is known: boards drawn by chess.com and Lichess themselves, book diagrams typeset the way printed books are, and real screenshots posted on Reddit. Below are the results, the method, and every place where fenshot fails. The test, the data and the results are open source, so anyone can re-run them.</p>
 
 <div class="tiles">
   <div class="tile"><div class="num" data-bm="tile.pages.pct">98.3%</div><div class="of" data-bm="tile.pages.n">118 / 120</div><div class="what">chess.com and Lichess pages in their default look, read exactly right</div></div>
-  <div class="tile"><div class="num" data-bm="tile.reddit.pct">82.9%</div><div class="of" data-bm="tile.reddit.n">405 / 488</div><div class="what">real Reddit screenshots read right, at least</div></div>
-  <div class="tile"><div class="num" data-bm="tile.warned.pct">96.7%</div><div class="of" data-bm="tile.warned.n">88 / 91</div><div class="what">wrong reads on site-drawn boards that came with a warning to check</div></div>
+  <div class="tile"><div class="num" data-bm="tile.reddit.pct">85.8%</div><div class="of" data-bm="tile.reddit.n">419 / 488</div><div class="what">real Reddit screenshots read right, at least</div></div>
+  <div class="tile"><div class="num" data-bm="tile.warned.pct">95.2%</div><div class="of" data-bm="tile.warned.n">81 / 85</div><div class="what">wrong reads on drawn boards and book diagrams that came with a warning to check</div></div>
   <div class="tile"><div class="num" data-bm="tile.noboard.pct">100%</div><div class="of" data-bm="tile.noboard.n">40 / 40</div><div class="what">pages with no chess board where fenshot did not invent one</div></div>
 </div>
-<dl class="meta"><dt>Last run</dt><dd data-bm="date">2026-11-08</dd><dt>Model</dt><dd data-bm="model">chess-tiles-v2</dd><dt>Images</dt><dd data-bm="images">948</dd></dl>
+<dl class="meta"><dt>Last run</dt><dd data-bm="date">2026-11-10</dd><dt>Model</dt><dd data-bm="model">chess-tiles-v2</dd><dt>Images</dt><dd data-bm="images">1068</dd></dl>
 
 <h2>Results by source</h2>
 <p>"Right" means every one of the 64 squares matches. A warning means fenshot told the user the read may be wrong and offered the editor to fix it. The red column, wrong with no warning, is the one that matters most.</p>
@@ -81,21 +81,36 @@ footer { color:#64748b; font-size:13px; margin-top:44px; border-top:1px solid va
 <tbody>
 <tr><td>chess.com analysis page, desktop and phone</td><td data-bm="row.chesscom-page.images">60</td><td data-bm="row.chesscom-page.exact">58</td><td data-bm="row.chesscom-page.exact-warned">0</td><td data-bm="row.chesscom-page.wrong-warned">2</td><td class="bad" data-bm="row.chesscom-page.wrong-silent">0</td><td data-bm="row.chesscom-page.missed">0</td></tr>
 <tr><td>Lichess analysis page, desktop and phone</td><td data-bm="row.lichess-page.images">60</td><td data-bm="row.lichess-page.exact">60</td><td data-bm="row.lichess-page.exact-warned">0</td><td data-bm="row.lichess-page.wrong-warned">0</td><td class="bad" data-bm="row.lichess-page.wrong-silent">0</td><td data-bm="row.lichess-page.missed">0</td></tr>
-<tr><td>Lichess page with other piece sets and boards</td><td data-bm="row.lichess-page-themed.images">60</td><td data-bm="row.lichess-page-themed.exact">31</td><td data-bm="row.lichess-page-themed.exact-warned">2</td><td data-bm="row.lichess-page-themed.wrong-warned">27</td><td class="bad" data-bm="row.lichess-page-themed.wrong-silent">0</td><td data-bm="row.lichess-page-themed.missed">0</td></tr>
-<tr><td>chess.com board images, 14 piece sets and 12 boards</td><td data-bm="row.chesscom-image.images">240</td><td data-bm="row.chesscom-image.exact">163</td><td data-bm="row.chesscom-image.exact-warned">15</td><td data-bm="row.chesscom-image.wrong-warned">59</td><td class="bad" data-bm="row.chesscom-image.wrong-silent">3</td><td data-bm="row.chesscom-image.missed">0</td></tr>
-<tr><td>Reddit screenshots, r/chess, r/chessbeginners, r/TournamentChess</td><td data-bm="row.reddit.images">488</td><td data-bm="row.reddit.exact">378</td><td data-bm="row.reddit.exact-warned">27</td><td data-bm="row.reddit.wrong-warned">51</td><td class="bad" data-bm="row.reddit.wrong-silent">20</td><td data-bm="row.reddit.missed">12</td></tr>
-<tr><td>Piece artwork it was trained on</td><td data-bm="row.seen.images">363</td><td data-bm="row.seen.exact">298</td><td data-bm="row.seen.exact-warned">17</td><td data-bm="row.seen.wrong-warned">45</td><td class="bad" data-bm="row.seen.wrong-silent">3</td><td data-bm="row.seen.missed">0</td></tr>
-<tr><td>Piece artwork it has never seen</td><td data-bm="row.unseen.images">57</td><td data-bm="row.unseen.exact">14</td><td data-bm="row.unseen.exact-warned">0</td><td data-bm="row.unseen.wrong-warned">43</td><td class="bad" data-bm="row.unseen.wrong-silent">0</td><td data-bm="row.unseen.missed">0</td></tr>
+<tr><td>Lichess page with other piece sets and boards</td><td data-bm="row.lichess-page-themed.images">60</td><td data-bm="row.lichess-page-themed.exact">41</td><td data-bm="row.lichess-page-themed.exact-warned">6</td><td data-bm="row.lichess-page-themed.wrong-warned">12</td><td class="bad" data-bm="row.lichess-page-themed.wrong-silent">1</td><td data-bm="row.lichess-page-themed.missed">0</td></tr>
+<tr><td>chess.com board images, 14 piece sets and 12 boards</td><td data-bm="row.chesscom-image.images">240</td><td data-bm="row.chesscom-image.exact">188</td><td data-bm="row.chesscom-image.exact-warned">14</td><td data-bm="row.chesscom-image.wrong-warned">35</td><td class="bad" data-bm="row.chesscom-image.wrong-silent">3</td><td data-bm="row.chesscom-image.missed">0</td></tr>
+<tr><td>Book diagrams typeset with LaTeX, hatched squares</td><td data-bm="row.book-diagram.images">120</td><td data-bm="row.book-diagram.exact">55</td><td data-bm="row.book-diagram.exact-warned">33</td><td data-bm="row.book-diagram.wrong-warned">32</td><td class="bad" data-bm="row.book-diagram.wrong-silent">0</td><td data-bm="row.book-diagram.missed">0</td></tr>
+<tr><td>Reddit screenshots, r/chess, r/chessbeginners, r/TournamentChess</td><td data-bm="row.reddit.images">488</td><td data-bm="row.reddit.exact">390</td><td data-bm="row.reddit.exact-warned">29</td><td data-bm="row.reddit.wrong-warned">45</td><td class="bad" data-bm="row.reddit.wrong-silent">19</td><td data-bm="row.reddit.missed">5</td></tr>
+<tr><td>Piece artwork it was trained on</td><td data-bm="row.seen.images">363</td><td data-bm="row.seen.exact">330</td><td data-bm="row.seen.exact-warned">20</td><td data-bm="row.seen.wrong-warned">9</td><td class="bad" data-bm="row.seen.wrong-silent">4</td><td data-bm="row.seen.missed">0</td></tr>
+<tr><td>Piece artwork it has never seen</td><td data-bm="row.unseen.images">177</td><td data-bm="row.unseen.exact">72</td><td data-bm="row.unseen.exact-warned">33</td><td data-bm="row.unseen.wrong-warned">72</td><td class="bad" data-bm="row.unseen.wrong-silent">0</td><td data-bm="row.unseen.missed">0</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>What changed since the first run</h2>
+<p><strong>10 November 2026.</strong> The first run showed that fenshot could not find the board in printed-style diagrams: the hatching inside the dark squares hid the board's grid from it. On marbled boards the read could also slide by one square. fenshot now takes a second look at a softened copy of the image whenever the first look is not clearly right. The piece reader itself is unchanged.</p>
+<div class="scroll">
+<table>
+<thead><tr><th>Read right</th><th>First run</th><th>Now</th></tr></thead>
+<tbody>
+<tr><td>Book diagrams</td><td data-bm="hist.book.before">1 / 120</td><td data-bm="hist.book.after">88 / 120</td></tr>
+<tr><td>chess.com and Lichess in other piece sets and boards</td><td data-bm="hist.themed.before">211 / 300</td><td data-bm="hist.themed.after">249 / 300</td></tr>
+<tr><td>chess.com and Lichess pages in their default look</td><td data-bm="hist.pages.before">118 / 120</td><td data-bm="hist.pages.after">118 / 120</td></tr>
+<tr><td>Reddit screenshots</td><td data-bm="hist.reddit.before">405 / 488</td><td data-bm="hist.reddit.after">419 / 488</td></tr>
 </tbody>
 </table>
 </div>
 
 <h2>Where fenshot struggles</h2>
 <ul>
+  <li><strong>Board direction in endgames.</strong> fenshot reads the squares, then works out which side is at the bottom from where the pawns stand. In endgames that goes wrong in about 4 to 7 positions out of 100: every square is right, but the board is turned around, and there is no warning. Every wrong read without a warning on the drawn boards is of this kind.</li>
   <li><strong>3D piece sets.</strong> chess.com's 3D wood and 3D plastic pieces are almost never read right. They were left out of training on purpose, and fenshot warns instead of guessing.</li>
-  <li><strong>Print-style and textured boards.</strong> chess.com's newspaper board and Lichess's marble, grey and purple boards can shift the read by one row. fenshot nearly always warns when this happens.</li>
-  <li><strong>Unusual piece sets.</strong> Lichess's horsey, cardinal and monarchy pieces are often misread; monarchy was never in training.</li>
-  <li><strong>Glass and neo wood pieces.</strong> The only wrong reads without a warning on the drawn boards came from chess.com's glass and neo wood piece sets.</li>
+  <li><strong>Small book diagrams.</strong> When the squares of a printed diagram are about 30 pixels wide or less, fenshot often gets one to three squares wrong, and warns.</li>
+  <li><strong>Unusual piece sets.</strong> Lichess's horsey and monarchy pieces are misread; monarchy was never in training.</li>
   <li><strong>Busy real screenshots.</strong> Misses on Reddit include phone screenshots with overlays, very small boards, and images with more than one board.</li>
 </ul>
 <p>When a read is uncertain, fenshot shows a warning and opens the editor next to the original image, so a wrong square takes seconds to fix. The common case, a chess.com or Lichess screenshot in the default look, is read right nearly every time.</p>
@@ -103,7 +118,8 @@ footer { color:#64748b; font-size:13px; margin-top:44px; border-top:1px solid va
 <h2>How we measured</h2>
 <ul>
   <li><strong>Positions.</strong> Real positions from the Lichess puzzle database: equal numbers of opening, middlegame and endgame positions, chosen by a fixed rule, not by hand.</li>
-  <li><strong>Images we did not draw.</strong> Every board is drawn by the site itself from the position we give it: chess.com's board image service, screenshots of chess.com's and Lichess's analysis pages at desktop and phone sizes, and Lichess with its own piece set and board settings changed. Each chess.com page was checked to show the position we asked for before it was kept.</li>
+  <li><strong>Images we did not draw.</strong> Every site board is drawn by the site itself from the position we give it: chess.com's board image service, screenshots of chess.com's and Lichess's analysis pages at desktop and phone sizes, and Lichess with its own piece set and board settings changed. Each chess.com page was checked to show the position we asked for before it was kept.</li>
+  <li><strong>Book diagrams.</strong> 120 diagrams typeset with LaTeX in the chess fonts printed books use, with hatched dark squares: full pages with text, tight crops, a scanned-page look, small diagrams, and Black's side. They cover hatched diagrams only; books that print solid grey squares are not in the set yet.</li>
   <li><strong>Pages without a board.</strong> Encyclopedia articles, news sites, documentation and chess site pages with no board, including checkerboards, graph paper and tiles, to test that fenshot does not invent a position.</li>
   <li><strong>Reddit.</strong> Chess images posted on Reddit, where the Chessvision.ai Reddit bot also replied with its reading. Where fenshot and the bot agree, the read counts as right; a random sample of these was compared to the image by eye and no mismatch was found. Every disagreement counts against fenshot, even when fenshot was the one that was right, so the Reddit figure is a floor. The set only includes images the bot answered, which may leave out the hardest ones.</li>
   <li><strong>Same code as the product.</strong> The test runs the exact recognizer and model that the website and the extension use, including the confidence check that decides when to warn.</li>
