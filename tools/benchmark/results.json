@@ -1,14 +1,15 @@
 {
  "built": "2026-11-08",
- "scored": "2026-11-08",
+ "scored": "2026-11-10",
  "summary": {
   "model": "packages/fenshot/model/chess-tiles-v2.onnx",
   "withBoard": {
-   "images": 420,
+   "images": 540,
    "exact": 312,
-   "exact-warned": 17,
-   "wrong-warned": 88,
-   "wrong-silent": 3
+   "exact-warned": 18,
+   "wrong-warned": 170,
+   "wrong-silent": 3,
+   "missed": 37
   },
   "withoutBoard": {
    "images": 40,
@@ -16,6 +17,12 @@
    "warned": 2
   },
   "bySource": {
+   "book-diagram": {
+    "images": 120,
+    "exact-warned": 1,
+    "wrong-warned": 82,
+    "missed": 37
+   },
    "chesscom-image": {
     "images": 240,
     "exact": 163,
@@ -46,46 +53,2908 @@
   },
   "byPhase": {
    "middlegame": {
-    "images": 140,
+    "images": 180,
     "exact": 108,
     "exact-warned": 5,
-    "wrong-warned": 27
+    "wrong-warned": 53,
+    "missed": 14
    },
    "endgame": {
-    "images": 140,
+    "images": 180,
     "exact": 99,
-    "exact-warned": 6,
-    "wrong-warned": 32,
-    "wrong-silent": 3
+    "exact-warned": 7,
+    "wrong-warned": 60,
+    "wrong-silent": 3,
+    "missed": 11
    },
    "opening": {
-    "images": 140,
+    "images": 180,
     "exact": 105,
     "exact-warned": 6,
-    "wrong-warned": 29
+    "wrong-warned": 57,
+    "missed": 12
    }
   },
   "byTraining": {
+   "artwork never seen in training": {
+    "images": 177,
+    "exact": 14,
+    "exact-warned": 1,
+    "wrong-warned": 125,
+    "missed": 37
+   },
    "artwork seen in training": {
     "images": 363,
     "exact": 298,
     "exact-warned": 17,
     "wrong-warned": 45,
     "wrong-silent": 3
-   },
-   "artwork never seen in training": {
-    "images": 57,
-    "exact": 14,
-    "wrong-warned": 43
    }
   },
-  "medianMs": 35
+  "medianMs": 41
  },
  "results": [
   {
+   "file": "book-00008.jpg",
+   "source": "book-diagram",
+   "ms": 18,
+   "outcome": "missed",
+   "wrong": [],
+   "minConfidence": null
+  },
+  {
+   "file": "book-0000D.png",
+   "source": "book-diagram",
+   "ms": 50,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "f8:1>r",
+    "g8:1>k",
+    "b7:1>p",
+    "f7:1>p",
+    "g7:1>p",
+    "h7:1>p",
+    "a6:1>p",
+    "b6:1>q",
+    "f6:1>b",
+    "a5:Q>1",
+    "d5:B>1",
+    "b3:1>P",
+    "d3:1>Q",
+    "f3:1>N",
+    "a2:1>P",
+    "f2:1>P",
+    "g2:1>P",
+    "h2:1>P",
+    "d1:1>R",
+    "g1:1>K"
+   ],
+   "minConfidence": 0.2414
+  },
+  {
+   "file": "book-009FP.png",
+   "source": "book-diagram",
+   "ms": 89,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:b>r",
+    "b7:n>p"
+   ],
+   "minConfidence": 0.1754
+  },
+  {
+   "file": "book-1VvPH.png",
+   "source": "book-diagram",
+   "ms": 31,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "b8:1>n",
+    "c8:1>b",
+    "d8:1>q",
+    "e8:1>k",
+    "h8:1>r",
+    "b7:1>p",
+    "c7:b>1",
+    "d7:p>n",
+    "f7:1>p",
+    "g7:1>p",
+    "h7:1>p",
+    "a6:1>p",
+    "e6:1>p",
+    "f6:k>1",
+    "c5:N>b",
+    "d5:B>p",
+    "e5:1>P",
+    "f5:N>1",
+    "a4:P>1",
+    "b4:P>1",
+    "c4:P>1",
+    "f4:N>B",
+    "g4:P>1",
+    "a3:R>1",
+    "c3:1>N",
+    "d3:Q>B",
+    "e3:R>1",
+    "f3:1>N",
+    "a2:1>P",
+    "b2:1>P",
+    "c2:K>P",
+    "f2:1>P",
+    "g2:1>P",
+    "h2:1>P",
+    "a1:K>R",
+    "b1:P>1",
+    "c1:K>1",
+    "d1:B>Q",
+    "f1:P>1",
+    "g1:P>1",
+    "h1:K>R"
+   ],
+   "minConfidence": 0.1971
+  },
+  {
+   "file": "book-1YYW1.png",
+   "source": "book-diagram",
+   "ms": 23,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "g8:1>k",
+    "a7:1>p",
+    "f7:1>p",
+    "g7:1>p",
+    "h6:1>p",
+    "f5:1>P",
+    "h5:b>1",
+    "a4:1>P",
+    "d4:1>p",
+    "g4:1>n",
+    "h4:1>q",
+    "d3:P>1",
+    "f3:1>Q",
+    "a2:1>P",
+    "g2:1>P",
+    "d1:1>R",
+    "g1:1>K"
+   ],
+   "minConfidence": 0.1978
+  },
+  {
+   "file": "book-1ZTJq.png",
+   "source": "book-diagram",
+   "ms": 64,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "d8:1>q",
+    "e8:1>k",
+    "h8:1>r",
+    "b7:1>p",
+    "c7:1>p",
+    "f7:1>p",
+    "g7:1>p",
+    "a6:1>p",
+    "d6:1>p",
+    "c5:1>n",
+    "d5:1>P",
+    "h5:1>p",
+    "c4:R>1",
+    "e4:1>P",
+    "f4:1>Q",
+    "g4:1>b",
+    "c3:1>N",
+    "d3:1>B",
+    "a2:1>P",
+    "b2:1>P",
+    "c2:1>P",
+    "g2:1>P",
+    "b1:1>K",
+    "f1:1>R",
+    "h1:1>R"
+   ],
+   "minConfidence": 0.2631
+  },
+  {
+   "file": "book-32Y3e.png",
+   "source": "book-diagram",
+   "ms": 69,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "b8:1>n",
+    "f8:1>r",
+    "g8:1>k",
+    "a7:r>p",
+    "b7:1>p",
+    "f7:r>1",
+    "g7:q>p",
+    "h7:1>p",
+    "a6:r>1",
+    "c6:1>p",
+    "d6:1>b",
+    "f6:r>1",
+    "g6:p>1",
+    "d5:1>P",
+    "a4:p>1",
+    "b4:p>1",
+    "g4:1>n",
+    "e3:1>P",
+    "f3:1>N",
+    "h3:1>q",
+    "a2:1>P",
+    "b2:1>P",
+    "d2:1>N",
+    "e2:1>B",
+    "f2:1>P",
+    "a1:1>R",
+    "c1:n>B",
+    "d1:p>Q",
+    "e1:1>R",
+    "g1:1>K"
+   ],
+   "minConfidence": 0.2034
+  },
+  {
+   "file": "book-36EQx.jpg",
+   "source": "book-diagram",
+   "ms": 13,
+   "outcome": "missed",
+   "wrong": [],
+   "minConfidence": null
+  },
+  {
+   "file": "book-37Vud.png",
+   "source": "book-diagram",
+   "ms": 50,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "d8:1>r",
+    "g8:1>k",
+    "a7:r>1",
+    "b7:1>B",
+    "e7:1>b",
+    "f7:1>p",
+    "g7:1>p",
+    "b6:1>q",
+    "d6:p>1",
+    "h6:1>p",
+    "a5:p>1",
+    "e5:1>p",
+    "b4:1>p",
+    "c4:P>1",
+    "a3:1>r",
+    "b3:R>1",
+    "g3:1>P",
+    "h3:1>P",
+    "b2:1>Q",
+    "c2:1>R",
+    "e2:1>P",
+    "f2:1>P",
+    "h2:1>K",
+    "b1:1>R"
+   ],
+   "minConfidence": 0.2562
+  },
+  {
+   "file": "book-4dWUU.png",
+   "source": "book-diagram",
+   "ms": 74,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "c8:1>k",
+    "d8:1>r",
+    "g8:1>n",
+    "h8:1>r",
+    "b7:1>p",
+    "c7:1>p",
+    "f7:1>q",
+    "g7:1>p",
+    "h7:1>p",
+    "a6:1>p",
+    "c6:1>b",
+    "d6:1>b",
+    "e5:1>p",
+    "f5:N>1",
+    "g5:p>1",
+    "c3:1>N",
+    "e3:p>1",
+    "f3:1>N",
+    "a2:1>P",
+    "b2:1>P",
+    "c2:1>P",
+    "e2:1>Q",
+    "f2:1>P",
+    "g2:1>P",
+    "h2:1>P",
+    "a1:1>R",
+    "c1:1>B",
+    "g1:1>K"
+   ],
+   "minConfidence": 0.1637
+  },
+  {
+   "file": "book-4eN8e.png",
+   "source": "book-diagram",
+   "ms": 7,
+   "outcome": "missed",
+   "wrong": [],
+   "minConfidence": null
+  },
+  {
+   "file": "book-4f6T5.png",
+   "source": "book-diagram",
+   "ms": 24,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "c4:B>P"
+   ],
+   "minConfidence": 0.4399
+  },
+  {
+   "file": "book-68nnv.jpg",
+   "source": "book-diagram",
+   "ms": 12,
+   "outcome": "missed",
+   "wrong": [],
+   "minConfidence": null
+  },
+  {
+   "file": "book-6CeWb.png",
+   "source": "book-diagram",
+   "ms": 17,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "c8:1>r",
+    "d8:q>1",
+    "e8:1>r",
+    "f8:k>1",
+    "g8:1>k",
+    "h8:k>1",
+    "g7:1>b",
+    "h7:1>p",
+    "f6:1>n",
+    "g6:1>p",
+    "d5:1>q",
+    "f5:1>p",
+    "d4:1>P",
+    "h4:R>1",
+    "b3:1>p",
+    "c3:1>P",
+    "d3:1>N",
+    "f3:1>P",
+    "h3:1>P",
+    "b2:1>P",
+    "d2:1>Q",
+    "g2:1>P",
+    "h2:1>B",
+    "b1:1>R",
+    "e1:1>R",
+    "g1:1>K"
+   ],
+   "minConfidence": 0.1824
+  },
+  {
+   "file": "book-6CtDJ.png",
+   "source": "book-diagram",
+   "ms": 153,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "c8:1>r",
+    "h8:1>R",
+    "b7:1>q",
+    "e7:1>k",
+    "f7:1>p",
+    "g7:1>p",
+    "h7:R>1",
+    "d6:r>1",
+    "e6:1>b",
+    "g6:1>P",
+    "d5:P>p",
+    "e5:1>P",
+    "a4:1>p",
+    "d4:1>Q",
+    "a3:1>P",
+    "c3:1>p",
+    "b2:1>P",
+    "c2:1>P",
+    "e2:1>B",
+    "f2:1>P",
+    "c1:1>K"
+   ],
+   "minConfidence": 0.3482
+  },
+  {
+   "file": "book-7guVa.png",
+   "source": "book-diagram",
+   "ms": 24,
+   "outcome": "missed",
+   "wrong": [],
+   "minConfidence": null
+  },
+  {
+   "file": "book-7l4Zo.png",
+   "source": "book-diagram",
+   "ms": 21,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "c8:1>r",
+    "d8:1>q",
+    "e8:1>k",
+    "f8:1>b",
+    "h8:1>r",
+    "f7:1>p",
+    "g7:1>p",
+    "h7:1>p",
+    "a6:1>p",
+    "e6:1>p",
+    "f6:Q>n",
+    "b5:1>p",
+    "e5:1>N",
+    "d4:1>B",
+    "a3:1>P",
+    "b3:1>P",
+    "c3:N>1",
+    "d3:1>Q",
+    "e3:1>P",
+    "f2:1>P",
+    "g2:1>P",
+    "h2:1>P",
+    "a1:1>R",
+    "e1:1>K",
+    "h1:1>R"
+   ],
+   "minConfidence": 0.2464
+  },
+  {
+   "file": "book-7m83e.png",
+   "source": "book-diagram",
+   "ms": 6,
+   "outcome": "missed",
+   "wrong": [],
+   "minConfidence": null
+  },
+  {
+   "file": "book-9GpXj.png",
+   "source": "book-diagram",
+   "ms": 51,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "d8:1>q",
+    "f8:1>r",
+    "g8:1>k",
+    "b7:1>b",
+    "e7:1>b",
+    "f7:1>p",
+    "g7:1>p",
+    "h7:1>p",
+    "a6:1>p",
+    "f6:1>n",
+    "g6:Q>1",
+    "b5:1>p",
+    "e5:1>p",
+    "g5:1>B",
+    "e4:1>P",
+    "b3:1>B",
+    "c3:1>N",
+    "f3:1>N",
+    "h3:1>P",
+    "a2:1>P",
+    "b2:1>P",
+    "f2:1>P",
+    "g2:1>P",
+    "a1:1>R",
+    "d1:1>Q",
+    "e1:1>R",
+    "g1:1>K"
+   ],
+   "minConfidence": 0.2401
+  },
+  {
+   "file": "book-9IC5k.jpg",
+   "source": "book-diagram",
+   "ms": 17,
+   "outcome": "missed",
+   "wrong": [],
+   "minConfidence": null
+  },
+  {
+   "file": "book-9KZRQ.png",
+   "source": "book-diagram",
+   "ms": 76,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "b8:1>r",
+    "h8:1>k",
+    "d7:1>R",
+    "g7:q>R",
+    "h7:1>p",
+    "e6:1>p",
+    "f6:1>r",
+    "g6:1>p",
+    "h6:1>P",
+    "b4:1>p",
+    "c4:B>1",
+    "f4:1>P",
+    "g4:B>1",
+    "a3:1>p",
+    "e3:1>P",
+    "f3:1>N",
+    "a2:1>P",
+    "b2:1>p",
+    "e2:1>b",
+    "b1:1>K"
+   ],
+   "minConfidence": 0.2491
+  },
+  {
+   "file": "book-Ap4Em.png",
+   "source": "book-diagram",
+   "ms": 7,
+   "outcome": "missed",
+   "wrong": [],
+   "minConfidence": null
+  },
+  {
+   "file": "book-AqIE4.png",
+   "source": "book-diagram",
+   "ms": 39,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "g4:1>B",
+    "g2:B>P",
+    "e1:R>B",
+    "g1:1>K"
+   ],
+   "minConfidence": 0.2256
+  },
+  {
+   "file": "book-Argbk.png",
+   "source": "book-diagram",
+   "ms": 58,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "b8:1>r",
+    "h7:1>p",
+    "c5:1>p",
+    "e5:1>P",
+    "f5:1>p",
+    "b4:1>n",
+    "c4:1>K",
+    "f4:1>k",
+    "h3:B>1",
+    "a2:1>p",
+    "h2:1>P",
+    "a1:1>R",
+    "c1:Q>1",
+    "e1:1>R"
+   ],
+   "minConfidence": 0.2727
+  },
+  {
+   "file": "book-CPGZr.png",
+   "source": "book-diagram",
+   "ms": 71,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:p>r",
+    "c8:1>b",
+    "d8:1>q",
+    "e8:1>k",
+    "g8:1>n",
+    "h8:N>r",
+    "a7:r>p",
+    "b7:1>p",
+    "c7:b>1",
+    "d7:q>1",
+    "e7:r>1",
+    "f7:1>p",
+    "g7:n>b",
+    "c6:1>n",
+    "d6:1>p",
+    "g6:1>p",
+    "a5:p>1",
+    "b5:p>1",
+    "f5:p>1",
+    "g5:q>1",
+    "e4:1>P",
+    "f4:1>P",
+    "c3:n>1",
+    "d3:p>1",
+    "f3:1>N",
+    "a2:1>P",
+    "b2:1>P",
+    "c2:1>P",
+    "g2:1>P",
+    "h2:1>P",
+    "a1:1>R",
+    "b1:1>N",
+    "c1:1>B",
+    "d1:1>Q",
+    "e1:1>K",
+    "f1:1>B",
+    "h1:1>R"
+   ],
+   "minConfidence": 0.1942
+  },
+  {
+   "file": "book-CPR7d.jpg",
+   "source": "book-diagram",
+   "ms": 15,
+   "outcome": "missed",
+   "wrong": [],
+   "minConfidence": null
+  },
+  {
+   "file": "book-CPXDI.png",
+   "source": "book-diagram",
+   "ms": 58,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "f8:r>k",
+    "h8:1>r",
+    "g7:1>b",
+    "h6:1>p",
+    "g5:1>p",
+    "g4:k>b",
+    "g3:1>P",
+    "f2:N>P",
+    "h1:1>R"
+   ],
+   "minConfidence": 0.2297
+  },
+  {
+   "file": "book-DwTxJ.png",
+   "source": "book-diagram",
+   "ms": 61,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "e7:1>Q",
+    "h7:1>p",
+    "b6:Q>1",
+    "c6:1>P",
+    "d6:q>1",
+    "g6:1>p",
+    "h6:1>k",
+    "a5:R>1",
+    "d5:p>1",
+    "e4:1>p",
+    "h4:1>K",
+    "a3:q>1",
+    "b3:p>1",
+    "e3:1>q",
+    "f3:P>1",
+    "g3:1>P",
+    "h3:1>P",
+    "a2:p>1",
+    "d2:Q>1"
+   ],
+   "minConfidence": 0.2239
+  },
+  {
+   "file": "book-Dxx4R.png",
+   "source": "book-diagram",
+   "ms": 13,
+   "outcome": "missed",
+   "wrong": [],
+   "minConfidence": null
+  },
+  {
+   "file": "book-DysxK.png",
+   "source": "book-diagram",
+   "ms": 66,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "e8:q>k"
+   ],
+   "minConfidence": 0.246
+  },
+  {
+   "file": "book-FUJrd.png",
+   "source": "book-diagram",
+   "ms": 74,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "g8:1>k",
+    "f6:1>b",
+    "h6:1>p",
+    "a5:N>P",
+    "d5:B>P",
+    "g5:1>p",
+    "g3:1>P",
+    "h3:1>K",
+    "a2:1>r",
+    "h2:1>P",
+    "f1:1>R"
+   ],
+   "minConfidence": 0.3761
+  },
+  {
+   "file": "book-FUZ1e.png",
+   "source": "book-diagram",
+   "ms": 56,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "f8:1>r",
+    "g8:1>k",
+    "a7:1>p",
+    "b7:1>p",
+    "c7:1>R",
+    "f7:1>p",
+    "h7:1>p",
+    "c6:R>1",
+    "g6:p>1",
+    "a5:1>n",
+    "b5:R>1",
+    "g5:n>N",
+    "f4:1>B",
+    "h4:1>K",
+    "d3:1>q",
+    "a2:1>P",
+    "h2:1>P",
+    "g1:1>R",
+    "h1:B>1"
+   ],
+   "minConfidence": 0.2522
+  },
+  {
+   "file": "book-FYifJ.jpg",
+   "source": "book-diagram",
+   "ms": 14,
+   "outcome": "missed",
+   "wrong": [],
+   "minConfidence": null
+  },
+  {
+   "file": "book-H1Kbp.png",
+   "source": "book-diagram",
+   "ms": 20,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "g8:p>k",
+    "g7:1>b",
+    "h7:1>p",
+    "g6:1>p",
+    "g4:Q>P",
+    "h3:R>P",
+    "g2:P>K"
+   ],
+   "minConfidence": 0.1918
+  },
+  {
+   "file": "book-H36To.png",
+   "source": "book-diagram",
+   "ms": 5,
+   "outcome": "missed",
+   "wrong": [],
+   "minConfidence": null
+  },
+  {
+   "file": "book-H6JsE.png",
+   "source": "book-diagram",
+   "ms": 51,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "b8:1>b",
+    "c8:1>b",
+    "f8:1>r",
+    "g8:1>k",
+    "b7:1>p",
+    "c7:1>q",
+    "d7:1>p",
+    "f7:1>p",
+    "g7:1>p",
+    "h7:1>p",
+    "a6:1>p",
+    "e6:1>p",
+    "f6:1>n",
+    "a4:1>N",
+    "b4:b>1",
+    "c4:1>P",
+    "d4:1>N",
+    "e4:1>P",
+    "f4:1>n",
+    "g4:R>1",
+    "h4:N>1",
+    "b3:1>Q",
+    "e3:1>B",
+    "f3:1>P",
+    "a2:1>P",
+    "b2:1>P",
+    "g2:1>P",
+    "h2:1>P",
+    "c1:1>R",
+    "d1:1>R",
+    "f1:1>B",
+    "g1:1>K"
+   ],
+   "minConfidence": 0.3144
+  },
+  {
+   "file": "book-IY9uc.jpg",
+   "source": "book-diagram",
+   "ms": 17,
+   "outcome": "missed",
+   "wrong": [],
+   "minConfidence": null
+  },
+  {
+   "file": "book-Iaj03.png",
+   "source": "book-diagram",
+   "ms": 118,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "d7:1>k",
+    "f7:1>p",
+    "g7:1>p",
+    "a6:1>p",
+    "c6:1>R",
+    "e6:1>p",
+    "g6:p>1",
+    "h6:1>p",
+    "b5:1>p",
+    "f5:Q>1",
+    "c4:R>1",
+    "b3:Q>1",
+    "e3:1>P",
+    "a2:1>P",
+    "b2:1>P",
+    "e2:1>K",
+    "f2:1>P",
+    "g2:1>P",
+    "h2:1>P",
+    "f1:Q>1"
+   ],
+   "minConfidence": 0.3873
+  },
+  {
+   "file": "book-IcZbn.png",
+   "source": "book-diagram",
+   "ms": 69,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "b8:p>n",
+    "e8:1>k",
+    "h8:1>r",
+    "e7:1>b",
+    "f7:1>p",
+    "g7:1>p",
+    "h7:1>p",
+    "f6:1>n",
+    "g5:1>Q",
+    "a4:1>P",
+    "d3:1>B",
+    "b2:1>P",
+    "c2:1>P",
+    "f2:1>P",
+    "g2:1>P",
+    "h2:1>P",
+    "a1:1>R",
+    "c1:1>B",
+    "e1:1>R",
+    "g1:1>K"
+   ],
+   "minConfidence": 0.2088
+  },
+  {
+   "file": "book-K6RX7.png",
+   "source": "book-diagram",
+   "ms": 34,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "g8:1>r",
+    "c7:1>p",
+    "d7:1>b",
+    "f7:1>p",
+    "h7:1>k",
+    "b6:1>n",
+    "c6:R>p",
+    "f6:1>p",
+    "h6:1>p",
+    "a5:1>p",
+    "c5:1>q",
+    "e5:1>p",
+    "f5:1>P",
+    "g5:1>r",
+    "e4:1>P",
+    "c3:n>P",
+    "h3:B>R",
+    "b2:p>1",
+    "c2:1>Q",
+    "d2:q>N",
+    "e2:1>B",
+    "g2:1>P",
+    "h2:1>P",
+    "a1:Q>1",
+    "h1:1>K"
+   ],
+   "minConfidence": 0.2611
+  },
+  {
+   "file": "book-K8I4v.png",
+   "source": "book-diagram",
+   "ms": 41,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "c8:B>1",
+    "f7:1>p",
+    "g7:1>k",
+    "a6:1>P",
+    "e6:1>b",
+    "g6:1>p",
+    "b5:1>p",
+    "c5:1>Q",
+    "e5:1>P",
+    "h5:1>p",
+    "d4:1>p",
+    "g4:N>1",
+    "h4:1>P",
+    "g3:1>P",
+    "f2:1>q",
+    "g2:1>B",
+    "h2:1>K",
+    "a1:P>1",
+    "h1:K>1"
+   ],
+   "minConfidence": 0.1724
+  },
+  {
+   "file": "book-KAd9d.png",
+   "source": "book-diagram",
+   "ms": 6,
+   "outcome": "missed",
+   "wrong": [],
+   "minConfidence": null
+  },
+  {
+   "file": "book-LeRzC.png",
+   "source": "book-diagram",
+   "ms": 66,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "f8:1>r",
+    "g8:1>k",
+    "b7:1>b",
+    "g7:1>p",
+    "h7:1>p",
+    "a6:R>p",
+    "b5:1>p",
+    "a3:1>P",
+    "c3:P>N",
+    "a2:N>B",
+    "b2:1>P",
+    "c2:1>n",
+    "g2:1>P",
+    "h2:1>P",
+    "a1:1>R",
+    "c1:1>B",
+    "g1:1>K"
+   ],
+   "minConfidence": 0.1715
+  },
+  {
+   "file": "book-LhVAe.jpg",
+   "source": "book-diagram",
+   "ms": 13,
+   "outcome": "missed",
+   "wrong": [],
+   "minConfidence": null
+  },
+  {
+   "file": "book-LjYnH.png",
+   "source": "book-diagram",
+   "ms": 32,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "b8:1>n",
+    "e8:1>k",
+    "f8:1>b",
+    "g8:q>1",
+    "h8:1>r",
+    "a7:1>p",
+    "d7:n>1",
+    "f7:1>p",
+    "g7:r>p",
+    "b6:1>p",
+    "e6:1>p",
+    "h6:1>p",
+    "e5:1>N",
+    "f5:Q>P",
+    "d4:1>q",
+    "b3:1>Q",
+    "c3:1>n",
+    "a2:1>P",
+    "b2:B>P",
+    "f2:1>P",
+    "g2:b>P",
+    "h2:1>P",
+    "a1:1>R",
+    "b1:B>1",
+    "c1:1>B",
+    "e1:1>K",
+    "f1:1>B",
+    "h1:1>R"
+   ],
+   "minConfidence": 0.2707
+  },
+  {
+   "file": "book-NB4lL.png",
+   "source": "book-diagram",
+   "ms": 6,
+   "outcome": "missed",
+   "wrong": [],
+   "minConfidence": null
+  },
+  {
+   "file": "book-NFETX.png",
+   "source": "book-diagram",
+   "ms": 41,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "e6:1>K",
+    "h5:1>k",
+    "e4:N>P",
+    "f4:1>Q",
+    "a3:1>P",
+    "e3:P>B",
+    "f3:1>n"
+   ],
+   "minConfidence": 0.2156
+  },
+  {
+   "file": "book-NHXlL.png",
+   "source": "book-diagram",
+   "ms": 28,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "d8:1>q",
+    "e8:1>k",
+    "h8:1>r",
+    "a7:1>p",
+    "b7:1>b",
+    "d7:1>p",
+    "e7:1>p",
+    "f7:1>p",
+    "g7:1>b",
+    "h7:1>p",
+    "b6:1>p",
+    "g6:1>p",
+    "d5:1>n",
+    "e5:1>P",
+    "d4:1>P",
+    "c3:1>N",
+    "d3:1>B",
+    "f3:1>N",
+    "a2:1>P",
+    "b2:1>P",
+    "f2:1>P",
+    "g2:1>P",
+    "h2:b>P",
+    "a1:1>R",
+    "d1:1>Q",
+    "g1:1>K"
+   ],
+   "minConfidence": 0.333
+  },
+  {
+   "file": "book-OiN9U.png",
+   "source": "book-diagram",
+   "ms": 71,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "c8:1>b",
+    "d8:1>q",
+    "f8:1>r",
+    "g8:B>1",
+    "h8:1>k",
+    "a7:1>p",
+    "b7:1>p",
+    "c7:1>b",
+    "g7:1>p",
+    "h7:1>p",
+    "c6:1>p",
+    "d6:1>p",
+    "a5:b>1",
+    "e5:1>p",
+    "f5:1>p",
+    "b4:1>P",
+    "e4:1>P",
+    "a3:1>P",
+    "b3:1>B",
+    "d3:1>P",
+    "e3:1>B",
+    "f3:1>P",
+    "c2:1>P",
+    "e2:N>1",
+    "f2:1>P",
+    "g2:1>Q",
+    "h2:1>P",
+    "a1:1>R",
+    "g1:1>R",
+    "h1:1>K"
+   ],
+   "minConfidence": 0.3667
+  },
+  {
+   "file": "book-On9mu.png",
+   "source": "book-diagram",
+   "ms": 126,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a7:1>p",
+    "f5:B>P"
+   ],
+   "minConfidence": 0.34
+  },
+  {
+   "file": "book-OqxAr.jpg",
+   "source": "book-diagram",
+   "ms": 16,
+   "outcome": "missed",
+   "wrong": [],
+   "minConfidence": null
+  },
+  {
+   "file": "book-QHxfl.png",
+   "source": "book-diagram",
+   "ms": 74,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "b8:B>1",
+    "d8:r>1",
+    "f8:1>r",
+    "g8:1>k",
+    "a7:1>p",
+    "b7:1>b",
+    "c7:1>p",
+    "d7:1>n",
+    "e7:1>q",
+    "f7:1>p",
+    "h7:1>p",
+    "b6:1>p",
+    "e6:1>p",
+    "f6:1>b",
+    "g6:B>p",
+    "a5:B>1",
+    "d5:1>P",
+    "e5:1>N",
+    "b4:1>P",
+    "c4:1>P",
+    "d3:1>B",
+    "h3:B>1",
+    "a2:1>P",
+    "b2:1>B",
+    "e2:B>Q",
+    "f2:1>P",
+    "g2:1>P",
+    "h2:1>P",
+    "a1:1>R",
+    "d1:1>R",
+    "g1:1>K"
+   ],
+   "minConfidence": 0.1852
+  },
+  {
+   "file": "book-QMwpE.png",
+   "source": "book-diagram",
+   "ms": 15,
+   "outcome": "missed",
+   "wrong": [],
+   "minConfidence": null
+  },
+  {
+   "file": "book-QOSYT.png",
+   "source": "book-diagram",
+   "ms": 27,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "c8:1>b",
+    "f8:1>k",
+    "h8:1>r",
+    "a7:1>p",
+    "b7:1>p",
+    "c7:N>p",
+    "f7:P>p",
+    "h7:1>p",
+    "b6:B>1",
+    "c6:1>n",
+    "f6:1>n",
+    "d5:p>Q",
+    "e4:Q>p",
+    "h4:1>q",
+    "g3:1>N",
+    "a2:1>P",
+    "b2:1>P",
+    "c2:1>P",
+    "f2:n>K",
+    "g2:1>P",
+    "h2:1>P",
+    "a1:1>R",
+    "b1:1>N",
+    "c1:1>B",
+    "e1:P>1",
+    "f1:1>B",
+    "h1:1>R"
+   ],
+   "minConfidence": 0.2741
+  },
+  {
+   "file": "book-RqgDY.jpg",
+   "source": "book-diagram",
+   "ms": 14,
+   "outcome": "missed",
+   "wrong": [],
+   "minConfidence": null
+  },
+  {
+   "file": "book-RsHGQ.png",
+   "source": "book-diagram",
+   "ms": 57,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "d8:1>q",
+    "e8:1>k",
+    "f8:1>b",
+    "h8:1>r",
+    "a7:n>p",
+    "b7:1>b",
+    "f7:1>p",
+    "g7:1>p",
+    "h7:1>p",
+    "b6:k>p",
+    "e6:1>p",
+    "f6:1>n",
+    "d5:1>p",
+    "f4:1>B",
+    "d3:1>P",
+    "e3:1>P",
+    "f3:1>N",
+    "d2:1>N",
+    "f2:1>P",
+    "g2:R>P",
+    "h2:1>P",
+    "f1:1>R",
+    "g1:1>K"
+   ],
+   "minConfidence": 0.2212
+  },
+  {
+   "file": "book-RuXnb.png",
+   "source": "book-diagram",
+   "ms": 60,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "f8:1>q",
+    "a7:Q>r",
+    "g7:p>1",
+    "h7:1>k",
+    "a6:1>p",
+    "g6:1>R",
+    "h6:1>b",
+    "b5:1>p",
+    "d5:1>p",
+    "h5:1>Q",
+    "b4:R>P",
+    "d4:1>P",
+    "g4:1>P",
+    "h4:p>1",
+    "a3:1>P",
+    "b3:K>1",
+    "a2:r>1",
+    "g2:1>K",
+    "h2:r>P",
+    "a1:P>1",
+    "h1:r>1"
+   ],
+   "minConfidence": 0.2684
+  },
+  {
+   "file": "book-TMmXD.png",
+   "source": "book-diagram",
+   "ms": 89,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "c8:1>b",
+    "d8:1>q",
+    "e8:1>k",
+    "f8:1>b",
+    "h8:1>r",
+    "a7:1>p",
+    "b7:1>p",
+    "d7:1>p",
+    "h7:1>p",
+    "b6:p>1",
+    "c6:1>p",
+    "f6:1>n",
+    "b5:1>B",
+    "e5:1>N",
+    "f5:1>n",
+    "g5:P>B",
+    "d3:1>P",
+    "a2:1>P",
+    "b2:1>P",
+    "c2:1>P",
+    "f2:1>P",
+    "g2:1>P",
+    "h2:1>P",
+    "a1:1>R",
+    "b1:P>N",
+    "d1:1>Q",
+    "e1:1>K",
+    "g1:P>1",
+    "h1:1>R"
+   ],
+   "minConfidence": 0.2098
+  },
+  {
+   "file": "book-TNneL.png",
+   "source": "book-diagram",
+   "ms": 40,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "d8:1>q",
+    "e8:1>k",
+    "g8:1>n",
+    "h8:1>r",
+    "b7:1>p",
+    "c7:1>p",
+    "f7:1>p",
+    "g7:1>p",
+    "h7:1>p",
+    "a6:1>p",
+    "c6:1>p",
+    "d6:1>b",
+    "c4:P>1",
+    "d4:1>p",
+    "e4:1>P",
+    "g4:P>1",
+    "c3:1>N",
+    "f3:1>P",
+    "h3:1>P",
+    "a2:1>P",
+    "b2:N>P",
+    "c2:1>P",
+    "f2:1>P",
+    "g2:N>1",
+    "a1:1>R",
+    "c1:1>B",
+    "d1:1>Q",
+    "f1:1>R",
+    "g1:R>K"
+   ],
+   "minConfidence": 0.1617
+  },
+  {
+   "file": "book-TSJDl.png",
+   "source": "book-diagram",
+   "ms": 115,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "f8:1>r",
+    "g8:1>k",
+    "a7:1>p",
+    "b7:1>Q",
+    "d7:1>N",
+    "e7:p>1",
+    "f7:1>p",
+    "g7:1>p",
+    "h7:1>p",
+    "b6:1>p",
+    "e6:1>p",
+    "f5:1>n",
+    "b4:1>P",
+    "a3:1>P",
+    "g3:1>P",
+    "h3:1>P",
+    "e2:1>q",
+    "f2:1>P",
+    "g2:1>K",
+    "f1:1>R"
+   ],
+   "minConfidence": 0.4531
+  },
+  {
+   "file": "book-Uvf1E.png",
+   "source": "book-diagram",
+   "ms": 58,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "g8:1>k",
+    "c7:p>1",
+    "f7:1>p",
+    "g7:1>b",
+    "a6:1>p",
+    "c6:1>N",
+    "d6:q>p",
+    "g6:1>p",
+    "e5:1>q",
+    "d4:r>1",
+    "e3:1>r",
+    "f3:B>1",
+    "a2:R>P",
+    "b2:1>p",
+    "e2:R>1",
+    "g2:R>Q",
+    "b1:1>K",
+    "e1:R>1",
+    "f1:1>R",
+    "h1:1>R"
+   ],
+   "minConfidence": 0.2784
+  },
+  {
+   "file": "book-UwOWA.png",
+   "source": "book-diagram",
+   "ms": 57,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "b8:1>n",
+    "c8:1>b",
+    "e8:P>1",
+    "f8:1>r",
+    "a7:1>p",
+    "b7:1>p",
+    "e7:1>p",
+    "f7:R>p",
+    "g7:1>b",
+    "h7:1>k",
+    "b6:1>q",
+    "f6:1>n",
+    "g6:1>p",
+    "h6:1>p",
+    "c5:1>p",
+    "c4:1>P",
+    "d4:Q>1",
+    "h4:1>B",
+    "c3:1>N",
+    "d3:R>B",
+    "e3:1>P",
+    "a2:1>P",
+    "b2:1>P",
+    "c2:1>Q",
+    "f2:1>P",
+    "g2:1>P",
+    "h2:1>P",
+    "d1:1>R",
+    "e1:1>K",
+    "g1:1>N",
+    "h1:1>R"
+   ],
+   "minConfidence": 0.3158
+  },
+  {
+   "file": "book-V0JMS.jpg",
+   "source": "book-diagram",
+   "ms": 41,
+   "outcome": "missed",
+   "wrong": [],
+   "minConfidence": null
+  },
+  {
+   "file": "book-WSEhm.png",
+   "source": "book-diagram",
+   "ms": 69,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "d8:1>q",
+    "e8:1>k",
+    "f8:1>b",
+    "h8:1>r",
+    "b7:1>p",
+    "f7:1>p",
+    "g7:1>p",
+    "a6:1>p",
+    "e6:1>p",
+    "b5:1>n",
+    "c5:1>p",
+    "d5:1>N",
+    "f4:1>B",
+    "d3:1>Q",
+    "a2:1>P",
+    "b2:1>P",
+    "c2:1>P",
+    "g2:1>P",
+    "a1:1>R",
+    "e1:1>K",
+    "g1:1>N",
+    "h1:1>R"
+   ],
+   "minConfidence": 0.3593
+  },
+  {
+   "file": "book-WULOW.png",
+   "source": "book-diagram",
+   "ms": 5,
+   "outcome": "missed",
+   "wrong": [],
+   "minConfidence": null
+  },
+  {
+   "file": "book-WZ2ac.png",
+   "source": "book-diagram",
+   "ms": 51,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "g8:1>k",
+    "a7:1>p",
+    "e7:1>R",
+    "f7:1>p",
+    "h7:1>p",
+    "b6:1>p",
+    "e6:1>R",
+    "f6:P>Q",
+    "g6:P>p",
+    "d5:1>p",
+    "f5:1>q",
+    "g5:B>1",
+    "a2:r>1",
+    "e2:N>1",
+    "f2:1>P",
+    "g1:1>K"
+   ],
+   "minConfidence": 0.1696
+  },
+  {
+   "file": "book-Y0bZX.jpg",
+   "source": "book-diagram",
+   "ms": 15,
+   "outcome": "missed",
+   "wrong": [],
+   "minConfidence": null
+  },
+  {
+   "file": "book-Y2n7z.png",
+   "source": "book-diagram",
+   "ms": 55,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "e8:1>r",
+    "g8:1>k",
+    "a7:Q>p",
+    "c7:Q>R",
+    "f7:1>p",
+    "g7:1>b",
+    "h7:1>p",
+    "a6:1>Q",
+    "b6:1>p",
+    "e6:p>1",
+    "f6:1>q",
+    "g6:1>p",
+    "b4:1>P",
+    "e4:b>n",
+    "f4:1>B",
+    "a3:1>P",
+    "c3:B>1",
+    "f3:1>N",
+    "h3:1>P",
+    "c2:Q>1",
+    "f2:1>P",
+    "g2:1>P",
+    "g1:1>K"
+   ],
+   "minConfidence": 0.3337
+  },
+  {
+   "file": "book-Y8rcP.png",
+   "source": "book-diagram",
+   "ms": 78,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "b8:q>1",
+    "a7:p>1",
+    "d7:1>r",
+    "f7:1>p",
+    "h7:1>k",
+    "a6:1>b",
+    "b6:p>q",
+    "d6:N>1",
+    "e6:1>p",
+    "f6:1>Q",
+    "g6:1>p",
+    "h6:1>p",
+    "a5:1>p",
+    "b5:P>1",
+    "a4:1>P",
+    "b4:1>p",
+    "d4:1>N",
+    "g4:K>1",
+    "b3:1>P",
+    "d3:R>1",
+    "f3:1>P",
+    "h3:1>P",
+    "b2:R>1",
+    "f2:R>1",
+    "g2:1>P",
+    "h2:1>K",
+    "d1:1>R"
+   ],
+   "minConfidence": 0.1974
+  },
+  {
+   "file": "book-ZZDEk.png",
+   "source": "book-diagram",
+   "ms": 34,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "c8:1>b",
+    "e8:1>k",
+    "f8:K>b",
+    "h8:1>r",
+    "a7:1>p",
+    "b7:1>p",
+    "d7:1>p",
+    "f7:1>p",
+    "g7:1>p",
+    "h7:1>p",
+    "c6:1>n",
+    "e6:1>p",
+    "f6:B>n",
+    "a5:1>q",
+    "d4:1>N",
+    "e4:1>P",
+    "a3:1>P",
+    "c3:1>N",
+    "f3:1>P",
+    "b2:1>P",
+    "c2:1>P",
+    "g2:1>P",
+    "h2:1>P",
+    "a1:1>R",
+    "c1:1>B",
+    "d1:1>Q",
+    "e1:1>K",
+    "f1:1>B",
+    "h1:N>R"
+   ],
+   "minConfidence": 0.3687
+  },
+  {
+   "file": "book-ZbMOS.png",
+   "source": "book-diagram",
+   "ms": 86,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "e8:1>k",
+    "h8:1>r",
+    "a7:1>p",
+    "b7:1>p",
+    "d7:1>q",
+    "e7:1>b",
+    "f7:1>p",
+    "g7:1>p",
+    "d6:1>p",
+    "e6:1>b",
+    "h6:1>p",
+    "a5:r>1",
+    "c5:1>p",
+    "h5:1>Q",
+    "e4:1>P",
+    "f4:1>R",
+    "a3:r>1",
+    "b3:1>P",
+    "c3:r>1",
+    "d3:1>P",
+    "h3:1>P",
+    "a2:1>P",
+    "b2:1>B",
+    "c2:1>n",
+    "g2:1>P",
+    "h2:1>N",
+    "a1:1>R",
+    "b1:1>N",
+    "f1:1>B",
+    "g1:1>K"
+   ],
+   "minConfidence": 0.4322
+  },
+  {
+   "file": "book-Zhuow.png",
+   "source": "book-diagram",
+   "ms": 6,
+   "outcome": "missed",
+   "wrong": [],
+   "minConfidence": null
+  },
+  {
+   "file": "book-b3SgM.png",
+   "source": "book-diagram",
+   "ms": 64,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "b8:1>n",
+    "d8:1>q",
+    "f8:1>r",
+    "g8:1>k",
+    "a7:n>p",
+    "b7:1>p",
+    "d7:1>b",
+    "e7:1>b",
+    "f7:1>p",
+    "g7:1>p",
+    "h7:1>p",
+    "c5:1>p",
+    "d5:1>P",
+    "g5:1>B",
+    "e4:B>Q",
+    "b2:N>P",
+    "f2:1>P",
+    "g2:1>P",
+    "h2:1>P",
+    "e1:1>K",
+    "f1:N>B",
+    "g1:1>N",
+    "h1:1>R"
+   ],
+   "minConfidence": 0.3478
+  },
+  {
+   "file": "book-b9DiP.jpg",
+   "source": "book-diagram",
+   "ms": 13,
+   "outcome": "missed",
+   "wrong": [],
+   "minConfidence": null
+  },
+  {
+   "file": "book-bFRQ7.png",
+   "source": "book-diagram",
+   "ms": 49,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "b6:1>p",
+    "c6:1>p",
+    "h6:1>p",
+    "a5:B>p",
+    "d5:1>k",
+    "f5:1>p",
+    "g5:B>p",
+    "h5:1>P",
+    "a4:1>P",
+    "d4:1>P",
+    "b3:1>P",
+    "d3:r>K",
+    "f3:1>P",
+    "g3:1>P"
+   ],
+   "minConfidence": 0.2682
+  },
+  {
+   "file": "book-ceFWi.png",
+   "source": "book-diagram",
+   "ms": 6,
+   "outcome": "missed",
+   "wrong": [],
+   "minConfidence": null
+  },
+  {
+   "file": "book-chSXI.png",
+   "source": "book-diagram",
+   "ms": 30,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "f8:1>r",
+    "g8:1>k",
+    "b7:1>R",
+    "h7:1>p",
+    "a6:1>p",
+    "b6:q>1",
+    "f6:P>p",
+    "g6:P>1",
+    "a5:1>q",
+    "d5:1>p",
+    "g5:N>1",
+    "c4:1>p",
+    "d4:1>P",
+    "e4:1>N",
+    "f4:1>p",
+    "a3:1>b",
+    "e3:1>R",
+    "g3:Q>1",
+    "a2:1>P",
+    "c2:1>Q",
+    "f2:1>P",
+    "g2:1>P",
+    "h2:1>P",
+    "a1:q>1",
+    "b1:P>1",
+    "c1:R>1",
+    "g1:Q>K",
+    "h1:Q>1"
+   ],
+   "minConfidence": 0.2068
+  },
+  {
+   "file": "book-cmvVr.png",
+   "source": "book-diagram",
+   "ms": 22,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "f8:Q>R",
+    "g8:1>r",
+    "a7:1>k",
+    "e6:1>p",
+    "a5:1>p",
+    "c5:1>N",
+    "d5:1>q",
+    "f5:n>1",
+    "h5:1>P",
+    "c4:1>p",
+    "e4:1>Q",
+    "g4:1>r",
+    "a2:1>P",
+    "b2:1>P",
+    "d2:R>1",
+    "f2:1>P",
+    "f1:1>R",
+    "h1:1>K"
+   ],
+   "minConfidence": 0.3704
+  },
+  {
+   "file": "book-eBzgz.png",
+   "source": "book-diagram",
+   "ms": 45,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:k>r",
+    "c8:1>b",
+    "d8:1>q",
+    "e8:1>k",
+    "f8:1>b",
+    "h8:1>r",
+    "a7:1>p",
+    "b7:1>p",
+    "c7:1>p",
+    "f7:1>p",
+    "g7:1>p",
+    "h7:1>p",
+    "d6:1>p",
+    "f6:1>n",
+    "b5:R>1",
+    "c5:R>1",
+    "e5:1>p",
+    "g5:R>1",
+    "h5:R>1",
+    "c4:1>B",
+    "e4:1>P",
+    "c3:1>P",
+    "f3:1>Q",
+    "a2:1>P",
+    "b2:1>P",
+    "d2:1>P",
+    "f2:1>P",
+    "g2:1>P",
+    "h2:1>P",
+    "a1:1>R",
+    "b1:1>N",
+    "c1:1>B",
+    "f1:1>R",
+    "g1:1>K"
+   ],
+   "minConfidence": 0.2506
+  },
+  {
+   "file": "book-eGPED.png",
+   "source": "book-diagram",
+   "ms": 166,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "c8:p>1",
+    "a7:1>p",
+    "b7:1>p",
+    "c7:1>q",
+    "f7:1>p",
+    "g7:1>k",
+    "f6:1>n",
+    "g6:1>p",
+    "c5:1>n",
+    "d5:N>1",
+    "e5:1>r",
+    "f5:Q>1",
+    "a4:B>P",
+    "e4:1>p",
+    "f4:1>Q",
+    "c3:1>P",
+    "e3:1>N",
+    "g3:1>P",
+    "h3:1>P",
+    "b2:1>P",
+    "c2:1>B",
+    "f2:1>P",
+    "g2:1>K",
+    "a1:n>1",
+    "c1:Q>1",
+    "d1:1>R"
+   ],
+   "minConfidence": 0.3193
+  },
+  {
+   "file": "book-eKRmq.jpg",
+   "source": "book-diagram",
+   "ms": 19,
+   "outcome": "missed",
+   "wrong": [],
+   "minConfidence": null
+  },
+  {
+   "file": "book-fh8hS.png",
+   "source": "book-diagram",
+   "ms": 23,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "b8:p>1",
+    "c8:1>b",
+    "e8:1>k",
+    "f8:1>b",
+    "h8:1>r",
+    "a7:1>p",
+    "b7:1>p",
+    "c7:1>p",
+    "f7:1>p",
+    "g7:1>p",
+    "h7:1>p",
+    "e5:1>p",
+    "c4:1>P",
+    "d4:1>q",
+    "g4:1>P",
+    "h4:1>n",
+    "b3:K>1",
+    "c3:1>N",
+    "d3:1>P",
+    "g3:P>1",
+    "a2:1>P",
+    "b2:1>P",
+    "e2:1>B",
+    "f2:1>P",
+    "h2:1>P",
+    "a1:1>R",
+    "b1:B>1",
+    "c1:1>B",
+    "d1:1>Q",
+    "e1:1>K",
+    "g1:1>R"
+   ],
+   "minConfidence": 0.245
+  },
+  {
+   "file": "book-foB17.png",
+   "source": "book-diagram",
+   "ms": 5,
+   "outcome": "missed",
+   "wrong": [],
+   "minConfidence": null
+  },
+  {
+   "file": "book-fsPJS.png",
+   "source": "book-diagram",
+   "ms": 74,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "h3:R>P",
+    "g2:B>P",
+    "g1:R>K"
+   ],
+   "minConfidence": 0.2867
+  },
+  {
+   "file": "book-hDp5E.jpg",
+   "source": "book-diagram",
+   "ms": 17,
+   "outcome": "missed",
+   "wrong": [],
+   "minConfidence": null
+  },
+  {
+   "file": "book-hLtD5.png",
+   "source": "book-diagram",
+   "ms": 19,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "e8:1>k",
+    "h8:1>r",
+    "a7:1>p",
+    "c7:1>p",
+    "e7:1>b",
+    "f7:1>p",
+    "g7:1>p",
+    "h7:r>1",
+    "c6:1>n",
+    "d6:1>p",
+    "e6:1>b",
+    "f6:1>n",
+    "h6:1>p",
+    "b5:Q>B",
+    "d5:p>1",
+    "f5:p>1",
+    "d4:1>P",
+    "c3:1>N",
+    "f3:1>N",
+    "h3:1>P",
+    "a2:1>P",
+    "b2:1>P",
+    "f2:1>P",
+    "g2:1>P",
+    "a1:1>R",
+    "c1:1>B",
+    "e1:1>R",
+    "g1:1>K"
+   ],
+   "minConfidence": 0.2954
+  },
+  {
+   "file": "book-hQmDX.png",
+   "source": "book-diagram",
+   "ms": 91,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "g8:1>n",
+    "c7:1>R",
+    "f7:1>N",
+    "g7:1>p",
+    "h7:1>k",
+    "e6:b>p",
+    "h6:1>p",
+    "h5:1>P",
+    "h4:P>K"
+   ],
+   "minConfidence": 0.25
+  },
+  {
+   "file": "book-in1xz.png",
+   "source": "book-diagram",
+   "ms": 54,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "b8:p>1",
+    "c8:q>1",
+    "e8:1>k",
+    "g8:1>n",
+    "h8:p>r",
+    "a7:1>p",
+    "b7:1>p",
+    "c7:1>p",
+    "d7:1>q",
+    "f7:1>p",
+    "g7:1>p",
+    "h7:1>p",
+    "c6:1>n",
+    "d6:1>b",
+    "h5:1>b",
+    "c4:K>1",
+    "d4:1>N",
+    "c3:1>N",
+    "f3:1>P",
+    "a2:1>P",
+    "b2:N>P",
+    "c2:1>P",
+    "e2:1>P",
+    "g2:1>P",
+    "h2:1>P",
+    "a1:1>R",
+    "c1:1>B",
+    "d1:1>Q",
+    "e1:1>K",
+    "f1:1>B",
+    "h1:1>R"
+   ],
+   "minConfidence": 0.2086
+  },
+  {
+   "file": "book-iu9rA.png",
+   "source": "book-diagram",
+   "ms": 22,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "b8:P>1",
+    "d8:K>1",
+    "g8:1>k",
+    "h8:B>1",
+    "b7:1>r",
+    "e7:1>p",
+    "f7:1>p",
+    "h7:1>p",
+    "b6:q>1",
+    "d6:1>p",
+    "f6:K>1",
+    "g6:1>p",
+    "b5:K>1",
+    "c5:1>p",
+    "d5:1>P",
+    "g5:1>B",
+    "h5:K>n",
+    "e4:1>P",
+    "g4:1>q",
+    "c3:1>P",
+    "g3:1>P",
+    "a2:1>P",
+    "d2:1>Q",
+    "f2:1>P",
+    "g2:1>K",
+    "h2:1>P",
+    "a1:1>R",
+    "b1:P>1",
+    "e1:1>R",
+    "h1:P>1"
+   ],
+   "minConfidence": 0.1936
+  },
+  {
+   "file": "book-ixGm0.png",
+   "source": "book-diagram",
+   "ms": 29,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "f8:1>k",
+    "h8:B>1",
+    "f7:1>n",
+    "g7:1>b",
+    "h7:1>p",
+    "g6:1>p",
+    "d5:1>P",
+    "g5:1>N",
+    "h5:p>1",
+    "b4:1>r",
+    "e4:1>P",
+    "f4:1>B",
+    "h4:r>1",
+    "e3:1>K",
+    "h3:1>P",
+    "e2:1>B",
+    "g2:1>P"
+   ],
+   "minConfidence": 0.2187
+  },
+  {
+   "file": "book-kK476.png",
+   "source": "book-diagram",
+   "ms": 88,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "c8:N>1",
+    "d8:1>q",
+    "e8:B>k",
+    "f8:N>1",
+    "g8:1>n",
+    "h8:1>r",
+    "a7:1>p",
+    "b7:1>p",
+    "c7:1>p",
+    "f7:P>p",
+    "g7:b>p",
+    "h7:1>p",
+    "c6:N>n",
+    "f5:n>b",
+    "a4:R>1",
+    "b4:1>b",
+    "c4:1>P",
+    "g4:p>1",
+    "c3:1>N",
+    "d3:1>P",
+    "e3:K>1",
+    "f3:1>N",
+    "h3:r>1",
+    "a2:1>P",
+    "d2:1>B",
+    "e2:1>P",
+    "g2:1>P",
+    "h2:1>P",
+    "a1:1>R",
+    "d1:1>Q",
+    "f1:P>B",
+    "g1:K>1",
+    "h1:P>R"
+   ],
+   "minConfidence": 0.1902
+  },
+  {
+   "file": "book-kTkll.jpg",
+   "source": "book-diagram",
+   "ms": 12,
+   "outcome": "missed",
+   "wrong": [],
+   "minConfidence": null
+  },
+  {
+   "file": "book-kVgRe.png",
+   "source": "book-diagram",
+   "ms": 48,
+   "outcome": "exact-warned",
+   "wrong": [],
+   "minConfidence": 0.4473
+  },
+  {
+   "file": "book-lsWMu.png",
+   "source": "book-diagram",
+   "ms": 5,
+   "outcome": "missed",
+   "wrong": [],
+   "minConfidence": null
+  },
+  {
+   "file": "book-m2Qtf.png",
+   "source": "book-diagram",
+   "ms": 43,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "g8:q>k",
+    "d3:B>P"
+   ],
+   "minConfidence": 0.422
+  },
+  {
+   "file": "book-m4JC1.png",
+   "source": "book-diagram",
+   "ms": 26,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "d8:1>r",
+    "e8:1>r",
+    "a7:1>p",
+    "b7:1>p",
+    "d7:1>k",
+    "f7:1>R",
+    "c6:1>p",
+    "h6:1>p",
+    "d5:1>p",
+    "e5:1>B",
+    "g5:1>p",
+    "h5:1>n",
+    "e4:b>1",
+    "a3:1>P",
+    "b2:1>P",
+    "f2:1>P",
+    "h2:1>P",
+    "e1:p>R",
+    "g1:1>K"
+   ],
+   "minConfidence": 0.2458
+  },
+  {
+   "file": "book-nSsgS.png",
+   "source": "book-diagram",
+   "ms": 70,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "b8:1>n",
+    "d8:1>q",
+    "f8:1>r",
+    "g8:1>k",
+    "a7:q>p",
+    "b7:1>p",
+    "c7:1>p",
+    "e7:r>1",
+    "f7:N>p",
+    "g7:q>p",
+    "h7:1>p",
+    "e6:1>b",
+    "d5:1>P",
+    "e5:1>b",
+    "d3:1>B",
+    "a2:1>P",
+    "b2:1>P",
+    "c2:p>P",
+    "g2:1>P",
+    "h2:1>P",
+    "a1:1>R",
+    "b1:1>N",
+    "c1:1>B",
+    "d1:1>Q",
+    "f1:1>R",
+    "h1:1>K"
+   ],
+   "minConfidence": 0.2593
+  },
+  {
+   "file": "book-nbArS.jpg",
+   "source": "book-diagram",
+   "ms": 13,
+   "outcome": "missed",
+   "wrong": [],
+   "minConfidence": null
+  },
+  {
+   "file": "book-nbQxQ.png",
+   "source": "book-diagram",
+   "ms": 79,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "b8:1>n",
+    "d8:1>q",
+    "f8:1>r",
+    "g8:1>k",
+    "b7:1>b",
+    "g7:1>p",
+    "d6:1>R",
+    "h6:1>p",
+    "c5:1>p",
+    "h5:1>Q",
+    "c4:P>B",
+    "f2:1>P",
+    "g2:1>P",
+    "h2:1>P",
+    "g1:1>K"
+   ],
+   "minConfidence": 0.2826
+  },
+  {
+   "file": "book-p7hOR.png",
+   "source": "book-diagram",
+   "ms": 20,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "c8:1>b",
+    "e8:1>k",
+    "f8:P>b",
+    "h8:N>r",
+    "b7:1>p",
+    "d7:1>p",
+    "e7:1>n",
+    "f7:k>p",
+    "g7:b>p",
+    "h7:1>p",
+    "f6:n>1",
+    "g6:p>1",
+    "h6:p>1",
+    "a5:1>q",
+    "b5:1>N",
+    "f5:p>1",
+    "b4:1>P",
+    "e4:1>P",
+    "e3:1>B",
+    "f3:P>1",
+    "c2:1>P",
+    "f2:B>P",
+    "g2:1>P",
+    "h2:1>P",
+    "a1:1>R",
+    "d1:1>Q",
+    "e1:1>K",
+    "f1:1>B",
+    "g1:P>1",
+    "h1:P>R"
+   ],
+   "minConfidence": 0.2431
+  },
+  {
+   "file": "book-p7uTb.png",
+   "source": "book-diagram",
+   "ms": 161,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "b8:1>R",
+    "d8:p>1",
+    "g8:1>Q",
+    "a7:1>p",
+    "c7:1>q",
+    "e7:1>k",
+    "f7:1>p",
+    "d6:1>p",
+    "f6:1>r",
+    "e5:1>p",
+    "a4:B>1",
+    "c4:1>b",
+    "d4:1>n",
+    "e4:1>P",
+    "a3:1>P",
+    "d3:P>1",
+    "h3:p>1",
+    "f2:1>P",
+    "g2:1>P",
+    "h2:1>P",
+    "g1:1>K"
+   ],
+   "minConfidence": 0.2567
+  },
+  {
+   "file": "book-p92uZ.png",
+   "source": "book-diagram",
+   "ms": 14,
+   "outcome": "missed",
+   "wrong": [],
+   "minConfidence": null
+  },
+  {
+   "file": "book-qf73A.jpg",
+   "source": "book-diagram",
+   "ms": 27,
+   "outcome": "missed",
+   "wrong": [],
+   "minConfidence": null
+  },
+  {
+   "file": "book-qgvPT.png",
+   "source": "book-diagram",
+   "ms": 85,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "c7:n>1",
+    "f7:1>p",
+    "g7:1>k",
+    "h7:1>r",
+    "a6:1>p",
+    "d6:1>p",
+    "b5:1>p",
+    "d5:q>1",
+    "e5:1>p",
+    "f5:R>1",
+    "b4:P>1",
+    "d4:N>1",
+    "e4:1>q",
+    "g4:1>P",
+    "b3:1>P",
+    "c3:1>P",
+    "e3:Q>P",
+    "a2:R>P",
+    "f2:1>Q",
+    "g2:1>K",
+    "a1:R>1",
+    "b1:P>R",
+    "c1:P>1",
+    "d1:R>1",
+    "h1:1>R"
+   ],
+   "minConfidence": 0.2719
+  },
+  {
+   "file": "book-qhKMJ.png",
+   "source": "book-diagram",
+   "ms": 62,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "d8:1>q",
+    "e8:1>k",
+    "h8:1>r",
+    "a7:r>p",
+    "d7:q>1",
+    "e7:q>1",
+    "f7:1>p",
+    "h7:r>1",
+    "c6:1>p",
+    "e6:1>b",
+    "a5:p>1",
+    "c5:1>b",
+    "f5:p>1",
+    "h5:1>p",
+    "d4:1>N",
+    "e4:1>P",
+    "c3:p>1",
+    "e3:b>1",
+    "f3:1>Q",
+    "h3:1>P",
+    "a2:1>P",
+    "b2:1>P",
+    "f2:1>R",
+    "g2:1>P",
+    "a1:1>R",
+    "c1:P>B",
+    "g1:1>K",
+    "h1:p>1"
+   ],
+   "minConfidence": 0.2234
+  },
+  {
+   "file": "book-sDmMR.png",
+   "source": "book-diagram",
+   "ms": 26,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "c8:1>b",
+    "d8:R>q",
+    "e8:1>k",
+    "h8:1>r",
+    "a7:1>p",
+    "b7:1>p",
+    "f7:1>p",
+    "g7:1>p",
+    "h7:1>p",
+    "c6:P>n",
+    "d6:B>b",
+    "c5:1>P",
+    "d5:1>Q",
+    "e4:Q>1",
+    "f4:P>1",
+    "e3:1>P",
+    "f3:1>N",
+    "a2:1>P",
+    "b2:1>P",
+    "g2:1>P",
+    "h2:1>P",
+    "a1:1>R",
+    "b1:1>N",
+    "c1:1>B",
+    "f1:1>B",
+    "h1:1>R"
+   ],
+   "minConfidence": 0.2977
+  },
+  {
+   "file": "book-sE2wC.png",
+   "source": "book-diagram",
+   "ms": 40,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "b7:p>1",
+    "c7:K>1",
+    "c6:p>1",
+    "e6:R>1",
+    "f6:k>1",
+    "h6:1>P",
+    "f5:p>1",
+    "c4:1>p",
+    "a3:P>1",
+    "c3:1>k",
+    "d3:1>R",
+    "f3:1>p",
+    "f2:1>K",
+    "g2:1>p"
+   ],
+   "minConfidence": 0.4929
+  },
+  {
+   "file": "book-sFfle.png",
+   "source": "book-diagram",
+   "ms": 72,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "d8:1>q",
+    "e8:1>k",
+    "h8:1>r",
+    "a7:1>p",
+    "b7:1>p",
+    "d7:1>n",
+    "e7:1>b",
+    "f7:1>p",
+    "g7:1>p",
+    "c6:1>p",
+    "e6:1>p",
+    "f6:1>n",
+    "h6:1>p",
+    "g5:1>B",
+    "h5:1>b",
+    "e4:1>N",
+    "a3:1>P",
+    "d3:1>P",
+    "f3:1>N",
+    "h3:1>P",
+    "b2:1>P",
+    "c2:1>P",
+    "d2:1>Q",
+    "e2:1>B",
+    "f2:1>P",
+    "g2:1>P",
+    "a1:1>R",
+    "f1:1>R",
+    "g1:1>K",
+    "h1:R>1"
+   ],
+   "minConfidence": 0.3542
+  },
+  {
+   "file": "book-tl9w2.png",
+   "source": "book-diagram",
+   "ms": 133,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "b8:r>n",
+    "c8:1>b",
+    "e8:p>k",
+    "h8:1>r",
+    "a7:1>p",
+    "b7:1>p",
+    "d7:p>1",
+    "f7:1>p",
+    "g7:1>p",
+    "h7:1>p",
+    "b6:1>q",
+    "c6:P>p",
+    "e6:1>p",
+    "g6:n>1",
+    "b5:R>1",
+    "d5:1>p",
+    "f5:N>1",
+    "g5:P>1",
+    "c4:1>P",
+    "d4:N>1",
+    "e4:P>1",
+    "g4:B>n",
+    "h4:P>1",
+    "b3:R>P",
+    "d3:Q>1",
+    "f3:1>N",
+    "g3:K>P",
+    "h3:R>1",
+    "a2:1>P",
+    "d2:P>N",
+    "f2:P>1",
+    "g2:P>B",
+    "b1:1>R",
+    "c1:1>B",
+    "d1:1>Q",
+    "g1:1>K",
+    "h1:1>R"
+   ],
+   "minConfidence": 0.2692
+  },
+  {
+   "file": "book-tmNe0.png",
+   "source": "book-diagram",
+   "ms": 73,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "h7:1>p",
+    "h3:R>P",
+    "g2:N>P"
+   ],
+   "minConfidence": 0.2452
+  },
+  {
+   "file": "book-tmYeY.jpg",
+   "source": "book-diagram",
+   "ms": 12,
+   "outcome": "missed",
+   "wrong": [],
+   "minConfidence": null
+  },
+  {
+   "file": "book-vG9p8.png",
+   "source": "book-diagram",
+   "ms": 5,
+   "outcome": "missed",
+   "wrong": [],
+   "minConfidence": null
+  },
+  {
+   "file": "book-vKC6Q.png",
+   "source": "book-diagram",
+   "ms": 55,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:Q>1",
+    "f8:K>1",
+    "f7:R>1",
+    "h7:1>p",
+    "c6:1>p",
+    "d6:B>1",
+    "f6:Q>1",
+    "a5:1>P",
+    "e5:1>k",
+    "f5:N>1",
+    "b4:1>P",
+    "d4:1>r",
+    "e4:1>p",
+    "g4:Q>1",
+    "b3:1>R",
+    "g3:N>K",
+    "h3:1>P"
+   ],
+   "minConfidence": 0.2415
+  },
+  {
+   "file": "book-vKoNF.png",
+   "source": "book-diagram",
+   "ms": 60,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "c8:n>1",
+    "e8:1>k",
+    "f8:P>1",
+    "g8:1>r",
+    "a7:p>1",
+    "b7:1>p",
+    "e7:n>1",
+    "f7:1>p",
+    "c6:B>p",
+    "d6:P>1",
+    "e6:P>1",
+    "f6:p>b",
+    "h6:1>p",
+    "a5:P>p",
+    "c5:P>1",
+    "e5:1>p",
+    "f5:N>1",
+    "h5:P>1",
+    "b4:q>1",
+    "c4:1>B",
+    "d4:1>P",
+    "e4:1>P",
+    "f4:B>p",
+    "a3:R>P",
+    "c3:1>P",
+    "d3:Q>1",
+    "f3:R>N",
+    "h3:1>P",
+    "b2:1>q",
+    "f2:1>K",
+    "a1:1>R",
+    "d1:1>Q",
+    "f1:1>R"
+   ],
+   "minConfidence": 0.3301
+  },
+  {
+   "file": "book-wrmZb.png",
+   "source": "book-diagram",
+   "ms": 37,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "b8:1>B",
+    "c8:1>b",
+    "e8:1>k",
+    "h8:1>r",
+    "a7:1>p",
+    "b7:1>p",
+    "d7:1>p",
+    "e7:1>p",
+    "f7:1>p",
+    "g7:1>b",
+    "h7:1>p",
+    "b6:N>1",
+    "g6:1>p",
+    "a5:1>q",
+    "c5:1>p",
+    "d5:1>P",
+    "h5:1>n",
+    "a4:p>1",
+    "c4:1>P",
+    "e4:p>1",
+    "g4:p>1",
+    "c3:1>N",
+    "a2:1>P",
+    "b2:1>P",
+    "c2:k>1",
+    "f2:1>P",
+    "g2:r>P",
+    "h2:1>P",
+    "a1:1>R",
+    "d1:1>Q",
+    "e1:1>K",
+    "f1:1>B",
+    "g1:1>N",
+    "h1:1>R"
+   ],
+   "minConfidence": 0.2496
+  },
+  {
+   "file": "book-wsBzl.jpg",
+   "source": "book-diagram",
+   "ms": 14,
+   "outcome": "missed",
+   "wrong": [],
+   "minConfidence": null
+  },
+  {
+   "file": "book-wt6TT.png",
+   "source": "book-diagram",
+   "ms": 273,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "b8:p>r",
+    "e8:1>r",
+    "f8:1>b",
+    "h8:1>k",
+    "b7:1>b",
+    "g7:1>p",
+    "h7:1>p",
+    "a6:1>p",
+    "f6:1>p",
+    "b5:1>p",
+    "d5:1>q",
+    "f5:1>N",
+    "c4:1>p",
+    "d4:1>P",
+    "e4:1>N",
+    "f4:1>Q",
+    "c3:1>P",
+    "h3:1>P",
+    "a2:1>P",
+    "b2:1>P",
+    "f2:1>R",
+    "g2:1>P",
+    "e1:1>R",
+    "g1:1>K"
+   ],
+   "minConfidence": 0.5094
+  },
+  {
+   "file": "book-yNwpd.png",
+   "source": "book-diagram",
+   "ms": 85,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "d8:1>q",
+    "e8:1>k",
+    "h8:1>r",
+    "b7:1>b",
+    "c7:1>p",
+    "e7:1>b",
+    "f7:1>p",
+    "g7:1>p",
+    "h7:1>p",
+    "e6:1>p",
+    "b5:1>p",
+    "d5:1>p",
+    "e5:1>N",
+    "a4:1>p",
+    "d4:1>P",
+    "e4:1>n",
+    "f4:1>B",
+    "a3:r>1",
+    "c3:1>P",
+    "e3:1>P",
+    "g3:r>1",
+    "a2:1>P",
+    "b2:1>P",
+    "c2:1>B",
+    "f2:1>P",
+    "g2:1>P",
+    "h2:1>P",
+    "a1:1>R",
+    "d1:1>Q",
+    "f1:1>R",
+    "g1:1>K"
+   ],
+   "minConfidence": 0.3341
+  },
+  {
+   "file": "book-yRItc.png",
+   "source": "book-diagram",
+   "ms": 50,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "g8:q>k",
+    "f4:Q>B",
+    "g1:R>K"
+   ],
+   "minConfidence": 0.2778
+  },
+  {
+   "file": "book-yRgQ4.png",
+   "source": "book-diagram",
+   "ms": 6,
+   "outcome": "missed",
+   "wrong": [],
+   "minConfidence": null
+  },
+  {
    "file": "chesscom-img-00008.png",
    "source": "chesscom-image",
-   "ms": 59,
+   "ms": 32,
    "outcome": "exact-warned",
    "wrong": [],
    "minConfidence": 0.5092
@@ -93,7 +2962,7 @@
   {
    "file": "chesscom-img-0000D.png",
    "source": "chesscom-image",
-   "ms": 31,
+   "ms": 32,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.7229
@@ -101,7 +2970,7 @@
   {
    "file": "chesscom-img-009FP.png",
    "source": "chesscom-image",
-   "ms": 32,
+   "ms": 33,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9004
@@ -109,23 +2978,15 @@
   {
    "file": "chesscom-img-0m0lg.png",
    "source": "chesscom-image",
-   "ms": 33,
+   "ms": 36,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.948
   },
   {
-   "file": "chesscom-img-0mk2K.png",
-   "source": "chesscom-image",
-   "ms": 45,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8506
-  },
-  {
    "file": "chesscom-img-0mSx8.png",
    "source": "chesscom-image",
-   "ms": 34,
+   "ms": 57,
    "outcome": "wrong-warned",
    "wrong": [
     "a8:1>r",
@@ -168,9 +3029,17 @@
    "minConfidence": 0.1752
   },
   {
+   "file": "chesscom-img-0mk2K.png",
+   "source": "chesscom-image",
+   "ms": 38,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8506
+  },
+  {
    "file": "chesscom-img-1VvPH.png",
    "source": "chesscom-image",
-   "ms": 29,
+   "ms": 33,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.7804
@@ -178,7 +3047,7 @@
   {
    "file": "chesscom-img-1YYW1.png",
    "source": "chesscom-image",
-   "ms": 30,
+   "ms": 45,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9078
@@ -186,7 +3055,7 @@
   {
    "file": "chesscom-img-1ZTJq.png",
    "source": "chesscom-image",
-   "ms": 31,
+   "ms": 40,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9231
@@ -194,7 +3063,7 @@
   {
    "file": "chesscom-img-2GS1X.png",
    "source": "chesscom-image",
-   "ms": 32,
+   "ms": 79,
    "outcome": "exact-warned",
    "wrong": [],
    "minConfidence": 0.5846
@@ -202,7 +3071,7 @@
   {
    "file": "chesscom-img-2KF39.png",
    "source": "chesscom-image",
-   "ms": 29,
+   "ms": 34,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9487
@@ -210,7 +3079,7 @@
   {
    "file": "chesscom-img-2L5o7.png",
    "source": "chesscom-image",
-   "ms": 34,
+   "ms": 56,
    "outcome": "wrong-warned",
    "wrong": [
     "a8:Q>r",
@@ -242,7 +3111,7 @@
   {
    "file": "chesscom-img-32Y3e.png",
    "source": "chesscom-image",
-   "ms": 30,
+   "ms": 35,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.7487
@@ -250,7 +3119,7 @@
   {
    "file": "chesscom-img-36EQx.png",
    "source": "chesscom-image",
-   "ms": 51,
+   "ms": 56,
    "outcome": "wrong-warned",
    "wrong": [
     "c7:1>q",
@@ -278,7 +3147,7 @@
   {
    "file": "chesscom-img-37Vud.png",
    "source": "chesscom-image",
-   "ms": 29,
+   "ms": 32,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8676
@@ -286,15 +3155,23 @@
   {
    "file": "chesscom-img-3rBIZ.png",
    "source": "chesscom-image",
-   "ms": 34,
+   "ms": 33,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8506
   },
   {
+   "file": "chesscom-img-3sK2i.png",
+   "source": "chesscom-image",
+   "ms": 31,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9444
+  },
+  {
    "file": "chesscom-img-3sdjL.png",
    "source": "chesscom-image",
-   "ms": 34,
+   "ms": 36,
    "outcome": "wrong-warned",
    "wrong": [
     "b8:R>1",
@@ -329,17 +3206,9 @@
    "minConfidence": 0.1367
   },
   {
-   "file": "chesscom-img-3sK2i.png",
-   "source": "chesscom-image",
-   "ms": 29,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9444
-  },
-  {
    "file": "chesscom-img-4dWUU.png",
    "source": "chesscom-image",
-   "ms": 32,
+   "ms": 33,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9002
@@ -347,7 +3216,7 @@
   {
    "file": "chesscom-img-4eN8e.png",
    "source": "chesscom-image",
-   "ms": 28,
+   "ms": 32,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9121
@@ -355,7 +3224,7 @@
   {
    "file": "chesscom-img-4f6T5.png",
    "source": "chesscom-image",
-   "ms": 32,
+   "ms": 36,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9231
@@ -363,7 +3232,7 @@
   {
    "file": "chesscom-img-5P4G9.png",
    "source": "chesscom-image",
-   "ms": 28,
+   "ms": 49,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9511
@@ -371,7 +3240,7 @@
   {
    "file": "chesscom-img-5QT8d.png",
    "source": "chesscom-image",
-   "ms": 30,
+   "ms": 38,
    "outcome": "exact-warned",
    "wrong": [],
    "minConfidence": 0.6442
@@ -379,7 +3248,7 @@
   {
    "file": "chesscom-img-5QtzY.png",
    "source": "chesscom-image",
-   "ms": 33,
+   "ms": 45,
    "outcome": "wrong-warned",
    "wrong": [
     "b8:q>r",
@@ -401,7 +3270,7 @@
   {
    "file": "chesscom-img-68nnv.png",
    "source": "chesscom-image",
-   "ms": 57,
+   "ms": 69,
    "outcome": "wrong-warned",
    "wrong": [
     "b8:R>r",
@@ -445,7 +3314,7 @@
   {
    "file": "chesscom-img-6CeWb.png",
    "source": "chesscom-image",
-   "ms": 29,
+   "ms": 48,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9212
@@ -453,7 +3322,7 @@
   {
    "file": "chesscom-img-6CtDJ.png",
    "source": "chesscom-image",
-   "ms": 29,
+   "ms": 50,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8148
@@ -461,7 +3330,7 @@
   {
    "file": "chesscom-img-6tisV.png",
    "source": "chesscom-image",
-   "ms": 29,
+   "ms": 47,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9055
@@ -469,7 +3338,7 @@
   {
    "file": "chesscom-img-6ytf5.png",
    "source": "chesscom-image",
-   "ms": 29,
+   "ms": 47,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9439
@@ -477,7 +3346,7 @@
   {
    "file": "chesscom-img-6z2rE.png",
    "source": "chesscom-image",
-   "ms": 31,
+   "ms": 49,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8506
@@ -485,7 +3354,7 @@
   {
    "file": "chesscom-img-7guVa.png",
    "source": "chesscom-image",
-   "ms": 32,
+   "ms": 34,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.7308
@@ -493,7 +3362,7 @@
   {
    "file": "chesscom-img-7l4Zo.png",
    "source": "chesscom-image",
-   "ms": 31,
+   "ms": 32,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9115
@@ -501,7 +3370,7 @@
   {
    "file": "chesscom-img-7m83e.png",
    "source": "chesscom-image",
-   "ms": 29,
+   "ms": 32,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9415
@@ -509,7 +3378,7 @@
   {
    "file": "chesscom-img-8TIX4.png",
    "source": "chesscom-image",
-   "ms": 34,
+   "ms": 35,
    "outcome": "wrong-warned",
    "wrong": [
     "a8:Q>r",
@@ -543,7 +3412,7 @@
   {
    "file": "chesscom-img-8XRZW.png",
    "source": "chesscom-image",
-   "ms": 32,
+   "ms": 29,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9511
@@ -551,7 +3420,7 @@
   {
    "file": "chesscom-img-8YJ4V.png",
    "source": "chesscom-image",
-   "ms": 33,
+   "ms": 34,
    "outcome": "exact-warned",
    "wrong": [],
    "minConfidence": 0.5655
@@ -559,7 +3428,7 @@
   {
    "file": "chesscom-img-9GpXj.png",
    "source": "chesscom-image",
-   "ms": 31,
+   "ms": 35,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.7535
@@ -567,7 +3436,7 @@
   {
    "file": "chesscom-img-9IC5k.png",
    "source": "chesscom-image",
-   "ms": 92,
+   "ms": 115,
    "outcome": "wrong-warned",
    "wrong": [
     "a8:1>r",
@@ -612,7 +3481,7 @@
   {
    "file": "chesscom-img-9KZRQ.png",
    "source": "chesscom-image",
-   "ms": 32,
+   "ms": 35,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.7483
@@ -620,7 +3489,7 @@
   {
    "file": "chesscom-img-A1v2B.png",
    "source": "chesscom-image",
-   "ms": 32,
+   "ms": 34,
    "outcome": "wrong-warned",
    "wrong": [
     "a8:R>r",
@@ -660,7 +3529,7 @@
   {
    "file": "chesscom-img-A4A45.png",
    "source": "chesscom-image",
-   "ms": 29,
+   "ms": 31,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8832
@@ -668,31 +3537,15 @@
   {
    "file": "chesscom-img-A62Y7.png",
    "source": "chesscom-image",
-   "ms": 31,
+   "ms": 33,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8506
   },
   {
-   "file": "chesscom-img-aJ5D1.png",
-   "source": "chesscom-image",
-   "ms": 37,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9457
-  },
-  {
-   "file": "chesscom-img-aMtlF.png",
-   "source": "chesscom-image",
-   "ms": 29,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9397
-  },
-  {
    "file": "chesscom-img-Ap4Em.png",
    "source": "chesscom-image",
-   "ms": 29,
+   "ms": 30,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9121
@@ -700,7 +3553,7 @@
   {
    "file": "chesscom-img-AqIE4.png",
    "source": "chesscom-image",
-   "ms": 32,
+   "ms": 36,
    "outcome": "exact-warned",
    "wrong": [],
    "minConfidence": 0.5983
@@ -708,75 +3561,15 @@
   {
    "file": "chesscom-img-Argbk.png",
    "source": "chesscom-image",
-   "ms": 32,
+   "ms": 41,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9078
   },
   {
-   "file": "chesscom-img-aTvko.png",
-   "source": "chesscom-image",
-   "ms": 32,
-   "outcome": "wrong-warned",
-   "wrong": [
-    "c7:B>p",
-    "f7:B>p",
-    "g5:B>p",
-    "g4:K>R",
-    "a3:B>P",
-    "b3:R>K",
-    "d3:R>k",
-    "c2:Q>r"
-   ],
-   "minConfidence": 0.2912
-  },
-  {
-   "file": "chesscom-img-b3SgM.png",
-   "source": "chesscom-image",
-   "ms": 29,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8647
-  },
-  {
-   "file": "chesscom-img-b9DiP.png",
-   "source": "chesscom-image",
-   "ms": 52,
-   "outcome": "wrong-warned",
-   "wrong": [
-    "a8:1>r",
-    "b8:1>n",
-    "e8:1>k",
-    "h8:1>r",
-    "a7:1>p",
-    "b7:1>p",
-    "c7:1>p",
-    "e7:1>p",
-    "g7:1>b",
-    "b6:1>q",
-    "c6:1>b",
-    "f6:1>n",
-    "h6:1>p",
-    "g5:1>p",
-    "b4:B>1",
-    "d3:1>Q",
-    "f3:1>N",
-    "g3:1>P",
-    "a2:1>P",
-    "b2:R>P",
-    "f2:1>P",
-    "g2:K>P",
-    "c1:1>K",
-    "d1:1>R",
-    "f1:1>B",
-    "h1:1>R"
-   ],
-   "minConfidence": 0.2232
-  },
-  {
    "file": "chesscom-img-Bbe06.png",
    "source": "chesscom-image",
-   "ms": 32,
+   "ms": 46,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.7046
@@ -784,7 +3577,7 @@
   {
    "file": "chesscom-img-Bd5ZU.png",
    "source": "chesscom-image",
-   "ms": 35,
+   "ms": 54,
    "outcome": "wrong-warned",
    "wrong": [
     "a8:Q>r",
@@ -812,105 +3605,15 @@
   {
    "file": "chesscom-img-BdSbK.png",
    "source": "chesscom-image",
-   "ms": 30,
+   "ms": 32,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9511
   },
   {
-   "file": "chesscom-img-bFRQ7.png",
-   "source": "chesscom-image",
-   "ms": 31,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.7484
-  },
-  {
-   "file": "chesscom-img-bt5BL.png",
-   "source": "chesscom-image",
-   "ms": 31,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9513
-  },
-  {
-   "file": "chesscom-img-buiDI.png",
-   "source": "chesscom-image",
-   "ms": 32,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8832
-  },
-  {
-   "file": "chesscom-img-c1OGb.png",
-   "source": "chesscom-image",
-   "ms": 36,
-   "outcome": "wrong-warned",
-   "wrong": [
-    "a8:R>1",
-    "b8:K>1",
-    "h8:1>r",
-    "b7:R>k",
-    "c7:1>p",
-    "e7:1>Q",
-    "f7:P>1",
-    "a6:P>p",
-    "b6:1>p",
-    "d6:1>p",
-    "e6:P>1",
-    "c5:B>1",
-    "d5:P>1",
-    "e5:1>p",
-    "f5:1>B",
-    "g5:P>1",
-    "h5:P>1",
-    "a4:1>P",
-    "b4:1>P",
-    "c4:B>1",
-    "d4:B>1",
-    "e4:1>P",
-    "f4:1>q",
-    "d3:1>P",
-    "e3:B>1",
-    "g3:B>1",
-    "c2:1>P",
-    "d2:Q>1",
-    "f2:P>1",
-    "g2:P>R",
-    "a1:Q>1",
-    "g1:1>R",
-    "h1:1>K"
-   ],
-   "minConfidence": 0.1722
-  },
-  {
-   "file": "chesscom-img-ceFWi.png",
-   "source": "chesscom-image",
-   "ms": 31,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.7936
-  },
-  {
-   "file": "chesscom-img-chSXI.png",
-   "source": "chesscom-image",
-   "ms": 32,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9231
-  },
-  {
-   "file": "chesscom-img-cmvVr.png",
-   "source": "chesscom-image",
-   "ms": 30,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8915
-  },
-  {
    "file": "chesscom-img-CPGZr.png",
    "source": "chesscom-image",
-   "ms": 31,
+   "ms": 37,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9226
@@ -918,7 +3621,7 @@
   {
    "file": "chesscom-img-CPR7d.png",
    "source": "chesscom-image",
-   "ms": 28,
+   "ms": 32,
    "outcome": "wrong-warned",
    "wrong": [
     "d8:R>1",
@@ -947,7 +3650,7 @@
   {
    "file": "chesscom-img-CPXDI.png",
    "source": "chesscom-image",
-   "ms": 28,
+   "ms": 31,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8504
@@ -955,7 +3658,7 @@
   {
    "file": "chesscom-img-DAmQM.png",
    "source": "chesscom-image",
-   "ms": 28,
+   "ms": 54,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8832
@@ -963,7 +3666,7 @@
   {
    "file": "chesscom-img-DBk8r.png",
    "source": "chesscom-image",
-   "ms": 32,
+   "ms": 35,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8912
@@ -971,7 +3674,7 @@
   {
    "file": "chesscom-img-DBx4j.png",
    "source": "chesscom-image",
-   "ms": 32,
+   "ms": 35,
    "outcome": "wrong-warned",
    "wrong": [
     "c8:1>k",
@@ -1009,25 +3712,9 @@
    "minConfidence": 0.2037
   },
   {
-   "file": "chesscom-img-dPayG.png",
-   "source": "chesscom-image",
-   "ms": 30,
-   "outcome": "exact-warned",
-   "wrong": [],
-   "minConfidence": 0.6155
-  },
-  {
-   "file": "chesscom-img-dUBEu.png",
-   "source": "chesscom-image",
-   "ms": 30,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9458
-  },
-  {
    "file": "chesscom-img-DwTxJ.png",
    "source": "chesscom-image",
-   "ms": 31,
+   "ms": 34,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.7568
@@ -1035,47 +3722,23 @@
   {
    "file": "chesscom-img-Dxx4R.png",
    "source": "chesscom-image",
-   "ms": 28,
+   "ms": 37,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9464
   },
   {
-   "file": "chesscom-img-dY9YD.png",
-   "source": "chesscom-image",
-   "ms": 30,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.888
-  },
-  {
    "file": "chesscom-img-DysxK.png",
    "source": "chesscom-image",
-   "ms": 30,
+   "ms": 40,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8762
   },
   {
-   "file": "chesscom-img-eBzgz.png",
-   "source": "chesscom-image",
-   "ms": 31,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.7483
-  },
-  {
-   "file": "chesscom-img-eGPED.png",
-   "source": "chesscom-image",
-   "ms": 29,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8148
-  },
-  {
    "file": "chesscom-img-EiAmk.png",
    "source": "chesscom-image",
-   "ms": 34,
+   "ms": 81,
    "outcome": "wrong-warned",
    "wrong": [
     "b8:K>r",
@@ -1098,161 +3761,23 @@
   {
    "file": "chesscom-img-EixZs.png",
    "source": "chesscom-image",
-   "ms": 30,
+   "ms": 35,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8493
   },
   {
-   "file": "chesscom-img-eKRmq.png",
-   "source": "chesscom-image",
-   "ms": 72,
-   "outcome": "wrong-warned",
-   "wrong": [
-    "b8:1>r",
-    "f8:1>B",
-    "e7:R>1",
-    "f7:K>Q",
-    "h7:1>p",
-    "a6:1>p",
-    "b6:1>p",
-    "d6:p>1",
-    "e6:1>p",
-    "g6:1>p",
-    "h6:1>k",
-    "h4:1>P",
-    "b3:r>P",
-    "d3:1>r",
-    "g3:1>P",
-    "h3:1>q",
-    "a2:1>P",
-    "b2:b>1",
-    "d2:1>p",
-    "b1:R>1",
-    "d1:1>R",
-    "g1:N>K",
-    "h1:N>1"
-   ],
-   "minConfidence": 0.2005
-  },
-  {
    "file": "chesscom-img-Ekvuc.png",
    "source": "chesscom-image",
-   "ms": 30,
+   "ms": 34,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9166
   },
   {
-   "file": "chesscom-img-excIp.png",
-   "source": "chesscom-image",
-   "ms": 33,
-   "outcome": "wrong-warned",
-   "wrong": [
-    "a8:1>r",
-    "c8:B>b",
-    "e8:Q>1",
-    "f8:1>r",
-    "g8:1>k",
-    "b7:N>p",
-    "c7:1>p",
-    "d7:1>p",
-    "f7:B>p",
-    "g7:1>p",
-    "h7:1>p",
-    "a6:1>p",
-    "c6:1>n",
-    "e6:1>p",
-    "f6:K>1",
-    "h6:B>1",
-    "a5:1>q",
-    "c5:Q>1",
-    "e5:Q>P",
-    "f5:K>1",
-    "c4:1>N",
-    "d4:1>b",
-    "f4:1>Q",
-    "h4:Q>1",
-    "a3:1>P",
-    "c3:1>N",
-    "d3:B>1",
-    "f3:N>1",
-    "h3:B>1",
-    "a2:B>1",
-    "b2:B>P",
-    "e2:P>1",
-    "f2:K>P",
-    "h2:1>P",
-    "b1:R>1",
-    "c1:Q>K",
-    "d1:1>R",
-    "h1:Q>R"
-   ],
-   "minConfidence": 0.2441
-  },
-  {
-   "file": "chesscom-img-f2I3d.png",
-   "source": "chesscom-image",
-   "ms": 29,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9513
-  },
-  {
-   "file": "chesscom-img-f6lsJ.png",
-   "source": "chesscom-image",
-   "ms": 28,
-   "outcome": "wrong-silent",
-   "wrong": [
-    "b8:k>1",
-    "a7:p>1",
-    "b7:r>1",
-    "f7:r>1",
-    "g7:P>1",
-    "h7:K>1",
-    "a6:1>P",
-    "g6:R>1",
-    "h6:1>R",
-    "a3:R>1",
-    "b3:1>R",
-    "h3:P>1",
-    "a2:1>K",
-    "b2:1>P",
-    "c2:1>r",
-    "g2:1>r",
-    "h2:1>p",
-    "g1:1>k"
-   ],
-   "minConfidence": 0.8832
-  },
-  {
-   "file": "chesscom-img-fh8hS.png",
-   "source": "chesscom-image",
-   "ms": 32,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.7808
-  },
-  {
-   "file": "chesscom-img-foB17.png",
-   "source": "chesscom-image",
-   "ms": 29,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9359
-  },
-  {
-   "file": "chesscom-img-fsPJS.png",
-   "source": "chesscom-image",
-   "ms": 31,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9231
-  },
-  {
    "file": "chesscom-img-FUJrd.png",
    "source": "chesscom-image",
-   "ms": 29,
+   "ms": 51,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8504
@@ -1260,7 +3785,7 @@
   {
    "file": "chesscom-img-FUZ1e.png",
    "source": "chesscom-image",
-   "ms": 31,
+   "ms": 34,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.7483
@@ -1268,7 +3793,7 @@
   {
    "file": "chesscom-img-FYifJ.png",
    "source": "chesscom-image",
-   "ms": 86,
+   "ms": 91,
    "outcome": "wrong-warned",
    "wrong": [
     "a8:1>r",
@@ -1304,17 +3829,9 @@
    "minConfidence": 0.2779
   },
   {
-   "file": "chesscom-img-geT6b.png",
-   "source": "chesscom-image",
-   "ms": 34,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9044
-  },
-  {
    "file": "chesscom-img-GG7yq.png",
    "source": "chesscom-image",
-   "ms": 33,
+   "ms": 34,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8506
@@ -1355,53 +3872,15 @@
   {
    "file": "chesscom-img-GKrtw.png",
    "source": "chesscom-image",
-   "ms": 28,
+   "ms": 30,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8832
   },
   {
-   "file": "chesscom-img-gTHVE.png",
-   "source": "chesscom-image",
-   "ms": 34,
-   "outcome": "wrong-warned",
-   "wrong": [
-    "a8:b>r",
-    "d8:B>q",
-    "e8:R>k",
-    "h8:b>r",
-    "a7:B>p",
-    "d7:B>b",
-    "e7:P>p",
-    "g7:B>b",
-    "h7:P>p",
-    "c6:K>B",
-    "d6:B>p",
-    "g6:P>p",
-    "d4:K>N",
-    "e4:r>n",
-    "c3:K>N",
-    "a2:B>P",
-    "c2:B>P",
-    "g2:B>P",
-    "d1:P>Q",
-    "e1:R>K",
-    "h1:K>R"
-   ],
-   "minConfidence": 0.1372
-  },
-  {
-   "file": "chesscom-img-gZxGX.png",
-   "source": "chesscom-image",
-   "ms": 32,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.7647
-  },
-  {
    "file": "chesscom-img-H1Kbp.png",
    "source": "chesscom-image",
-   "ms": 30,
+   "ms": 32,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9078
@@ -1409,7 +3888,7 @@
   {
    "file": "chesscom-img-H36To.png",
    "source": "chesscom-image",
-   "ms": 28,
+   "ms": 33,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8604
@@ -1417,57 +3896,15 @@
   {
    "file": "chesscom-img-H6JsE.png",
    "source": "chesscom-image",
-   "ms": 31,
+   "ms": 36,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8569
   },
   {
-   "file": "chesscom-img-hDp5E.png",
-   "source": "chesscom-image",
-   "ms": 93,
-   "outcome": "wrong-warned",
-   "wrong": [
-    "a8:1>r",
-    "c8:1>b",
-    "d8:1>q",
-    "f8:1>r",
-    "g8:1>k",
-    "a7:1>p",
-    "c7:1>p",
-    "d7:1>n",
-    "g7:1>b",
-    "b6:1>p",
-    "g6:1>Q",
-    "d5:1>p",
-    "e5:1>p",
-    "g5:1>N",
-    "d4:1>P",
-    "c3:1>P",
-    "e3:1>P",
-    "a2:1>P",
-    "b2:R>P",
-    "f2:1>P",
-    "g2:1>P",
-    "a1:1>R",
-    "b1:1>N",
-    "e1:1>K",
-    "h1:K>R"
-   ],
-   "minConfidence": 0.2975
-  },
-  {
-   "file": "chesscom-img-hLtD5.png",
-   "source": "chesscom-image",
-   "ms": 38,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.7453
-  },
-  {
    "file": "chesscom-img-Hmmgi.png",
    "source": "chesscom-image",
-   "ms": 33,
+   "ms": 35,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9368
@@ -1475,163 +3912,23 @@
   {
    "file": "chesscom-img-HpoBm.png",
    "source": "chesscom-image",
-   "ms": 33,
+   "ms": 35,
    "outcome": "exact-warned",
    "wrong": [],
    "minConfidence": 0.584
   },
   {
-   "file": "chesscom-img-hQmDX.png",
-   "source": "chesscom-image",
-   "ms": 33,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9004
-  },
-  {
    "file": "chesscom-img-Hs3GR.png",
    "source": "chesscom-image",
-   "ms": 34,
+   "ms": 33,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.7325
   },
   {
-   "file": "chesscom-img-i3Bzg.png",
-   "source": "chesscom-image",
-   "ms": 46,
-   "outcome": "wrong-warned",
-   "wrong": [
-    "a8:p>r",
-    "c8:1>b",
-    "d8:p>q",
-    "e8:1>r",
-    "f8:n>1",
-    "g8:1>k",
-    "h8:p>1",
-    "b7:1>p",
-    "c7:1>p",
-    "e7:1>b",
-    "f7:1>p",
-    "g7:1>p",
-    "a6:N>p",
-    "d6:1>p",
-    "f6:1>n",
-    "h6:1>p",
-    "a5:P>1",
-    "g5:Q>1",
-    "h5:P>1",
-    "a4:B>N",
-    "b4:P>1",
-    "c4:P>1",
-    "f4:P>1",
-    "g4:P>1",
-    "a3:R>P",
-    "c3:B>1",
-    "e3:R>1",
-    "g3:K>Q",
-    "h3:1>P",
-    "a2:1>B",
-    "b2:1>P",
-    "c2:1>P",
-    "f2:1>P",
-    "g2:1>P",
-    "a1:1>R",
-    "c1:1>B",
-    "e1:1>R",
-    "g1:1>K"
-   ],
-   "minConfidence": 0.5762
-  },
-  {
-   "file": "chesscom-img-i83it.png",
-   "source": "chesscom-image",
-   "ms": 37,
-   "outcome": "wrong-warned",
-   "wrong": [
-    "a8:1>r",
-    "f8:1>k",
-    "h8:Q>r",
-    "a7:1>p",
-    "b7:B>p",
-    "e7:1>p",
-    "f7:B>1",
-    "g7:1>b",
-    "h7:B>P",
-    "d6:1>q",
-    "e6:1>p",
-    "f6:K>n",
-    "d5:B>1",
-    "h5:1>Q",
-    "a4:Q>1",
-    "e4:1>P",
-    "d3:P>1",
-    "e3:Q>1",
-    "a2:B>P",
-    "b2:B>P",
-    "c2:1>P",
-    "d2:B>1",
-    "h2:B>P",
-    "a1:Q>R",
-    "c1:Q>1",
-    "f1:1>R",
-    "g1:1>K",
-    "h1:Q>1"
-   ],
-   "minConfidence": 0.2009
-  },
-  {
-   "file": "chesscom-img-Iaj03.png",
-   "source": "chesscom-image",
-   "ms": 34,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9311
-  },
-  {
-   "file": "chesscom-img-iBjwW.png",
-   "source": "chesscom-image",
-   "ms": 23,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9513
-  },
-  {
-   "file": "chesscom-img-IcZbn.png",
-   "source": "chesscom-image",
-   "ms": 29,
-   "outcome": "exact-warned",
-   "wrong": [],
-   "minConfidence": 0.575
-  },
-  {
-   "file": "chesscom-img-in1xz.png",
-   "source": "chesscom-image",
-   "ms": 32,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9235
-  },
-  {
-   "file": "chesscom-img-iu9rA.png",
-   "source": "chesscom-image",
-   "ms": 33,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.793
-  },
-  {
-   "file": "chesscom-img-ixGm0.png",
-   "source": "chesscom-image",
-   "ms": 33,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9415
-  },
-  {
    "file": "chesscom-img-IY9uc.png",
    "source": "chesscom-image",
-   "ms": 28,
+   "ms": 40,
    "outcome": "wrong-warned",
    "wrong": [
     "c8:1>r",
@@ -1661,44 +3958,25 @@
    "minConfidence": 0.2332
   },
   {
-   "file": "chesscom-img-jgzp0.png",
+   "file": "chesscom-img-Iaj03.png",
    "source": "chesscom-image",
-   "ms": 74,
-   "outcome": "wrong-warned",
-   "wrong": [
-    "c8:B>k",
-    "d8:Q>r",
-    "h8:Q>r",
-    "a7:P>p",
-    "b7:b>p",
-    "c7:B>q",
-    "f7:b>p",
-    "g7:P>p",
-    "h7:b>p",
-    "c6:r>n",
-    "e6:B>b",
-    "e4:B>Q",
-    "c3:B>P",
-    "f2:B>P",
-    "a1:K>R",
-    "e1:R>K",
-    "f1:K>B",
-    "h1:K>R"
-   ],
-   "minConfidence": 0.1879
+   "ms": 34,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9311
   },
   {
-   "file": "chesscom-img-jkD7m.png",
+   "file": "chesscom-img-IcZbn.png",
    "source": "chesscom-image",
-   "ms": 33,
+   "ms": 34,
    "outcome": "exact-warned",
    "wrong": [],
-   "minConfidence": 0.584
+   "minConfidence": 0.575
   },
   {
    "file": "chesscom-img-JKEPK.png",
    "source": "chesscom-image",
-   "ms": 32,
+   "ms": 79,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9055
@@ -1706,7 +3984,7 @@
   {
    "file": "chesscom-img-JN40r.png",
    "source": "chesscom-image",
-   "ms": 33,
+   "ms": 69,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9126
@@ -1714,7 +3992,7 @@
   {
    "file": "chesscom-img-JQ5oj.png",
    "source": "chesscom-image",
-   "ms": 35,
+   "ms": 39,
    "outcome": "wrong-warned",
    "wrong": [
     "a8:1>r",
@@ -1759,17 +4037,9 @@
    "minConfidence": 0.2158
   },
   {
-   "file": "chesscom-img-jXWue.png",
-   "source": "chesscom-image",
-   "ms": 31,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8998
-  },
-  {
    "file": "chesscom-img-K6RX7.png",
    "source": "chesscom-image",
-   "ms": 31,
+   "ms": 33,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8784
@@ -1777,7 +4047,7 @@
   {
    "file": "chesscom-img-K8I4v.png",
    "source": "chesscom-image",
-   "ms": 31,
+   "ms": 32,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9078
@@ -1785,59 +4055,31 @@
   {
    "file": "chesscom-img-KAd9d.png",
    "source": "chesscom-image",
-   "ms": 29,
+   "ms": 32,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9469
   },
   {
-   "file": "chesscom-img-kK476.png",
-   "source": "chesscom-image",
-   "ms": 29,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8822
-  },
-  {
    "file": "chesscom-img-KsZk4.png",
    "source": "chesscom-image",
-   "ms": 32,
+   "ms": 33,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9514
   },
   {
-   "file": "chesscom-img-kTkll.png",
-   "source": "chesscom-image",
-   "ms": 51,
-   "outcome": "wrong-warned",
-   "wrong": [
-    "g8:r>k",
-    "g4:p>b",
-    "g1:N>K"
-   ],
-   "minConfidence": 0.285
-  },
-  {
    "file": "chesscom-img-KuvFD.png",
    "source": "chesscom-image",
-   "ms": 29,
+   "ms": 32,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9145
   },
   {
-   "file": "chesscom-img-kVgRe.png",
-   "source": "chesscom-image",
-   "ms": 31,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.7483
-  },
-  {
    "file": "chesscom-img-KvUmC.png",
    "source": "chesscom-image",
-   "ms": 33,
+   "ms": 36,
    "outcome": "wrong-warned",
    "wrong": [
     "a8:Q>r",
@@ -1868,33 +4110,17 @@
    "minConfidence": 0.2229
   },
   {
-   "file": "chesscom-img-l8H5c.png",
-   "source": "chesscom-image",
-   "ms": 29,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8831
-  },
-  {
    "file": "chesscom-img-LeRzC.png",
    "source": "chesscom-image",
-   "ms": 29,
+   "ms": 32,
    "outcome": "exact-warned",
    "wrong": [],
    "minConfidence": 0.575
   },
   {
-   "file": "chesscom-img-lG9wb.png",
-   "source": "chesscom-image",
-   "ms": 30,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8832
-  },
-  {
    "file": "chesscom-img-LhVAe.png",
    "source": "chesscom-image",
-   "ms": 29,
+   "ms": 32,
    "outcome": "wrong-warned",
    "wrong": [
     "b8:r>1",
@@ -1925,90 +4151,17 @@
    "minConfidence": 0.1879
   },
   {
-   "file": "chesscom-img-lINyC.png",
-   "source": "chesscom-image",
-   "ms": 34,
-   "outcome": "wrong-warned",
-   "wrong": [
-    "d8:1>r",
-    "f7:P>1",
-    "g7:P>1",
-    "h7:P>R",
-    "a6:1>p",
-    "b6:1>p",
-    "c6:P>b",
-    "d6:K>1",
-    "f6:1>k",
-    "g6:1>p",
-    "d5:R>1",
-    "h5:1>P",
-    "a4:P>1",
-    "e4:1>P",
-    "b3:P>1",
-    "c3:K>1",
-    "e3:1>K",
-    "f3:B>P",
-    "g3:B>1",
-    "h3:B>1",
-    "a2:Q>P",
-    "b2:1>P",
-    "c2:1>P",
-    "e1:Q>1"
-   ],
-   "minConfidence": 0.2864
-  },
-  {
    "file": "chesscom-img-LjYnH.png",
    "source": "chesscom-image",
-   "ms": 32,
+   "ms": 34,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.7483
   },
   {
-   "file": "chesscom-img-lsWMu.png",
-   "source": "chesscom-image",
-   "ms": 30,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9441
-  },
-  {
-   "file": "chesscom-img-m2Qtf.png",
-   "source": "chesscom-image",
-   "ms": 32,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8907
-  },
-  {
-   "file": "chesscom-img-m4JC1.png",
-   "source": "chesscom-image",
-   "ms": 31,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8701
-  },
-  {
-   "file": "chesscom-img-meQCY.png",
-   "source": "chesscom-image",
-   "ms": 31,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.7652
-  },
-  {
-   "file": "chesscom-img-moygc.png",
-   "source": "chesscom-image",
-   "ms": 31,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9232
-  },
-  {
    "file": "chesscom-img-MPJ0c.png",
    "source": "chesscom-image",
-   "ms": 37,
+   "ms": 36,
    "outcome": "wrong-warned",
    "wrong": [
     "a8:1>r",
@@ -2055,34 +4208,6 @@
    "minConfidence": 0.2552
   },
   {
-   "file": "chesscom-img-mpktu.png",
-   "source": "chesscom-image",
-   "ms": 34,
-   "outcome": "wrong-warned",
-   "wrong": [
-    "a7:P>p",
-    "b5:P>p",
-    "d5:P>p",
-    "e5:P>k",
-    "c4:P>p",
-    "e4:P>p",
-    "g4:P>q",
-    "c3:B>P",
-    "e3:B>P",
-    "b2:B>P",
-    "h2:Q>K"
-   ],
-   "minConfidence": 0.2601
-  },
-  {
-   "file": "chesscom-img-MTkLj.png",
-   "source": "chesscom-image",
-   "ms": 36,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8506
-  },
-  {
    "file": "chesscom-img-MTKMV.png",
    "source": "chesscom-image",
    "ms": 30,
@@ -2091,52 +4216,25 @@
    "minConfidence": 0.8832
   },
   {
+   "file": "chesscom-img-MTkLj.png",
+   "source": "chesscom-image",
+   "ms": 34,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8506
+  },
+  {
    "file": "chesscom-img-NB4lL.png",
    "source": "chesscom-image",
-   "ms": 29,
+   "ms": 33,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9139
   },
   {
-   "file": "chesscom-img-nbArS.png",
-   "source": "chesscom-image",
-   "ms": 49,
-   "outcome": "wrong-warned",
-   "wrong": [
-    "a7:1>R",
-    "e7:R>1",
-    "f6:1>R",
-    "g6:k>1",
-    "a5:n>1",
-    "c5:1>p",
-    "d5:1>p",
-    "h5:1>k",
-    "b4:1>n",
-    "c4:b>1",
-    "e4:N>1",
-    "d3:1>b",
-    "e3:p>1",
-    "f3:P>N",
-    "c2:K>1",
-    "f2:1>r",
-    "g2:1>P",
-    "d1:1>K"
-   ],
-   "minConfidence": 0.2808
-  },
-  {
-   "file": "chesscom-img-nbQxQ.png",
-   "source": "chesscom-image",
-   "ms": 29,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9004
-  },
-  {
    "file": "chesscom-img-NFETX.png",
    "source": "chesscom-image",
-   "ms": 30,
+   "ms": 33,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9231
@@ -2144,23 +4242,15 @@
   {
    "file": "chesscom-img-NHXlL.png",
    "source": "chesscom-image",
-   "ms": 31,
+   "ms": 33,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.7617
   },
   {
-   "file": "chesscom-img-nSsgS.png",
-   "source": "chesscom-image",
-   "ms": 31,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.7483
-  },
-  {
    "file": "chesscom-img-Nwpvt.png",
    "source": "chesscom-image",
-   "ms": 34,
+   "ms": 35,
    "outcome": "wrong-warned",
    "wrong": [
     "a8:Q>r",
@@ -2193,7 +4283,7 @@
   {
    "file": "chesscom-img-O28iY.png",
    "source": "chesscom-image",
-   "ms": 31,
+   "ms": 40,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.7329
@@ -2201,47 +4291,23 @@
   {
    "file": "chesscom-img-O7PQo.png",
    "source": "chesscom-image",
-   "ms": 31,
+   "ms": 35,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8876
   },
   {
-   "file": "chesscom-img-oICx9.png",
-   "source": "chesscom-image",
-   "ms": 32,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9214
-  },
-  {
    "file": "chesscom-img-OiN9U.png",
    "source": "chesscom-image",
-   "ms": 34,
+   "ms": 37,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.7484
   },
   {
-   "file": "chesscom-img-oMrO6.png",
-   "source": "chesscom-image",
-   "ms": 33,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8832
-  },
-  {
-   "file": "chesscom-img-oN7eD.png",
-   "source": "chesscom-image",
-   "ms": 33,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.944
-  },
-  {
    "file": "chesscom-img-On9mu.png",
    "source": "chesscom-image",
-   "ms": 30,
+   "ms": 100,
    "outcome": "exact-warned",
    "wrong": [],
    "minConfidence": 0.6527
@@ -2249,7 +4315,7 @@
   {
    "file": "chesscom-img-OqxAr.png",
    "source": "chesscom-image",
-   "ms": 116,
+   "ms": 140,
    "outcome": "wrong-warned",
    "wrong": [
     "a8:1>r",
@@ -2283,38 +4349,17 @@
    "minConfidence": 0.3137
   },
   {
-   "file": "chesscom-img-p7hOR.png",
+   "file": "chesscom-img-PVG5U.png",
    "source": "chesscom-image",
-   "ms": 33,
-   "outcome": "wrong-warned",
-   "wrong": [
-    "f8:B>b",
-    "e7:N>n",
-    "g7:P>p",
-    "a5:Q>q"
-   ],
-   "minConfidence": 0.6344
-  },
-  {
-   "file": "chesscom-img-p7uTb.png",
-   "source": "chesscom-image",
-   "ms": 32,
+   "ms": 34,
    "outcome": "exact",
    "wrong": [],
-   "minConfidence": 0.922
-  },
-  {
-   "file": "chesscom-img-p92uZ.png",
-   "source": "chesscom-image",
-   "ms": 30,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8835
+   "minConfidence": 0.8506
   },
   {
    "file": "chesscom-img-PaXha.png",
    "source": "chesscom-image",
-   "ms": 35,
+   "ms": 33,
    "outcome": "wrong-warned",
    "wrong": [
     "d7:R>1",
@@ -2343,121 +4388,15 @@
   {
    "file": "chesscom-img-Pd1G9.png",
    "source": "chesscom-image",
-   "ms": 31,
+   "ms": 32,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8832
   },
   {
-   "file": "chesscom-img-ptVhC.png",
-   "source": "chesscom-image",
-   "ms": 34,
-   "outcome": "wrong-warned",
-   "wrong": [
-    "a8:B>r",
-    "b8:N>n",
-    "d8:1>q",
-    "f8:Q>r",
-    "g8:1>k",
-    "a7:B>p",
-    "b7:B>p",
-    "e7:B>b",
-    "f7:B>p",
-    "g7:B>p",
-    "h7:B>p",
-    "c6:B>p",
-    "g6:K>b",
-    "e4:N>n",
-    "e3:K>B",
-    "g3:K>N",
-    "c2:K>B",
-    "g2:B>P",
-    "a1:K>R",
-    "d1:B>Q",
-    "f1:K>R"
-   ],
-   "minConfidence": 0.1441
-  },
-  {
-   "file": "chesscom-img-puDcv.png",
-   "source": "chesscom-image",
-   "ms": 30,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9289
-  },
-  {
-   "file": "chesscom-img-pvaUN.png",
-   "source": "chesscom-image",
-   "ms": 30,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8886
-  },
-  {
-   "file": "chesscom-img-PVG5U.png",
-   "source": "chesscom-image",
-   "ms": 32,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8506
-  },
-  {
-   "file": "chesscom-img-qf73A.png",
-   "source": "chesscom-image",
-   "ms": 51,
-   "outcome": "wrong-warned",
-   "wrong": [
-    "a8:1>r",
-    "c8:1>b",
-    "d8:1>q",
-    "e8:1>k",
-    "h8:1>r",
-    "a7:1>p",
-    "b7:1>p",
-    "f7:1>p",
-    "g7:1>p",
-    "h7:k>p",
-    "c6:1>n",
-    "h6:k>1",
-    "b5:1>B",
-    "d5:1>p",
-    "e3:1>B",
-    "a2:1>P",
-    "b2:1>P",
-    "c2:1>P",
-    "f2:1>P",
-    "g2:1>P",
-    "h2:B>P",
-    "a1:1>R",
-    "b1:P>1",
-    "d1:1>Q",
-    "e1:P>K",
-    "g1:1>N",
-    "h1:1>R"
-   ],
-   "minConfidence": 0.2787
-  },
-  {
-   "file": "chesscom-img-qgvPT.png",
-   "source": "chesscom-image",
-   "ms": 30,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.915
-  },
-  {
-   "file": "chesscom-img-qhKMJ.png",
-   "source": "chesscom-image",
-   "ms": 32,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8734
-  },
-  {
    "file": "chesscom-img-QHxfl.png",
    "source": "chesscom-image",
-   "ms": 31,
+   "ms": 34,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9078
@@ -2481,15 +4420,23 @@
   {
    "file": "chesscom-img-R4Qim.png",
    "source": "chesscom-image",
-   "ms": 34,
+   "ms": 32,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8645
   },
   {
+   "file": "chesscom-img-R8QKD.png",
+   "source": "chesscom-image",
+   "ms": 34,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9514
+  },
+  {
    "file": "chesscom-img-R8odt.png",
    "source": "chesscom-image",
-   "ms": 38,
+   "ms": 39,
    "outcome": "wrong-warned",
    "wrong": [
     "e8:Q>k",
@@ -2513,17 +4460,9 @@
    "minConfidence": 0.2671
   },
   {
-   "file": "chesscom-img-R8QKD.png",
-   "source": "chesscom-image",
-   "ms": 31,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9514
-  },
-  {
    "file": "chesscom-img-RqgDY.png",
    "source": "chesscom-image",
-   "ms": 61,
+   "ms": 63,
    "outcome": "wrong-warned",
    "wrong": [
     "a8:1>r",
@@ -2552,83 +4491,17 @@
    "minConfidence": 0.3296
   },
   {
-   "file": "chesscom-img-rQhnT.png",
-   "source": "chesscom-image",
-   "ms": 46,
-   "outcome": "wrong-warned",
-   "wrong": [
-    "a8:1>r",
-    "b8:P>n",
-    "c8:R>1",
-    "f8:1>r",
-    "g8:1>k",
-    "h8:K>1",
-    "a7:B>p",
-    "b7:B>p",
-    "c7:B>1",
-    "d7:1>b",
-    "e7:1>q",
-    "g7:B>p",
-    "h7:B>p",
-    "d6:B>1",
-    "e6:1>p",
-    "f6:K>1",
-    "b5:1>B",
-    "d5:N>p",
-    "e5:B>N",
-    "f5:1>p",
-    "c4:b>1",
-    "d4:N>P",
-    "e4:b>n",
-    "g4:K>1",
-    "c3:1>N",
-    "d3:b>1",
-    "e3:1>P",
-    "a2:b>P",
-    "b2:B>P",
-    "d2:B>1",
-    "e2:K>1",
-    "f2:1>P",
-    "g2:b>P",
-    "h2:B>P",
-    "a1:1>R",
-    "b1:P>1",
-    "c1:b>1",
-    "d1:1>Q",
-    "f1:1>R",
-    "g1:N>K",
-    "h1:b>1"
-   ],
-   "minConfidence": 0.1717
-  },
-  {
    "file": "chesscom-img-RsHGQ.png",
    "source": "chesscom-image",
-   "ms": 29,
+   "ms": 31,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8586
   },
   {
-   "file": "chesscom-img-rSkkC.png",
-   "source": "chesscom-image",
-   "ms": 30,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9518
-  },
-  {
-   "file": "chesscom-img-rT1Xy.png",
-   "source": "chesscom-image",
-   "ms": 32,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8506
-  },
-  {
    "file": "chesscom-img-RuXnb.png",
    "source": "chesscom-image",
-   "ms": 30,
+   "ms": 31,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9232
@@ -2636,7 +4509,7 @@
   {
    "file": "chesscom-img-Sc9m6.png",
    "source": "chesscom-image",
-   "ms": 31,
+   "ms": 32,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.7635
@@ -2644,118 +4517,23 @@
   {
    "file": "chesscom-img-ScnTt.png",
    "source": "chesscom-image",
-   "ms": 31,
+   "ms": 49,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9466
   },
   {
-   "file": "chesscom-img-sDmMR.png",
-   "source": "chesscom-image",
-   "ms": 32,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9041
-  },
-  {
-   "file": "chesscom-img-sE2wC.png",
-   "source": "chesscom-image",
-   "ms": 28,
-   "outcome": "wrong-silent",
-   "wrong": [
-    "b7:p>1",
-    "c7:K>1",
-    "c6:p>1",
-    "e6:R>1",
-    "f6:k>1",
-    "h6:1>P",
-    "f5:p>1",
-    "c4:1>p",
-    "a3:P>1",
-    "c3:1>k",
-    "d3:1>R",
-    "f3:1>p",
-    "f2:1>K",
-    "g2:1>p"
-   ],
-   "minConfidence": 0.9462
-  },
-  {
-   "file": "chesscom-img-sFfle.png",
-   "source": "chesscom-image",
-   "ms": 33,
-   "outcome": "wrong-warned",
-   "wrong": [
-    "a7:P>p",
-    "e7:B>b",
-    "g7:P>p",
-    "f6:N>n",
-    "h6:P>p"
-   ],
-   "minConfidence": 0.4257
-  },
-  {
    "file": "chesscom-img-SfZHT.png",
    "source": "chesscom-image",
-   "ms": 32,
+   "ms": 113,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.841
   },
   {
-   "file": "chesscom-img-t0KXQ.png",
-   "source": "chesscom-image",
-   "ms": 31,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8106
-  },
-  {
-   "file": "chesscom-img-t0sUo.png",
-   "source": "chesscom-image",
-   "ms": 30,
-   "outcome": "exact-warned",
-   "wrong": [],
-   "minConfidence": 0.584
-  },
-  {
-   "file": "chesscom-img-t1wsp.png",
-   "source": "chesscom-image",
-   "ms": 33,
-   "outcome": "wrong-warned",
-   "wrong": [
-    "a8:B>r",
-    "g8:1>k",
-    "a7:B>p",
-    "b7:B>p",
-    "c7:P>p",
-    "f7:B>r",
-    "h7:B>p",
-    "d6:P>p",
-    "f6:B>p",
-    "h6:1>Q",
-    "e5:N>n",
-    "f5:B>P",
-    "e4:B>P",
-    "f4:K>R",
-    "b2:1>q",
-    "e1:1>R",
-    "h1:1>K"
-   ],
-   "minConfidence": 0.2004
-  },
-  {
-   "file": "chesscom-img-tl9w2.png",
-   "source": "chesscom-image",
-   "ms": 29,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8989
-  },
-  {
    "file": "chesscom-img-TMmXD.png",
    "source": "chesscom-image",
-   "ms": 29,
+   "ms": 47,
    "outcome": "wrong-warned",
    "wrong": [
     "f8:B>b",
@@ -2765,60 +4543,9 @@
    "minConfidence": 0.5104
   },
   {
-   "file": "chesscom-img-tmNe0.png",
-   "source": "chesscom-image",
-   "ms": 31,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.75
-  },
-  {
-   "file": "chesscom-img-tmYeY.png",
-   "source": "chesscom-image",
-   "ms": 51,
-   "outcome": "wrong-warned",
-   "wrong": [
-    "a8:1>r",
-    "c8:1>b",
-    "d8:1>q",
-    "f8:1>r",
-    "g8:1>k",
-    "a7:1>p",
-    "b7:1>p",
-    "e7:1>p",
-    "f7:1>p",
-    "g7:1>b",
-    "g6:1>p",
-    "h6:1>p",
-    "a5:1>n",
-    "c5:1>P",
-    "d5:1>p",
-    "b4:n>1",
-    "d4:1>P",
-    "e4:1>n",
-    "f4:1>B",
-    "b3:1>Q",
-    "c3:1>N",
-    "f3:1>N",
-    "h3:1>P",
-    "a2:1>P",
-    "b2:1>P",
-    "d2:N>1",
-    "e2:N>B",
-    "f2:1>P",
-    "g2:1>P",
-    "a1:1>R",
-    "b1:P>1",
-    "f1:1>R",
-    "g1:1>K",
-    "h1:B>1"
-   ],
-   "minConfidence": 0.2007
-  },
-  {
    "file": "chesscom-img-TNneL.png",
    "source": "chesscom-image",
-   "ms": 32,
+   "ms": 38,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9297
@@ -2826,7 +4553,7 @@
   {
    "file": "chesscom-img-TSJDl.png",
    "source": "chesscom-image",
-   "ms": 31,
+   "ms": 35,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9078
@@ -2834,7 +4561,7 @@
   {
    "file": "chesscom-img-U9elz.png",
    "source": "chesscom-image",
-   "ms": 32,
+   "ms": 35,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9514
@@ -2842,7 +4569,7 @@
   {
    "file": "chesscom-img-UAOvX.png",
    "source": "chesscom-image",
-   "ms": 33,
+   "ms": 36,
    "outcome": "wrong-warned",
    "wrong": [
     "a8:R>r",
@@ -2877,7 +4604,7 @@
   {
    "file": "chesscom-img-UDXDZ.png",
    "source": "chesscom-image",
-   "ms": 29,
+   "ms": 30,
    "outcome": "wrong-silent",
    "wrong": [
     "b8:K>1",
@@ -2900,17 +4627,9 @@
    "minConfidence": 0.9096
   },
   {
-   "file": "chesscom-img-uUoTx.png",
-   "source": "chesscom-image",
-   "ms": 29,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8724
-  },
-  {
    "file": "chesscom-img-Uvf1E.png",
    "source": "chesscom-image",
-   "ms": 30,
+   "ms": 31,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8884
@@ -2918,65 +4637,15 @@
   {
    "file": "chesscom-img-UwOWA.png",
    "source": "chesscom-image",
-   "ms": 31,
+   "ms": 33,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8799
   },
   {
-   "file": "chesscom-img-uY0nb.png",
-   "source": "chesscom-image",
-   "ms": 31,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8506
-  },
-  {
-   "file": "chesscom-img-uYWEH.png",
-   "source": "chesscom-image",
-   "ms": 32,
-   "outcome": "wrong-warned",
-   "wrong": [
-    "a8:1>r",
-    "h8:R>1",
-    "a7:B>p",
-    "b7:B>p",
-    "c7:1>p",
-    "e7:1>q",
-    "f7:B>1",
-    "g7:P>1",
-    "h7:B>1",
-    "c6:1>k",
-    "d6:1>p",
-    "e6:B>1",
-    "f6:1>p",
-    "h6:Q>1",
-    "c5:1>b",
-    "d5:B>1",
-    "e5:Q>1",
-    "h5:1>Q",
-    "d4:1>n",
-    "e4:1>P",
-    "f4:P>1",
-    "a3:1>N",
-    "c3:P>1",
-    "d3:1>P",
-    "e3:P>1",
-    "f3:B>1",
-    "a2:1>P",
-    "b2:1>P",
-    "c2:1>P",
-    "d2:K>1",
-    "f2:P>1",
-    "a1:1>R",
-    "h1:b>K"
-   ],
-   "minConfidence": 0.2409
-  },
-  {
    "file": "chesscom-img-V0JMS.png",
    "source": "chesscom-image",
-   "ms": 105,
+   "ms": 110,
    "outcome": "wrong-warned",
    "wrong": [
     "d8:1>r",
@@ -3000,17 +4669,9 @@
    "minConfidence": 0.296
   },
   {
-   "file": "chesscom-img-vG9p8.png",
-   "source": "chesscom-image",
-   "ms": 29,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8399
-  },
-  {
    "file": "chesscom-img-Vhfol.png",
    "source": "chesscom-image",
-   "ms": 34,
+   "ms": 35,
    "outcome": "wrong-warned",
    "wrong": [
     "a8:K>r",
@@ -3060,118 +4721,31 @@
   {
    "file": "chesscom-img-Vho1e.png",
    "source": "chesscom-image",
-   "ms": 29,
+   "ms": 100,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9466
   },
   {
-   "file": "chesscom-img-vKC6Q.png",
-   "source": "chesscom-image",
-   "ms": 33,
-   "outcome": "wrong-warned",
-   "wrong": [
-    "e5:K>k",
-    "d4:R>r"
-   ],
-   "minConfidence": 0.4773
-  },
-  {
-   "file": "chesscom-img-vKoNF.png",
-   "source": "chesscom-image",
-   "ms": 31,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9231
-  },
-  {
    "file": "chesscom-img-VmPwj.png",
    "source": "chesscom-image",
-   "ms": 30,
+   "ms": 56,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8832
   },
   {
-   "file": "chesscom-img-w5q09.png",
-   "source": "chesscom-image",
-   "ms": 31,
-   "outcome": "wrong-warned",
-   "wrong": [
-    "g7:P>p",
-    "c4:B>k",
-    "f2:B>P"
-   ],
-   "minConfidence": 0.2069
-  },
-  {
-   "file": "chesscom-img-w5YIq.png",
-   "source": "chesscom-image",
-   "ms": 32,
-   "outcome": "exact-warned",
-   "wrong": [],
-   "minConfidence": 0.5792
-  },
-  {
-   "file": "chesscom-img-w7Hc8.png",
-   "source": "chesscom-image",
-   "ms": 30,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9315
-  },
-  {
-   "file": "chesscom-img-wrmZb.png",
-   "source": "chesscom-image",
-   "ms": 31,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8799
-  },
-  {
-   "file": "chesscom-img-wsBzl.png",
-   "source": "chesscom-image",
-   "ms": 138,
-   "outcome": "wrong-warned",
-   "wrong": [
-    "c8:1>k",
-    "g8:R>r",
-    "c7:1>p",
-    "c6:1>n",
-    "a5:1>P",
-    "e5:1>p",
-    "b4:1>N",
-    "c3:1>P",
-    "d3:1>P",
-    "h3:K>p",
-    "c2:1>P",
-    "d2:1>K",
-    "g2:R>r",
-    "a1:1>R",
-    "c1:R>1"
-   ],
-   "minConfidence": 0.3166
-  },
-  {
    "file": "chesscom-img-WSEhm.png",
    "source": "chesscom-image",
-   "ms": 34,
+   "ms": 40,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8772
   },
   {
-   "file": "chesscom-img-wt6TT.png",
-   "source": "chesscom-image",
-   "ms": 30,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8989
-  },
-  {
    "file": "chesscom-img-WULOW.png",
    "source": "chesscom-image",
-   "ms": 31,
+   "ms": 73,
    "outcome": "wrong-warned",
    "wrong": [
     "a7:P>p",
@@ -3183,66 +4757,15 @@
   {
    "file": "chesscom-img-WZ2ac.png",
    "source": "chesscom-image",
-   "ms": 35,
+   "ms": 65,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8947
   },
   {
-   "file": "chesscom-img-xczl3.png",
-   "source": "chesscom-image",
-   "ms": 34,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8506
-  },
-  {
-   "file": "chesscom-img-xewSG.png",
-   "source": "chesscom-image",
-   "ms": 36,
-   "outcome": "wrong-warned",
-   "wrong": [
-    "e8:Q>1",
-    "f8:B>1",
-    "g8:R>1",
-    "a7:1>p",
-    "b7:b>1",
-    "d7:P>Q",
-    "f7:b>1",
-    "g7:K>k",
-    "h7:P>1",
-    "c6:P>1",
-    "g6:1>p",
-    "e5:P>1",
-    "f5:1>p",
-    "c4:B>1",
-    "d4:1>P",
-    "b3:B>1",
-    "f3:1>P",
-    "a2:1>P",
-    "b2:Q>P",
-    "c2:1>r",
-    "e2:R>q",
-    "g2:1>r",
-    "h2:B>1",
-    "b1:1>K",
-    "c1:1>B",
-    "d1:1>R"
-   ],
-   "minConfidence": 0.2183
-  },
-  {
-   "file": "chesscom-img-xfVAP.png",
-   "source": "chesscom-image",
-   "ms": 32,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8724
-  },
-  {
    "file": "chesscom-img-XGAUD.png",
    "source": "chesscom-image",
-   "ms": 31,
+   "ms": 33,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9397
@@ -3250,7 +4773,7 @@
   {
    "file": "chesscom-img-XGUIa.png",
    "source": "chesscom-image",
-   "ms": 39,
+   "ms": 38,
    "outcome": "wrong-warned",
    "wrong": [
     "c8:B>r",
@@ -3279,7 +4802,7 @@
   {
    "file": "chesscom-img-XLVMD.png",
    "source": "chesscom-image",
-   "ms": 32,
+   "ms": 34,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9513
@@ -3325,7 +4848,7 @@
   {
    "file": "chesscom-img-Y2n7z.png",
    "source": "chesscom-image",
-   "ms": 33,
+   "ms": 32,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9097
@@ -3341,23 +4864,15 @@
   {
    "file": "chesscom-img-YlSGN.png",
    "source": "chesscom-image",
-   "ms": 31,
+   "ms": 32,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9096
   },
   {
-   "file": "chesscom-img-yNwpd.png",
-   "source": "chesscom-image",
-   "ms": 36,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9084
-  },
-  {
    "file": "chesscom-img-Yq14Z.png",
    "source": "chesscom-image",
-   "ms": 36,
+   "ms": 40,
    "outcome": "wrong-warned",
    "wrong": [
     "c8:K>1",
@@ -3398,6 +4913,1400 @@
    "minConfidence": 0.2369
   },
   {
+   "file": "chesscom-img-Yv5aO.png",
+   "source": "chesscom-image",
+   "ms": 30,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9513
+  },
+  {
+   "file": "chesscom-img-ZZDEk.png",
+   "source": "chesscom-image",
+   "ms": 33,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9214
+  },
+  {
+   "file": "chesscom-img-ZbMOS.png",
+   "source": "chesscom-image",
+   "ms": 33,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8956
+  },
+  {
+   "file": "chesscom-img-Zhuow.png",
+   "source": "chesscom-image",
+   "ms": 31,
+   "outcome": "exact-warned",
+   "wrong": [],
+   "minConfidence": 0.68
+  },
+  {
+   "file": "chesscom-img-aJ5D1.png",
+   "source": "chesscom-image",
+   "ms": 32,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9457
+  },
+  {
+   "file": "chesscom-img-aMtlF.png",
+   "source": "chesscom-image",
+   "ms": 35,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9397
+  },
+  {
+   "file": "chesscom-img-aTvko.png",
+   "source": "chesscom-image",
+   "ms": 38,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "c7:B>p",
+    "f7:B>p",
+    "g5:B>p",
+    "g4:K>R",
+    "a3:B>P",
+    "b3:R>K",
+    "d3:R>k",
+    "c2:Q>r"
+   ],
+   "minConfidence": 0.2912
+  },
+  {
+   "file": "chesscom-img-b3SgM.png",
+   "source": "chesscom-image",
+   "ms": 32,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8647
+  },
+  {
+   "file": "chesscom-img-b9DiP.png",
+   "source": "chesscom-image",
+   "ms": 97,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "b8:1>n",
+    "e8:1>k",
+    "h8:1>r",
+    "a7:1>p",
+    "b7:1>p",
+    "c7:1>p",
+    "e7:1>p",
+    "g7:1>b",
+    "b6:1>q",
+    "c6:1>b",
+    "f6:1>n",
+    "h6:1>p",
+    "g5:1>p",
+    "b4:B>1",
+    "d3:1>Q",
+    "f3:1>N",
+    "g3:1>P",
+    "a2:1>P",
+    "b2:R>P",
+    "f2:1>P",
+    "g2:K>P",
+    "c1:1>K",
+    "d1:1>R",
+    "f1:1>B",
+    "h1:1>R"
+   ],
+   "minConfidence": 0.2232
+  },
+  {
+   "file": "chesscom-img-bFRQ7.png",
+   "source": "chesscom-image",
+   "ms": 75,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.7484
+  },
+  {
+   "file": "chesscom-img-bt5BL.png",
+   "source": "chesscom-image",
+   "ms": 36,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9513
+  },
+  {
+   "file": "chesscom-img-buiDI.png",
+   "source": "chesscom-image",
+   "ms": 56,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8832
+  },
+  {
+   "file": "chesscom-img-c1OGb.png",
+   "source": "chesscom-image",
+   "ms": 37,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:R>1",
+    "b8:K>1",
+    "h8:1>r",
+    "b7:R>k",
+    "c7:1>p",
+    "e7:1>Q",
+    "f7:P>1",
+    "a6:P>p",
+    "b6:1>p",
+    "d6:1>p",
+    "e6:P>1",
+    "c5:B>1",
+    "d5:P>1",
+    "e5:1>p",
+    "f5:1>B",
+    "g5:P>1",
+    "h5:P>1",
+    "a4:1>P",
+    "b4:1>P",
+    "c4:B>1",
+    "d4:B>1",
+    "e4:1>P",
+    "f4:1>q",
+    "d3:1>P",
+    "e3:B>1",
+    "g3:B>1",
+    "c2:1>P",
+    "d2:Q>1",
+    "f2:P>1",
+    "g2:P>R",
+    "a1:Q>1",
+    "g1:1>R",
+    "h1:1>K"
+   ],
+   "minConfidence": 0.1722
+  },
+  {
+   "file": "chesscom-img-ceFWi.png",
+   "source": "chesscom-image",
+   "ms": 31,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.7936
+  },
+  {
+   "file": "chesscom-img-chSXI.png",
+   "source": "chesscom-image",
+   "ms": 34,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9231
+  },
+  {
+   "file": "chesscom-img-cmvVr.png",
+   "source": "chesscom-image",
+   "ms": 34,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8915
+  },
+  {
+   "file": "chesscom-img-dPayG.png",
+   "source": "chesscom-image",
+   "ms": 36,
+   "outcome": "exact-warned",
+   "wrong": [],
+   "minConfidence": 0.6155
+  },
+  {
+   "file": "chesscom-img-dUBEu.png",
+   "source": "chesscom-image",
+   "ms": 37,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9458
+  },
+  {
+   "file": "chesscom-img-dY9YD.png",
+   "source": "chesscom-image",
+   "ms": 40,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.888
+  },
+  {
+   "file": "chesscom-img-eBzgz.png",
+   "source": "chesscom-image",
+   "ms": 42,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.7483
+  },
+  {
+   "file": "chesscom-img-eGPED.png",
+   "source": "chesscom-image",
+   "ms": 39,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8148
+  },
+  {
+   "file": "chesscom-img-eKRmq.png",
+   "source": "chesscom-image",
+   "ms": 100,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "b8:1>r",
+    "f8:1>B",
+    "e7:R>1",
+    "f7:K>Q",
+    "h7:1>p",
+    "a6:1>p",
+    "b6:1>p",
+    "d6:p>1",
+    "e6:1>p",
+    "g6:1>p",
+    "h6:1>k",
+    "h4:1>P",
+    "b3:r>P",
+    "d3:1>r",
+    "g3:1>P",
+    "h3:1>q",
+    "a2:1>P",
+    "b2:b>1",
+    "d2:1>p",
+    "b1:R>1",
+    "d1:1>R",
+    "g1:N>K",
+    "h1:N>1"
+   ],
+   "minConfidence": 0.2005
+  },
+  {
+   "file": "chesscom-img-excIp.png",
+   "source": "chesscom-image",
+   "ms": 48,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "c8:B>b",
+    "e8:Q>1",
+    "f8:1>r",
+    "g8:1>k",
+    "b7:N>p",
+    "c7:1>p",
+    "d7:1>p",
+    "f7:B>p",
+    "g7:1>p",
+    "h7:1>p",
+    "a6:1>p",
+    "c6:1>n",
+    "e6:1>p",
+    "f6:K>1",
+    "h6:B>1",
+    "a5:1>q",
+    "c5:Q>1",
+    "e5:Q>P",
+    "f5:K>1",
+    "c4:1>N",
+    "d4:1>b",
+    "f4:1>Q",
+    "h4:Q>1",
+    "a3:1>P",
+    "c3:1>N",
+    "d3:B>1",
+    "f3:N>1",
+    "h3:B>1",
+    "a2:B>1",
+    "b2:B>P",
+    "e2:P>1",
+    "f2:K>P",
+    "h2:1>P",
+    "b1:R>1",
+    "c1:Q>K",
+    "d1:1>R",
+    "h1:Q>R"
+   ],
+   "minConfidence": 0.2441
+  },
+  {
+   "file": "chesscom-img-f2I3d.png",
+   "source": "chesscom-image",
+   "ms": 76,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9513
+  },
+  {
+   "file": "chesscom-img-f6lsJ.png",
+   "source": "chesscom-image",
+   "ms": 150,
+   "outcome": "wrong-silent",
+   "wrong": [
+    "b8:k>1",
+    "a7:p>1",
+    "b7:r>1",
+    "f7:r>1",
+    "g7:P>1",
+    "h7:K>1",
+    "a6:1>P",
+    "g6:R>1",
+    "h6:1>R",
+    "a3:R>1",
+    "b3:1>R",
+    "h3:P>1",
+    "a2:1>K",
+    "b2:1>P",
+    "c2:1>r",
+    "g2:1>r",
+    "h2:1>p",
+    "g1:1>k"
+   ],
+   "minConfidence": 0.8832
+  },
+  {
+   "file": "chesscom-img-fh8hS.png",
+   "source": "chesscom-image",
+   "ms": 61,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.7808
+  },
+  {
+   "file": "chesscom-img-foB17.png",
+   "source": "chesscom-image",
+   "ms": 42,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9359
+  },
+  {
+   "file": "chesscom-img-fsPJS.png",
+   "source": "chesscom-image",
+   "ms": 37,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9231
+  },
+  {
+   "file": "chesscom-img-gTHVE.png",
+   "source": "chesscom-image",
+   "ms": 36,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:b>r",
+    "d8:B>q",
+    "e8:R>k",
+    "h8:b>r",
+    "a7:B>p",
+    "d7:B>b",
+    "e7:P>p",
+    "g7:B>b",
+    "h7:P>p",
+    "c6:K>B",
+    "d6:B>p",
+    "g6:P>p",
+    "d4:K>N",
+    "e4:r>n",
+    "c3:K>N",
+    "a2:B>P",
+    "c2:B>P",
+    "g2:B>P",
+    "d1:P>Q",
+    "e1:R>K",
+    "h1:K>R"
+   ],
+   "minConfidence": 0.1372
+  },
+  {
+   "file": "chesscom-img-gZxGX.png",
+   "source": "chesscom-image",
+   "ms": 34,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.7647
+  },
+  {
+   "file": "chesscom-img-geT6b.png",
+   "source": "chesscom-image",
+   "ms": 35,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9044
+  },
+  {
+   "file": "chesscom-img-hDp5E.png",
+   "source": "chesscom-image",
+   "ms": 85,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "c8:1>b",
+    "d8:1>q",
+    "f8:1>r",
+    "g8:1>k",
+    "a7:1>p",
+    "c7:1>p",
+    "d7:1>n",
+    "g7:1>b",
+    "b6:1>p",
+    "g6:1>Q",
+    "d5:1>p",
+    "e5:1>p",
+    "g5:1>N",
+    "d4:1>P",
+    "c3:1>P",
+    "e3:1>P",
+    "a2:1>P",
+    "b2:R>P",
+    "f2:1>P",
+    "g2:1>P",
+    "a1:1>R",
+    "b1:1>N",
+    "e1:1>K",
+    "h1:K>R"
+   ],
+   "minConfidence": 0.2975
+  },
+  {
+   "file": "chesscom-img-hLtD5.png",
+   "source": "chesscom-image",
+   "ms": 37,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.7453
+  },
+  {
+   "file": "chesscom-img-hQmDX.png",
+   "source": "chesscom-image",
+   "ms": 37,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9004
+  },
+  {
+   "file": "chesscom-img-i3Bzg.png",
+   "source": "chesscom-image",
+   "ms": 44,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:p>r",
+    "c8:1>b",
+    "d8:p>q",
+    "e8:1>r",
+    "f8:n>1",
+    "g8:1>k",
+    "h8:p>1",
+    "b7:1>p",
+    "c7:1>p",
+    "e7:1>b",
+    "f7:1>p",
+    "g7:1>p",
+    "a6:N>p",
+    "d6:1>p",
+    "f6:1>n",
+    "h6:1>p",
+    "a5:P>1",
+    "g5:Q>1",
+    "h5:P>1",
+    "a4:B>N",
+    "b4:P>1",
+    "c4:P>1",
+    "f4:P>1",
+    "g4:P>1",
+    "a3:R>P",
+    "c3:B>1",
+    "e3:R>1",
+    "g3:K>Q",
+    "h3:1>P",
+    "a2:1>B",
+    "b2:1>P",
+    "c2:1>P",
+    "f2:1>P",
+    "g2:1>P",
+    "a1:1>R",
+    "c1:1>B",
+    "e1:1>R",
+    "g1:1>K"
+   ],
+   "minConfidence": 0.5762
+  },
+  {
+   "file": "chesscom-img-i83it.png",
+   "source": "chesscom-image",
+   "ms": 38,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "f8:1>k",
+    "h8:Q>r",
+    "a7:1>p",
+    "b7:B>p",
+    "e7:1>p",
+    "f7:B>1",
+    "g7:1>b",
+    "h7:B>P",
+    "d6:1>q",
+    "e6:1>p",
+    "f6:K>n",
+    "d5:B>1",
+    "h5:1>Q",
+    "a4:Q>1",
+    "e4:1>P",
+    "d3:P>1",
+    "e3:Q>1",
+    "a2:B>P",
+    "b2:B>P",
+    "c2:1>P",
+    "d2:B>1",
+    "h2:B>P",
+    "a1:Q>R",
+    "c1:Q>1",
+    "f1:1>R",
+    "g1:1>K",
+    "h1:Q>1"
+   ],
+   "minConfidence": 0.2009
+  },
+  {
+   "file": "chesscom-img-iBjwW.png",
+   "source": "chesscom-image",
+   "ms": 24,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9513
+  },
+  {
+   "file": "chesscom-img-in1xz.png",
+   "source": "chesscom-image",
+   "ms": 35,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9235
+  },
+  {
+   "file": "chesscom-img-iu9rA.png",
+   "source": "chesscom-image",
+   "ms": 40,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.793
+  },
+  {
+   "file": "chesscom-img-ixGm0.png",
+   "source": "chesscom-image",
+   "ms": 38,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9415
+  },
+  {
+   "file": "chesscom-img-jXWue.png",
+   "source": "chesscom-image",
+   "ms": 59,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8998
+  },
+  {
+   "file": "chesscom-img-jgzp0.png",
+   "source": "chesscom-image",
+   "ms": 123,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "c8:B>k",
+    "d8:Q>r",
+    "h8:Q>r",
+    "a7:P>p",
+    "b7:b>p",
+    "c7:B>q",
+    "f7:b>p",
+    "g7:P>p",
+    "h7:b>p",
+    "c6:r>n",
+    "e6:B>b",
+    "e4:B>Q",
+    "c3:B>P",
+    "f2:B>P",
+    "a1:K>R",
+    "e1:R>K",
+    "f1:K>B",
+    "h1:K>R"
+   ],
+   "minConfidence": 0.1879
+  },
+  {
+   "file": "chesscom-img-jkD7m.png",
+   "source": "chesscom-image",
+   "ms": 46,
+   "outcome": "exact-warned",
+   "wrong": [],
+   "minConfidence": 0.584
+  },
+  {
+   "file": "chesscom-img-kK476.png",
+   "source": "chesscom-image",
+   "ms": 39,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8822
+  },
+  {
+   "file": "chesscom-img-kTkll.png",
+   "source": "chesscom-image",
+   "ms": 64,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "g8:r>k",
+    "g4:p>b",
+    "g1:N>K"
+   ],
+   "minConfidence": 0.285
+  },
+  {
+   "file": "chesscom-img-kVgRe.png",
+   "source": "chesscom-image",
+   "ms": 33,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.7483
+  },
+  {
+   "file": "chesscom-img-l8H5c.png",
+   "source": "chesscom-image",
+   "ms": 34,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8831
+  },
+  {
+   "file": "chesscom-img-lG9wb.png",
+   "source": "chesscom-image",
+   "ms": 32,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8832
+  },
+  {
+   "file": "chesscom-img-lINyC.png",
+   "source": "chesscom-image",
+   "ms": 36,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "d8:1>r",
+    "f7:P>1",
+    "g7:P>1",
+    "h7:P>R",
+    "a6:1>p",
+    "b6:1>p",
+    "c6:P>b",
+    "d6:K>1",
+    "f6:1>k",
+    "g6:1>p",
+    "d5:R>1",
+    "h5:1>P",
+    "a4:P>1",
+    "e4:1>P",
+    "b3:P>1",
+    "c3:K>1",
+    "e3:1>K",
+    "f3:B>P",
+    "g3:B>1",
+    "h3:B>1",
+    "a2:Q>P",
+    "b2:1>P",
+    "c2:1>P",
+    "e1:Q>1"
+   ],
+   "minConfidence": 0.2864
+  },
+  {
+   "file": "chesscom-img-lsWMu.png",
+   "source": "chesscom-image",
+   "ms": 33,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9441
+  },
+  {
+   "file": "chesscom-img-m2Qtf.png",
+   "source": "chesscom-image",
+   "ms": 36,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8907
+  },
+  {
+   "file": "chesscom-img-m4JC1.png",
+   "source": "chesscom-image",
+   "ms": 37,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8701
+  },
+  {
+   "file": "chesscom-img-meQCY.png",
+   "source": "chesscom-image",
+   "ms": 34,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.7652
+  },
+  {
+   "file": "chesscom-img-moygc.png",
+   "source": "chesscom-image",
+   "ms": 33,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9232
+  },
+  {
+   "file": "chesscom-img-mpktu.png",
+   "source": "chesscom-image",
+   "ms": 39,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a7:P>p",
+    "b5:P>p",
+    "d5:P>p",
+    "e5:P>k",
+    "c4:P>p",
+    "e4:P>p",
+    "g4:P>q",
+    "c3:B>P",
+    "e3:B>P",
+    "b2:B>P",
+    "h2:Q>K"
+   ],
+   "minConfidence": 0.2601
+  },
+  {
+   "file": "chesscom-img-nSsgS.png",
+   "source": "chesscom-image",
+   "ms": 36,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.7483
+  },
+  {
+   "file": "chesscom-img-nbArS.png",
+   "source": "chesscom-image",
+   "ms": 106,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a7:1>R",
+    "e7:R>1",
+    "f6:1>R",
+    "g6:k>1",
+    "a5:n>1",
+    "c5:1>p",
+    "d5:1>p",
+    "h5:1>k",
+    "b4:1>n",
+    "c4:b>1",
+    "e4:N>1",
+    "d3:1>b",
+    "e3:p>1",
+    "f3:P>N",
+    "c2:K>1",
+    "f2:1>r",
+    "g2:1>P",
+    "d1:1>K"
+   ],
+   "minConfidence": 0.2808
+  },
+  {
+   "file": "chesscom-img-nbQxQ.png",
+   "source": "chesscom-image",
+   "ms": 47,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9004
+  },
+  {
+   "file": "chesscom-img-oICx9.png",
+   "source": "chesscom-image",
+   "ms": 39,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9214
+  },
+  {
+   "file": "chesscom-img-oMrO6.png",
+   "source": "chesscom-image",
+   "ms": 36,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8832
+  },
+  {
+   "file": "chesscom-img-oN7eD.png",
+   "source": "chesscom-image",
+   "ms": 32,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.944
+  },
+  {
+   "file": "chesscom-img-p7hOR.png",
+   "source": "chesscom-image",
+   "ms": 34,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "f8:B>b",
+    "e7:N>n",
+    "g7:P>p",
+    "a5:Q>q"
+   ],
+   "minConfidence": 0.6344
+  },
+  {
+   "file": "chesscom-img-p7uTb.png",
+   "source": "chesscom-image",
+   "ms": 36,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.922
+  },
+  {
+   "file": "chesscom-img-p92uZ.png",
+   "source": "chesscom-image",
+   "ms": 35,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8835
+  },
+  {
+   "file": "chesscom-img-ptVhC.png",
+   "source": "chesscom-image",
+   "ms": 46,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:B>r",
+    "b8:N>n",
+    "d8:1>q",
+    "f8:Q>r",
+    "g8:1>k",
+    "a7:B>p",
+    "b7:B>p",
+    "e7:B>b",
+    "f7:B>p",
+    "g7:B>p",
+    "h7:B>p",
+    "c6:B>p",
+    "g6:K>b",
+    "e4:N>n",
+    "e3:K>B",
+    "g3:K>N",
+    "c2:K>B",
+    "g2:B>P",
+    "a1:K>R",
+    "d1:B>Q",
+    "f1:K>R"
+   ],
+   "minConfidence": 0.1441
+  },
+  {
+   "file": "chesscom-img-puDcv.png",
+   "source": "chesscom-image",
+   "ms": 37,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9289
+  },
+  {
+   "file": "chesscom-img-pvaUN.png",
+   "source": "chesscom-image",
+   "ms": 51,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8886
+  },
+  {
+   "file": "chesscom-img-qf73A.png",
+   "source": "chesscom-image",
+   "ms": 67,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "c8:1>b",
+    "d8:1>q",
+    "e8:1>k",
+    "h8:1>r",
+    "a7:1>p",
+    "b7:1>p",
+    "f7:1>p",
+    "g7:1>p",
+    "h7:k>p",
+    "c6:1>n",
+    "h6:k>1",
+    "b5:1>B",
+    "d5:1>p",
+    "e3:1>B",
+    "a2:1>P",
+    "b2:1>P",
+    "c2:1>P",
+    "f2:1>P",
+    "g2:1>P",
+    "h2:B>P",
+    "a1:1>R",
+    "b1:P>1",
+    "d1:1>Q",
+    "e1:P>K",
+    "g1:1>N",
+    "h1:1>R"
+   ],
+   "minConfidence": 0.2787
+  },
+  {
+   "file": "chesscom-img-qgvPT.png",
+   "source": "chesscom-image",
+   "ms": 43,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.915
+  },
+  {
+   "file": "chesscom-img-qhKMJ.png",
+   "source": "chesscom-image",
+   "ms": 48,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8734
+  },
+  {
+   "file": "chesscom-img-rQhnT.png",
+   "source": "chesscom-image",
+   "ms": 55,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "b8:P>n",
+    "c8:R>1",
+    "f8:1>r",
+    "g8:1>k",
+    "h8:K>1",
+    "a7:B>p",
+    "b7:B>p",
+    "c7:B>1",
+    "d7:1>b",
+    "e7:1>q",
+    "g7:B>p",
+    "h7:B>p",
+    "d6:B>1",
+    "e6:1>p",
+    "f6:K>1",
+    "b5:1>B",
+    "d5:N>p",
+    "e5:B>N",
+    "f5:1>p",
+    "c4:b>1",
+    "d4:N>P",
+    "e4:b>n",
+    "g4:K>1",
+    "c3:1>N",
+    "d3:b>1",
+    "e3:1>P",
+    "a2:b>P",
+    "b2:B>P",
+    "d2:B>1",
+    "e2:K>1",
+    "f2:1>P",
+    "g2:b>P",
+    "h2:B>P",
+    "a1:1>R",
+    "b1:P>1",
+    "c1:b>1",
+    "d1:1>Q",
+    "f1:1>R",
+    "g1:N>K",
+    "h1:b>1"
+   ],
+   "minConfidence": 0.1717
+  },
+  {
+   "file": "chesscom-img-rSkkC.png",
+   "source": "chesscom-image",
+   "ms": 64,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9518
+  },
+  {
+   "file": "chesscom-img-rT1Xy.png",
+   "source": "chesscom-image",
+   "ms": 38,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8506
+  },
+  {
+   "file": "chesscom-img-sDmMR.png",
+   "source": "chesscom-image",
+   "ms": 49,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9041
+  },
+  {
+   "file": "chesscom-img-sE2wC.png",
+   "source": "chesscom-image",
+   "ms": 39,
+   "outcome": "wrong-silent",
+   "wrong": [
+    "b7:p>1",
+    "c7:K>1",
+    "c6:p>1",
+    "e6:R>1",
+    "f6:k>1",
+    "h6:1>P",
+    "f5:p>1",
+    "c4:1>p",
+    "a3:P>1",
+    "c3:1>k",
+    "d3:1>R",
+    "f3:1>p",
+    "f2:1>K",
+    "g2:1>p"
+   ],
+   "minConfidence": 0.9462
+  },
+  {
+   "file": "chesscom-img-sFfle.png",
+   "source": "chesscom-image",
+   "ms": 39,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a7:P>p",
+    "e7:B>b",
+    "g7:P>p",
+    "f6:N>n",
+    "h6:P>p"
+   ],
+   "minConfidence": 0.4257
+  },
+  {
+   "file": "chesscom-img-t0KXQ.png",
+   "source": "chesscom-image",
+   "ms": 44,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8106
+  },
+  {
+   "file": "chesscom-img-t0sUo.png",
+   "source": "chesscom-image",
+   "ms": 35,
+   "outcome": "exact-warned",
+   "wrong": [],
+   "minConfidence": 0.584
+  },
+  {
+   "file": "chesscom-img-t1wsp.png",
+   "source": "chesscom-image",
+   "ms": 37,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:B>r",
+    "g8:1>k",
+    "a7:B>p",
+    "b7:B>p",
+    "c7:P>p",
+    "f7:B>r",
+    "h7:B>p",
+    "d6:P>p",
+    "f6:B>p",
+    "h6:1>Q",
+    "e5:N>n",
+    "f5:B>P",
+    "e4:B>P",
+    "f4:K>R",
+    "b2:1>q",
+    "e1:1>R",
+    "h1:1>K"
+   ],
+   "minConfidence": 0.2004
+  },
+  {
+   "file": "chesscom-img-tl9w2.png",
+   "source": "chesscom-image",
+   "ms": 31,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8989
+  },
+  {
+   "file": "chesscom-img-tmNe0.png",
+   "source": "chesscom-image",
+   "ms": 35,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.75
+  },
+  {
+   "file": "chesscom-img-tmYeY.png",
+   "source": "chesscom-image",
+   "ms": 78,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "c8:1>b",
+    "d8:1>q",
+    "f8:1>r",
+    "g8:1>k",
+    "a7:1>p",
+    "b7:1>p",
+    "e7:1>p",
+    "f7:1>p",
+    "g7:1>b",
+    "g6:1>p",
+    "h6:1>p",
+    "a5:1>n",
+    "c5:1>P",
+    "d5:1>p",
+    "b4:n>1",
+    "d4:1>P",
+    "e4:1>n",
+    "f4:1>B",
+    "b3:1>Q",
+    "c3:1>N",
+    "f3:1>N",
+    "h3:1>P",
+    "a2:1>P",
+    "b2:1>P",
+    "d2:N>1",
+    "e2:N>B",
+    "f2:1>P",
+    "g2:1>P",
+    "a1:1>R",
+    "b1:P>1",
+    "f1:1>R",
+    "g1:1>K",
+    "h1:B>1"
+   ],
+   "minConfidence": 0.2007
+  },
+  {
+   "file": "chesscom-img-uUoTx.png",
+   "source": "chesscom-image",
+   "ms": 33,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8724
+  },
+  {
+   "file": "chesscom-img-uY0nb.png",
+   "source": "chesscom-image",
+   "ms": 38,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8506
+  },
+  {
+   "file": "chesscom-img-uYWEH.png",
+   "source": "chesscom-image",
+   "ms": 39,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "h8:R>1",
+    "a7:B>p",
+    "b7:B>p",
+    "c7:1>p",
+    "e7:1>q",
+    "f7:B>1",
+    "g7:P>1",
+    "h7:B>1",
+    "c6:1>k",
+    "d6:1>p",
+    "e6:B>1",
+    "f6:1>p",
+    "h6:Q>1",
+    "c5:1>b",
+    "d5:B>1",
+    "e5:Q>1",
+    "h5:1>Q",
+    "d4:1>n",
+    "e4:1>P",
+    "f4:P>1",
+    "a3:1>N",
+    "c3:P>1",
+    "d3:1>P",
+    "e3:P>1",
+    "f3:B>1",
+    "a2:1>P",
+    "b2:1>P",
+    "c2:1>P",
+    "d2:K>1",
+    "f2:P>1",
+    "a1:1>R",
+    "h1:b>K"
+   ],
+   "minConfidence": 0.2409
+  },
+  {
+   "file": "chesscom-img-vG9p8.png",
+   "source": "chesscom-image",
+   "ms": 32,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8399
+  },
+  {
+   "file": "chesscom-img-vKC6Q.png",
+   "source": "chesscom-image",
+   "ms": 36,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "e5:K>k",
+    "d4:R>r"
+   ],
+   "minConfidence": 0.4773
+  },
+  {
+   "file": "chesscom-img-vKoNF.png",
+   "source": "chesscom-image",
+   "ms": 34,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9231
+  },
+  {
+   "file": "chesscom-img-w5YIq.png",
+   "source": "chesscom-image",
+   "ms": 36,
+   "outcome": "exact-warned",
+   "wrong": [],
+   "minConfidence": 0.5792
+  },
+  {
+   "file": "chesscom-img-w5q09.png",
+   "source": "chesscom-image",
+   "ms": 50,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "g7:P>p",
+    "c4:B>k",
+    "f2:B>P"
+   ],
+   "minConfidence": 0.2069
+  },
+  {
+   "file": "chesscom-img-w7Hc8.png",
+   "source": "chesscom-image",
+   "ms": 91,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9315
+  },
+  {
+   "file": "chesscom-img-wrmZb.png",
+   "source": "chesscom-image",
+   "ms": 36,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8799
+  },
+  {
+   "file": "chesscom-img-wsBzl.png",
+   "source": "chesscom-image",
+   "ms": 152,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "c8:1>k",
+    "g8:R>r",
+    "c7:1>p",
+    "c6:1>n",
+    "a5:1>P",
+    "e5:1>p",
+    "b4:1>N",
+    "c3:1>P",
+    "d3:1>P",
+    "h3:K>p",
+    "c2:1>P",
+    "d2:1>K",
+    "g2:R>r",
+    "a1:1>R",
+    "c1:R>1"
+   ],
+   "minConfidence": 0.3166
+  },
+  {
+   "file": "chesscom-img-wt6TT.png",
+   "source": "chesscom-image",
+   "ms": 34,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8989
+  },
+  {
+   "file": "chesscom-img-xczl3.png",
+   "source": "chesscom-image",
+   "ms": 35,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8506
+  },
+  {
+   "file": "chesscom-img-xewSG.png",
+   "source": "chesscom-image",
+   "ms": 38,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "e8:Q>1",
+    "f8:B>1",
+    "g8:R>1",
+    "a7:1>p",
+    "b7:b>1",
+    "d7:P>Q",
+    "f7:b>1",
+    "g7:K>k",
+    "h7:P>1",
+    "c6:P>1",
+    "g6:1>p",
+    "e5:P>1",
+    "f5:1>p",
+    "c4:B>1",
+    "d4:1>P",
+    "b3:B>1",
+    "f3:1>P",
+    "a2:1>P",
+    "b2:Q>P",
+    "c2:1>r",
+    "e2:R>q",
+    "g2:1>r",
+    "h2:B>1",
+    "b1:1>K",
+    "c1:1>B",
+    "d1:1>R"
+   ],
+   "minConfidence": 0.2183
+  },
+  {
+   "file": "chesscom-img-xfVAP.png",
+   "source": "chesscom-image",
+   "ms": 33,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8724
+  },
+  {
+   "file": "chesscom-img-yNwpd.png",
+   "source": "chesscom-image",
+   "ms": 35,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9084
+  },
+  {
+   "file": "chesscom-img-yRItc.png",
+   "source": "chesscom-image",
+   "ms": 38,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9235
+  },
+  {
    "file": "chesscom-img-yRgQ4.png",
    "source": "chesscom-image",
    "ms": 35,
@@ -3406,41 +6315,17 @@
    "minConfidence": 0.9356
   },
   {
-   "file": "chesscom-img-yRItc.png",
-   "source": "chesscom-image",
-   "ms": 37,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9235
-  },
-  {
-   "file": "chesscom-img-Yv5aO.png",
-   "source": "chesscom-image",
-   "ms": 33,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9513
-  },
-  {
    "file": "chesscom-img-zAMHk.png",
    "source": "chesscom-image",
-   "ms": 32,
+   "ms": 33,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.7468
   },
   {
-   "file": "chesscom-img-ZbMOS.png",
-   "source": "chesscom-image",
-   "ms": 32,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8956
-  },
-  {
    "file": "chesscom-img-zDREz.png",
    "source": "chesscom-image",
-   "ms": 30,
+   "ms": 32,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9325
@@ -3452,22 +6337,6 @@
    "outcome": "exact-warned",
    "wrong": [],
    "minConfidence": 0.6341
-  },
-  {
-   "file": "chesscom-img-Zhuow.png",
-   "source": "chesscom-image",
-   "ms": 32,
-   "outcome": "exact-warned",
-   "wrong": [],
-   "minConfidence": 0.68
-  },
-  {
-   "file": "chesscom-img-ZZDEk.png",
-   "source": "chesscom-image",
-   "ms": 38,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9214
   },
   {
    "file": "chesscom-site-desktop-32Y3e.png",
@@ -3487,7 +6356,7 @@
   {
    "file": "chesscom-site-desktop-36EQx.png",
    "source": "chesscom-page",
-   "ms": 40,
+   "ms": 75,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8891
@@ -3495,7 +6364,7 @@
   {
    "file": "chesscom-site-desktop-37Vud.png",
    "source": "chesscom-page",
-   "ms": 40,
+   "ms": 46,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8926
@@ -3503,7 +6372,7 @@
   {
    "file": "chesscom-site-desktop-9GpXj.png",
    "source": "chesscom-page",
-   "ms": 40,
+   "ms": 45,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.7637
@@ -3511,7 +6380,7 @@
   {
    "file": "chesscom-site-desktop-9IC5k.png",
    "source": "chesscom-page",
-   "ms": 38,
+   "ms": 46,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8817
@@ -3519,39 +6388,15 @@
   {
    "file": "chesscom-site-desktop-9KZRQ.png",
    "source": "chesscom-page",
-   "ms": 40,
+   "ms": 41,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9043
-  },
-  {
-   "file": "chesscom-site-desktop-eBzgz.png",
-   "source": "chesscom-page",
-   "ms": 38,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9043
-  },
-  {
-   "file": "chesscom-site-desktop-eGPED.png",
-   "source": "chesscom-page",
-   "ms": 37,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8817
-  },
-  {
-   "file": "chesscom-site-desktop-eKRmq.png",
-   "source": "chesscom-page",
-   "ms": 38,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8984
   },
   {
    "file": "chesscom-site-desktop-FUJrd.png",
    "source": "chesscom-page",
-   "ms": 39,
+   "ms": 40,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8817
@@ -3559,7 +6404,7 @@
   {
    "file": "chesscom-site-desktop-FUZ1e.png",
    "source": "chesscom-page",
-   "ms": 38,
+   "ms": 39,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8851
@@ -3567,39 +6412,15 @@
   {
    "file": "chesscom-site-desktop-FYifJ.png",
    "source": "chesscom-page",
-   "ms": 39,
+   "ms": 41,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8817
   },
   {
-   "file": "chesscom-site-desktop-kK476.png",
-   "source": "chesscom-page",
-   "ms": 38,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.7637
-  },
-  {
-   "file": "chesscom-site-desktop-kTkll.png",
-   "source": "chesscom-page",
-   "ms": 39,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.7637
-  },
-  {
-   "file": "chesscom-site-desktop-kVgRe.png",
-   "source": "chesscom-page",
-   "ms": 38,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8598
-  },
-  {
    "file": "chesscom-site-desktop-LeRzC.png",
    "source": "chesscom-page",
-   "ms": 40,
+   "ms": 43,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8914
@@ -3607,7 +6428,7 @@
   {
    "file": "chesscom-site-desktop-LhVAe.png",
    "source": "chesscom-page",
-   "ms": 38,
+   "ms": 41,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8817
@@ -3615,39 +6436,15 @@
   {
    "file": "chesscom-site-desktop-LjYnH.png",
    "source": "chesscom-page",
-   "ms": 41,
+   "ms": 46,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9043
   },
   {
-   "file": "chesscom-site-desktop-qf73A.png",
-   "source": "chesscom-page",
-   "ms": 44,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.7637
-  },
-  {
-   "file": "chesscom-site-desktop-qgvPT.png",
-   "source": "chesscom-page",
-   "ms": 42,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9168
-  },
-  {
-   "file": "chesscom-site-desktop-qhKMJ.png",
-   "source": "chesscom-page",
-   "ms": 40,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.7637
-  },
-  {
    "file": "chesscom-site-desktop-RqgDY.png",
    "source": "chesscom-page",
-   "ms": 39,
+   "ms": 61,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8817
@@ -3655,7 +6452,7 @@
   {
    "file": "chesscom-site-desktop-RsHGQ.png",
    "source": "chesscom-page",
-   "ms": 37,
+   "ms": 44,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8817
@@ -3663,39 +6460,15 @@
   {
    "file": "chesscom-site-desktop-RuXnb.png",
    "source": "chesscom-page",
-   "ms": 39,
+   "ms": 52,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9007
   },
   {
-   "file": "chesscom-site-desktop-wrmZb.png",
-   "source": "chesscom-page",
-   "ms": 38,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8664
-  },
-  {
-   "file": "chesscom-site-desktop-wsBzl.png",
-   "source": "chesscom-page",
-   "ms": 38,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8868
-  },
-  {
-   "file": "chesscom-site-desktop-wt6TT.png",
-   "source": "chesscom-page",
-   "ms": 37,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.7637
-  },
-  {
    "file": "chesscom-site-desktop-Y0bZX.png",
    "source": "chesscom-page",
-   "ms": 40,
+   "ms": 69,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8817
@@ -3703,7 +6476,7 @@
   {
    "file": "chesscom-site-desktop-Y2n7z.png",
    "source": "chesscom-page",
-   "ms": 40,
+   "ms": 45,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8851
@@ -3711,15 +6484,111 @@
   {
    "file": "chesscom-site-desktop-Y8rcP.png",
    "source": "chesscom-page",
-   "ms": 38,
+   "ms": 39,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8914
   },
   {
+   "file": "chesscom-site-desktop-eBzgz.png",
+   "source": "chesscom-page",
+   "ms": 42,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9043
+  },
+  {
+   "file": "chesscom-site-desktop-eGPED.png",
+   "source": "chesscom-page",
+   "ms": 44,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8817
+  },
+  {
+   "file": "chesscom-site-desktop-eKRmq.png",
+   "source": "chesscom-page",
+   "ms": 42,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8984
+  },
+  {
+   "file": "chesscom-site-desktop-kK476.png",
+   "source": "chesscom-page",
+   "ms": 41,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.7637
+  },
+  {
+   "file": "chesscom-site-desktop-kTkll.png",
+   "source": "chesscom-page",
+   "ms": 44,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.7637
+  },
+  {
+   "file": "chesscom-site-desktop-kVgRe.png",
+   "source": "chesscom-page",
+   "ms": 41,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8598
+  },
+  {
+   "file": "chesscom-site-desktop-qf73A.png",
+   "source": "chesscom-page",
+   "ms": 41,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.7637
+  },
+  {
+   "file": "chesscom-site-desktop-qgvPT.png",
+   "source": "chesscom-page",
+   "ms": 40,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9168
+  },
+  {
+   "file": "chesscom-site-desktop-qhKMJ.png",
+   "source": "chesscom-page",
+   "ms": 78,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.7637
+  },
+  {
+   "file": "chesscom-site-desktop-wrmZb.png",
+   "source": "chesscom-page",
+   "ms": 46,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8664
+  },
+  {
+   "file": "chesscom-site-desktop-wsBzl.png",
+   "source": "chesscom-page",
+   "ms": 40,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8868
+  },
+  {
+   "file": "chesscom-site-desktop-wt6TT.png",
+   "source": "chesscom-page",
+   "ms": 42,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.7637
+  },
+  {
    "file": "chesscom-site-mobile-00008.png",
    "source": "chesscom-page",
-   "ms": 45,
+   "ms": 46,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9065
@@ -3727,7 +6596,7 @@
   {
    "file": "chesscom-site-mobile-0000D.png",
    "source": "chesscom-page",
-   "ms": 45,
+   "ms": 146,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9322
@@ -3735,7 +6604,7 @@
   {
    "file": "chesscom-site-mobile-009FP.png",
    "source": "chesscom-page",
-   "ms": 81,
+   "ms": 91,
    "outcome": "wrong-warned",
    "wrong": [
     "d6:1>p",
@@ -3775,7 +6644,7 @@
   {
    "file": "chesscom-site-mobile-68nnv.png",
    "source": "chesscom-page",
-   "ms": 45,
+   "ms": 53,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8356
@@ -3783,7 +6652,7 @@
   {
    "file": "chesscom-site-mobile-6CeWb.png",
    "source": "chesscom-page",
-   "ms": 44,
+   "ms": 53,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.894
@@ -3791,34 +6660,10 @@
   {
    "file": "chesscom-site-mobile-6CtDJ.png",
    "source": "chesscom-page",
-   "ms": 44,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8696
-  },
-  {
-   "file": "chesscom-site-mobile-b3SgM.png",
-   "source": "chesscom-page",
-   "ms": 45,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8728
-  },
-  {
-   "file": "chesscom-site-mobile-b9DiP.png",
-   "source": "chesscom-page",
    "ms": 47,
    "outcome": "exact",
    "wrong": [],
-   "minConfidence": 0.8356
-  },
-  {
-   "file": "chesscom-site-mobile-bFRQ7.png",
-   "source": "chesscom-page",
-   "ms": 45,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9245
+   "minConfidence": 0.8696
   },
   {
    "file": "chesscom-site-mobile-CPGZr.png",
@@ -3831,7 +6676,7 @@
   {
    "file": "chesscom-site-mobile-CPR7d.png",
    "source": "chesscom-page",
-   "ms": 45,
+   "ms": 46,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8728
@@ -3839,39 +6684,23 @@
   {
    "file": "chesscom-site-mobile-CPXDI.png",
    "source": "chesscom-page",
-   "ms": 47,
+   "ms": 48,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8356
   },
   {
-   "file": "chesscom-site-mobile-hDp5E.png",
+   "file": "chesscom-site-mobile-IY9uc.png",
    "source": "chesscom-page",
-   "ms": 47,
+   "ms": 51,
    "outcome": "exact",
    "wrong": [],
-   "minConfidence": 0.8356
-  },
-  {
-   "file": "chesscom-site-mobile-hLtD5.png",
-   "source": "chesscom-page",
-   "ms": 45,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9029
-  },
-  {
-   "file": "chesscom-site-mobile-hQmDX.png",
-   "source": "chesscom-page",
-   "ms": 44,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8743
+   "minConfidence": 0.826
   },
   {
    "file": "chesscom-site-mobile-Iaj03.png",
    "source": "chesscom-page",
-   "ms": 45,
+   "ms": 52,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9245
@@ -3879,47 +6708,15 @@
   {
    "file": "chesscom-site-mobile-IcZbn.png",
    "source": "chesscom-page",
-   "ms": 47,
+   "ms": 81,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8585
   },
   {
-   "file": "chesscom-site-mobile-IY9uc.png",
-   "source": "chesscom-page",
-   "ms": 44,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.826
-  },
-  {
-   "file": "chesscom-site-mobile-nbArS.png",
-   "source": "chesscom-page",
-   "ms": 47,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8728
-  },
-  {
-   "file": "chesscom-site-mobile-nbQxQ.png",
-   "source": "chesscom-page",
-   "ms": 47,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8728
-  },
-  {
-   "file": "chesscom-site-mobile-nSsgS.png",
-   "source": "chesscom-page",
-   "ms": 46,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8488
-  },
-  {
    "file": "chesscom-site-mobile-OiN9U.png",
    "source": "chesscom-page",
-   "ms": 46,
+   "ms": 55,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9029
@@ -3927,7 +6724,7 @@
   {
    "file": "chesscom-site-mobile-On9mu.png",
    "source": "chesscom-page",
-   "ms": 43,
+   "ms": 49,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8728
@@ -3935,34 +6732,10 @@
   {
    "file": "chesscom-site-mobile-OqxAr.png",
    "source": "chesscom-page",
-   "ms": 44,
+   "ms": 75,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9094
-  },
-  {
-   "file": "chesscom-site-mobile-tl9w2.png",
-   "source": "chesscom-page",
-   "ms": 43,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.931
-  },
-  {
-   "file": "chesscom-site-mobile-tmNe0.png",
-   "source": "chesscom-page",
-   "ms": 44,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8937
-  },
-  {
-   "file": "chesscom-site-mobile-tmYeY.png",
-   "source": "chesscom-page",
-   "ms": 45,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8728
   },
   {
    "file": "chesscom-site-mobile-Uvf1E.png",
@@ -3975,7 +6748,7 @@
   {
    "file": "chesscom-site-mobile-UwOWA.png",
    "source": "chesscom-page",
-   "ms": 44,
+   "ms": 55,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9115
@@ -3983,7 +6756,103 @@
   {
    "file": "chesscom-site-mobile-V0JMS.png",
    "source": "chesscom-page",
+   "ms": 47,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8728
+  },
+  {
+   "file": "chesscom-site-mobile-b3SgM.png",
+   "source": "chesscom-page",
+   "ms": 48,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8728
+  },
+  {
+   "file": "chesscom-site-mobile-b9DiP.png",
+   "source": "chesscom-page",
+   "ms": 49,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8356
+  },
+  {
+   "file": "chesscom-site-mobile-bFRQ7.png",
+   "source": "chesscom-page",
+   "ms": 46,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9245
+  },
+  {
+   "file": "chesscom-site-mobile-hDp5E.png",
+   "source": "chesscom-page",
+   "ms": 46,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8356
+  },
+  {
+   "file": "chesscom-site-mobile-hLtD5.png",
+   "source": "chesscom-page",
+   "ms": 47,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9029
+  },
+  {
+   "file": "chesscom-site-mobile-hQmDX.png",
+   "source": "chesscom-page",
+   "ms": 59,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8743
+  },
+  {
+   "file": "chesscom-site-mobile-nSsgS.png",
+   "source": "chesscom-page",
+   "ms": 87,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8488
+  },
+  {
+   "file": "chesscom-site-mobile-nbArS.png",
+   "source": "chesscom-page",
+   "ms": 49,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8728
+  },
+  {
+   "file": "chesscom-site-mobile-nbQxQ.png",
+   "source": "chesscom-page",
+   "ms": 57,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8728
+  },
+  {
+   "file": "chesscom-site-mobile-tl9w2.png",
+   "source": "chesscom-page",
+   "ms": 51,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.931
+  },
+  {
+   "file": "chesscom-site-mobile-tmNe0.png",
+   "source": "chesscom-page",
    "ms": 45,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8937
+  },
+  {
+   "file": "chesscom-site-mobile-tmYeY.png",
+   "source": "chesscom-page",
+   "ms": 91,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8728
@@ -3991,7 +6860,7 @@
   {
    "file": "lichess-site-desktop-00008.png",
    "source": "lichess-page",
-   "ms": 38,
+   "ms": 40,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.916
@@ -3999,7 +6868,7 @@
   {
    "file": "lichess-site-desktop-0000D.png",
    "source": "lichess-page",
-   "ms": 36,
+   "ms": 38,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9348
@@ -4007,7 +6876,7 @@
   {
    "file": "lichess-site-desktop-009FP.png",
    "source": "lichess-page",
-   "ms": 37,
+   "ms": 44,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8364
@@ -4015,7 +6884,7 @@
   {
    "file": "lichess-site-desktop-68nnv.png",
    "source": "lichess-page",
-   "ms": 34,
+   "ms": 37,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9301
@@ -4023,7 +6892,7 @@
   {
    "file": "lichess-site-desktop-6CeWb.png",
    "source": "lichess-page",
-   "ms": 36,
+   "ms": 43,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9326
@@ -4031,15 +6900,111 @@
   {
    "file": "lichess-site-desktop-6CtDJ.png",
    "source": "lichess-page",
-   "ms": 37,
+   "ms": 38,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9185
   },
   {
+   "file": "lichess-site-desktop-CPGZr.png",
+   "source": "lichess-page",
+   "ms": 38,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9358
+  },
+  {
+   "file": "lichess-site-desktop-CPR7d.png",
+   "source": "lichess-page",
+   "ms": 110,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.943
+  },
+  {
+   "file": "lichess-site-desktop-CPXDI.png",
+   "source": "lichess-page",
+   "ms": 41,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9495
+  },
+  {
+   "file": "lichess-site-desktop-IY9uc.png",
+   "source": "lichess-page",
+   "ms": 38,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9281
+  },
+  {
+   "file": "lichess-site-desktop-Iaj03.png",
+   "source": "lichess-page",
+   "ms": 38,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9297
+  },
+  {
+   "file": "lichess-site-desktop-IcZbn.png",
+   "source": "lichess-page",
+   "ms": 39,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9301
+  },
+  {
+   "file": "lichess-site-desktop-OiN9U.png",
+   "source": "lichess-page",
+   "ms": 39,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.916
+  },
+  {
+   "file": "lichess-site-desktop-On9mu.png",
+   "source": "lichess-page",
+   "ms": 38,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9096
+  },
+  {
+   "file": "lichess-site-desktop-OqxAr.png",
+   "source": "lichess-page",
+   "ms": 43,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9301
+  },
+  {
+   "file": "lichess-site-desktop-Uvf1E.png",
+   "source": "lichess-page",
+   "ms": 43,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9294
+  },
+  {
+   "file": "lichess-site-desktop-UwOWA.png",
+   "source": "lichess-page",
+   "ms": 83,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9429
+  },
+  {
+   "file": "lichess-site-desktop-V0JMS.png",
+   "source": "lichess-page",
+   "ms": 40,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9446
+  },
+  {
    "file": "lichess-site-desktop-b3SgM.png",
    "source": "lichess-page",
-   "ms": 34,
+   "ms": 37,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9358
@@ -4047,7 +7012,7 @@
   {
    "file": "lichess-site-desktop-b9DiP.png",
    "source": "lichess-page",
-   "ms": 35,
+   "ms": 39,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.934
@@ -4061,33 +7026,9 @@
    "minConfidence": 0.9339
   },
   {
-   "file": "lichess-site-desktop-CPGZr.png",
-   "source": "lichess-page",
-   "ms": 38,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9358
-  },
-  {
-   "file": "lichess-site-desktop-CPR7d.png",
-   "source": "lichess-page",
-   "ms": 36,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.943
-  },
-  {
-   "file": "lichess-site-desktop-CPXDI.png",
-   "source": "lichess-page",
-   "ms": 36,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9495
-  },
-  {
    "file": "lichess-site-desktop-hDp5E.png",
    "source": "lichess-page",
-   "ms": 36,
+   "ms": 39,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9255
@@ -4095,7 +7036,7 @@
   {
    "file": "lichess-site-desktop-hLtD5.png",
    "source": "lichess-page",
-   "ms": 36,
+   "ms": 39,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9491
@@ -4109,33 +7050,17 @@
    "minConfidence": 0.9504
   },
   {
-   "file": "lichess-site-desktop-Iaj03.png",
+   "file": "lichess-site-desktop-nSsgS.png",
    "source": "lichess-page",
-   "ms": 39,
+   "ms": 53,
    "outcome": "exact",
    "wrong": [],
-   "minConfidence": 0.9297
-  },
-  {
-   "file": "lichess-site-desktop-IcZbn.png",
-   "source": "lichess-page",
-   "ms": 37,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9301
-  },
-  {
-   "file": "lichess-site-desktop-IY9uc.png",
-   "source": "lichess-page",
-   "ms": 37,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9281
+   "minConfidence": 0.9296
   },
   {
    "file": "lichess-site-desktop-nbArS.png",
    "source": "lichess-page",
-   "ms": 38,
+   "ms": 73,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9347
@@ -4143,47 +7068,15 @@
   {
    "file": "lichess-site-desktop-nbQxQ.png",
    "source": "lichess-page",
-   "ms": 38,
+   "ms": 50,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9405
   },
   {
-   "file": "lichess-site-desktop-nSsgS.png",
-   "source": "lichess-page",
-   "ms": 37,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9296
-  },
-  {
-   "file": "lichess-site-desktop-OiN9U.png",
-   "source": "lichess-page",
-   "ms": 36,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.916
-  },
-  {
-   "file": "lichess-site-desktop-On9mu.png",
-   "source": "lichess-page",
-   "ms": 37,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9096
-  },
-  {
-   "file": "lichess-site-desktop-OqxAr.png",
-   "source": "lichess-page",
-   "ms": 35,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9301
-  },
-  {
    "file": "lichess-site-desktop-tl9w2.png",
    "source": "lichess-page",
-   "ms": 36,
+   "ms": 44,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9514
@@ -4191,7 +7084,7 @@
   {
    "file": "lichess-site-desktop-tmNe0.png",
    "source": "lichess-page",
-   "ms": 35,
+   "ms": 55,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9304
@@ -4199,34 +7092,10 @@
   {
    "file": "lichess-site-desktop-tmYeY.png",
    "source": "lichess-page",
-   "ms": 35,
+   "ms": 40,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9255
-  },
-  {
-   "file": "lichess-site-desktop-Uvf1E.png",
-   "source": "lichess-page",
-   "ms": 50,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9294
-  },
-  {
-   "file": "lichess-site-desktop-UwOWA.png",
-   "source": "lichess-page",
-   "ms": 41,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9429
-  },
-  {
-   "file": "lichess-site-desktop-V0JMS.png",
-   "source": "lichess-page",
-   "ms": 35,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9446
   },
   {
    "file": "lichess-site-mobile-32Y3e.png",
@@ -4239,7 +7108,7 @@
   {
    "file": "lichess-site-mobile-36EQx.png",
    "source": "lichess-page",
-   "ms": 44,
+   "ms": 50,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9481
@@ -4247,7 +7116,7 @@
   {
    "file": "lichess-site-mobile-37Vud.png",
    "source": "lichess-page",
-   "ms": 43,
+   "ms": 50,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9048
@@ -4255,7 +7124,7 @@
   {
    "file": "lichess-site-mobile-9GpXj.png",
    "source": "lichess-page",
-   "ms": 44,
+   "ms": 48,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9048
@@ -4263,7 +7132,7 @@
   {
    "file": "lichess-site-mobile-9IC5k.png",
    "source": "lichess-page",
-   "ms": 44,
+   "ms": 47,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.934
@@ -4271,39 +7140,15 @@
   {
    "file": "lichess-site-mobile-9KZRQ.png",
    "source": "lichess-page",
-   "ms": 43,
+   "ms": 48,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9421
   },
   {
-   "file": "lichess-site-mobile-eBzgz.png",
-   "source": "lichess-page",
-   "ms": 45,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9349
-  },
-  {
-   "file": "lichess-site-mobile-eGPED.png",
-   "source": "lichess-page",
-   "ms": 44,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9048
-  },
-  {
-   "file": "lichess-site-mobile-eKRmq.png",
-   "source": "lichess-page",
-   "ms": 44,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9216
-  },
-  {
    "file": "lichess-site-mobile-FUJrd.png",
    "source": "lichess-page",
-   "ms": 44,
+   "ms": 54,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9346
@@ -4311,7 +7156,7 @@
   {
    "file": "lichess-site-mobile-FUZ1e.png",
    "source": "lichess-page",
-   "ms": 45,
+   "ms": 51,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9216
@@ -4319,39 +7164,15 @@
   {
    "file": "lichess-site-mobile-FYifJ.png",
    "source": "lichess-page",
-   "ms": 45,
+   "ms": 48,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9216
-  },
-  {
-   "file": "lichess-site-mobile-kK476.png",
-   "source": "lichess-page",
-   "ms": 44,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9216
-  },
-  {
-   "file": "lichess-site-mobile-kTkll.png",
-   "source": "lichess-page",
-   "ms": 44,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9216
-  },
-  {
-   "file": "lichess-site-mobile-kVgRe.png",
-   "source": "lichess-page",
-   "ms": 45,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9304
   },
   {
    "file": "lichess-site-mobile-LeRzC.png",
    "source": "lichess-page",
-   "ms": 44,
+   "ms": 49,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9183
@@ -4359,7 +7180,7 @@
   {
    "file": "lichess-site-mobile-LhVAe.png",
    "source": "lichess-page",
-   "ms": 42,
+   "ms": 56,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9216
@@ -4367,31 +7188,7 @@
   {
    "file": "lichess-site-mobile-LjYnH.png",
    "source": "lichess-page",
-   "ms": 44,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9048
-  },
-  {
-   "file": "lichess-site-mobile-qf73A.png",
-   "source": "lichess-page",
-   "ms": 43,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9066
-  },
-  {
-   "file": "lichess-site-mobile-qgvPT.png",
-   "source": "lichess-page",
-   "ms": 45,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9048
-  },
-  {
-   "file": "lichess-site-mobile-qhKMJ.png",
-   "source": "lichess-page",
-   "ms": 45,
+   "ms": 110,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9048
@@ -4399,7 +7196,7 @@
   {
    "file": "lichess-site-mobile-RqgDY.png",
    "source": "lichess-page",
-   "ms": 43,
+   "ms": 53,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9274
@@ -4407,7 +7204,7 @@
   {
    "file": "lichess-site-mobile-RsHGQ.png",
    "source": "lichess-page",
-   "ms": 44,
+   "ms": 80,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9275
@@ -4415,39 +7212,15 @@
   {
    "file": "lichess-site-mobile-RuXnb.png",
    "source": "lichess-page",
-   "ms": 45,
+   "ms": 47,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9014
   },
   {
-   "file": "lichess-site-mobile-wrmZb.png",
-   "source": "lichess-page",
-   "ms": 43,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9048
-  },
-  {
-   "file": "lichess-site-mobile-wsBzl.png",
-   "source": "lichess-page",
-   "ms": 48,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9388
-  },
-  {
-   "file": "lichess-site-mobile-wt6TT.png",
-   "source": "lichess-page",
-   "ms": 42,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9183
-  },
-  {
    "file": "lichess-site-mobile-Y0bZX.png",
    "source": "lichess-page",
-   "ms": 43,
+   "ms": 46,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9154
@@ -4455,7 +7228,7 @@
   {
    "file": "lichess-site-mobile-Y2n7z.png",
    "source": "lichess-page",
-   "ms": 44,
+   "ms": 46,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9048
@@ -4469,9 +7242,105 @@
    "minConfidence": 0.9376
   },
   {
+   "file": "lichess-site-mobile-eBzgz.png",
+   "source": "lichess-page",
+   "ms": 53,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9349
+  },
+  {
+   "file": "lichess-site-mobile-eGPED.png",
+   "source": "lichess-page",
+   "ms": 56,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9048
+  },
+  {
+   "file": "lichess-site-mobile-eKRmq.png",
+   "source": "lichess-page",
+   "ms": 54,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9216
+  },
+  {
+   "file": "lichess-site-mobile-kK476.png",
+   "source": "lichess-page",
+   "ms": 51,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9216
+  },
+  {
+   "file": "lichess-site-mobile-kTkll.png",
+   "source": "lichess-page",
+   "ms": 83,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9216
+  },
+  {
+   "file": "lichess-site-mobile-kVgRe.png",
+   "source": "lichess-page",
+   "ms": 57,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9304
+  },
+  {
+   "file": "lichess-site-mobile-qf73A.png",
+   "source": "lichess-page",
+   "ms": 50,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9066
+  },
+  {
+   "file": "lichess-site-mobile-qgvPT.png",
+   "source": "lichess-page",
+   "ms": 115,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9048
+  },
+  {
+   "file": "lichess-site-mobile-qhKMJ.png",
+   "source": "lichess-page",
+   "ms": 44,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9048
+  },
+  {
+   "file": "lichess-site-mobile-wrmZb.png",
+   "source": "lichess-page",
+   "ms": 46,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9048
+  },
+  {
+   "file": "lichess-site-mobile-wsBzl.png",
+   "source": "lichess-page",
+   "ms": 47,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9388
+  },
+  {
+   "file": "lichess-site-mobile-wt6TT.png",
+   "source": "lichess-page",
+   "ms": 47,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9183
+  },
+  {
    "file": "lichess-themed-1VvPH.png",
    "source": "lichess-page-themed",
-   "ms": 42,
+   "ms": 43,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.7222
@@ -4479,7 +7348,7 @@
   {
    "file": "lichess-themed-1YYW1.png",
    "source": "lichess-page-themed",
-   "ms": 43,
+   "ms": 46,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9323
@@ -4487,7 +7356,7 @@
   {
    "file": "lichess-themed-1ZTJq.png",
    "source": "lichess-page-themed",
-   "ms": 37,
+   "ms": 40,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.744
@@ -4495,7 +7364,7 @@
   {
    "file": "lichess-themed-4dWUU.png",
    "source": "lichess-page-themed",
-   "ms": 45,
+   "ms": 47,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.8019
@@ -4503,7 +7372,7 @@
   {
    "file": "lichess-themed-4eN8e.png",
    "source": "lichess-page-themed",
-   "ms": 37,
+   "ms": 46,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.936
@@ -4511,7 +7380,7 @@
   {
    "file": "lichess-themed-4f6T5.png",
    "source": "lichess-page-themed",
-   "ms": 42,
+   "ms": 43,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9348
@@ -4519,7 +7388,7 @@
   {
    "file": "lichess-themed-7guVa.png",
    "source": "lichess-page-themed",
-   "ms": 42,
+   "ms": 55,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.7222
@@ -4527,7 +7396,7 @@
   {
    "file": "lichess-themed-7l4Zo.png",
    "source": "lichess-page-themed",
-   "ms": 40,
+   "ms": 90,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9192
@@ -4535,7 +7404,7 @@
   {
    "file": "lichess-themed-7m83e.png",
    "source": "lichess-page-themed",
-   "ms": 46,
+   "ms": 68,
    "outcome": "wrong-warned",
    "wrong": [
     "c8:1>b",
@@ -4569,7 +7438,7 @@
   {
    "file": "lichess-themed-Ap4Em.png",
    "source": "lichess-page-themed",
-   "ms": 41,
+   "ms": 46,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9196
@@ -4577,7 +7446,7 @@
   {
    "file": "lichess-themed-AqIE4.png",
    "source": "lichess-page-themed",
-   "ms": 37,
+   "ms": 38,
    "outcome": "wrong-warned",
    "wrong": [
     "b8:1>r",
@@ -4609,7 +7478,7 @@
   {
    "file": "lichess-themed-Argbk.png",
    "source": "lichess-page-themed",
-   "ms": 45,
+   "ms": 46,
    "outcome": "wrong-warned",
    "wrong": [
     "b8:1>r",
@@ -4635,33 +7504,9 @@
    "minConfidence": 0.5206
   },
   {
-   "file": "lichess-themed-ceFWi.png",
-   "source": "lichess-page-themed",
-   "ms": 45,
-   "outcome": "exact-warned",
-   "wrong": [],
-   "minConfidence": 0.3938
-  },
-  {
-   "file": "lichess-themed-chSXI.png",
-   "source": "lichess-page-themed",
-   "ms": 42,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9161
-  },
-  {
-   "file": "lichess-themed-cmvVr.png",
-   "source": "lichess-page-themed",
-   "ms": 41,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9283
-  },
-  {
    "file": "lichess-themed-DwTxJ.png",
    "source": "lichess-page-themed",
-   "ms": 46,
+   "ms": 48,
    "outcome": "wrong-warned",
    "wrong": [
     "b7:B>1",
@@ -4689,7 +7534,7 @@
   {
    "file": "lichess-themed-Dxx4R.png",
    "source": "lichess-page-themed",
-   "ms": 36,
+   "ms": 37,
    "outcome": "wrong-warned",
    "wrong": [
     "a7:P>p",
@@ -4701,79 +7546,15 @@
   {
    "file": "lichess-themed-DysxK.png",
    "source": "lichess-page-themed",
-   "ms": 42,
+   "ms": 46,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9196
   },
   {
-   "file": "lichess-themed-fh8hS.png",
-   "source": "lichess-page-themed",
-   "ms": 51,
-   "outcome": "wrong-warned",
-   "wrong": [
-    "a8:1>r",
-    "c8:1>b",
-    "e8:1>k",
-    "f8:1>b",
-    "h8:1>r",
-    "a7:1>p",
-    "b7:b>p",
-    "c7:1>p",
-    "d7:q>1",
-    "e7:b>1",
-    "f7:1>p",
-    "g7:r>p",
-    "h7:1>p",
-    "a6:p>1",
-    "b6:p>1",
-    "e6:p>1",
-    "f6:p>1",
-    "g6:p>1",
-    "e5:1>p",
-    "c4:1>P",
-    "d4:p>q",
-    "g4:1>P",
-    "h4:1>n",
-    "b3:P>1",
-    "c3:q>N",
-    "d3:1>P",
-    "f3:P>1",
-    "g3:n>1",
-    "a2:1>P",
-    "b2:N>P",
-    "c2:P>1",
-    "e2:1>B",
-    "f2:1>P",
-    "h2:1>P",
-    "a1:P>R",
-    "c1:1>B",
-    "d1:B>Q",
-    "e1:P>K",
-    "g1:P>R"
-   ],
-   "minConfidence": 0.3617
-  },
-  {
-   "file": "lichess-themed-foB17.png",
-   "source": "lichess-page-themed",
-   "ms": 43,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8988
-  },
-  {
-   "file": "lichess-themed-fsPJS.png",
-   "source": "lichess-page-themed",
-   "ms": 39,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9058
-  },
-  {
    "file": "lichess-themed-H1Kbp.png",
    "source": "lichess-page-themed",
-   "ms": 36,
+   "ms": 39,
    "outcome": "wrong-warned",
    "wrong": [
     "e7:P>p",
@@ -4785,7 +7566,7 @@
   {
    "file": "lichess-themed-H36To.png",
    "source": "lichess-page-themed",
-   "ms": 54,
+   "ms": 61,
    "outcome": "wrong-warned",
    "wrong": [
     "b8:1>n",
@@ -4821,41 +7602,15 @@
   {
    "file": "lichess-themed-H6JsE.png",
    "source": "lichess-page-themed",
-   "ms": 43,
+   "ms": 46,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9196
   },
   {
-   "file": "lichess-themed-in1xz.png",
-   "source": "lichess-page-themed",
-   "ms": 49,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8612
-  },
-  {
-   "file": "lichess-themed-iu9rA.png",
-   "source": "lichess-page-themed",
-   "ms": 43,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9345
-  },
-  {
-   "file": "lichess-themed-ixGm0.png",
-   "source": "lichess-page-themed",
-   "ms": 45,
-   "outcome": "wrong-warned",
-   "wrong": [
-    "f8:q>k"
-   ],
-   "minConfidence": 0.5448
-  },
-  {
    "file": "lichess-themed-K6RX7.png",
    "source": "lichess-page-themed",
-   "ms": 36,
+   "ms": 43,
    "outcome": "wrong-warned",
    "wrong": [
     "c7:P>p",
@@ -4870,7 +7625,7 @@
   {
    "file": "lichess-themed-K8I4v.png",
    "source": "lichess-page-themed",
-   "ms": 45,
+   "ms": 52,
    "outcome": "wrong-warned",
    "wrong": [
     "d8:Q>1",
@@ -4904,43 +7659,15 @@
   {
    "file": "lichess-themed-KAd9d.png",
    "source": "lichess-page-themed",
-   "ms": 44,
+   "ms": 51,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9389
   },
   {
-   "file": "lichess-themed-lsWMu.png",
-   "source": "lichess-page-themed",
-   "ms": 50,
-   "outcome": "wrong-warned",
-   "wrong": [
-    "e8:q>k"
-   ],
-   "minConfidence": 0.6421
-  },
-  {
-   "file": "lichess-themed-m2Qtf.png",
-   "source": "lichess-page-themed",
-   "ms": 45,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8227
-  },
-  {
-   "file": "lichess-themed-m4JC1.png",
-   "source": "lichess-page-themed",
-   "ms": 46,
-   "outcome": "wrong-warned",
-   "wrong": [
-    "d7:q>k"
-   ],
-   "minConfidence": 0.6379
-  },
-  {
    "file": "lichess-themed-NB4lL.png",
    "source": "lichess-page-themed",
-   "ms": 38,
+   "ms": 50,
    "outcome": "wrong-warned",
    "wrong": [
     "c7:B>b",
@@ -4953,7 +7680,7 @@
   {
    "file": "lichess-themed-NFETX.png",
    "source": "lichess-page-themed",
-   "ms": 46,
+   "ms": 102,
    "outcome": "wrong-warned",
    "wrong": [
     "d7:n>1",
@@ -4975,7 +7702,7 @@
   {
    "file": "lichess-themed-NHXlL.png",
    "source": "lichess-page-themed",
-   "ms": 51,
+   "ms": 64,
    "outcome": "wrong-warned",
    "wrong": [
     "a8:1>r",
@@ -5021,73 +7748,9 @@
    "minConfidence": 0.4081
   },
   {
-   "file": "lichess-themed-p7hOR.png",
-   "source": "lichess-page-themed",
-   "ms": 55,
-   "outcome": "wrong-warned",
-   "wrong": [
-    "a8:1>r",
-    "c8:1>b",
-    "e8:1>k",
-    "f8:1>b",
-    "h8:1>r",
-    "b7:b>p",
-    "d7:k>p",
-    "e7:b>n",
-    "f7:1>p",
-    "g7:r>p",
-    "h7:1>p",
-    "a6:p>1",
-    "c6:p>1",
-    "d6:n>1",
-    "f6:p>1",
-    "g6:p>1",
-    "a5:1>q",
-    "b5:1>N",
-    "d5:p>1",
-    "a4:N>1",
-    "b4:1>P",
-    "e4:1>P",
-    "a3:P>1",
-    "d3:P>1",
-    "e3:1>B",
-    "c2:1>P",
-    "d2:B>1",
-    "f2:1>P",
-    "g2:1>P",
-    "h2:1>P",
-    "a1:1>R",
-    "b1:P>1",
-    "d1:1>Q",
-    "e1:P>K",
-    "f1:P>B",
-    "g1:P>1",
-    "h1:1>R"
-   ],
-   "minConfidence": 0.6081
-  },
-  {
-   "file": "lichess-themed-p7uTb.png",
-   "source": "lichess-page-themed",
-   "ms": 43,
-   "outcome": "wrong-warned",
-   "wrong": [
-    "e7:q>k"
-   ],
-   "minConfidence": 0.4813
-  },
-  {
-   "file": "lichess-themed-p92uZ.png",
-   "source": "lichess-page-themed",
-   "ms": 43,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9142
-  },
-  {
    "file": "lichess-themed-QHxfl.png",
    "source": "lichess-page-themed",
-   "ms": 36,
+   "ms": 39,
    "outcome": "wrong-warned",
    "wrong": [
     "a7:P>p",
@@ -5101,7 +7764,7 @@
   {
    "file": "lichess-themed-QMwpE.png",
    "source": "lichess-page-themed",
-   "ms": 40,
+   "ms": 44,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9245
@@ -5156,48 +7819,9 @@
    "minConfidence": 0.4165
   },
   {
-   "file": "lichess-themed-sDmMR.png",
-   "source": "lichess-page-themed",
-   "ms": 44,
-   "outcome": "exact-warned",
-   "wrong": [],
-   "minConfidence": 0.4156
-  },
-  {
-   "file": "lichess-themed-sE2wC.png",
-   "source": "lichess-page-themed",
-   "ms": 45,
-   "outcome": "wrong-warned",
-   "wrong": [
-    "b7:p>1",
-    "c7:Q>1",
-    "c6:p>1",
-    "e6:R>1",
-    "f6:q>1",
-    "h6:1>P",
-    "f5:p>1",
-    "c4:1>p",
-    "a3:P>1",
-    "c3:1>k",
-    "d3:1>R",
-    "f3:1>p",
-    "f2:1>K",
-    "g2:1>p"
-   ],
-   "minConfidence": 0.5702
-  },
-  {
-   "file": "lichess-themed-sFfle.png",
-   "source": "lichess-page-themed",
-   "ms": 46,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.869
-  },
-  {
    "file": "lichess-themed-TMmXD.png",
    "source": "lichess-page-themed",
-   "ms": 53,
+   "ms": 54,
    "outcome": "wrong-warned",
    "wrong": [
     "a8:1>r",
@@ -5242,7 +7866,7 @@
   {
    "file": "lichess-themed-TNneL.png",
    "source": "lichess-page-themed",
-   "ms": 38,
+   "ms": 41,
    "outcome": "wrong-warned",
    "wrong": [
     "d8:Q>q",
@@ -5257,42 +7881,15 @@
   {
    "file": "lichess-themed-TSJDl.png",
    "source": "lichess-page-themed",
-   "ms": 41,
+   "ms": 46,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.9245
   },
   {
-   "file": "lichess-themed-vG9p8.png",
-   "source": "lichess-page-themed",
-   "ms": 37,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.936
-  },
-  {
-   "file": "lichess-themed-vKC6Q.png",
-   "source": "lichess-page-themed",
-   "ms": 43,
-   "outcome": "wrong-warned",
-   "wrong": [
-    "e5:q>k",
-    "g3:Q>K"
-   ],
-   "minConfidence": 0.652
-  },
-  {
-   "file": "lichess-themed-vKoNF.png",
-   "source": "lichess-page-themed",
-   "ms": 43,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8819
-  },
-  {
    "file": "lichess-themed-WSEhm.png",
    "source": "lichess-page-themed",
-   "ms": 52,
+   "ms": 59,
    "outcome": "wrong-warned",
    "wrong": [
     "a8:1>r",
@@ -5335,7 +7932,7 @@
   {
    "file": "lichess-themed-WULOW.png",
    "source": "lichess-page-themed",
-   "ms": 43,
+   "ms": 44,
    "outcome": "exact",
    "wrong": [],
    "minConfidence": 0.867
@@ -5343,53 +7940,10 @@
   {
    "file": "lichess-themed-WZ2ac.png",
    "source": "lichess-page-themed",
-   "ms": 40,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9265
-  },
-  {
-   "file": "lichess-themed-yNwpd.png",
-   "source": "lichess-page-themed",
-   "ms": 37,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.936
-  },
-  {
-   "file": "lichess-themed-yRgQ4.png",
-   "source": "lichess-page-themed",
    "ms": 42,
    "outcome": "exact",
    "wrong": [],
-   "minConfidence": 0.928
-  },
-  {
-   "file": "lichess-themed-yRItc.png",
-   "source": "lichess-page-themed",
-   "ms": 43,
-   "outcome": "wrong-warned",
-   "wrong": [
-    "g8:q>k",
-    "g1:Q>K"
-   ],
-   "minConfidence": 0.6962
-  },
-  {
-   "file": "lichess-themed-ZbMOS.png",
-   "source": "lichess-page-themed",
-   "ms": 41,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.8778
-  },
-  {
-   "file": "lichess-themed-Zhuow.png",
-   "source": "lichess-page-themed",
-   "ms": 41,
-   "outcome": "exact",
-   "wrong": [],
-   "minConfidence": 0.9119
+   "minConfidence": 0.9265
   },
   {
    "file": "lichess-themed-ZZDEk.png",
@@ -5440,9 +7994,324 @@
    "minConfidence": 0.36
   },
   {
+   "file": "lichess-themed-ZbMOS.png",
+   "source": "lichess-page-themed",
+   "ms": 45,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8778
+  },
+  {
+   "file": "lichess-themed-Zhuow.png",
+   "source": "lichess-page-themed",
+   "ms": 41,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9119
+  },
+  {
+   "file": "lichess-themed-ceFWi.png",
+   "source": "lichess-page-themed",
+   "ms": 50,
+   "outcome": "exact-warned",
+   "wrong": [],
+   "minConfidence": 0.3938
+  },
+  {
+   "file": "lichess-themed-chSXI.png",
+   "source": "lichess-page-themed",
+   "ms": 54,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9161
+  },
+  {
+   "file": "lichess-themed-cmvVr.png",
+   "source": "lichess-page-themed",
+   "ms": 99,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9283
+  },
+  {
+   "file": "lichess-themed-fh8hS.png",
+   "source": "lichess-page-themed",
+   "ms": 58,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "c8:1>b",
+    "e8:1>k",
+    "f8:1>b",
+    "h8:1>r",
+    "a7:1>p",
+    "b7:b>p",
+    "c7:1>p",
+    "d7:q>1",
+    "e7:b>1",
+    "f7:1>p",
+    "g7:r>p",
+    "h7:1>p",
+    "a6:p>1",
+    "b6:p>1",
+    "e6:p>1",
+    "f6:p>1",
+    "g6:p>1",
+    "e5:1>p",
+    "c4:1>P",
+    "d4:p>q",
+    "g4:1>P",
+    "h4:1>n",
+    "b3:P>1",
+    "c3:q>N",
+    "d3:1>P",
+    "f3:P>1",
+    "g3:n>1",
+    "a2:1>P",
+    "b2:N>P",
+    "c2:P>1",
+    "e2:1>B",
+    "f2:1>P",
+    "h2:1>P",
+    "a1:P>R",
+    "c1:1>B",
+    "d1:B>Q",
+    "e1:P>K",
+    "g1:P>R"
+   ],
+   "minConfidence": 0.3617
+  },
+  {
+   "file": "lichess-themed-foB17.png",
+   "source": "lichess-page-themed",
+   "ms": 58,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8988
+  },
+  {
+   "file": "lichess-themed-fsPJS.png",
+   "source": "lichess-page-themed",
+   "ms": 44,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9058
+  },
+  {
+   "file": "lichess-themed-in1xz.png",
+   "source": "lichess-page-themed",
+   "ms": 50,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8612
+  },
+  {
+   "file": "lichess-themed-iu9rA.png",
+   "source": "lichess-page-themed",
+   "ms": 44,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9345
+  },
+  {
+   "file": "lichess-themed-ixGm0.png",
+   "source": "lichess-page-themed",
+   "ms": 43,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "f8:q>k"
+   ],
+   "minConfidence": 0.5448
+  },
+  {
+   "file": "lichess-themed-lsWMu.png",
+   "source": "lichess-page-themed",
+   "ms": 52,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "e8:q>k"
+   ],
+   "minConfidence": 0.6421
+  },
+  {
+   "file": "lichess-themed-m2Qtf.png",
+   "source": "lichess-page-themed",
+   "ms": 46,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8227
+  },
+  {
+   "file": "lichess-themed-m4JC1.png",
+   "source": "lichess-page-themed",
+   "ms": 47,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "d7:q>k"
+   ],
+   "minConfidence": 0.6379
+  },
+  {
+   "file": "lichess-themed-p7hOR.png",
+   "source": "lichess-page-themed",
+   "ms": 60,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "a8:1>r",
+    "c8:1>b",
+    "e8:1>k",
+    "f8:1>b",
+    "h8:1>r",
+    "b7:b>p",
+    "d7:k>p",
+    "e7:b>n",
+    "f7:1>p",
+    "g7:r>p",
+    "h7:1>p",
+    "a6:p>1",
+    "c6:p>1",
+    "d6:n>1",
+    "f6:p>1",
+    "g6:p>1",
+    "a5:1>q",
+    "b5:1>N",
+    "d5:p>1",
+    "a4:N>1",
+    "b4:1>P",
+    "e4:1>P",
+    "a3:P>1",
+    "d3:P>1",
+    "e3:1>B",
+    "c2:1>P",
+    "d2:B>1",
+    "f2:1>P",
+    "g2:1>P",
+    "h2:1>P",
+    "a1:1>R",
+    "b1:P>1",
+    "d1:1>Q",
+    "e1:P>K",
+    "f1:P>B",
+    "g1:P>1",
+    "h1:1>R"
+   ],
+   "minConfidence": 0.6081
+  },
+  {
+   "file": "lichess-themed-p7uTb.png",
+   "source": "lichess-page-themed",
+   "ms": 58,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "e7:q>k"
+   ],
+   "minConfidence": 0.4813
+  },
+  {
+   "file": "lichess-themed-p92uZ.png",
+   "source": "lichess-page-themed",
+   "ms": 54,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.9142
+  },
+  {
+   "file": "lichess-themed-sDmMR.png",
+   "source": "lichess-page-themed",
+   "ms": 80,
+   "outcome": "exact-warned",
+   "wrong": [],
+   "minConfidence": 0.4156
+  },
+  {
+   "file": "lichess-themed-sE2wC.png",
+   "source": "lichess-page-themed",
+   "ms": 44,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "b7:p>1",
+    "c7:Q>1",
+    "c6:p>1",
+    "e6:R>1",
+    "f6:q>1",
+    "h6:1>P",
+    "f5:p>1",
+    "c4:1>p",
+    "a3:P>1",
+    "c3:1>k",
+    "d3:1>R",
+    "f3:1>p",
+    "f2:1>K",
+    "g2:1>p"
+   ],
+   "minConfidence": 0.5702
+  },
+  {
+   "file": "lichess-themed-sFfle.png",
+   "source": "lichess-page-themed",
+   "ms": 44,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.869
+  },
+  {
+   "file": "lichess-themed-vG9p8.png",
+   "source": "lichess-page-themed",
+   "ms": 38,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.936
+  },
+  {
+   "file": "lichess-themed-vKC6Q.png",
+   "source": "lichess-page-themed",
+   "ms": 49,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "e5:q>k",
+    "g3:Q>K"
+   ],
+   "minConfidence": 0.652
+  },
+  {
+   "file": "lichess-themed-vKoNF.png",
+   "source": "lichess-page-themed",
+   "ms": 46,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.8819
+  },
+  {
+   "file": "lichess-themed-yNwpd.png",
+   "source": "lichess-page-themed",
+   "ms": 56,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.936
+  },
+  {
+   "file": "lichess-themed-yRItc.png",
+   "source": "lichess-page-themed",
+   "ms": 45,
+   "outcome": "wrong-warned",
+   "wrong": [
+    "g8:q>k",
+    "g1:Q>K"
+   ],
+   "minConfidence": 0.6962
+  },
+  {
+   "file": "lichess-themed-yRgQ4.png",
+   "source": "lichess-page-themed",
+   "ms": 44,
+   "outcome": "exact",
+   "wrong": [],
+   "minConfidence": 0.928
+  },
+  {
    "file": "negative-desktop-0.png",
    "source": "no-board",
-   "ms": 75,
+   "ms": 88,
    "outcome": "rejected",
    "wrong": [],
    "minConfidence": 0.19532518088817596
@@ -5450,7 +8319,7 @@
   {
    "file": "negative-desktop-10.png",
    "source": "no-board",
-   "ms": 162,
+   "ms": 216,
    "outcome": "warned",
    "wrong": [],
    "minConfidence": 0.2530069947242737
@@ -5458,7 +8327,7 @@
   {
    "file": "negative-desktop-12.png",
    "source": "no-board",
-   "ms": 74,
+   "ms": 79,
    "outcome": "rejected",
    "wrong": [],
    "minConfidence": 0.35767701268196106
@@ -5466,7 +8335,7 @@
   {
    "file": "negative-desktop-14.png",
    "source": "no-board",
-   "ms": 72,
+   "ms": 75,
    "outcome": "rejected",
    "wrong": [],
    "minConfidence": 0.18743698298931122
@@ -5474,7 +8343,7 @@
   {
    "file": "negative-desktop-16.png",
    "source": "no-board",
-   "ms": 72,
+   "ms": 77,
    "outcome": "rejected",
    "wrong": [],
    "minConfidence": 0.6820421814918518
@@ -5482,7 +8351,7 @@
   {
    "file": "negative-desktop-18.png",
    "source": "no-board",
-   "ms": 21,
+   "ms": 22,
    "outcome": "rejected",
    "wrong": [],
    "minConfidence": null
@@ -5490,7 +8359,7 @@
   {
    "file": "negative-desktop-2.png",
    "source": "no-board",
-   "ms": 76,
+   "ms": 100,
    "outcome": "rejected",
    "wrong": [],
    "minConfidence": 0.1835584044456482
@@ -5498,7 +8367,7 @@
   {
    "file": "negative-desktop-20.png",
    "source": "no-board",
-   "ms": 367,
+   "ms": 384,
    "outcome": "rejected",
    "wrong": [],
    "minConfidence": 0.4388293921947479
@@ -5506,7 +8375,7 @@
   {
    "file": "negative-desktop-22.png",
    "source": "no-board",
-   "ms": 72,
+   "ms": 67,
    "outcome": "rejected",
    "wrong": [],
    "minConfidence": 0.19013115763664246
@@ -5514,7 +8383,7 @@
   {
    "file": "negative-desktop-24.png",
    "source": "no-board",
-   "ms": 305,
+   "ms": 361,
    "outcome": "rejected",
    "wrong": [],
    "minConfidence": 0.25792446732521057
@@ -5522,7 +8391,7 @@
   {
    "file": "negative-desktop-26.png",
    "source": "no-board",
-   "ms": 55,
+   "ms": 57,
    "outcome": "rejected",
    "wrong": [],
    "minConfidence": 0.37098604440689087
@@ -5530,7 +8399,7 @@
   {
    "file": "negative-desktop-28.png",
    "source": "no-board",
-   "ms": 40,
+   "ms": 42,
    "outcome": "rejected",
    "wrong": [],
    "minConfidence": 0.6730610132217407
@@ -5538,7 +8407,7 @@
   {
    "file": "negative-desktop-30.png",
    "source": "no-board",
-   "ms": 151,
+   "ms": 221,
    "outcome": "rejected",
    "wrong": [],
    "minConfidence": 0.18787184357643127
@@ -5546,7 +8415,7 @@
   {
    "file": "negative-desktop-32.png",
    "source": "no-board",
-   "ms": 96,
+   "ms": 106,
    "outcome": "rejected",
    "wrong": [],
    "minConfidence": 0.17624297738075256
@@ -5554,7 +8423,7 @@
   {
    "file": "negative-desktop-34.png",
    "source": "no-board",
-   "ms": 126,
+   "ms": 143,
    "outcome": "rejected",
    "wrong": [],
    "minConfidence": 0.29698896408081055
@@ -5562,7 +8431,7 @@
   {
    "file": "negative-desktop-36.png",
    "source": "no-board",
-   "ms": 245,
+   "ms": 395,
    "outcome": "rejected",
    "wrong": [],
    "minConfidence": 0.21604549884796143
@@ -5570,7 +8439,7 @@
   {
    "file": "negative-desktop-38.png",
    "source": "no-board",
-   "ms": 70,
+   "ms": 102,
    "outcome": "rejected",
    "wrong": [],
    "minConfidence": 0.6446921825408936
@@ -5578,7 +8447,7 @@
   {
    "file": "negative-desktop-4.png",
    "source": "no-board",
-   "ms": 141,
+   "ms": 172,
    "outcome": "rejected",
    "wrong": [],
    "minConfidence": 0.38785767555236816
@@ -5586,7 +8455,7 @@
   {
    "file": "negative-desktop-6.png",
    "source": "no-board",
-   "ms": 73,
+   "ms": 81,
    "outcome": "rejected",
    "wrong": [],
    "minConfidence": 0.3581795394420624
@@ -5594,7 +8463,7 @@
   {
    "file": "negative-desktop-8.png",
    "source": "no-board",
-   "ms": 162,
+   "ms": 174,
    "outcome": "rejected",
    "wrong": [],
    "minConfidence": 0.22399099171161652
@@ -5602,7 +8471,7 @@
   {
    "file": "negative-mobile-1.png",
    "source": "no-board",
-   "ms": 370,
+   "ms": 467,
    "outcome": "rejected",
    "wrong": [],
    "minConfidence": 0.30872973799705505
@@ -5610,7 +8479,7 @@
   {
    "file": "negative-mobile-11.png",
    "source": "no-board",
-   "ms": 85,
+   "ms": 92,
    "outcome": "rejected",
    "wrong": [],
    "minConfidence": 0.3572328984737396
@@ -5618,7 +8487,7 @@
   {
    "file": "negative-mobile-13.png",
    "source": "no-board",
-   "ms": 64,
+   "ms": 63,
    "outcome": "rejected",
    "wrong": [],
    "minConfidence": 0.2817465364933014
@@ -5626,7 +8495,7 @@
   {
    "file": "negative-mobile-15.png",
    "source": "no-board",
-   "ms": 380,
+   "ms": 321,
    "outcome": "rejected",
    "wrong": [],
    "minConfidence": 0.2530524432659149
@@ -5634,7 +8503,7 @@
   {
    "file": "negative-mobile-17.png",
    "source": "no-board",
-   "ms": 356,
+   "ms": 442,
    "outcome": "rejected",
    "wrong": [],
    "minConfidence": 0.28699344396591187
@@ -5642,7 +8511,7 @@
   {
    "file": "negative-mobile-19.png",
    "source": "no-board",
-   "ms": 90,
+   "ms": 93,
    "outcome": "rejected",
    "wrong": [],
    "minConfidence": 0.17535272240638733
@@ -5650,7 +8519,7 @@
   {
    "file": "negative-mobile-21.png",
    "source": "no-board",
-   "ms": 73,
+   "ms": 76,
    "outcome": "rejected",
    "wrong": [],
    "minConfidence": 0.37953484058380127
@@ -5658,7 +8527,7 @@
   {
    "file": "negative-mobile-23.png",
    "source": "no-board",
-   "ms": 234,
+   "ms": 271,
    "outcome": "rejected",
    "wrong": [],
    "minConfidence": 0.1759437620639801
@@ -5666,7 +8535,7 @@
   {
    "file": "negative-mobile-25.png",
    "source": "no-board",
-   "ms": 131,
+   "ms": 196,
    "outcome": "rejected",
    "wrong": [],
    "minConfidence": 0.2158305048942566
@@ -5674,7 +8543,7 @@
   {
    "file": "negative-mobile-27.png",
    "source": "no-board",
-   "ms": 307,
+   "ms": 359,
    "outcome": "warned",
    "wrong": [],
    "minConfidence": 0.15787170827388763
@@ -5682,7 +8551,7 @@
   {
    "file": "negative-mobile-29.png",
    "source": "no-board",
-   "ms": 24,
+   "ms": 23,
    "outcome": "rejected",
    "wrong": [],
    "minConfidence": null
@@ -5690,7 +8559,7 @@
   {
    "file": "negative-mobile-3.png",
    "source": "no-board",
-   "ms": 78,
+   "ms": 85,
    "outcome": "rejected",
    "wrong": [],
    "minConfidence": 0.4234781265258789
@@ -5698,7 +8567,7 @@
   {
    "file": "negative-mobile-31.png",
    "source": "no-board",
-   "ms": 28,
+   "ms": 29,
    "outcome": "rejected",
    "wrong": [],
    "minConfidence": null
@@ -5706,7 +8575,7 @@
   {
    "file": "negative-mobile-33.png",
    "source": "no-board",
-   "ms": 62,
+   "ms": 78,
    "outcome": "rejected",
    "wrong": [],
    "minConfidence": 0.23506031930446625
@@ -5714,7 +8583,7 @@
   {
    "file": "negative-mobile-35.png",
    "source": "no-board",
-   "ms": 44,
+   "ms": 47,
    "outcome": "rejected",
    "wrong": [],
    "minConfidence": 0.3496909737586975
@@ -5722,7 +8591,7 @@
   {
    "file": "negative-mobile-37.png",
    "source": "no-board",
-   "ms": 81,
+   "ms": 99,
    "outcome": "rejected",
    "wrong": [],
    "minConfidence": 0.6167590022087097
@@ -5730,7 +8599,7 @@
   {
    "file": "negative-mobile-39.png",
    "source": "no-board",
-   "ms": 107,
+   "ms": 296,
    "outcome": "rejected",
    "wrong": [],
    "minConfidence": 0.722717821598053
@@ -5738,7 +8607,7 @@
   {
    "file": "negative-mobile-5.png",
    "source": "no-board",
-   "ms": 111,
+   "ms": 219,
    "outcome": "rejected",
    "wrong": [],
    "minConfidence": 0.4004878103733063
@@ -5746,7 +8615,7 @@
   {
    "file": "negative-mobile-7.png",
    "source": "no-board",
-   "ms": 90,
+   "ms": 145,
    "outcome": "rejected",
    "wrong": [],
    "minConfidence": 0.1251879781484604
@@ -5754,7 +8623,7 @@
   {
    "file": "negative-mobile-9.png",
    "source": "no-board",
-   "ms": 61,
+   "ms": 73,
    "outcome": "rejected",
    "wrong": [],
    "minConfidence": 0.242072194814682
