@@ -22,3 +22,6 @@ jobs:
       - run: npm test -w extension
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e -w extension
+      # The result screen on the English page and on language pages (it loads
+      # the board's piece set, which the start screen never does).
+      - run: npm run smoke -w web

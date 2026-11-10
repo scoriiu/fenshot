@@ -10,7 +10,8 @@
     "build": "tsc -p tsconfig.json --noEmit && vite build && node scripts/i18n-build.mjs",
     "preview": "vite preview",
     "i18n:extract": "node scripts/i18n-extract.mjs",
-    "i18n:check": "node scripts/i18n-check.mjs"
+    "i18n:check": "node scripts/i18n-check.mjs",
+    "smoke": "node scripts/smoke.mjs"
   },
   "dependencies": {
     "@scoriiu/fenshot": "^0.1.0",
