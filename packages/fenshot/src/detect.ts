@@ -412,6 +412,173 @@ function repairParity(img: GrayImage, box: BoardCorners): BoardCorners {
   return best;
 }
 
+/** Box blur (edges clamped), two separable passes. */
+function boxBlur(img: GrayImage, radius: number): GrayImage {
+  const { width: w, height: h, data } = img;
+  const span = 2 * radius + 1;
+  const tmp = new Float32Array(w * h);
+  const out = new Float32Array(w * h);
+  for (let y = 0; y < h; y++) {
+    const row = y * w;
+    let acc = 0;
+    for (let x = -radius; x <= radius; x++) acc += data[row + Math.min(w - 1, Math.max(0, x))];
+    for (let x = 0; x < w; x++) {
+      tmp[row + x] = acc / span;
+      acc += data[row + Math.min(w - 1, x + radius + 1)] - data[row + Math.max(0, x - radius)];
+    }
+  }
+  for (let x = 0; x < w; x++) {
+    let acc = 0;
+    for (let y = -radius; y <= radius; y++) acc += tmp[Math.min(h - 1, Math.max(0, y)) * w + x];
+    for (let y = 0; y < h; y++) {
+      out[y * w + x] = acc / span;
+      acc += tmp[Math.min(h - 1, y + radius + 1) * w + x] - tmp[Math.max(0, y - radius) * w + x];
+    }
+  }
+  return { data: out, width: w, height: h };
+}
+
+/** Where in a tile its background shows: near the four corners, which
+ *  pieces (drawn centered) do not reach. */
+const BACKGROUND_SAMPLES: Array<[number, number]> = [
+  [0.16, 0.16],
+  [0.84, 0.16],
+  [0.16, 0.84],
+  [0.84, 0.84],
+];
+
+/** Background brightness of one tile: the median of small patches at its
+ *  corners. Null when the tile lies mostly outside the image. */
+function tileBackground(img: GrayImage, x: number, y: number, tw: number, th: number, patch: number): number | null {
+  const vals: number[] = [];
+  for (const [fx, fy] of BACKGROUND_SAMPLES) {
+    const cx = Math.round(x + fx * tw);
+    const cy = Math.round(y + fy * th);
+    let sum = 0;
+    let n = 0;
+    for (let py = Math.max(0, cy - patch); py <= Math.min(img.height - 1, cy + patch); py++) {
+      for (let px = Math.max(0, cx - patch); px <= Math.min(img.width - 1, cx + patch); px++) {
+        sum += img.data[py * img.width + px];
+        n++;
+      }
+    }
+    if (n) vals.push(sum / n);
+  }
+  return vals.length < 2 ? null : median(vals);
+}
+
+/**
+ * How much a box looks like a chessboard, whatever stands on it: the
+ * Pearson correlation (-1..1) between the 64 tile backgrounds and the
+ * chessboard colouring. A box on a real board scores high in any theme;
+ * a box that hangs off the board, or sits at the wrong scale, mixes page
+ * background into the tiles and scores low. Patches average over a few
+ * pixels, so hatched dark squares read as their mean grey.
+ */
+export function boardness(img: GrayImage, box: BoardCorners): number {
+  const tw = (box.x1 - box.x0) / 8;
+  const th = (box.y1 - box.y0) / 8;
+  if (tw < 6 || th < 6) return -1;
+  const patch = Math.max(1, Math.round(tw / 10));
+  const backgrounds: number[] = [];
+  const colours: number[] = [];
+  for (let r = 0; r < 8; r++) {
+    for (let c = 0; c < 8; c++) {
+      const bg = tileBackground(img, box.x0 + c * tw, box.y0 + r * th, tw, th, patch);
+      if (bg === null) continue;
+      backgrounds.push(bg);
+      colours.push((r + c) % 2 === 0 ? 1 : -1);
+    }
+  }
+  if (backgrounds.length < 48) return -1;
+  const meanBg = backgrounds.reduce((a, b) => a + b, 0) / backgrounds.length;
+  const meanCol = colours.reduce((a, b) => a + b, 0) / colours.length;
+  let cov = 0;
+  let varBg = 0;
+  let varCol = 0;
+  for (let i = 0; i < backgrounds.length; i++) {
+    cov += (backgrounds[i] - meanBg) * (colours[i] - meanCol);
+    varBg += (backgrounds[i] - meanBg) ** 2;
+    varCol += (colours[i] - meanCol) ** 2;
+  }
+  return varBg > 0 && varCol > 0 ? cov / Math.sqrt(varBg * varCol) : 0;
+}
+
+/** Blur radii for the second look. The right one depends on the hatch
+ *  period, which depends on scale: measured on the benchmark, 1 to 4 px
+ *  between them find hatched boards from 110 to 200 dpi and chess.com's
+ *  newspaper board; 6 px added nothing. */
+const BLUR_RADII = [1, 2, 3, 4];
+/** Above this size the second look runs at half resolution: tiles are
+ *  large enough to stand the coarser grid, and a page with no board on it
+ *  (the extension's whole-tab scan) costs a quarter as much. Halving is
+ *  itself a 2x2 blur, so the radii shrink with it. */
+const HALF_RES_ABOVE = 1000;
+const HALF_RES_BLUR_RADII = [0, 1, 2];
+/** A second-look box must be square within this fraction... */
+const MAX_ASPECT_ERROR = 0.08;
+/** ...and look like a board at least this much (boardness). */
+const MIN_BOARDNESS = 0.5;
+
+function sameBox(a: BoardCorners, b: BoardCorners): boolean {
+  return (
+    Math.abs(a.x0 - b.x0) <= 1 && Math.abs(a.y0 - b.y0) <= 1 && Math.abs(a.x1 - b.x1) <= 1 && Math.abs(a.y1 - b.y1) <= 1
+  );
+}
+
+/** Half-size copy, each pixel the mean of a 2x2 block. */
+function halve(img: GrayImage): GrayImage {
+  const w = img.width >> 1;
+  const h = img.height >> 1;
+  const out = new Float32Array(w * h);
+  for (let y = 0; y < h; y++) {
+    const top = 2 * y * img.width;
+    const bottom = top + img.width;
+    for (let x = 0; x < w; x++) {
+      out[y * w + x] = (img.data[top + 2 * x] + img.data[top + 2 * x + 1] + img.data[bottom + 2 * x] + img.data[bottom + 2 * x + 1]) / 4;
+    }
+  }
+  return { data: out, width: w, height: h };
+}
+
+/**
+ * Second look: boards the plain search misses or misplaces because the
+ * board itself is full of edges. Hatched dark squares (printed diagrams,
+ * chess.com's newspaper board) put more gradient energy inside the
+ * squares than on the grid lines, and marbled or low-contrast boards can
+ * slide the grid one tile diagonally, which keeps the colouring and so
+ * slips past repairParity. On a blurred copy the hatching melts to grey
+ * and the grid lines dominate again.
+ *
+ * Returns the boxes found on blurred copies, each with its grid-snapped
+ * variant, that are square and look like a board, without duplicates and
+ * without anything in `known`. They are CANDIDATES: the caller lets the
+ * tile classifier choose (recognize.ts).
+ */
+export function findBlurredBoardCandidates(img: GrayImage, known: BoardCorners[] = []): BoardCorners[] {
+  const found: BoardCorners[] = [];
+  const consider = (box: BoardCorners) => {
+    const w = box.x1 - box.x0;
+    const h = box.y1 - box.y0;
+    if (w <= 0 || Math.abs(w - h) / w > MAX_ASPECT_ERROR) return;
+    if (known.some((k) => sameBox(k, box)) || found.some((f) => sameBox(f, box))) return;
+    if (boardness(img, box) < MIN_BOARDNESS) return;
+    found.push(box);
+  };
+  const half = Math.max(img.width, img.height) > HALF_RES_ABOVE;
+  const base = half ? halve(img) : img;
+  const scale = half ? 2 : 1;
+  const up = (b: BoardCorners): BoardCorners => ({ x0: b.x0 * scale, y0: b.y0 * scale, x1: b.x1 * scale, y1: b.y1 * scale });
+  for (const radius of half ? HALF_RES_BLUR_RADII : BLUR_RADII) {
+    const blurred = radius > 0 ? boxBlur(base, radius) : base;
+    const box = findChessboardCorners(blurred);
+    if (!box) continue;
+    consider(up(box));
+    consider(up(snapCorners(blurred, box)));
+  }
+  return found;
+}
+
 export function findChessboardCorners(img: GrayImage): BoardCorners | null {
   const gradY = gradientRows(img);
   const gradX = gradientCols(img);

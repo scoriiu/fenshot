@@ -9,6 +9,8 @@ export {
 } from "./recognize";
 export {
   findChessboardCorners,
+  findBlurredBoardCandidates,
+  boardness,
   snapCorners,
   type BoardCorners,
   type GrayImage,

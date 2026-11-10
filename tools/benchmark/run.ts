@@ -9,6 +9,11 @@
  * results.json next to the cases: one line per image, plus the summary the
  * accuracy page shows.
  *
+ * "Warned" means what the user sees: the low-confidence warning, or the
+ * "not a legal position, fix it in the editor" warning that the website and
+ * the extension show when chess.js rejects the position (a missing king, a
+ * pawn on the back rank).
+ *
  * Outcomes for an image with a board:
  *   exact           every square right, no warning
  *   exact-warned    every square right, but the user is told to check
@@ -25,7 +30,8 @@ import { readFileSync, writeFileSync } from "fs";
 import { dirname, join } from "path";
 import sharp from "sharp";
 import * as ort from "onnxruntime-web";
-import { recognizeGray, rgbaToGray, extractTiles, probsToPlacement, flipPlacement, resolveOrientation, type BoardCorners } from "@scoriiu/fenshot";
+import { Chess } from "chess.js";
+import { recognizeGray, rgbaToGray, extractTiles, probsToPlacement, flipPlacement, resolveOrientation, placementToFen, type BoardCorners } from "@scoriiu/fenshot";
 import type { Case } from "./build";
 
 const MODEL = "packages/fenshot/model/chess-tiles-v2.onnx";
@@ -63,7 +69,17 @@ function wrongSquares(got: string, want: string): string[] {
   return wrong;
 }
 
-interface Scored { file: string; source: string; outcome: Outcome; wrong: string[]; minConfidence: number | null; ms: number }
+interface Scored { file: string; source: string; outcome: Outcome; wrong: string[]; minConfidence: number | null; reliable?: boolean; legal?: boolean; ms: number }
+
+/** The same check the website and the extension run before they show a result. */
+function isLegal(placement: string): boolean {
+  try {
+    new Chess(placementToFen(placement, "w"));
+    return true;
+  } catch {
+    return false;
+  }
+}
 
 async function score(session: ort.InferenceSession, c: Case): Promise<Scored> {
   const t0 = performance.now();
@@ -75,15 +91,18 @@ async function score(session: ort.InferenceSession, c: Case): Promise<Scored> {
   const result = await recognizeGray(gray, classify);
   const ms = Math.round(performance.now() - t0);
   const base = { file: c.file, source: c.source, ms };
+  const oriented = result && resolveOrientation(result.placement).orientation === "black" ? flipPlacement(result.placement) : result?.placement;
+  const legal = oriented ? isLegal(oriented) : false;
+  const clean = !!result && result.reliable && legal;
+  const detail = { minConfidence: result ? Number(result.minConfidence.toFixed(4)) : null, reliable: result?.reliable, legal: result ? legal : undefined };
   if (c.placement === null) {
-    const outcome: Outcome = !result || !result.plausible ? "rejected" : result.reliable ? "false-board" : "warned";
-    return { ...base, outcome, wrong: [], minConfidence: result?.minConfidence ?? null };
+    const outcome: Outcome = !result || !result.plausible ? "rejected" : clean ? "false-board" : "warned";
+    return { ...base, outcome, wrong: [], ...detail };
   }
-  if (!result) return { ...base, outcome: "missed", wrong: [], minConfidence: null };
-  const placement = resolveOrientation(result.placement).orientation === "black" ? flipPlacement(result.placement) : result.placement;
-  const wrong = wrongSquares(placement, c.placement);
-  const outcome: Outcome = wrong.length === 0 ? (result.reliable ? "exact" : "exact-warned") : result.reliable ? "wrong-silent" : "wrong-warned";
-  return { ...base, outcome, wrong, minConfidence: Number(result.minConfidence.toFixed(4)) };
+  if (!result || !oriented) return { ...base, outcome: "missed", wrong: [], minConfidence: null };
+  const wrong = wrongSquares(oriented, c.placement);
+  const outcome: Outcome = wrong.length === 0 ? (clean ? "exact" : "exact-warned") : clean ? "wrong-silent" : "wrong-warned";
+  return { ...base, outcome, wrong, ...detail };
 }
 
 function tally(rows: Scored[]) {

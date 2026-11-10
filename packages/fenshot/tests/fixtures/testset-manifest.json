@@ -6,5 +6,7 @@
   "pale-blue-tds-board.png": { "fen": "r1b2bnr/p2pk1p1/np2N2p/1Pp1Q3/5pP1/B3P2B/P1PP1PqP/RN2K2R", "orientation": "white", "expect": "match" },
   "whole-screen-two-boards.png": { "fen": "rnbqkb1r/ppp1pp1p/5np1/3p4/3P1B2/2N5/PPP1PPPP/R2QKBNR", "orientation": "white", "expect": "match" },
   "lichess-queens-only-board-marble.png": { "fen": "6k1/2Q5/8/8/8/2q5/8/6K1", "orientation": "white", "expect": "match" },
-  "lichess-italian-horsey.png": { "fen": "r1bqk1nr/pppp1ppp/2n5/2b1p3/2B1P3/5N2/PPPP1PPP/RNBQK2R", "orientation": "white", "expect": "low-confidence-reject" }
+  "lichess-italian-horsey.png": { "fen": "r1bqk1nr/pppp1ppp/2n5/2b1p3/2B1P3/5N2/PPPP1PPP/RNBQK2R", "orientation": "white", "expect": "match" },
+  "book-latex-page.png": { "fen": "6n1/p1R2Npk/4p2p/1p5P/5PPK/1r6/8/8", "orientation": "white", "expect": "match" },
+  "book-latex-crop.png": { "fen": "r7/3k1pp1/p1R1p2p/1p6/8/4P3/PP2KPPP/8", "orientation": "white", "expect": "match" }
 }

@@ -21,7 +21,14 @@
  * an editor with a warning rather than trusting the result.
  */
 
-import { findChessboardCorners, snapCorners, type BoardCorners, type GrayImage } from "./detect";
+import {
+  boardness,
+  findBlurredBoardCandidates,
+  findChessboardCorners,
+  snapCorners,
+  type BoardCorners,
+  type GrayImage,
+} from "./detect";
 import { extractTiles, rgbaToGray } from "./tiles";
 import { probsToPlacement, type RecognitionResult } from "./fen";
 
@@ -102,34 +109,83 @@ function isPlausiblePosition(placement: string): boolean {
  *  the board the user actually means. */
 const MAX_SCAN_PASSES = 3;
 
+/** A first-look read this good needs no second look: confident on every
+ *  tile, a legal king count, and a box that looks like a board. Normal
+ *  chess.com and Lichess screenshots stop here, at the cost they always
+ *  had. */
+const SETTLED_BOARDNESS = 0.8;
+
+/** Picking the most confident of several alignments flatters the
+ *  winner: the maximum of noisy confidences is biased upward, so a wrong
+ *  read can clear CONFIDENCE_FLOOR by luck. When another alignment is
+ *  nearly as confident (within this margin of the winner's mean) and
+ *  reads a DIFFERENT position, the read is contested and not reliable.
+ *  Measured on the benchmark and 488 Reddit screenshots: 0.03 removes
+ *  every silent misread the second look would otherwise add. */
+const CONTEST_MARGIN = 0.03;
+
+interface Read {
+  result: RecognitionResult;
+  corners: BoardCorners;
+}
+
+async function readAll(boxes: BoardCorners[], classify: TileClassifier): Promise<Read[]> {
+  const reads: Read[] = [];
+  for (const corners of boxes) reads.push({ result: await classify(corners), corners });
+  return reads;
+}
+
+/** Highest mean confidence; the earlier box wins a tie. */
+function mostConfident(reads: Read[]): Read | null {
+  let best: Read | null = null;
+  for (const r of reads) {
+    if (!best || r.result.meanConfidence > best.result.meanConfidence) best = r;
+  }
+  return best;
+}
+
+function firstLookBoxes(gray: GrayImage): BoardCorners[] {
+  const corners = findChessboardCorners(gray);
+  if (!corners) return [];
+  const snapped = snapCorners(gray, corners);
+  const same =
+    snapped.x0 === corners.x0 && snapped.y0 === corners.y0 && snapped.x1 === corners.x1 && snapped.y1 === corners.y1;
+  return same ? [corners] : [corners, snapped];
+}
+
+function toScan(read: Read, reliable: boolean): BoardScanResult {
+  return {
+    ...read.result,
+    corners: read.corners,
+    reliable,
+    plausible: isPlausiblePosition(read.result.placement),
+  };
+}
+
 async function scanOnce(
   gray: GrayImage,
   classify: TileClassifier,
 ): Promise<BoardScanResult | null> {
-  const corners = findChessboardCorners(gray);
-  if (!corners) return null;
-
-  let bestCorners = corners;
-  let best = await classify(corners);
-  const snapped = snapCorners(gray, corners);
+  const boxes = firstLookBoxes(gray);
+  const reads = await readAll(boxes, classify);
+  const first = mostConfident(reads);
   if (
-    snapped.x0 !== corners.x0 ||
-    snapped.y0 !== corners.y0 ||
-    snapped.x1 !== corners.x1 ||
-    snapped.y1 !== corners.y1
+    first &&
+    first.result.minConfidence >= CONFIDENCE_FLOOR &&
+    isPlausiblePosition(first.result.placement) &&
+    boardness(gray, first.corners) >= SETTLED_BOARDNESS
   ) {
-    const snappedRead = await classify(snapped);
-    if (snappedRead.meanConfidence > best.meanConfidence) {
-      best = snappedRead;
-      bestCorners = snapped;
-    }
+    return toScan(first, true);
   }
-  return {
-    ...best,
-    corners: bestCorners,
-    reliable: best.minConfidence >= CONFIDENCE_FLOOR,
-    plausible: isPlausiblePosition(best.placement),
-  };
+  reads.push(...(await readAll(findBlurredBoardCandidates(gray, boxes), classify)));
+  const best = mostConfident(reads);
+  if (!best) return null;
+  const contested = reads.some(
+    (r) =>
+      r.result.placement !== best.result.placement &&
+      r.result.meanConfidence >= best.result.meanConfidence - CONTEST_MARGIN,
+  );
+  return toScan(best, best.result.minConfidence >= CONFIDENCE_FLOOR && !contested);
 }
 
 /** Flatten a region so its gradients vanish and the detector cannot
