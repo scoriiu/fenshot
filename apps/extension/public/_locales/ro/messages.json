@@ -64,6 +64,7 @@
 
   "tagline": { "message": "captură înăuntru, FEN în afară" },
   "toMove": { "message": "la mutare" },
+  "atBottom": { "message": "jos" },
   "footerLocal": { "message": "rulează pe dispozitivul tău" },
   "openSource": { "message": "open source" },
   "pasteHint": { "message": "sau lipește o captură cu $KEYS$ · merge și cu tragere și plasare", "placeholders": { "keys": { "content": "$1", "example": "Ctrl+V" } } },

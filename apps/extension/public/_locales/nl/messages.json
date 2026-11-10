@@ -62,6 +62,7 @@
   "cancel": { "message": "Annuleren" },
   "tagline": { "message": "screenshot erin, FEN eruit" },
   "toMove": { "message": "aan zet" },
+  "atBottom": { "message": "onderaan" },
   "footerLocal": { "message": "draait op je apparaat" },
   "openSource": { "message": "open source" },
   "pasteHint": { "message": "of plak een screenshot met $KEYS$ · slepen en neerzetten kan ook", "placeholders": {"keys": {"content": "$1", "example": "Ctrl+V"}} },

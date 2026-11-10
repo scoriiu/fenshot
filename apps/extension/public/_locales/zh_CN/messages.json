@@ -59,6 +59,7 @@
   "cancel": { "message": "取消" },
   "tagline": { "message": "截图进，FEN 出" },
   "toMove": { "message": "走棋方" },
+  "atBottom": { "message": "下方" },
   "footerLocal": { "message": "在你的设备上运行" },
   "openSource": { "message": "开源" },
   "pasteHint": { "message": "或按 $KEYS$ 粘贴截图 · 也支持拖放", "placeholders": {"keys": {"content": "$1", "example": "Ctrl+V"}} },

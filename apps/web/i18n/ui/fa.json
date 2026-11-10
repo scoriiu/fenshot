@@ -25,7 +25,7 @@
   "sideToMove": "نوبت حرکت",
   "white": "سفید",
   "black": "سیاه",
-  "flipBoard": "چرخاندن صفحه",
+  "bottomSide": "پایین صفحه",
   "scanAnother": "اسکن تصویر دیگر",
   "analyzeLichess": "تحلیل در Lichess",
   "lichessEditor": "ویرایشگر Lichess",

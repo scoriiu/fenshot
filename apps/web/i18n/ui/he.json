@@ -25,7 +25,7 @@
   "sideToMove": "תור",
   "white": "לבן",
   "black": "שחור",
-  "flipBoard": "היפוך הלוח",
+  "bottomSide": "למטה",
   "scanAnother": "סריקה נוספת",
   "analyzeLichess": "ניתוח ב-Lichess",
   "lichessEditor": "העורך של Lichess",

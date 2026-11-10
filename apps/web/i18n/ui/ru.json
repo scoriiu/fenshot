@@ -25,7 +25,7 @@
   "sideToMove": "Чей ход",
   "white": "Белые",
   "black": "Чёрные",
-  "flipBoard": "Перевернуть доску",
+  "bottomSide": "Внизу",
   "scanAnother": "Распознать ещё",
   "analyzeLichess": "Анализ на Lichess",
   "lichessEditor": "Редактор Lichess",

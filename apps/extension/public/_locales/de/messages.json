@@ -62,6 +62,7 @@
   "cancel": { "message": "Abbrechen" },
   "tagline": { "message": "Screenshot rein, FEN raus" },
   "toMove": { "message": "am Zug" },
+  "atBottom": { "message": "unten" },
   "footerLocal": { "message": "läuft auf deinem Gerät" },
   "openSource": { "message": "Open Source" },
   "pasteHint": { "message": "oder füge einen Screenshot mit $KEYS$ ein · Drag & Drop geht auch", "placeholders": {"keys": {"content": "$1", "example": "Ctrl+V"}} },

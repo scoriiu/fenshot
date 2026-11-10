@@ -62,6 +62,7 @@
   "cancel": { "message": "Anuluj" },
   "tagline": { "message": "zrzut ekranu na wejściu, FEN na wyjściu" },
   "toMove": { "message": "ruch" },
+  "atBottom": { "message": "na dole" },
   "footerLocal": { "message": "działa na twoim urządzeniu" },
   "openSource": { "message": "otwarty kod" },
   "pasteHint": { "message": "lub wklej zrzut ekranu skrótem $KEYS$ · przeciąganie też działa", "placeholders": {"keys": {"content": "$1", "example": "Ctrl+V"}} },

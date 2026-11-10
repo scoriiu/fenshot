@@ -62,6 +62,7 @@
   "cancel": { "message": "لغو" },
   "tagline": { "message": "اسکرین‌شات بده، FEN بگیر" },
   "toMove": { "message": "نوبت" },
+  "atBottom": { "message": "پایین" },
   "footerLocal": { "message": "روی دستگاه شما اجرا می‌شود" },
   "openSource": { "message": "متن‌باز" },
   "pasteHint": { "message": "یا اسکرین‌شات را با $KEYS$ بچسبانید · کشیدن و رها کردن هم کار می‌کند", "placeholders": {"keys": {"content": "$1", "example": "Ctrl+V"}} },

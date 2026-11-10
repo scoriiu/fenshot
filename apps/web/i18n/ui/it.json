@@ -25,7 +25,7 @@
   "sideToMove": "Tratto",
   "white": "Bianco",
   "black": "Nero",
-  "flipBoard": "Gira la scacchiera",
+  "bottomSide": "In basso",
   "scanAnother": "Scansiona un'altra",
   "analyzeLichess": "Analizza su Lichess",
   "lichessEditor": "Editor di Lichess",

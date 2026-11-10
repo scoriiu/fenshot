@@ -25,7 +25,7 @@
   "sideToMove": "Bên đi",
   "white": "Trắng",
   "black": "Đen",
-  "flipBoard": "Lật bàn cờ",
+  "bottomSide": "Phía dưới",
   "scanAnother": "Quét ảnh khác",
   "analyzeLichess": "Phân tích trên Lichess",
   "lichessEditor": "Trình chỉnh sửa Lichess",

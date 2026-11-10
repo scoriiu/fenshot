@@ -64,6 +64,7 @@
 
   "tagline": { "message": "צילום מסך נכנס, FEN יוצא" },
   "toMove": { "message": "בתור" },
+  "atBottom": { "message": "למטה" },
   "footerLocal": { "message": "רץ על המכשיר שלכם" },
   "openSource": { "message": "קוד פתוח" },
   "pasteHint": { "message": "או הדביקו צילום מסך עם $KEYS$ · אפשר גם לגרור ולשחרר", "placeholders": { "keys": { "content": "$1", "example": "Ctrl+V" } } },

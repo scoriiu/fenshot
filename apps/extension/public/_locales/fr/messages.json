@@ -62,6 +62,7 @@
   "cancel": { "message": "Annuler" },
   "tagline": { "message": "une capture en entrée, le FEN en sortie" },
   "toMove": { "message": "trait aux" },
+  "atBottom": { "message": "en bas" },
   "footerLocal": { "message": "fonctionne sur votre appareil" },
   "openSource": { "message": "open source" },
   "pasteHint": { "message": "ou collez une capture avec $KEYS$ · le glisser-déposer marche aussi", "placeholders": {"keys": {"content": "$1", "example": "Ctrl+V"}} },

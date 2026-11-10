@@ -59,6 +59,7 @@
   "cancel": { "message": "Annulla" },
   "tagline": { "message": "screenshot dentro, FEN fuori" },
   "toMove": { "message": "tratto al" },
+  "atBottom": { "message": "in basso" },
   "footerLocal": { "message": "funziona sul tuo dispositivo" },
   "openSource": { "message": "open source" },
   "pasteHint": { "message": "o incolla uno screenshot con $KEYS$ · funziona anche il trascinamento", "placeholders": {"keys": {"content": "$1", "example": "Ctrl+V"}} },

@@ -187,8 +187,19 @@ describe("popup end-to-end", () => {
     const { page, popup } = await openPopupOn("board-side-endgame.html");
     try {
       await popup.waitForSelector(".board");
-      // The pawn rule alone would give 8/6p1/2K5/8/8/5k2/1P6/8 (colours marching the wrong way).
+      // The pawn rule alone would give 8/6p1/5k2/8/8/2K5/1P6/8 (colours marching the wrong way).
       await expect.poll(() => popup.locator(".caption.fen").textContent()).toMatch(/^8\/6P1\/5K2\/8\/8\/2k5\/1p6\/8 /);
+
+      // The user can say which side is at the bottom: the position turns
+      // around, and saying it back restores it.
+      const side = () => popup.locator(".turn button.side");
+      expect(await side().getAttribute("title")).toBe("at the bottom: Black");
+      await side().click();
+      await expect.poll(() => popup.locator(".caption.fen").textContent()).toMatch(/^8\/6p1\/5k2\/8\/8\/2K5\/1P6\/8 /);
+      expect(await side().getAttribute("title")).toBe("at the bottom: White");
+      await side().click();
+      await expect.poll(() => popup.locator(".caption.fen").textContent()).toMatch(/^8\/6P1\/5K2\/8\/8\/2k5\/1p6\/8 /);
+      await popup.screenshot({ path: "../../.tmp/bm-probe/popup-switch.png" });
     } finally {
       await popup.close();
       await page.close();

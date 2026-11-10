@@ -219,6 +219,10 @@
     "message": "to move",
     "description": "Lowercase label before the White/Black toggle (side to move)."
   },
+  "atBottom": {
+    "message": "at the bottom",
+    "description": "Lowercase. Tooltip of the button that says which side is at the bottom of the board in the image; shown as \"at the bottom: White\". Short."
+  },
   "footerLocal": {
     "message": "runs on your device",
     "description": "Lowercase footer, followed by a link 'open source'."

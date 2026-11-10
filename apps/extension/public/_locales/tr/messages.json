@@ -59,6 +59,7 @@
   "cancel": { "message": "İptal" },
   "tagline": { "message": "ekran görüntüsü gir, FEN çıksın" },
   "toMove": { "message": "hamle sırası" },
+  "atBottom": { "message": "altta" },
   "footerLocal": { "message": "cihazınızda çalışır" },
   "openSource": { "message": "açık kaynak" },
   "pasteHint": { "message": "ya da $KEYS$ ile ekran görüntüsü yapıştırın · sürükleyip bırakmak da olur", "placeholders": {"keys": {"content": "$1", "example": "Ctrl+V"}} },

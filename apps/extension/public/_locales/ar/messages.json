@@ -62,6 +62,7 @@
   "cancel": { "message": "إلغاء" },
   "tagline": { "message": "لقطة شاشة تدخل، FEN يخرج" },
   "toMove": { "message": "الدور" },
+  "atBottom": { "message": "في الأسفل" },
   "footerLocal": { "message": "يعمل على جهازك" },
   "openSource": { "message": "مفتوح المصدر" },
   "pasteHint": { "message": "أو الصق لقطة شاشة باستخدام $KEYS$ · السحب والإفلات يعمل أيضًا", "placeholders": {"keys": {"content": "$1", "example": "Ctrl+V"}} },

@@ -25,7 +25,7 @@
   "sideToMove": "Trait",
   "white": "Blancs",
   "black": "Noirs",
-  "flipBoard": "Retourner l'échiquier",
+  "bottomSide": "En bas",
   "scanAnother": "Lire une autre image",
   "analyzeLichess": "Analyser sur Lichess",
   "lichessEditor": "Éditeur Lichess",

@@ -62,6 +62,7 @@
   "cancel": { "message": "Отмена" },
   "tagline": { "message": "скриншот на входе, FEN на выходе" },
   "toMove": { "message": "ход" },
+  "atBottom": { "message": "внизу" },
   "footerLocal": { "message": "работает на вашем устройстве" },
   "openSource": { "message": "открытый код" },
   "pasteHint": { "message": "или вставьте скриншот через $KEYS$ · можно и перетащить", "placeholders": {"keys": {"content": "$1", "example": "Ctrl+V"}} },

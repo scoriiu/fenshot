@@ -25,7 +25,7 @@
   "sideToMove": "Juegan",
   "white": "Blancas",
   "black": "Negras",
-  "flipBoard": "Girar tablero",
+  "bottomSide": "Abajo",
   "scanAnother": "Escanear otra",
   "analyzeLichess": "Analizar en Lichess",
   "lichessEditor": "Editor de Lichess",

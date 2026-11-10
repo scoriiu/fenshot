@@ -62,6 +62,7 @@
   "cancel": { "message": "Cancelar" },
   "tagline": { "message": "captura dentro, FEN fuera" },
   "toMove": { "message": "juegan" },
+  "atBottom": { "message": "abajo" },
   "footerLocal": { "message": "funciona en tu dispositivo" },
   "openSource": { "message": "código abierto" },
   "pasteHint": { "message": "o pega una captura con $KEYS$ · también puedes arrastrar y soltar", "placeholders": {"keys": {"content": "$1", "example": "Ctrl+V"}} },

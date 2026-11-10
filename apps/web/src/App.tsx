@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Chess } from "chess.js";
 import {
   createRecognizer,
+  flipPlacement,
   resolveOrientation,
   placementToFen,
   type BoardScanResult,
@@ -161,6 +162,15 @@ export default function App({ lang }: { lang: string }) {
       return t("notLegal");
     }
   }, [fen, t]);
+
+  /** Which side the image shows at the bottom. The recognizer reads the
+   *  squares and guesses this from the pawns, which fails in endgames; the
+   *  user can say. The board keeps looking like the image, the position
+   *  turns around. */
+  const setBottomSide = (black: boolean) => {
+    if (!result || result.flipped === black) return;
+    setPhase({ ...result, placement: flipPlacement(result.placement), flipped: black });
+  };
 
   const copyFen = async () => {
     if (!fen) return;
@@ -346,12 +356,17 @@ export default function App({ lang }: { lang: string }) {
                     </button>
                   </div>
                 </div>
-                <button
-                  className="btn btn-quiet"
-                  onClick={() => setPhase({ ...result, flipped: !result.flipped })}
-                >
-                  {t("flipBoard")}
-                </button>
+                <div className="control-group">
+                  <span className="control-label">{t("bottomSide")}</span>
+                  <div className="toggle">
+                    <button className={result.flipped ? "" : "on"} onClick={() => setBottomSide(false)}>
+                      {t("white")}
+                    </button>
+                    <button className={result.flipped ? "on" : ""} onClick={() => setBottomSide(true)}>
+                      {t("black")}
+                    </button>
+                  </div>
+                </div>
               </div>
 
               <div className="actions">

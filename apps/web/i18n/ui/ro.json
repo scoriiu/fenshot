@@ -25,7 +25,7 @@
   "sideToMove": "La mutare",
   "white": "Albul",
   "black": "Negrul",
-  "flipBoard": "Întoarce tabla",
+  "bottomSide": "Jos",
   "scanAnother": "Scanează alta",
   "analyzeLichess": "Analizează pe Lichess",
   "lichessEditor": "Editor Lichess",

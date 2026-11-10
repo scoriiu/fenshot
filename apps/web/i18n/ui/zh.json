@@ -25,7 +25,7 @@
   "sideToMove": "轮到哪方走棋",
   "white": "白方",
   "black": "黑方",
-  "flipBoard": "翻转棋盘",
+  "bottomSide": "下方",
   "scanAnother": "再识别一张",
   "analyzeLichess": "在 Lichess 上分析",
   "lichessEditor": "Lichess 棋盘编辑器",

@@ -62,6 +62,7 @@
   "cancel": { "message": "Hủy" },
   "tagline": { "message": "ảnh chụp vào, FEN ra" },
   "toMove": { "message": "lượt đi" },
+  "atBottom": { "message": "phía dưới" },
   "footerLocal": { "message": "chạy trên thiết bị của bạn" },
   "openSource": { "message": "mã nguồn mở" },
   "pasteHint": { "message": "hoặc dán ảnh chụp bằng $KEYS$ · kéo thả cũng được", "placeholders": {"keys": {"content": "$1", "example": "Ctrl+V"}} },

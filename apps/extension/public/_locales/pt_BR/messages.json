@@ -59,6 +59,7 @@
   "cancel": { "message": "Cancelar" },
   "tagline": { "message": "entra print, sai FEN" },
   "toMove": { "message": "jogam" },
+  "atBottom": { "message": "embaixo" },
   "footerLocal": { "message": "roda no seu aparelho" },
   "openSource": { "message": "código aberto" },
   "pasteHint": { "message": "ou cole um print com $KEYS$ · arrastar e soltar também funciona", "placeholders": {"keys": {"content": "$1", "example": "Ctrl+V"}} },

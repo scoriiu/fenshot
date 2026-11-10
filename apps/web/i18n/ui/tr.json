@@ -25,7 +25,7 @@
   "sideToMove": "Hamle sırası",
   "white": "Beyaz",
   "black": "Siyah",
-  "flipBoard": "Tahtayı çevir",
+  "bottomSide": "Altta",
   "scanAnother": "Yenisini tara",
   "analyzeLichess": "Lichess'te analiz et",
   "lichessEditor": "Lichess editörü",

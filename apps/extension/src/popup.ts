@@ -462,6 +462,29 @@ async function scanBlob(blob: Blob, origin: ScanOrigin) {
   }
 }
 
+/** A board cut in two: the lower half has the colour of the side at the bottom. */
+function bottomSideIcon(blackAtBottom: boolean): SVGElement {
+  const NS = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(NS, "svg");
+  svg.setAttribute("viewBox", "0 0 16 16");
+  svg.setAttribute("width", "16");
+  svg.setAttribute("height", "16");
+  svg.setAttribute("aria-hidden", "true");
+  const half = (y: number, black: boolean) => {
+    const r = document.createElementNS(NS, "rect");
+    r.setAttribute("x", "1.5");
+    r.setAttribute("y", String(y));
+    r.setAttribute("width", "13");
+    r.setAttribute("height", "6.5");
+    r.setAttribute("fill", black ? "#0b1220" : "#e2e8f0");
+    r.setAttribute("stroke", "#94a3b8");
+    r.setAttribute("stroke-width", "1");
+    return r;
+  };
+  svg.append(half(1.5, !blackAtBottom), half(8, blackAtBottom));
+  return svg;
+}
+
 function boardEl(placement: string, flipped: boolean): HTMLElement {
   const ranks = placement.split("/").map((row) =>
     row.replace(/\d/g, (d) => "1".repeat(parseInt(d, 10))),
@@ -520,6 +543,21 @@ function renderResult(state: ResultState) {
   const blackBtn = el("button", state.turn === "b" ? "active" : "", t("black"));
   blackBtn.addEventListener("click", () => renderResult({ ...state, turn: "b" }));
   turnRow.append(whiteBtn, blackBtn);
+
+  // Which side the image shows at the bottom. Read from the page where
+  // the page says (chess.com, Lichess), guessed from the pawns elsewhere,
+  // and that guess fails in endgames: the user can say. The board keeps
+  // looking like the image, the position turns around. One small button
+  // in the same row: a popup is capped at 600px tall and has no row to spare.
+  const sideBtn = el("button", "side");
+  const sideName = `${t("atBottom")}: ${t(state.flipped ? "black" : "white")}`;
+  sideBtn.title = sideName;
+  sideBtn.setAttribute("aria-label", sideName);
+  sideBtn.append(bottomSideIcon(state.flipped));
+  sideBtn.addEventListener("click", () =>
+    renderResult({ ...state, placement: flipPlacement(state.placement), flipped: !state.flipped }),
+  );
+  turnRow.append(sideBtn);
   content.push(turnRow);
   const fenLine = el("div", "caption fen", fen);
   fenLine.title = fen;

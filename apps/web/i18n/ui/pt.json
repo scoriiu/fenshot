@@ -25,7 +25,7 @@
   "sideToMove": "Vez de jogar",
   "white": "Brancas",
   "black": "Pretas",
-  "flipBoard": "Girar tabuleiro",
+  "bottomSide": "Embaixo",
   "scanAnother": "Ler outra",
   "analyzeLichess": "Analisar no Lichess",
   "lichessEditor": "Editor do Lichess",

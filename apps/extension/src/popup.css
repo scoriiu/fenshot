@@ -138,6 +138,18 @@ body.wide {
   cursor: pointer;
 }
 
+.turn button.side {
+  flex: 0 0 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.turn button.side:hover {
+  border-color: #64748b;
+}
+
 .turn button.active {
   background: rgba(251, 191, 36, 0.15);
   border-color: rgba(251, 191, 36, 0.5);

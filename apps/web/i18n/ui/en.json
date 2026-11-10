@@ -25,7 +25,7 @@
   "sideToMove": "Side to move",
   "white": "White",
   "black": "Black",
-  "flipBoard": "Flip board",
+  "bottomSide": "At the bottom",
   "scanAnother": "Scan another",
   "analyzeLichess": "Analyze on Lichess",
   "lichessEditor": "Lichess editor",
