@@ -47,6 +47,11 @@ export interface BoardScanResult extends RecognitionResult {
    *  sparse kingless scatters; callers doing automatic whole-page scans
    *  should treat implausible reads as "no board found". */
   plausible: boolean;
+  /** Size of the image `corners` are measured in. `recognize` scales large
+   *  sources down before it looks for a board, so divide by this to place
+   *  the box on the source (set by `recognize`; absent from recognizeGray,
+   *  whose caller supplied the image). */
+  frame?: { width: number; height: number };
 }
 
 export interface RecognizerOptions {
@@ -277,11 +282,12 @@ export function createRecognizer(options: RecognizerOptions): Recognizer {
       const gray = imageToGray(img);
       const [ort, session] = await Promise.all([loadOrt(), getSession()]);
 
-      return recognizeGray(gray, async (c) => {
+      const scan = await recognizeGray(gray, async (c) => {
         const tiles = extractTiles(gray, c);
         const out = await session.run({ tiles: new ort.Tensor("float32", tiles, [64, 1024]) });
         return probsToPlacement(out["probs"].data as Float32Array);
       });
+      return scan && { ...scan, frame: { width: gray.width, height: gray.height } };
     },
   };
 }

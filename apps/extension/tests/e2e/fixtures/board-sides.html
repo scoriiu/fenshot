@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Boards that say which side is at the bottom</title>
+<style>
+  body { margin: 0; }
+  .cg-wrap, wc-chess-board { position: absolute; display: block; background: #b58863; }
+  #lichess-black { left: 100px; top: 50px; width: 400px; height: 400px; }
+  #lichess-white { left: 600px; top: 50px; width: 200px; height: 200px; }
+  #chesscom-flipped { left: 100px; top: 500px; width: 300px; height: 300px; }
+  #chesscom-plain { left: 500px; top: 500px; width: 300px; height: 300px; }
+  #tiny { left: 900px; top: 50px; width: 20px; height: 20px; }
+</style>
+</head>
+<body>
+<div id="lichess-black" class="cg-wrap orientation-black manipulable"></div>
+<div id="lichess-white" class="cg-wrap orientation-white"></div>
+<wc-chess-board id="chesscom-flipped" class="board flipped"></wc-chess-board>
+<wc-chess-board id="chesscom-plain" class="board"></wc-chess-board>
+<div id="tiny" class="cg-wrap orientation-black"></div>
+</body>
+</html>

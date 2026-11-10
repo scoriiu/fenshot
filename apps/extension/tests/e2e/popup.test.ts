@@ -183,6 +183,18 @@ describe("popup end-to-end", () => {
     }
   });
 
+  it("endgame from Black's side: the page's own board direction beats the pawn rule", async () => {
+    const { page, popup } = await openPopupOn("board-side-endgame.html");
+    try {
+      await popup.waitForSelector(".board");
+      // The pawn rule alone would give 8/6p1/2K5/8/8/5k2/1P6/8 (colours marching the wrong way).
+      await expect.poll(() => popup.locator(".caption.fen").textContent()).toMatch(/^8\/6P1\/5K2\/8\/8\/2k5\/1p6\/8 /);
+    } finally {
+      await popup.close();
+      await page.close();
+    }
+  });
+
   it("lichess-style page: headers reach the label and the Kibitzo URL", async () => {
     const { page, popup } = await openPopupOn("lichess.html");
     try {

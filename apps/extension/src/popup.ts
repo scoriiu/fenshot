@@ -21,10 +21,12 @@ import { applyDocumentLanguage, t } from "./i18n";
 import { Chess } from "chess.js";
 import {
   createRecognizer,
+  flipPlacement,
   resolveOrientation,
   placementToFen,
   type BoardScanResult,
 } from "@scoriiu/fenshot";
+import { collectBoardSides, sideOfBoard, type PageBoard, type Side } from "./board-side";
 import { pieceElement } from "./pieces";
 import { disableSiteButton, enableSiteButton, siteButtonGranted, syncSiteButton } from "./site-access";
 import {
@@ -56,6 +58,8 @@ interface ResultState {
 }
 
 let pageBitmap: ImageBitmap | null = null;
+/** Boards the page describes itself, with the side at the bottom. */
+let pageBoards: Promise<PageBoard[]> = Promise.resolve([]);
 let pageGames: FoundGame[] = [];
 /** Games on the page fenshot cannot import (Chess960 / other variants). */
 let pageUnsupported = 0;
@@ -411,6 +415,21 @@ function renderHub(title: string, hint?: string) {
   renderScreen([state, paths, pasteHint], null);
 }
 
+/**
+ * Which way the board faces. On a whole-page read, a page that says so
+ * itself (chess.com, Lichess) is believed over the pawn rule, which fails
+ * in endgames; everywhere else the pawn rule decides as before.
+ */
+async function orient(result: BoardScanResult, origin: ScanOrigin): Promise<{ placement: string; orientation: Side }> {
+  const fromPawns = resolveOrientation(result.placement);
+  if (origin !== "page" || !result.frame) return fromPawns;
+  const { width, height } = result.frame;
+  const c = result.corners;
+  const side = sideOfBoard({ x0: c.x0 / width, y0: c.y0 / height, x1: c.x1 / width, y1: c.y1 / height }, await pageBoards);
+  if (!side) return fromPawns;
+  return { placement: side === "black" ? flipPlacement(result.placement) : result.placement, orientation: side };
+}
+
 async function scanBlob(blob: Blob, origin: ScanOrigin) {
   renderMessage(t("readingPosition"), t("runsOnDevice"), true);
   try {
@@ -429,7 +448,7 @@ async function scanBlob(blob: Blob, origin: ScanOrigin) {
       }
       return;
     }
-    const oriented = resolveOrientation(result.placement);
+    const oriented = await orient(result, origin);
     renderResult({
       scan: result,
       placement: oriented.placement,
@@ -705,8 +724,23 @@ async function findPageGames(): Promise<{ games: FoundGame[]; unsupported: numbe
   }
 }
 
+/** Boards the page describes itself. Best effort, like the game scan. */
+async function findPageBoards(): Promise<PageBoard[]> {
+  try {
+    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    if (!tab?.id) return [];
+    const frames = await chrome.scripting.executeScript({ target: { tabId: tab.id }, func: collectBoardSides });
+    return frames.flatMap((f) => (f.result as PageBoard[] | undefined) ?? []);
+  } catch (err) {
+    console.warn("board side scan skipped", err);
+    return [];
+  }
+}
+
 async function main() {
   renderMessage(t("readingBoardPage"), t("runsOnDevice"), true);
+  // Asked before the capture so both describe the same moment of the page.
+  pageBoards = findPageBoards();
   // Game scan runs alongside the screenshot. If it lands after the
   // board result is already on screen, that screen is refreshed so the
   // games appear; if it lands first, the next render picks them up.

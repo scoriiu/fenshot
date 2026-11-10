@@ -9,6 +9,7 @@
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { chromium, type Browser } from "playwright";
 import { collectPageText, findGames } from "../../src/pgn";
+import { collectBoardSides, sideOfBoard } from "../../src/board-side";
 import { serveRepo } from "./helpers";
 
 let browser: Browser;
@@ -77,5 +78,25 @@ describe("collectPageText + findGames in a real browser", () => {
   it("page without a game yields nothing", async () => {
     const { games } = await gamesOn("nogame.html");
     expect(games).toEqual([]);
+  });
+});
+
+describe("collectBoardSides in a real browser", () => {
+  it("reports each board's place in the viewport and the side at its bottom", async () => {
+    const page = await browser.newPage({ viewport: { width: 1000, height: 1000 } });
+    try {
+      await page.goto(site.fixture("board-sides.html"));
+      const boards = await page.evaluate(collectBoardSides);
+      // The 20px board is a thumbnail, not something a user reads.
+      expect(boards).toHaveLength(4);
+      const at = (x0: number, y0: number, x1: number, y1: number) => sideOfBoard({ x0, y0, x1, y1 }, boards);
+      expect(at(0.1, 0.05, 0.5, 0.45)).toBe("black");
+      expect(at(0.6, 0.05, 0.8, 0.25)).toBe("white");
+      expect(at(0.1, 0.5, 0.4, 0.8)).toBe("black");
+      expect(at(0.5, 0.5, 0.8, 0.8)).toBe("white");
+      expect(at(0.85, 0.85, 0.99, 0.99)).toBeNull();
+    } finally {
+      await page.close();
+    }
   });
 });
