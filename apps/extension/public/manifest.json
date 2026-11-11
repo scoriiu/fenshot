@@ -3,7 +3,7 @@
   "default_locale": "en",
   "name": "__MSG_extName__",
   "homepage_url": "https://fenshot.com/",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "__MSG_extDescription__",
   "minimum_chrome_version": "121",
   "permissions": [
