@@ -41,6 +41,8 @@
 - [Web app](https://fenshot.com/): paste or drop a chess image, get the FEN and a board
 - [Browser extension](https://fenshot.com/extension/): Chrome, Firefox and Edge
 - [Accuracy benchmark](https://fenshot.com/accuracy/): open, reproducible results on real chess.com, Lichess and Reddit images
+- [Best move from a chess screenshot](https://fenshot.com/best-move-from-chess-screenshot/): scan the position, then one click opens it with a free Stockfish engine on Kibitzo or Lichess
+- [Chess board scanner](https://fenshot.com/chess-board-scanner/): analyze any chess position from a picture
 - [Chess screenshot to FEN](https://fenshot.com/chess-screenshot-to-fen/)
 - [Chess image to board](https://fenshot.com/chess-image-to-board/)
 - [Photo of a chess board to FEN](https://fenshot.com/photo-of-chess-board-to-fen/)

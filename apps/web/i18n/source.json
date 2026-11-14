@@ -271,11 +271,27 @@
     "kind": "text",
     "pages": [
       "/",
+      "/best-move-from-chess-screenshot/",
+      "/chess-board-scanner/",
       "/chess-book-diagram-to-fen/",
       "/chess-image-to-board/",
       "/chess-screenshot-to-fen/",
       "/chesscom-screenshot-to-lichess/",
       "/photo-of-chess-board-to-fen/"
+    ]
+  },
+  "8b5ffce5d6": {
+    "text": "<a href=\"/best-move-from-chess-screenshot/\" style=\"color:#fbbf24\">Best move from a chess screenshot</a>: scan the position, then ask the engine",
+    "kind": "text",
+    "pages": [
+      "/"
+    ]
+  },
+  "185c54c9be": {
+    "text": "<a href=\"/chess-board-scanner/\" style=\"color:#fbbf24\">Chess board scanner</a>: analyze any position from a picture",
+    "kind": "text",
+    "pages": [
+      "/"
     ]
   },
   "99f200af6f": {
@@ -733,6 +749,450 @@
       "/accuracy/"
     ]
   },
+  "4b75fde5c4": {
+    "text": "Best Move from a Chess Screenshot: scan it, then ask the engine",
+    "kind": "title",
+    "pages": [
+      "/best-move-from-chess-screenshot/"
+    ]
+  },
+  "b16a3a0a31": {
+    "text": "Have a picture of a chess position and want the best move? Paste it: fenshot reads the board in a second and opens it with a free Stockfish engine. Nothing uploaded.",
+    "kind": "description",
+    "pages": [
+      "/best-move-from-chess-screenshot/"
+    ]
+  },
+  "7cdbdf4ae2": {
+    "text": "Best move from a chess screenshot: scan it, then ask the engine",
+    "kind": "meta",
+    "pages": [
+      "/best-move-from-chess-screenshot/"
+    ]
+  },
+  "b3abfdc6aa": {
+    "text": "<a href=\"/\">fenshot</a> / Best move from a chess screenshot",
+    "kind": "text",
+    "pages": [
+      "/best-move-from-chess-screenshot/"
+    ]
+  },
+  "698ea90671": {
+    "text": "Find the best move from a chess screenshot",
+    "kind": "text",
+    "pages": [
+      "/best-move-from-chess-screenshot/"
+    ]
+  },
+  "160c167498": {
+    "text": "You have a picture of a chess position and one question: what is the best move? Paste the picture. fenshot reads the board in about a second, and one click opens the position with a free Stockfish engine that shows the best move.",
+    "kind": "text",
+    "pages": [
+      "/best-move-from-chess-screenshot/"
+    ]
+  },
+  "eb0e477815": {
+    "text": "<a class=\"cta\" href=\"/\">Try it now, paste your image →</a>",
+    "kind": "text",
+    "pages": [
+      "/best-move-from-chess-screenshot/",
+      "/chess-board-scanner/",
+      "/chess-book-diagram-to-fen/",
+      "/chess-image-to-board/",
+      "/chess-screenshot-to-fen/",
+      "/chesscom-screenshot-to-lichess/",
+      "/photo-of-chess-board-to-fen/"
+    ]
+  },
+  "041a4070ba": {
+    "text": "From a screenshot to the best move",
+    "kind": "text",
+    "pages": [
+      "/best-move-from-chess-screenshot/"
+    ]
+  },
+  "464e1da2f9": {
+    "text": "Take a screenshot of the position, or copy the image.",
+    "kind": "text",
+    "pages": [
+      "/best-move-from-chess-screenshot/"
+    ]
+  },
+  "cdb9cedf6e": {
+    "text": "Paste it on <a href=\"/\">fenshot.com</a> (Ctrl+V works anywhere on the page) or drop the file in.",
+    "kind": "text",
+    "pages": [
+      "/best-move-from-chess-screenshot/",
+      "/chess-board-scanner/",
+      "/chess-image-to-board/"
+    ]
+  },
+  "b48d19882a": {
+    "text": "Look at the board fenshot shows and set the side to move.",
+    "kind": "text",
+    "pages": [
+      "/best-move-from-chess-screenshot/"
+    ]
+  },
+  "dde00c019d": {
+    "text": "Press Analyze on Kibitzo. The engine starts by itself and draws the best move on the board as an arrow.",
+    "kind": "text",
+    "pages": [
+      "/best-move-from-chess-screenshot/"
+    ]
+  },
+  "f15993be29": {
+    "text": "You can also press Analyze on Lichess and switch the engine on there. Both are free and need no account.",
+    "kind": "text",
+    "pages": [
+      "/best-move-from-chess-screenshot/"
+    ]
+  },
+  "22421ee3b7": {
+    "text": "Whose move is it?",
+    "kind": "text",
+    "pages": [
+      "/best-move-from-chess-screenshot/"
+    ]
+  },
+  "c28cf7fb06": {
+    "text": "A picture does not say whose turn it is, and the best move for White is not the best move for Black. That is why fenshot asks for the side to move before you analyze. It does notice when a screenshot was taken from Black's side of the board and turns the position the right way round.",
+    "kind": "text",
+    "pages": [
+      "/best-move-from-chess-screenshot/"
+    ]
+  },
+  "84af1934a5": {
+    "text": "An engine needs the exact position",
+    "kind": "text",
+    "pages": [
+      "/best-move-from-chess-screenshot/"
+    ]
+  },
+  "c10da6d464": {
+    "text": "One piece on the wrong square and the best move is a different move. So fenshot shows you the board it read before anything else, warns you when it is not sure about a square, and sends you to the Lichess editor to fix it when the position cannot be right.",
+    "kind": "text",
+    "pages": [
+      "/best-move-from-chess-screenshot/"
+    ]
+  },
+  "e5f5d4c010": {
+    "text": "Which pictures work?",
+    "kind": "text",
+    "pages": [
+      "/best-move-from-chess-screenshot/"
+    ]
+  },
+  "fa0646cbf8": {
+    "text": "Screenshots from chess.com and Lichess in any theme, frames from YouTube videos and streams, diagrams from books and PDFs, puzzles posted on Reddit or sent in a chat. Boards drawn flat, seen from above, work best.",
+    "kind": "text",
+    "pages": [
+      "/best-move-from-chess-screenshot/"
+    ]
+  },
+  "f073736282": {
+    "text": "For study, not for a game in progress",
+    "kind": "text",
+    "pages": [
+      "/best-move-from-chess-screenshot/"
+    ]
+  },
+  "038e9dc6be": {
+    "text": "Use it on finished games, puzzles, books and videos. Asking an engine for a move in a game you are still playing is against the rules of every chess site.",
+    "kind": "text",
+    "pages": [
+      "/best-move-from-chess-screenshot/"
+    ]
+  },
+  "0f211ed031": {
+    "text": "It stays on your machine",
+    "kind": "text",
+    "pages": [
+      "/best-move-from-chess-screenshot/",
+      "/chess-board-scanner/",
+      "/chess-image-to-board/"
+    ]
+  },
+  "75dfc3210d": {
+    "text": "The recognition model runs in your browser via WebAssembly. The image is never uploaded, which is why it works offline once loaded and why there is no account, no quota and no cost.",
+    "kind": "text",
+    "pages": [
+      "/best-move-from-chess-screenshot/",
+      "/chess-board-scanner/",
+      "/chess-image-to-board/"
+    ]
+  },
+  "60cc8dd727": {
+    "text": "<a href=\"/chess-board-scanner/\">Chess board scanner</a>: analyze any position from a picture",
+    "kind": "text",
+    "pages": [
+      "/best-move-from-chess-screenshot/",
+      "/chess-book-diagram-to-fen/",
+      "/chess-image-to-board/",
+      "/chess-screenshot-to-fen/",
+      "/chesscom-screenshot-to-lichess/",
+      "/photo-of-chess-board-to-fen/"
+    ]
+  },
+  "93ddb19434": {
+    "text": "<a href=\"/chess-screenshot-to-fen/\">Chess screenshot to FEN</a>: chess.com, Lichess or video screenshots",
+    "kind": "text",
+    "pages": [
+      "/best-move-from-chess-screenshot/",
+      "/chess-board-scanner/",
+      "/chess-book-diagram-to-fen/",
+      "/chess-image-to-board/",
+      "/chesscom-screenshot-to-lichess/",
+      "/photo-of-chess-board-to-fen/"
+    ]
+  },
+  "6b0eaf9955": {
+    "text": "<a href=\"/chess-image-to-board/\">Chess image to board</a>: any picture of a position",
+    "kind": "text",
+    "pages": [
+      "/best-move-from-chess-screenshot/",
+      "/chess-board-scanner/",
+      "/chess-book-diagram-to-fen/",
+      "/chess-screenshot-to-fen/",
+      "/chesscom-screenshot-to-lichess/",
+      "/photo-of-chess-board-to-fen/"
+    ]
+  },
+  "eb5e0c77b6": {
+    "text": "<a href=\"/photo-of-chess-board-to-fen/\">Photo of a chess board to FEN</a>: a real board or a printed page",
+    "kind": "text",
+    "pages": [
+      "/best-move-from-chess-screenshot/",
+      "/chess-board-scanner/",
+      "/chess-book-diagram-to-fen/",
+      "/chess-image-to-board/",
+      "/chess-screenshot-to-fen/",
+      "/chesscom-screenshot-to-lichess/"
+    ]
+  },
+  "79f7efe7d9": {
+    "text": "<a href=\"/chess-book-diagram-to-fen/\">Chess book diagram to FEN</a>: diagrams from books and PDFs",
+    "kind": "text",
+    "pages": [
+      "/best-move-from-chess-screenshot/",
+      "/chess-board-scanner/",
+      "/chess-image-to-board/",
+      "/chess-screenshot-to-fen/",
+      "/chesscom-screenshot-to-lichess/",
+      "/photo-of-chess-board-to-fen/"
+    ]
+  },
+  "7d66ccd253": {
+    "text": "<a href=\"/chesscom-screenshot-to-lichess/\">Chess.com screenshot to Lichess</a>: move a position between sites",
+    "kind": "text",
+    "pages": [
+      "/best-move-from-chess-screenshot/",
+      "/chess-board-scanner/",
+      "/chess-book-diagram-to-fen/",
+      "/chess-image-to-board/",
+      "/chess-screenshot-to-fen/",
+      "/photo-of-chess-board-to-fen/"
+    ]
+  },
+  "c2a0051125": {
+    "text": "<a href=\"/extension/\">The fenshot browser extension</a>: read the board straight off any page, and whole games",
+    "kind": "text",
+    "pages": [
+      "/best-move-from-chess-screenshot/",
+      "/chess-board-scanner/",
+      "/chess-book-diagram-to-fen/",
+      "/chess-image-to-board/",
+      "/chess-screenshot-to-fen/",
+      "/chesscom-screenshot-to-lichess/",
+      "/photo-of-chess-board-to-fen/"
+    ]
+  },
+  "f0f12bed1f": {
+    "text": "fenshot is MIT open source. The analysis board is powered by <a href=\"https://kibitzo.com?ref=fenshot-seo\">kibitzo.com</a>, where a coach can also review your full games.",
+    "kind": "text",
+    "pages": [
+      "/best-move-from-chess-screenshot/",
+      "/chess-board-scanner/",
+      "/chess-book-diagram-to-fen/",
+      "/chess-image-to-board/",
+      "/chess-screenshot-to-fen/",
+      "/chesscom-screenshot-to-lichess/",
+      "/photo-of-chess-board-to-fen/"
+    ]
+  },
+  "6a6e6a781e": {
+    "text": "Chess Board Scanner: analyze any position from a picture",
+    "kind": "title",
+    "pages": [
+      "/chess-board-scanner/"
+    ]
+  },
+  "4f711230e1": {
+    "text": "A free chess board scanner in your browser. Paste a screenshot, a book diagram or a photo, get the position on a real board and analyze it. Nothing is uploaded.",
+    "kind": "description",
+    "pages": [
+      "/chess-board-scanner/"
+    ]
+  },
+  "b6ae0e8340": {
+    "text": "Chess board scanner: analyze any position from a picture",
+    "kind": "meta",
+    "pages": [
+      "/chess-board-scanner/"
+    ]
+  },
+  "5f34f43d87": {
+    "text": "<a href=\"/\">fenshot</a> / Chess board scanner",
+    "kind": "text",
+    "pages": [
+      "/chess-board-scanner/"
+    ]
+  },
+  "e1195b417c": {
+    "text": "Chess board scanner",
+    "kind": "text",
+    "pages": [
+      "/chess-board-scanner/"
+    ]
+  },
+  "ecbecd47ea": {
+    "text": "A chess board scanner turns a picture of a position into the position itself: every piece on its square, on a board you can analyze. fenshot does it in your browser, free, in about a second.",
+    "kind": "text",
+    "pages": [
+      "/chess-board-scanner/"
+    ]
+  },
+  "d7cf83dab8": {
+    "text": "What can it scan?",
+    "kind": "text",
+    "pages": [
+      "/chess-board-scanner/"
+    ]
+  },
+  "32e3221a40": {
+    "text": "Screenshots from chess.com and Lichess, in any theme.",
+    "kind": "text",
+    "pages": [
+      "/chess-board-scanner/"
+    ]
+  },
+  "984ac2eab3": {
+    "text": "Frames from YouTube videos and streams.",
+    "kind": "text",
+    "pages": [
+      "/chess-board-scanner/"
+    ]
+  },
+  "d6e6e3d3bc": {
+    "text": "Diagrams from chess books and PDFs.",
+    "kind": "text",
+    "pages": [
+      "/chess-board-scanner/"
+    ]
+  },
+  "a9bde422df": {
+    "text": "Puzzles posted on Reddit or sent in a chat.",
+    "kind": "text",
+    "pages": [
+      "/chess-board-scanner/"
+    ]
+  },
+  "3b35d59cb2": {
+    "text": "A photo of a real board taken from straight above can work. Photos taken at an angle are unreliable.",
+    "kind": "text",
+    "pages": [
+      "/chess-board-scanner/"
+    ]
+  },
+  "8ac7aa173f": {
+    "text": "What you get",
+    "kind": "text",
+    "pages": [
+      "/chess-board-scanner/"
+    ]
+  },
+  "4732b0b910": {
+    "text": "The position on a board, so you can check it against the picture.",
+    "kind": "text",
+    "pages": [
+      "/chess-board-scanner/"
+    ]
+  },
+  "93565195fe": {
+    "text": "The FEN, the one line of text every chess site and engine reads as a position, ready to copy.",
+    "kind": "text",
+    "pages": [
+      "/chess-board-scanner/"
+    ]
+  },
+  "0544b7bb5c": {
+    "text": "One click to analyze it with a free engine on Kibitzo or on Lichess.",
+    "kind": "text",
+    "pages": [
+      "/chess-board-scanner/"
+    ]
+  },
+  "3d84f47e0d": {
+    "text": "How to scan a chess board",
+    "kind": "text",
+    "pages": [
+      "/chess-board-scanner/"
+    ]
+  },
+  "0fad03d17d": {
+    "text": "Copy the picture or take a screenshot.",
+    "kind": "text",
+    "pages": [
+      "/chess-board-scanner/"
+    ]
+  },
+  "98392ad2ba": {
+    "text": "Check the board, set the side to move, and analyze or copy the position.",
+    "kind": "text",
+    "pages": [
+      "/chess-board-scanner/"
+    ]
+  },
+  "00185470e5": {
+    "text": "When the scan is not sure",
+    "kind": "text",
+    "pages": [
+      "/chess-board-scanner/"
+    ]
+  },
+  "6c958d917f": {
+    "text": "A scanner that is silently wrong is worse than no scanner. fenshot tells you when a read is doubtful, and when a position cannot be legal it sends you to the Lichess editor to fix it. How often it is right, measured on real images with the weak spots named, is on the <a href=\"/accuracy/\">accuracy page</a>.",
+    "kind": "text",
+    "pages": [
+      "/chess-board-scanner/"
+    ]
+  },
+  "ca231e10f7": {
+    "text": "Scan the page you are on",
+    "kind": "text",
+    "pages": [
+      "/chess-board-scanner/"
+    ]
+  },
+  "68e26dcd7f": {
+    "text": "If you scan positions often, the <a href=\"/extension/\">fenshot browser extension</a> reads the board straight off the page in one click, with no screenshot: videos, articles, studies, and whole games where the page shows the moves.",
+    "kind": "text",
+    "pages": [
+      "/chess-board-scanner/"
+    ]
+  },
+  "107d8b5e3a": {
+    "text": "<a href=\"/best-move-from-chess-screenshot/\">Best move from a chess screenshot</a>: scan the position, then ask the engine",
+    "kind": "text",
+    "pages": [
+      "/chess-board-scanner/",
+      "/chess-book-diagram-to-fen/",
+      "/chess-image-to-board/",
+      "/chess-screenshot-to-fen/",
+      "/chesscom-screenshot-to-lichess/",
+      "/photo-of-chess-board-to-fen/"
+    ]
+  },
   "d5718eaa27": {
     "text": "Chess Book Diagram to FEN: bring printed positions to life",
     "kind": "title",
@@ -773,17 +1233,6 @@
     "kind": "text",
     "pages": [
       "/chess-book-diagram-to-fen/"
-    ]
-  },
-  "eb0e477815": {
-    "text": "<a class=\"cta\" href=\"/\">Try it now, paste your image →</a>",
-    "kind": "text",
-    "pages": [
-      "/chess-book-diagram-to-fen/",
-      "/chess-image-to-board/",
-      "/chess-screenshot-to-fen/",
-      "/chesscom-screenshot-to-lichess/",
-      "/photo-of-chess-board-to-fen/"
     ]
   },
   "4728f70b3c": {
@@ -840,68 +1289,6 @@
     "kind": "text",
     "pages": [
       "/chess-book-diagram-to-fen/"
-    ]
-  },
-  "93ddb19434": {
-    "text": "<a href=\"/chess-screenshot-to-fen/\">Chess screenshot to FEN</a>: chess.com, Lichess or video screenshots",
-    "kind": "text",
-    "pages": [
-      "/chess-book-diagram-to-fen/",
-      "/chess-image-to-board/",
-      "/chesscom-screenshot-to-lichess/",
-      "/photo-of-chess-board-to-fen/"
-    ]
-  },
-  "6b0eaf9955": {
-    "text": "<a href=\"/chess-image-to-board/\">Chess image to board</a>: any picture of a position",
-    "kind": "text",
-    "pages": [
-      "/chess-book-diagram-to-fen/",
-      "/chess-screenshot-to-fen/",
-      "/chesscom-screenshot-to-lichess/",
-      "/photo-of-chess-board-to-fen/"
-    ]
-  },
-  "eb5e0c77b6": {
-    "text": "<a href=\"/photo-of-chess-board-to-fen/\">Photo of a chess board to FEN</a>: a real board or a printed page",
-    "kind": "text",
-    "pages": [
-      "/chess-book-diagram-to-fen/",
-      "/chess-image-to-board/",
-      "/chess-screenshot-to-fen/",
-      "/chesscom-screenshot-to-lichess/"
-    ]
-  },
-  "7d66ccd253": {
-    "text": "<a href=\"/chesscom-screenshot-to-lichess/\">Chess.com screenshot to Lichess</a>: move a position between sites",
-    "kind": "text",
-    "pages": [
-      "/chess-book-diagram-to-fen/",
-      "/chess-image-to-board/",
-      "/chess-screenshot-to-fen/",
-      "/photo-of-chess-board-to-fen/"
-    ]
-  },
-  "c2a0051125": {
-    "text": "<a href=\"/extension/\">The fenshot browser extension</a>: read the board straight off any page, and whole games",
-    "kind": "text",
-    "pages": [
-      "/chess-book-diagram-to-fen/",
-      "/chess-image-to-board/",
-      "/chess-screenshot-to-fen/",
-      "/chesscom-screenshot-to-lichess/",
-      "/photo-of-chess-board-to-fen/"
-    ]
-  },
-  "f0f12bed1f": {
-    "text": "fenshot is MIT open source. The analysis board is powered by <a href=\"https://kibitzo.com?ref=fenshot-seo\">kibitzo.com</a>, where a coach can also review your full games.",
-    "kind": "text",
-    "pages": [
-      "/chess-book-diagram-to-fen/",
-      "/chess-image-to-board/",
-      "/chess-screenshot-to-fen/",
-      "/chesscom-screenshot-to-lichess/",
-      "/photo-of-chess-board-to-fen/"
     ]
   },
   "de198ca200": {
@@ -981,13 +1368,6 @@
       "/chess-image-to-board/"
     ]
   },
-  "cdb9cedf6e": {
-    "text": "Paste it on <a href=\"/\">fenshot.com</a> (Ctrl+V works anywhere on the page) or drop the file in.",
-    "kind": "text",
-    "pages": [
-      "/chess-image-to-board/"
-    ]
-  },
   "d1db3dac80": {
     "text": "The board appears: play moves on it, run the engine, or copy the FEN to any chess site.",
     "kind": "text",
@@ -1007,30 +1387,6 @@
     "kind": "text",
     "pages": [
       "/chess-image-to-board/"
-    ]
-  },
-  "0f211ed031": {
-    "text": "It stays on your machine",
-    "kind": "text",
-    "pages": [
-      "/chess-image-to-board/"
-    ]
-  },
-  "75dfc3210d": {
-    "text": "The recognition model runs in your browser via WebAssembly. The image is never uploaded, which is why it works offline once loaded and why there is no account, no quota and no cost.",
-    "kind": "text",
-    "pages": [
-      "/chess-image-to-board/"
-    ]
-  },
-  "79f7efe7d9": {
-    "text": "<a href=\"/chess-book-diagram-to-fen/\">Chess book diagram to FEN</a>: diagrams from books and PDFs",
-    "kind": "text",
-    "pages": [
-      "/chess-image-to-board/",
-      "/chess-screenshot-to-fen/",
-      "/chesscom-screenshot-to-lichess/",
-      "/photo-of-chess-board-to-fen/"
     ]
   },
   "bf4dd843df": {
