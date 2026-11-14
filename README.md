@@ -99,7 +99,7 @@ The site is served in 16 languages (`apps/web/i18n/locales.json`), each under `/
 - Board detection algorithm: [Elucidation/tensorflow_chessbot](https://github.com/Elucidation/tensorflow_chessbot) (MIT).
 - Piece sets and board themes used as training input: lichess ([lila](https://github.com/lichess-org/lila), free licenses). The corpus also includes other sites' themes so the recognizer reads their screenshots too; those assets are training input only and are never redistributed, only trained weights ship.
 - Board rendering in the demo: [cm-chessboard](https://github.com/shaack/cm-chessboard) (MIT).
-- Piece images in the browser extension: the Kibitzo chess pieces, our own ([kibitzo.com](https://kibitzo.com?ref=fenshot-gh), © 2026 Danubian Research AG, CC BY 4.0: [notice](apps/extension/src/pieces-svg/NOTICE.md)).
+- Piece images on fenshot.com and in the browser extension: the Kibitzo chess pieces, our own ([kibitzo.com](https://kibitzo.com?ref=fenshot-gh), © 2026 Danubian Research AG, CC BY 4.0: [notice](apps/extension/src/pieces-svg/NOTICE.md)).
 - Built and maintained by [kibitzo.com](https://kibitzo.com?ref=fenshot-gh), fenshot is the open-sourced position-import engine that runs there in production.
 
 ## License

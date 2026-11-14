@@ -18,7 +18,9 @@ export function Board({ placement, flipped }: { placement: string; flipped: bool
       assetsUrl: ASSETS,
       position: placement,
       orientation: flipped ? COLOR.black : COLOR.white,
-      style: { pieces: { file: "pieces/staunty.svg" }, animationDuration: 200 },
+      // The Kibitzo piece set, our own (CC BY 4.0), drawn on a 50 by 50 tile;
+      // scripts/update-pieces.mjs of the extension writes the sprite.
+      style: { pieces: { file: "pieces/kibitzo.svg", tileSize: 50 }, animationDuration: 200 },
     });
     boardRef.current = board;
     return () => {
