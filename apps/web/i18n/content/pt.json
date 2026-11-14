@@ -1,4 +1,5 @@
 {
+  "2998580709": "\"Certo\" significa que as 64 casas batem. Um aviso significa que o fenshot avisou o usuário de que a leitura podia estar errada e ofereceu o editor para corrigir. A coluna vermelha, errado sem aviso, é a que mais importa.",
   "d17421b81d": "Imagem de xadrez para FEN: print ou foto vira tabuleiro | fenshot",
   "50e3dfcaec": "fenshot: print de xadrez para FEN, grátis e de código aberto",
   "65c835a7d6": "Cole qualquer print de xadrez ou diagrama de livro e ele vira um tabuleiro para analisar. Roda no seu navegador, grátis e de código aberto, a um clique do Lichess.",
@@ -160,7 +161,6 @@
   "4e24c27dd4": "O fenshot lê a posição de uma captura de tela, um diagrama ou uma foto de xadrez e te entrega um tabuleiro vivo, pronto para analisar. Cole um print do chess.com ou do Lichess, uma foto de um diagrama de livro ou uma posição que alguém postou no Reddit ou te mandou no chat. Um clique depois você tem o FEN e um tabuleiro onde dá para mover as peças de verdade, com uma engine Stockfish grátis.",
   "eb69b933f5": "O fenshot é feito pela equipe do <a href=\"https://kibitzo.com/\">Kibitzo</a>. Se você o conhece como FenShot by Kibitzo pelo <a href=\"https://kibitzo.com/extension\">kibitzo.com/extension</a>, é esta mesma extensão, com as mesmas páginas nas lojas, não uma segunda.",
   "0136092f1c": "A extensão não tem conta, nem análises, nem rastreamento, e não faz requisições de rede próprias. O site fenshot.com conta visitas anônimas, sem cookies.",
-  "2998580709": "\"Certo\" significa que as 64 casas batem. Um aviso significa que o fenshot avisou o usuário de que a leitura podia estar errada e ofereceu o editor para corrigir. A coluna vermelha, errado sem aviso, é a que mais importa.",
   "17568f5468": "<a href=\"/accuracy/\" style=\"color:#fbbf24\">Qual é a precisão do fenshot</a>: um benchmark aberto com imagens reais do chess.com, Lichess e Reddit",
   "87a978873d": "Qual é a precisão do fenshot? Benchmark aberto e reproduzível",
   "92c0da8ca4": "Com que frequência o fenshot lê um print de xadrez certo, medido em imagens reais do chess.com, Lichess e Reddit. Método, falhas e código, tudo público.",
@@ -237,7 +237,6 @@
   "22421ee3b7": "De quem é a vez?",
   "c28cf7fb06": "Uma imagem não diz de quem é a vez, e o melhor lance para as Brancas não é o melhor lance para as Pretas. Por isso o fenshot pede a vez de jogar antes de você analisar. Mas ele percebe quando um print foi tirado do lado das Pretas e vira a posição para o lado certo.",
   "84af1934a5": "Uma engine precisa da posição exata",
-  "c10da6d464": "Uma peça na casa errada e o melhor lance já é outro. Por isso o fenshot mostra, antes de tudo, o tabuleiro que ele leu, avisa quando não tem certeza sobre uma casa e manda você para o editor do Lichess para corrigir quando a posição não pode estar certa.",
   "e5f5d4c010": "Quais imagens funcionam?",
   "fa0646cbf8": "Prints do chess.com e do Lichess em qualquer tema, frames de vídeos do YouTube e de lives, diagramas de livros e PDFs, problemas postados no Reddit ou enviados no chat. Tabuleiros desenhados planos, vistos de cima, funcionam melhor.",
   "f073736282": "Para estudar, não para uma partida em andamento",
@@ -263,8 +262,9 @@
   "0fad03d17d": "Copie a imagem ou tire um print.",
   "98392ad2ba": "Confira o tabuleiro, defina a vez de jogar e analise ou copie a posição.",
   "00185470e5": "Quando a leitura não é segura",
-  "6c958d917f": "Um scanner que erra em silêncio é pior do que não ter scanner. O fenshot avisa quando uma leitura é duvidosa e, quando uma posição não pode ser legal, manda você para o editor do Lichess para corrigir. A frequência com que ele acerta, medida em imagens reais e com os pontos fracos apontados, está na <a href=\"/accuracy/\">página de precisão</a>.",
   "ca231e10f7": "Escaneie a página em que você está",
   "68e26dcd7f": "Se você escaneia posições com frequência, a <a href=\"/extension/\">extensão fenshot para navegador</a> lê o tabuleiro direto da página com um clique, sem print: vídeos, artigos, estudos e partidas inteiras quando a página mostra os lances.",
-  "107d8b5e3a": "<a href=\"/best-move-from-chess-screenshot/\">Melhor lance a partir de um print de xadrez</a>: escaneie a posição e depois pergunte à engine"
+  "107d8b5e3a": "<a href=\"/best-move-from-chess-screenshot/\">Melhor lance a partir de um print de xadrez</a>: escaneie a posição e depois pergunte à engine",
+  "572804c6f2": "Uma peça na casa errada e o melhor lance já é outro. Por isso o fenshot mostra, antes de tudo, o tabuleiro que ele leu, avisa quando não tem certeza sobre uma casa e deixa você corrigir na hora: mova uma peça, tire uma, adicione uma.",
+  "515408b57b": "Um scanner que erra em silêncio é pior do que não ter scanner. O fenshot avisa quando uma leitura é duvidosa, e o tabuleiro que ele mostra é um editor: mova uma peça, tire uma ou adicione uma, bem ao lado da sua imagem. A frequência com que ele acerta, medida em imagens reais e com os pontos fracos apontados, está na <a href=\"/accuracy/\">página de precisão</a>."
 }

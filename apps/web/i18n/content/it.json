@@ -1,4 +1,5 @@
 {
+  "2998580709": "\"Corretto\" significa che tutte le 64 caselle corrispondono. Un avviso significa che fenshot ha segnalato all'utente che la lettura potrebbe essere sbagliata e gli ha proposto l'editor per correggerla. La colonna rossa, sbagliato senza avviso, è quella che conta di più.",
   "d17421b81d": "Immagine di scacchi in FEN: screenshot o foto in scacchiera | fenshot",
   "50e3dfcaec": "fenshot: screenshot di scacchi in FEN, gratis e open source",
   "65c835a7d6": "Incolla uno screenshot di scacchi o un diagramma del libro e diventa una scacchiera da analizzare. Nel browser, gratis, open source, un clic per Lichess.",
@@ -160,7 +161,6 @@
   "4e24c27dd4": "fenshot legge la posizione da uno screenshot, un diagramma o una foto di scacchi e ti dà una scacchiera viva da analizzare. Incolla uno screenshot da chess.com o Lichess, la foto di un diagramma di un libro di scacchi, o una posizione che qualcuno ha pubblicato su Reddit o ti ha mandato in chat. Un clic dopo hai la stringa FEN e una scacchiera su cui muovere davvero i pezzi, con il motore Stockfish gratuito.",
   "eb69b933f5": "fenshot è realizzato dal team di <a href=\"https://kibitzo.com/\">Kibitzo</a>. Se lo conosci come FenShot by Kibitzo da <a href=\"https://kibitzo.com/extension\">kibitzo.com/extension</a>, è questa stessa estensione, con le stesse schede negli store, non una seconda.",
   "0136092f1c": "L'estensione non ha account, statistiche o tracciamento, e non fa richieste di rete proprie. Il sito fenshot.com conta le visite in forma anonima, senza cookie.",
-  "2998580709": "\"Corretto\" significa che tutte le 64 caselle corrispondono. Un avviso significa che fenshot ha segnalato all'utente che la lettura potrebbe essere sbagliata e gli ha proposto l'editor per correggerla. La colonna rossa, sbagliato senza avviso, è quella che conta di più.",
   "17568f5468": "<a href=\"/accuracy/\" style=\"color:#fbbf24\">Quanto è preciso fenshot</a>: un benchmark aperto su immagini reali di chess.com, Lichess e Reddit",
   "87a978873d": "Quanto è preciso fenshot? Benchmark aperto e riproducibile",
   "92c0da8ca4": "Quanto spesso fenshot legge uno screenshot di scacchi in modo esatto, su immagini reali di chess.com, Lichess e Reddit. Metodo, errori e codice pubblici.",
@@ -237,7 +237,6 @@
   "22421ee3b7": "A chi tocca muovere?",
   "c28cf7fb06": "Un'immagine non dice a chi tocca muovere, e la mossa migliore per il Bianco non è la mossa migliore per il Nero. Per questo fenshot chiede il tratto prima dell'analisi. Si accorge però quando uno screenshot è stato fatto dal lato del Nero e gira la posizione nel verso giusto.",
   "84af1934a5": "Un motore ha bisogno della posizione esatta",
-  "c10da6d464": "Basta un pezzo sulla casella sbagliata e la mossa migliore è un'altra. Per questo fenshot ti mostra prima di tutto la scacchiera che ha letto, ti avvisa quando non è sicuro di una casella e ti manda all'editor di Lichess per correggerla quando la posizione non può essere giusta.",
   "e5f5d4c010": "Quali immagini funzionano?",
   "fa0646cbf8": "Screenshot di chess.com e Lichess con qualsiasi tema, fotogrammi di video di YouTube e di stream, diagrammi di libri e PDF, problemi pubblicati su Reddit o mandati in chat. Le scacchiere disegnate in piano, viste dall'alto, funzionano meglio.",
   "f073736282": "Per lo studio, non per una partita in corso",
@@ -263,8 +262,9 @@
   "0fad03d17d": "Copia l'immagine o fai uno screenshot.",
   "98392ad2ba": "Controlla la scacchiera, imposta il tratto e analizza o copia la posizione.",
   "00185470e5": "Quando la scansione non è sicura",
-  "6c958d917f": "Uno scanner che sbaglia in silenzio è peggio di nessuno scanner. fenshot ti dice quando una lettura è dubbia, e quando una posizione non può essere legale ti manda all'editor di Lichess per correggerla. Quanto spesso legge giusto, misurato su immagini reali e con i punti deboli indicati per nome, lo trovi nella <a href=\"/accuracy/\">pagina sulla precisione</a>.",
   "ca231e10f7": "Scansiona la pagina in cui ti trovi",
   "68e26dcd7f": "Se scansioni posizioni spesso, l'<a href=\"/extension/\">estensione fenshot per il browser</a> legge la scacchiera direttamente dalla pagina con un clic, senza screenshot: video, articoli, studi e partite intere quando la pagina mostra le mosse.",
-  "107d8b5e3a": "<a href=\"/best-move-from-chess-screenshot/\">Mossa migliore da uno screenshot di scacchi</a>: scansiona la posizione, poi chiedi al motore"
+  "107d8b5e3a": "<a href=\"/best-move-from-chess-screenshot/\">Mossa migliore da uno screenshot di scacchi</a>: scansiona la posizione, poi chiedi al motore",
+  "572804c6f2": "Basta un pezzo sulla casella sbagliata e la mossa migliore è un'altra. Per questo fenshot ti mostra prima di tutto la scacchiera che ha letto, ti avvisa quando non è sicuro di una casella e ti lascia correggerla subito: sposta un pezzo, togline uno, aggiungine uno.",
+  "515408b57b": "Uno scanner che sbaglia in silenzio è peggio di nessuno scanner. fenshot ti dice quando una lettura è dubbia, e la scacchiera che mostra è un editor: sposta un pezzo, togline uno o aggiungine uno, proprio accanto alla tua immagine. Quanto spesso legge giusto, misurato su immagini reali e con i punti deboli indicati per nome, lo trovi nella <a href=\"/accuracy/\">pagina sulla precisione</a>."
 }

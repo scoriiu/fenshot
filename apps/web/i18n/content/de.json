@@ -1,4 +1,5 @@
 {
+  "2998580709": "„Richtig“ heißt: Alle 64 Felder stimmen. Eine Warnung heißt: fenshot hat angezeigt, dass die Erkennung falsch sein könnte, und den Editor zum Korrigieren angeboten. Die rote Spalte, falsch ohne Warnung, ist die wichtigste.",
   "d17421b81d": "Schachbild in FEN: Screenshot oder Foto zum Brett | fenshot",
   "50e3dfcaec": "fenshot: Schach-Screenshot in FEN, kostenlos und Open Source",
   "65c835a7d6": "Füge einen Schach-Screenshot oder ein Buchdiagramm ein und es wird zum analysierbaren Brett. Läuft komplett im Browser, kostenlos und Open Source, mit einem Klick auf Lichess.",
@@ -160,7 +161,6 @@
   "4e24c27dd4": "fenshot liest die Stellung aus einem Schach-Screenshot, Diagramm oder Foto und gibt dir ein analysierbares Brett. Füge einen Screenshot von chess.com oder Lichess ein, ein Foto eines Diagramms aus einem Schachbuch oder eine Stellung, die jemand auf Reddit gepostet oder dir im Chat geschickt hat. Einen Klick später hast du den FEN-String und ein Brett, auf dem du die Figuren wirklich ziehen kannst, samt kostenloser Stockfish-Engine.",
   "eb69b933f5": "fenshot kommt vom Team hinter <a href=\"https://kibitzo.com/\">Kibitzo</a>. Wenn du es als FenShot by Kibitzo von <a href=\"https://kibitzo.com/extension\">kibitzo.com/extension</a> kennst: Es ist dieselbe Erweiterung, mit denselben Store-Einträgen, keine zweite.",
   "0136092f1c": "Die Erweiterung hat kein Konto, keine Analyse und kein Tracking und stellt keine eigenen Netzwerkanfragen. Die Website fenshot.com zählt anonyme Seitenaufrufe, ohne Cookies.",
-  "2998580709": "„Richtig“ heißt: Alle 64 Felder stimmen. Eine Warnung heißt: fenshot hat angezeigt, dass die Erkennung falsch sein könnte, und den Editor zum Korrigieren angeboten. Die rote Spalte, falsch ohne Warnung, ist die wichtigste.",
   "17568f5468": "<a href=\"/accuracy/\" style=\"color:#fbbf24\">Wie genau ist fenshot</a>: ein offener Benchmark mit echten Bildern von chess.com, Lichess und Reddit",
   "87a978873d": "Wie genau ist fenshot? Ein offener Schachbild-Benchmark",
   "92c0da8ca4": "Wie oft fenshot einen Schach-Screenshot exakt richtig liest, gemessen an echten Bildern von chess.com, Lichess und Reddit. Methode, Fehler und Code öffentlich.",
@@ -237,7 +237,6 @@
   "22421ee3b7": "Wer ist am Zug?",
   "c28cf7fb06": "Ein Bild verrät nicht, wer am Zug ist, und der beste Zug für Weiß ist nicht der beste Zug für Schwarz. Deshalb fragt fenshot vor der Analyse unter „Am Zug“, wer dran ist. Es erkennt aber, wenn ein Screenshot aus der Sicht von Schwarz aufgenommen wurde, und dreht die Stellung richtig herum.",
   "84af1934a5": "Eine Engine braucht die exakte Stellung",
-  "c10da6d464": "Eine Figur auf dem falschen Feld, und der beste Zug ist ein anderer. Deshalb zeigt dir fenshot zuerst das Brett, das es gelesen hat, warnt dich, wenn es sich bei einem Feld nicht sicher ist, und schickt dich zum Korrigieren in den Lichess-Editor, wenn die Stellung nicht stimmen kann.",
   "e5f5d4c010": "Welche Bilder funktionieren?",
   "fa0646cbf8": "Screenshots von chess.com und Lichess in jedem Design, Standbilder aus YouTube-Videos und Streams, Diagramme aus Büchern und PDFs, Aufgaben, die auf Reddit gepostet oder im Chat geschickt wurden. Am besten klappt es mit flach dargestellten Brettern in Draufsicht.",
   "f073736282": "Zum Lernen, nicht für eine laufende Partie",
@@ -263,8 +262,9 @@
   "0fad03d17d": "Kopiere das Bild oder mach einen Screenshot.",
   "98392ad2ba": "Prüf das Brett, stell bei „Am Zug“ die richtige Seite ein und analysiere oder kopiere die Stellung.",
   "00185470e5": "Wenn der Scan unsicher ist",
-  "6c958d917f": "Ein Scanner, der stillschweigend falsch liegt, ist schlimmer als gar kein Scanner. fenshot sagt dir, wenn eine Erkennung unsicher ist, und wenn eine Stellung nicht legal sein kann, schickt es dich zum Korrigieren in den Lichess-Editor. Wie oft es richtig liegt, gemessen an echten Bildern und mit klar benannten Schwachstellen, steht auf der <a href=\"/accuracy/\">Seite zur Genauigkeit</a>.",
   "ca231e10f7": "Scanne die Seite, auf der du gerade bist",
   "68e26dcd7f": "Wenn du oft Stellungen scannst, liest die <a href=\"/extension/\">fenshot Browser-Erweiterung</a> das Brett mit einem Klick direkt von der Seite, ganz ohne Screenshot: Videos, Artikel, Studien und ganze Partien, wenn die Seite die Züge zeigt.",
-  "107d8b5e3a": "<a href=\"/best-move-from-chess-screenshot/\">Bester Zug aus einem Schach-Screenshot</a>: Stellung scannen, dann die Engine fragen"
+  "107d8b5e3a": "<a href=\"/best-move-from-chess-screenshot/\">Bester Zug aus einem Schach-Screenshot</a>: Stellung scannen, dann die Engine fragen",
+  "572804c6f2": "Eine Figur auf dem falschen Feld, und der beste Zug ist ein anderer. Deshalb zeigt dir fenshot zuerst das Brett, das es gelesen hat, warnt dich, wenn es sich bei einem Feld nicht sicher ist, und lässt dich den Fehler gleich an Ort und Stelle beheben: eine Figur verschieben, eine wegnehmen, eine hinzufügen.",
+  "515408b57b": "Ein Scanner, der stillschweigend falsch liegt, ist schlimmer als gar kein Scanner. fenshot sagt dir, wenn eine Erkennung unsicher ist, und das Brett, das es anzeigt, ist ein Editor: eine Figur verschieben, eine wegnehmen oder eine hinzufügen, direkt neben deinem Bild. Wie oft es richtig liegt, gemessen an echten Bildern und mit klar benannten Schwachstellen, steht auf der <a href=\"/accuracy/\">Seite zur Genauigkeit</a>."
 }

@@ -869,8 +869,8 @@
       "/best-move-from-chess-screenshot/"
     ]
   },
-  "c10da6d464": {
-    "text": "One piece on the wrong square and the best move is a different move. So fenshot shows you the board it read before anything else, warns you when it is not sure about a square, and sends you to the Lichess editor to fix it when the position cannot be right.",
+  "572804c6f2": {
+    "text": "One piece on the wrong square and the best move is a different move. So fenshot shows you the board it read before anything else, warns you when it is not sure about a square, and lets you put it right on the spot: move a piece, take one off, add one.",
     "kind": "text",
     "pages": [
       "/best-move-from-chess-screenshot/"
@@ -1160,8 +1160,8 @@
       "/chess-board-scanner/"
     ]
   },
-  "6c958d917f": {
-    "text": "A scanner that is silently wrong is worse than no scanner. fenshot tells you when a read is doubtful, and when a position cannot be legal it sends you to the Lichess editor to fix it. How often it is right, measured on real images with the weak spots named, is on the <a href=\"/accuracy/\">accuracy page</a>.",
+  "515408b57b": {
+    "text": "A scanner that is silently wrong is worse than no scanner. fenshot tells you when a read is doubtful, and the board it shows is an editor: move a piece, take one off or add one, right beside your picture. How often it is right, measured on real images with the weak spots named, is on the <a href=\"/accuracy/\">accuracy page</a>.",
     "kind": "text",
     "pages": [
       "/chess-board-scanner/"

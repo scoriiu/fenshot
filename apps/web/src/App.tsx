@@ -3,11 +3,11 @@ import { Chess } from "chess.js";
 import {
   createRecognizer,
   flipPlacement,
+  inferCastling,
   resolveOrientation,
-  placementToFen,
   type BoardScanResult,
 } from "@scoriiu/fenshot";
-import { Board } from "./Board";
+import { BLACK, Board, SpareRow, WHITE, type BoardHandle, type Tool } from "./Board";
 import { useT } from "./i18n";
 import { LanguagePicker } from "./LanguagePicker";
 // src/ort/ is synced from onnxruntime-web by scripts/sync-ort.mjs
@@ -63,13 +63,31 @@ type Phase =
       placement: string;
       flipped: boolean;
       turn: "w" | "b";
+      /** Castling rights the user switched off (letters of "KQkq"). The rest follow from where the kings and rooks stand. */
+      noCastling: string;
       imageUrl: string;
     };
+
+const START = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR";
+const EMPTY = "8/8/8/8/8/8/8/8";
+const CASTLING = [
+  ["K", "\u2654 O-O"],
+  ["Q", "\u2654 O-O-O"],
+  ["k", "\u265A O-O"],
+  ["q", "\u265A O-O-O"],
+] as const;
+
+/** One anonymous count of something a visitor did (Umami, no cookie). Never the position or the image. */
+function count(event: string, data?: Record<string, string | number | boolean>): void {
+  (window as unknown as { umami?: { track(name: string, data?: object): void } }).umami?.track(event, data);
+}
 
 export default function App({ lang }: { lang: string }) {
   const t = useT();
   const [phase, setPhase] = useState<Phase>({ kind: "idle" });
   const [copied, setCopied] = useState(false);
+  const [tool, setTool] = useState<Tool>("move");
+  const boardRef = useRef<BoardHandle>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [dragging, setDragging] = useState(false);
   const browser = useMemo(detectBrowser, []);
@@ -107,14 +125,17 @@ export default function App({ lang }: { lang: string }) {
           return;
         }
         const oriented = resolveOrientation(result.placement);
+        setTool("move");
         setPhase({
           kind: "result",
           scan: result,
           placement: oriented.placement,
           flipped: oriented.orientation === "black",
           turn: "w",
+          noCastling: "",
           imageUrl: URL.createObjectURL(blob),
         });
+        count("scan", { reliable: result.reliable });
       } catch (err) {
         console.error(err);
         setPhase({ kind: "noboard" });
@@ -152,7 +173,10 @@ export default function App({ lang }: { lang: string }) {
   );
 
   const result = phase.kind === "result" ? phase : null;
-  const fen = result ? placementToFen(result.placement, result.turn) : null;
+  /** The rights the position allows (king and rook at home), less those the user switched off. */
+  const possible = result ? inferCastling(result.placement).replace("-", "") : "";
+  const castling = [...possible].filter((c) => !result?.noCastling.includes(c)).join("") || "-";
+  const fen = result ? `${result.placement} ${result.turn} ${castling} - 0 1` : null;
   const legality = useMemo(() => {
     if (!fen) return null;
     try {
@@ -172,8 +196,27 @@ export default function App({ lang }: { lang: string }) {
     setPhase({ ...result, placement: flipPlacement(result.placement), flipped: black });
   };
 
+  /** The user changed the board: with the hand, the eraser, a piece, or one of the buttons. */
+  const edited = useRef(false);
+  const edit = (placement: string) => {
+    if (!result || placement === result.placement) return;
+    if (!edited.current) count("edit");
+    edited.current = true;
+    setPhase({ ...result, placement });
+  };
+  useEffect(() => {
+    if (!result) edited.current = false;
+  }, [result]);
+  const toggleCastling = (right: string) => {
+    if (!result) return;
+    setPhase({ ...result, noCastling: result.noCastling.includes(right) ? result.noCastling.replace(right, "") : result.noCastling + right });
+  };
+  const spareLabels = (side: "white" | "black") => ({ move: t("moveTool"), erase: t("eraseTool"), side: t(side) });
+  const carry = (piece: Parameters<BoardHandle["carry"]>[0], e: PointerEvent) => boardRef.current?.carry(piece, e);
+
   const copyFen = async () => {
     if (!fen) return;
+    count("copy-fen");
     await navigator.clipboard.writeText(fen);
     setCopied(true);
     setTimeout(() => setCopied(false), 1500);
@@ -312,12 +355,15 @@ export default function App({ lang }: { lang: string }) {
                 <path d="m13 6 6 6-6 6" />
               </svg>
             </div>
-            <figure className="shot-card">
-              <div className="shot-frame">
+            <figure className="shot-card board-card">
+              {/* The side at the top of the board has its pieces above it, the other below, as on Lichess. */}
+              <SpareRow pieces={result.flipped ? WHITE : BLACK} tool={tool} labels={spareLabels(result.flipped ? "white" : "black")} onPick={setTool} onCarry={carry} />
+              <div className="shot-frame board-frame">
                 <div className="result-board">
-                  <Board placement={result.placement} flipped={result.flipped} />
+                  <Board ref={boardRef} placement={result.placement} flipped={result.flipped} tool={tool} onEdit={edit} />
                 </div>
               </div>
+              <SpareRow pieces={result.flipped ? BLACK : WHITE} tool={tool} labels={spareLabels(result.flipped ? "black" : "white")} onPick={setTool} onCarry={carry} />
               <figcaption>{t("whatFenshotRead", { pct: Math.round(result.scan.meanConfidence * 100) })}</figcaption>
             </figure>
           </div>
@@ -367,6 +413,24 @@ export default function App({ lang }: { lang: string }) {
                     </button>
                   </div>
                 </div>
+                <div className="control-group">
+                  <span className="control-label">{t("castling")}</span>
+                  <div className="toggle castling" dir="ltr">
+                    {CASTLING.map(([right, label]) => (
+                      <button key={right} className={castling.includes(right) ? "on" : ""} disabled={!possible.includes(right)} aria-pressed={castling.includes(right)} onClick={() => toggleCastling(right)}>
+                        {label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <div className="control-group">
+                  <button className="btn btn-quiet" onClick={() => edit(START)}>
+                    {t("startPosition")}
+                  </button>
+                  <button className="btn btn-quiet" onClick={() => edit(EMPTY)}>
+                    {t("clearBoard")}
+                  </button>
+                </div>
               </div>
 
               <div className="actions">
@@ -377,14 +441,12 @@ export default function App({ lang }: { lang: string }) {
                   </svg>
                   {t("scanAnother")}
                 </button>
-                <a className="btn" href={`https://lichess.org/analysis/standard/${lichessFen}`} target="_blank" rel="noreferrer">
+                <a className="btn" href={`https://lichess.org/analysis/standard/${lichessFen}`} target="_blank" rel="noreferrer" data-umami-event="analyze-lichess">
                   {t("analyzeLichess")}
-                </a>
-                <a className="btn" href={`https://lichess.org/editor/${lichessFen}`} target="_blank" rel="noreferrer">
-                  {t("lichessEditor")}
                 </a>
                 <a
                   className="btn btn-primary"
+                  data-umami-event="analyze-kibitzo"
                   href={`https://kibitzo.com/coach/position?fen=${encodeURIComponent(fen ?? "")}${result?.flipped ? "&pov=black" : ""}&ref=fenshot-web`}
                   target="_blank"
                   rel="noreferrer"

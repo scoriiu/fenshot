@@ -1,4 +1,5 @@
 {
+  "2998580709": "\"Correcto\" significa que coinciden las 64 casillas. Un aviso significa que fenshot avisó al usuario de que la lectura podía estar mal y le ofreció el editor para corregirla. La columna roja, incorrecto sin aviso, es la que más importa.",
   "d17421b81d": "Imagen de ajedrez a FEN: captura o foto a tablero | fenshot",
   "50e3dfcaec": "fenshot: captura de pantalla de ajedrez a FEN, gratis y de código abierto",
   "65c835a7d6": "Pega cualquier captura de ajedrez o diagrama de libro y se convierte en un tablero para analizar. Funciona en tu navegador, gratis y de código abierto, a un clic de Lichess.",
@@ -160,7 +161,6 @@
   "4e24c27dd4": "fenshot lee la posición de una captura, un diagrama o una foto de ajedrez y te da un tablero vivo para analizar. Pega una captura de chess.com o Lichess, la foto de un diagrama de un libro de ajedrez o una posición que alguien publicó en Reddit o te envió por chat. Un clic después tienes la cadena FEN y un tablero en el que puedes mover las piezas de verdad, con el motor Stockfish gratis.",
   "eb69b933f5": "fenshot está hecho por el equipo de <a href=\"https://kibitzo.com/\">Kibitzo</a>. Si lo conoces como FenShot by Kibitzo por <a href=\"https://kibitzo.com/extension\">kibitzo.com/extension</a>, es esta misma extensión, con las mismas fichas en las tiendas, no una segunda.",
   "0136092f1c": "La extensión no tiene cuenta, ni analíticas, ni rastreo, y no hace peticiones de red propias. El sitio fenshot.com cuenta visitas anónimas, sin cookies.",
-  "2998580709": "\"Correcto\" significa que coinciden las 64 casillas. Un aviso significa que fenshot avisó al usuario de que la lectura podía estar mal y le ofreció el editor para corregirla. La columna roja, incorrecto sin aviso, es la que más importa.",
   "17568f5468": "<a href=\"/accuracy/\" style=\"color:#fbbf24\">Qué precisión tiene fenshot</a>: un benchmark abierto con imágenes reales de chess.com, Lichess y Reddit",
   "87a978873d": "¿Qué precisión tiene fenshot? Benchmark abierto y reproducible",
   "92c0da8ca4": "Con qué frecuencia fenshot lee bien una captura de ajedrez, medido con imágenes reales de chess.com, Lichess y Reddit. Método, fallos y código, todo público.",
@@ -237,7 +237,6 @@
   "22421ee3b7": "¿Quién juega?",
   "c28cf7fb06": "Una imagen no dice a quién le toca, y la mejor jugada para las blancas no es la mejor jugada para las negras. Por eso fenshot te pide indicar en \"Juegan\" a quién le toca antes de analizar. Lo que sí detecta es cuándo una captura se hizo desde el lado de las negras, y entonces pone la posición en el sentido correcto.",
   "84af1934a5": "Un motor necesita la posición exacta",
-  "c10da6d464": "Una sola pieza en la casilla equivocada y la mejor jugada ya es otra. Por eso fenshot te muestra antes de nada el tablero que ha leído, te avisa cuando no está seguro de una casilla y, cuando la posición no puede ser correcta, te lleva al editor de Lichess para corregirla.",
   "e5f5d4c010": "¿Qué imágenes funcionan?",
   "fa0646cbf8": "Capturas de chess.com y Lichess con cualquier tema, fotogramas de vídeos de YouTube y directos, diagramas de libros y PDF, problemas publicados en Reddit o enviados por chat. Los tableros dibujados en plano, vistos desde arriba, son los que mejor funcionan.",
   "f073736282": "Para estudiar, no para una partida en curso",
@@ -263,8 +262,9 @@
   "0fad03d17d": "Copia la imagen o haz una captura.",
   "98392ad2ba": "Revisa el tablero, indica en \"Juegan\" a quién le toca y analiza o copia la posición.",
   "00185470e5": "Cuando el escaneo no es seguro",
-  "6c958d917f": "Un escáner que se equivoca sin avisar es peor que no tener escáner. fenshot te dice cuándo una lectura es dudosa, y cuando una posición no puede ser legal te lleva al editor de Lichess para corregirla. Con qué frecuencia acierta, medido con imágenes reales y con los puntos débiles señalados, está en la <a href=\"/accuracy/\">página de precisión</a>.",
   "ca231e10f7": "Escanea la página en la que estás",
   "68e26dcd7f": "Si escaneas posiciones a menudo, la <a href=\"/extension/\">extensión de fenshot para el navegador</a> lee el tablero directamente de la página con un clic, sin captura: vídeos, artículos, estudios y partidas completas cuando la página muestra las jugadas.",
-  "107d8b5e3a": "<a href=\"/best-move-from-chess-screenshot/\">Mejor jugada a partir de una captura de ajedrez</a>: escanea la posición y luego pregunta al motor"
+  "107d8b5e3a": "<a href=\"/best-move-from-chess-screenshot/\">Mejor jugada a partir de una captura de ajedrez</a>: escanea la posición y luego pregunta al motor",
+  "572804c6f2": "Una sola pieza en la casilla equivocada y la mejor jugada ya es otra. Por eso fenshot te muestra antes de nada el tablero que ha leído, te avisa cuando no está seguro de una casilla y te deja corregirlo ahí mismo: mueve una pieza, quita una, añade una.",
+  "515408b57b": "Un escáner que se equivoca sin avisar es peor que no tener escáner. fenshot te dice cuándo una lectura es dudosa, y el tablero que muestra es un editor: mueve una pieza, quita una o añade una, justo al lado de tu imagen. Con qué frecuencia acierta, medido con imágenes reales y con los puntos débiles señalados, está en la <a href=\"/accuracy/\">página de precisión</a>."
 }

@@ -1,4 +1,5 @@
 {
+  "2998580709": "“Đúng” nghĩa là cả 64 ô đều khớp. Có cảnh báo nghĩa là fenshot đã báo cho người dùng rằng kết quả có thể sai và mở trình chỉnh sửa để sửa. Cột màu đỏ, sai mà không có cảnh báo, là cột quan trọng nhất.",
   "d17421b81d": "Chuyển ảnh cờ vua sang FEN: từ ảnh chụp thành bàn cờ | fenshot",
   "50e3dfcaec": "fenshot: ảnh chụp màn hình cờ vua sang FEN, miễn phí, mã nguồn mở",
   "65c835a7d6": "Dán ảnh chụp màn hình cờ vua hoặc sơ đồ trong sách, bạn có ngay bàn cờ để phân tích. Chạy hoàn toàn trong trình duyệt, miễn phí, mã nguồn mở, một cú nhấp sang Lichess.",
@@ -160,7 +161,6 @@
   "4e24c27dd4": "fenshot đọc thế cờ từ ảnh chụp màn hình, sơ đồ hoặc ảnh chụp cờ vua và trả về một bàn cờ sống để phân tích. Dán ảnh chụp màn hình từ chess.com hay Lichess, ảnh chụp sơ đồ trong sách cờ, hoặc một thế cờ ai đó đăng trên Reddit hay gửi cho bạn qua tin nhắn. Chỉ một cú nhấp, bạn có chuỗi FEN và một bàn cờ thật sự đi quân được, kèm engine Stockfish miễn phí.",
   "eb69b933f5": "fenshot do đội ngũ đứng sau <a href=\"https://kibitzo.com/\">Kibitzo</a> làm ra. Nếu bạn biết nó với tên FenShot by Kibitzo trên <a href=\"https://kibitzo.com/extension\">kibitzo.com/extension</a>, thì đó chính là tiện ích này, cùng các trang trên cửa hàng, không phải một tiện ích khác.",
   "0136092f1c": "Tiện ích không có tài khoản, không thống kê, không theo dõi và không tự gửi yêu cầu mạng nào. Trang fenshot.com đếm lượt xem trang ẩn danh, không dùng cookie.",
-  "2998580709": "“Đúng” nghĩa là cả 64 ô đều khớp. Có cảnh báo nghĩa là fenshot đã báo cho người dùng rằng kết quả có thể sai và mở trình chỉnh sửa để sửa. Cột màu đỏ, sai mà không có cảnh báo, là cột quan trọng nhất.",
   "17568f5468": "<a href=\"/accuracy/\" style=\"color:#fbbf24\">fenshot chính xác đến đâu</a>: bộ đánh giá mở trên ảnh thật từ chess.com, Lichess và Reddit",
   "87a978873d": "fenshot chính xác đến đâu? Bộ đánh giá ảnh cờ vua mở, tái lập được",
   "92c0da8ca4": "fenshot đọc đúng hoàn toàn ảnh chụp màn hình cờ vua thường xuyên đến đâu, đo trên ảnh thật từ chess.com, Lichess và Reddit. Phương pháp, lỗi và mã đều công khai.",
@@ -237,7 +237,6 @@
   "22421ee3b7": "Đến lượt bên nào đi?",
   "c28cf7fb06": "Một bức ảnh không cho biết đến lượt bên nào đi, và nước đi tốt nhất của Trắng không phải là nước đi tốt nhất của Đen. Vì vậy fenshot hỏi bên đi trước khi bạn phân tích. Tuy vậy, nó nhận ra khi ảnh chụp màn hình được chụp từ phía quân Đen và xoay thế cờ lại cho đúng chiều.",
   "84af1934a5": "Engine cần thế cờ chính xác",
-  "c10da6d464": "Chỉ một quân nằm sai ô là nước đi tốt nhất đã thành một nước khác. Vì vậy fenshot cho bạn xem bàn cờ nó đọc được trước tiên, cảnh báo khi không chắc về một ô, và đưa bạn đến trình chỉnh sửa Lichess để sửa khi thế cờ không thể đúng.",
   "e5f5d4c010": "Những ảnh nào dùng được?",
   "fa0646cbf8": "Ảnh chụp màn hình chess.com và Lichess với mọi giao diện, khung hình từ video YouTube và stream, sơ đồ trong sách và PDF, bài tập đăng trên Reddit hoặc gửi qua tin nhắn. Bàn cờ vẽ phẳng, nhìn từ trên xuống, cho kết quả tốt nhất.",
   "f073736282": "Để học, không phải cho ván đang chơi",
@@ -263,8 +262,9 @@
   "0fad03d17d": "Sao chép ảnh hoặc chụp màn hình.",
   "98392ad2ba": "Kiểm tra bàn cờ, chọn bên đi, rồi phân tích hoặc sao chép thế cờ.",
   "00185470e5": "Khi bản quét không chắc chắn",
-  "6c958d917f": "Một trình quét âm thầm đọc sai còn tệ hơn không có trình quét. fenshot báo cho bạn khi kết quả đọc đáng ngờ, và khi thế cờ không thể hợp lệ, nó đưa bạn đến trình chỉnh sửa Lichess để sửa. Tần suất đọc đúng, đo trên ảnh thật và nêu rõ các điểm yếu, có ở <a href=\"/accuracy/\">trang độ chính xác</a>.",
   "ca231e10f7": "Quét ngay trang bạn đang xem",
   "68e26dcd7f": "Nếu bạn thường xuyên quét thế cờ, <a href=\"/extension/\">tiện ích trình duyệt fenshot</a> đọc bàn cờ trực tiếp trên trang chỉ với một cú nhấp, không cần chụp màn hình: video, bài viết, nghiên cứu, và cả ván đấu khi trang hiển thị các nước đi.",
-  "107d8b5e3a": "<a href=\"/best-move-from-chess-screenshot/\">Nước đi tốt nhất từ ảnh chụp màn hình cờ vua</a>: quét thế cờ, rồi hỏi engine"
+  "107d8b5e3a": "<a href=\"/best-move-from-chess-screenshot/\">Nước đi tốt nhất từ ảnh chụp màn hình cờ vua</a>: quét thế cờ, rồi hỏi engine",
+  "572804c6f2": "Chỉ một quân nằm sai ô là nước đi tốt nhất đã thành một nước khác. Vì vậy fenshot cho bạn xem bàn cờ nó đọc được trước tiên, cảnh báo khi không chắc về một ô, và để bạn sửa ngay tại chỗ: di chuyển một quân, bỏ bớt một quân, thêm một quân.",
+  "515408b57b": "Một trình quét âm thầm đọc sai còn tệ hơn không có trình quét. fenshot báo cho bạn khi kết quả đọc đáng ngờ, và bàn cờ nó hiển thị chính là một trình chỉnh sửa: di chuyển một quân, bỏ bớt một quân hoặc thêm một quân, ngay cạnh ảnh của bạn. Tần suất đọc đúng, đo trên ảnh thật và nêu rõ các điểm yếu, có ở <a href=\"/accuracy/\">trang độ chính xác</a>."
 }

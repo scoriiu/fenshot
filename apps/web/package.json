@@ -14,9 +14,9 @@
     "smoke": "node scripts/smoke.mjs"
   },
   "dependencies": {
+    "@kibitzo/lightsquare": "0.1.6",
     "@scoriiu/fenshot": "^0.1.0",
     "chess.js": "^1.0.0",
-    "cm-chessboard": "^8.12.7",
     "onnxruntime-web": "1.26.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

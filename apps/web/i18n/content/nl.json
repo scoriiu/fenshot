@@ -1,4 +1,5 @@
 {
+  "2998580709": "\"Goed\" betekent dat alle 64 velden kloppen. Een waarschuwing betekent dat fenshot de gebruiker liet weten dat de herkenning fout kan zijn en de editor aanbood om het te verbeteren. De rode kolom, fout zonder waarschuwing, is de belangrijkste.",
   "d17421b81d": "Schaakafbeelding naar FEN: screenshot of foto naar bord | fenshot",
   "50e3dfcaec": "fenshot: schaak screenshot naar FEN, gratis en open source",
   "65c835a7d6": "Plak een schaakscreenshot of boekdiagram en je hebt een analyseerbaar bord. Draait volledig in je browser, gratis en open source, met één klik naar Lichess.",
@@ -160,7 +161,6 @@
   "4e24c27dd4": "fenshot leest de stelling uit een schaakscreenshot, diagram of foto en geeft je een live bord om te analyseren. Plak een screenshot van chess.com of Lichess, een foto van een diagram uit een schaakboek, of een stelling die iemand op Reddit plaatste of je in een chat stuurde. Eén klik later heb je de FEN en een bord waarop je echt stukken kunt verzetten, met een gratis Stockfish-engine.",
   "eb69b933f5": "fenshot is gemaakt door het team achter <a href=\"https://kibitzo.com/\">Kibitzo</a>. Ken je het als FenShot by Kibitzo van <a href=\"https://kibitzo.com/extension\">kibitzo.com/extension</a>? Dan is het deze zelfde extensie, met dezelfde vermeldingen in de stores, geen tweede.",
   "0136092f1c": "De extensie heeft geen account, geen analytics en geen tracking, en doet zelf geen netwerkverzoeken. De website fenshot.com telt anonieme paginaweergaven, zonder cookies.",
-  "2998580709": "\"Goed\" betekent dat alle 64 velden kloppen. Een waarschuwing betekent dat fenshot de gebruiker liet weten dat de herkenning fout kan zijn en de editor aanbood om het te verbeteren. De rode kolom, fout zonder waarschuwing, is de belangrijkste.",
   "17568f5468": "<a href=\"/accuracy/\" style=\"color:#fbbf24\">Hoe nauwkeurig is fenshot</a>: een open benchmark op echte afbeeldingen van chess.com, Lichess en Reddit",
   "87a978873d": "Hoe nauwkeurig is fenshot? Een open benchmark voor schaakbeelden",
   "92c0da8ca4": "Hoe vaak fenshot een schaakscreenshot precies goed leest, gemeten op echte beelden van chess.com, Lichess en Reddit. Methode, fouten en code openbaar.",
@@ -237,7 +237,6 @@
   "22421ee3b7": "Wie is er aan zet?",
   "c28cf7fb06": "Een afbeelding zegt niet wie er aan zet is, en de beste zet voor wit is niet de beste zet voor zwart. Daarom vraagt fenshot wie aan zet is voordat je analyseert. Het merkt wel wanneer een screenshot vanaf de kant van zwart is genomen en draait de stelling dan goed.",
   "84af1934a5": "Een engine heeft de exacte stelling nodig",
-  "c10da6d464": "Eén stuk op het verkeerde veld en de beste zet is een andere zet. Daarom laat fenshot je eerst het bord zien dat het gelezen heeft, waarschuwt het als het over een veld twijfelt, en stuurt het je naar de Lichess-editor om de stelling te verbeteren als die niet kan kloppen.",
   "e5f5d4c010": "Welke afbeeldingen werken?",
   "fa0646cbf8": "Screenshots van chess.com en Lichess in elk thema, frames uit YouTube-video's en streams, diagrammen uit boeken en PDF's, puzzels die op Reddit staan of in een chat zijn gestuurd. Plat getekende borden, van bovenaf gezien, werken het best.",
   "f073736282": "Om te studeren, niet voor een partij die nog bezig is",
@@ -263,8 +262,9 @@
   "0fad03d17d": "Kopieer de afbeelding of maak een screenshot.",
   "98392ad2ba": "Controleer het bord, stel in wie aan zet is, en analyseer of kopieer de stelling.",
   "00185470e5": "Als de scan twijfelt",
-  "6c958d917f": "Een scanner die ongemerkt fout zit, is erger dan geen scanner. fenshot zegt het als een herkenning twijfelachtig is, en als een stelling niet legaal kan zijn, stuurt het je naar de Lichess-editor om haar te verbeteren. Hoe vaak het goed zit, gemeten op echte afbeeldingen en met de zwakke plekken bij naam genoemd, staat op de <a href=\"/accuracy/\">nauwkeurigheidspagina</a>.",
   "ca231e10f7": "Scan de pagina waar je op zit",
   "68e26dcd7f": "Scan je vaak stellingen, dan leest de <a href=\"/extension/\">fenshot-browserextensie</a> het bord met één klik rechtstreeks van de pagina, zonder screenshot: video's, artikelen, studies, en hele partijen als de pagina de zetten toont.",
-  "107d8b5e3a": "<a href=\"/best-move-from-chess-screenshot/\">Beste zet uit een schaakscreenshot</a>: scan de stelling en vraag het de engine"
+  "107d8b5e3a": "<a href=\"/best-move-from-chess-screenshot/\">Beste zet uit een schaakscreenshot</a>: scan de stelling en vraag het de engine",
+  "572804c6f2": "Eén stuk op het verkeerde veld en de beste zet is een andere zet. Daarom laat fenshot je eerst het bord zien dat het gelezen heeft, waarschuwt het als het over een veld twijfelt, en laat het je de fout ter plekke herstellen: verplaats een stuk, haal er een weg, zet er een bij.",
+  "515408b57b": "Een scanner die ongemerkt fout zit, is erger dan geen scanner. fenshot zegt het als een herkenning twijfelachtig is, en het bord dat het toont is een editor: verplaats een stuk, haal er een weg of zet er een bij, direct naast je afbeelding. Hoe vaak het goed zit, gemeten op echte afbeeldingen en met de zwakke plekken bij naam genoemd, staat op de <a href=\"/accuracy/\">nauwkeurigheidspagina</a>."
 }

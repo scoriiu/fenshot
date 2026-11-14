@@ -1,4 +1,5 @@
 {
+  "2998580709": "\"Doğru\", 64 karenin hepsinin eşleştiği anlamına gelir. Uyarı, fenshot'ın kullanıcıya okumanın yanlış olabileceğini söyleyip düzeltmesi için editörü önerdiği anlamına gelir. En önemli sütun kırmızı olanıdır: uyarısız yanlışlar.",
   "d17421b81d": "Satranç Görselini FEN'e Çevir: Fotoğraftan Oynanabilir Tahta",
   "50e3dfcaec": "fenshot: satranç ekran görüntüsünden FEN, ücretsiz ve açık kaynak",
   "65c835a7d6": "Satranç ekran görüntüsünü ya da kitap diyagramını yapıştırın, analiz edilebilir tahtaya dönüşsün. Tamamen tarayıcıda, ücretsiz, açık kaynak, tek tıkla Lichess.",
@@ -161,7 +162,6 @@
   "4e24c27dd4": "fenshot, bir satranç ekran görüntüsündeki, diyagramındaki veya fotoğrafındaki pozisyonu okur ve size canlı, analiz edilebilir bir tahta verir. chess.com ya da Lichess ekran görüntüsünü, bir satranç kitabı diyagramının fotoğrafını ya da Reddit'te paylaşılan veya sohbette gönderilen bir pozisyonu yapıştırın. Bir tık sonra elinizde FEN dizisi ve taşları gerçekten oynatabildiğiniz, ücretsiz Stockfish motorlu bir tahta olur.",
   "eb69b933f5": "fenshot, <a href=\"https://kibitzo.com/\">Kibitzo</a> ekibi tarafından yapıldı. Onu <a href=\"https://kibitzo.com/extension\">kibitzo.com/extension</a> sayfasından FenShot by Kibitzo olarak tanıyorsanız, aynı mağaza sayfalarına sahip bu aynı eklentidir, ikinci bir eklenti değildir.",
   "0136092f1c": "Eklentide hesap, analiz ve izleme yoktur; kendi başına hiçbir ağ isteği yapmaz. fenshot.com sitesi, çerez kullanmadan anonim sayfa görüntülemelerini sayar.",
-  "2998580709": "\"Doğru\", 64 karenin hepsinin eşleştiği anlamına gelir. Uyarı, fenshot'ın kullanıcıya okumanın yanlış olabileceğini söyleyip düzeltmesi için editörü önerdiği anlamına gelir. En önemli sütun kırmızı olanıdır: uyarısız yanlışlar.",
   "17568f5468": "<a href=\"/accuracy/\" style=\"color:#fbbf24\">fenshot ne kadar doğru</a>: gerçek chess.com, Lichess ve Reddit görselleriyle açık bir test",
   "87a978873d": "fenshot ne kadar doğru? Açık ve tekrarlanabilir bir görsel testi",
   "92c0da8ca4": "fenshot bir satranç ekran görüntüsünü ne sıklıkla tam doğru okuyor? Gerçek chess.com, Lichess ve Reddit görselleriyle ölçüldü. Yöntem, hatalar ve kod açık.",
@@ -237,7 +237,6 @@
   "22421ee3b7": "Hamle sırası kimde?",
   "c28cf7fb06": "Bir resim hamle sırasının kimde olduğunu söylemez ve beyaz için en iyi hamle, siyah için en iyi hamle değildir. Bu yüzden fenshot, analizden önce hamle sırasını sorar. Ekran görüntüsünün tahtanın siyah tarafından alındığını ise kendisi fark eder ve pozisyonu doğru yöne çevirir.",
   "84af1934a5": "Motora pozisyonun birebir aynısı gerekir",
-  "c10da6d464": "Tek bir taş yanlış karede olsun, en iyi hamle başka bir hamle olur. Bu yüzden fenshot her şeyden önce okuduğu tahtayı size gösterir, bir kareden emin olmadığında uyarır ve pozisyon doğru olamayacak durumdaysa düzeltmeniz için sizi Lichess editörüne yönlendirir.",
   "e5f5d4c010": "Hangi resimler işe yarar?",
   "fa0646cbf8": "Her temada chess.com ve Lichess ekran görüntüleri, YouTube videolarından ve yayınlardan kareler, kitap ve PDF diyagramları, Reddit'te paylaşılan ya da sohbette gönderilen bulmacalar. En iyi sonucu düz çizilmiş, yukarıdan görünen tahtalar verir.",
   "f073736282": "Çalışmak için, devam eden bir oyun için değil",
@@ -263,8 +262,9 @@
   "0fad03d17d": "Resmi kopyalayın ya da ekran görüntüsü alın.",
   "98392ad2ba": "Tahtayı kontrol edin, hamle sırasını ayarlayın ve pozisyonu analiz edin ya da kopyalayın.",
   "00185470e5": "Tarama emin olmadığında",
-  "6c958d917f": "Sessizce yanılan bir tarama aracı, hiç olmamasından daha kötüdür. fenshot bir okuma şüpheli olduğunda bunu size söyler, pozisyon kurallara uygun olamayacak durumdaysa düzeltmeniz için sizi Lichess editörüne yönlendirir. Ne sıklıkla doğru okuduğu gerçek görsellerle ölçüldü, zayıf noktaları da adıyla belirtildi: hepsi <a href=\"/accuracy/\">doğruluk sayfasında</a>.",
   "ca231e10f7": "Bulunduğunuz sayfayı tarayın",
   "68e26dcd7f": "Sık sık pozisyon tarıyorsanız <a href=\"/extension/\">fenshot tarayıcı eklentisi</a> tahtayı ekran görüntüsü almadan, tek tıkla doğrudan sayfadan okur: videolar, makaleler, çalışmalar ve sayfanın hamleleri gösterdiği yerlerde oyunların tamamı.",
-  "107d8b5e3a": "<a href=\"/best-move-from-chess-screenshot/\">Satranç ekran görüntüsünden en iyi hamle</a>: pozisyonu tarayın, sonra motora sorun"
+  "107d8b5e3a": "<a href=\"/best-move-from-chess-screenshot/\">Satranç ekran görüntüsünden en iyi hamle</a>: pozisyonu tarayın, sonra motora sorun",
+  "572804c6f2": "Tek bir taş yanlış karede olsun, en iyi hamle başka bir hamle olur. Bu yüzden fenshot her şeyden önce okuduğu tahtayı size gösterir, bir kareden emin olmadığında uyarır ve hatayı hemen orada düzeltmenize izin verir: bir taşı hareket ettirin, birini kaldırın, bir tane ekleyin.",
+  "515408b57b": "Sessizce yanılan bir tarama aracı, hiç olmamasından daha kötüdür. fenshot bir okuma şüpheli olduğunda bunu size söyler, gösterdiği tahta da bir editördür: bir taşı hareket ettirin, birini kaldırın ya da bir tane ekleyin, hemen görselinizin yanında. Ne sıklıkla doğru okuduğu gerçek görsellerle ölçüldü, zayıf noktaları da adıyla belirtildi: hepsi <a href=\"/accuracy/\">doğruluk sayfasında</a>."
 }

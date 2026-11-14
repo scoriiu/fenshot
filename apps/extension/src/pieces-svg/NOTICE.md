@@ -1,8 +1,8 @@
 # Kibitzo chess pieces
 
-The twelve pictures in this folder, and the sprite of fenshot.com's board
-(`apps/web/public/cm-chessboard/pieces/kibitzo.svg`), are the Kibitzo chess
-piece set.
+The twelve pictures in this folder are the Kibitzo chess piece set.
+fenshot.com's board shows the same set, from the Lightsquare package
+(`@kibitzo/lightsquare/pieces/kibitzo.css`).
 
 © 2026 Danubian Research AG, Zug, Switzerland.
 
@@ -17,6 +17,5 @@ https://creativecommons.org/licenses/by/4.0/
 
 The set is drawn in the Lightsquare repository
 (https://github.com/kibitzo/lightsquare, `piece-sets/`). The pictures here
-and the sprite are written from it by
-`apps/extension/scripts/update-pieces.mjs`. The rest of this
+are written from it by `apps/extension/scripts/update-pieces.mjs`. The rest of this
 repository is under the MIT licence.

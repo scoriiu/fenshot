@@ -418,7 +418,8 @@ body {
 .shot-card {
   margin: 0 auto;
   width: 100%;
-  max-width: clamp(240px, calc(100vh - 420px), 560px);
+  /* Less than the room under the header: the board's card also holds the two rows of spare pieces. */
+  max-width: clamp(240px, calc(100vh - 500px), 560px);
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 16px;
@@ -458,6 +459,106 @@ body {
   width: 100%;
 }
 
+/* The board is an editor. Its frame must not cut off a piece that is
+   carried in from the palette or dragged off the board, and the board
+   brings its own corners. */
+.board-card {
+  gap: 8px;
+}
+
+.board-frame {
+  overflow: visible;
+  border: none;
+  background: none;
+  border-radius: 0;
+}
+
+.board-host .ls-board,
+.board-host .ls-squares {
+  border-radius: 6px;
+}
+
+/* The hand: open over a piece that can be picked up, closed while it is
+   carried, on the board and from the palette alike. (With the bin or a
+   piece in hand the editor sets its own pointer, which wins.) */
+.board-host .ls-board {
+  --ls-piece-cursor: grab;
+}
+
+.board-host .ls-board .ls-piece.ls-dragging,
+body:has(.ls-layer > .ls-piece.ls-dragging),
+body:has(.ls-layer > .ls-piece.ls-dragging) .spare {
+  cursor: grabbing;
+}
+
+/* A row of the palette: the hand, six pieces, the eraser, each a square.
+   The order is the board's, left to right, in every language. */
+.spares {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 2px;
+  direction: ltr;
+}
+
+.spare {
+  aspect-ratio: 1;
+  min-width: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  /* A finger that starts on a piece carries it: the page must not scroll instead. */
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.spare:hover {
+  background: rgba(148, 163, 184, 0.12);
+  color: var(--text);
+}
+
+.spare.on {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* A spare piece can be dragged onto the board. */
+.spare:has(.spare-piece) {
+  cursor: grab;
+}
+
+.spare-piece {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: 90%;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+.spare-tool svg {
+  width: 62%;
+  height: 62%;
+  pointer-events: none;
+}
+
+/* The eraser in hand is red, not amber: it takes things away. */
+.spare-erase:hover {
+  color: #fb7185;
+}
+
+.spare-erase.on {
+  background: rgba(225, 29, 72, 0.16);
+  border-color: #e11d48;
+  color: #fb7185;
+}
+
 .transform-arrow {
   display: flex;
   align-items: center;
@@ -483,17 +584,34 @@ body {
   }
 }
 
+/* A phone: the board must be large enough to edit with a finger, so it
+   takes the full width, and the screenshot sits small above it. */
 @media (max-width: 700px) {
   .media-row {
-    grid-template-columns: 1fr 36px 1fr;
-    gap: 8px;
+    grid-template-columns: 1fr;
+    gap: 6px;
+    justify-items: center;
+  }
+  .transform-arrow,
+  [dir="rtl"] .transform-arrow {
+    transform: rotate(90deg);
+    height: 28px;
   }
   .transform-arrow svg {
-    width: 28px;
-    height: 28px;
+    width: 26px;
+    height: 26px;
   }
   .shot-card {
     padding: 8px;
+  }
+  .media-row > .shot-card:first-child {
+    max-width: 150px;
+  }
+  .media-row > .shot-card:first-child figcaption {
+    display: none;
+  }
+  .board-card {
+    max-width: none;
   }
 }
 
@@ -610,6 +728,18 @@ body {
   font-weight: 600;
 }
 
+.toggle.castling button {
+  width: auto;
+  padding: 0 10px;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.toggle button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
 .panel-bottom {
   display: flex;
   align-items: center;
@@ -723,4 +853,58 @@ body {
 
 .footer a {
   color: var(--muted);
+}
+
+/* A wide screen, as on Lichess's editor: the picture and the board side
+   by side, and what is done with the position (FEN, side to move,
+   castling, the buttons) in a column on the right. The cards then have
+   the whole height of the window, less the header and the footer, and
+   are as large as that and the width allow. 1.253 is a board card's
+   height for its width: the board, the two rows of spare pieces, the
+   caption. */
+@media (min-width: 1180px) {
+  .page:has(main.result) {
+    max-width: 1760px;
+  }
+  .result {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    align-items: center;
+    gap: 28px;
+  }
+  .shot-card {
+    max-width: clamp(240px, calc((100vh - 215px) * 0.795), 720px);
+  }
+  .panel-bottom,
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+    flex-wrap: nowrap;
+  }
+  .controls {
+    gap: 12px;
+  }
+  .control-group {
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .control-group .btn {
+    flex: 1;
+  }
+  /* The main action first, at the top of its column. */
+  .actions {
+    flex-direction: column-reverse;
+    flex-wrap: nowrap;
+  }
+  .actions .btn {
+    width: 100%;
+  }
+  .toggle.castling {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+  }
+  .toggle.castling button {
+    height: 34px;
+  }
 }

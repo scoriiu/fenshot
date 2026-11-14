@@ -1,4 +1,5 @@
 {
+  "2998580709": "„Poprawnie” oznacza, że zgadzają się wszystkie 64 pola. Ostrzeżenie oznacza, że fenshot poinformował użytkownika, że odczyt może być błędny, i zaproponował edytor do poprawek. Najważniejsza jest czerwona kolumna: błąd bez ostrzeżenia.",
   "d17421b81d": "Obraz szachowy na FEN: zrzut ekranu lub zdjęcie na szachownicę",
   "50e3dfcaec": "fenshot: zrzut ekranu szachy na FEN, za darmo i open source",
   "65c835a7d6": "Wklej zrzut ekranu z partii lub diagram z książki, a dostaniesz szachownicę do analizy. Działa w przeglądarce, za darmo, open source, Lichess jednym kliknięciem.",
@@ -160,7 +161,6 @@
   "4e24c27dd4": "fenshot odczytuje pozycję ze zrzutu ekranu, diagramu lub zdjęcia szachowego i daje ci żywą szachownicę do analizy. Wklej zrzut ekranu z chess.com lub Lichess, zdjęcie diagramu z książki szachowej albo pozycję, którą ktoś wrzucił na Reddit lub przesłał ci na czacie. Jedno kliknięcie i masz zapis FEN oraz szachownicę, na której naprawdę możesz przesuwać bierki, z darmowym silnikiem Stockfish.",
   "eb69b933f5": "fenshot tworzy zespół <a href=\"https://kibitzo.com/\">Kibitzo</a>. Jeśli znasz go jako FenShot by Kibitzo ze strony <a href=\"https://kibitzo.com/extension\">kibitzo.com/extension</a>, to jest to samo rozszerzenie, z tymi samymi stronami w sklepach, a nie drugie.",
   "0136092f1c": "Rozszerzenie nie ma konta, analityki ani śledzenia i nie wysyła własnych zapytań sieciowych. Strona fenshot.com liczy anonimowe wyświetlenia, bez plików cookie.",
-  "2998580709": "„Poprawnie” oznacza, że zgadzają się wszystkie 64 pola. Ostrzeżenie oznacza, że fenshot poinformował użytkownika, że odczyt może być błędny, i zaproponował edytor do poprawek. Najważniejsza jest czerwona kolumna: błąd bez ostrzeżenia.",
   "17568f5468": "<a href=\"/accuracy/\" style=\"color:#fbbf24\">Jak dokładny jest fenshot</a>: otwarty benchmark na prawdziwych obrazach z chess.com, Lichess i Reddita",
   "87a978873d": "Jak dokładny jest fenshot? Otwarty benchmark obrazów szachowych",
   "92c0da8ca4": "Jak często fenshot odczytuje zrzut ekranu dokładnie, zmierzone na prawdziwych obrazach z chess.com, Lichess i Reddita. Metoda, błędy i kod są publiczne.",
@@ -237,7 +237,6 @@
   "22421ee3b7": "Kto jest na posunięciu?",
   "c28cf7fb06": "Obraz nie mówi, kto jest na posunięciu, a najlepszy ruch białych nie jest najlepszym ruchem czarnych. Dlatego fenshot pyta o stronę na posunięciu, zanim zaczniesz analizę. Zauważa za to, gdy zrzut ekranu zrobiono od strony czarnych, i obraca pozycję we właściwą stronę.",
   "84af1934a5": "Silnik potrzebuje dokładnej pozycji",
-  "c10da6d464": "Jedna bierka na złym polu i najlepszy ruch jest już innym ruchem. Dlatego fenshot najpierw pokazuje ci szachownicę, którą odczytał, ostrzega, gdy nie jest pewny jakiegoś pola, a gdy pozycja nie może być poprawna, kieruje cię do edytora Lichess, żebyś ją poprawił.",
   "e5f5d4c010": "Jakie obrazy działają?",
   "fa0646cbf8": "Zrzuty ekranu z chess.com i Lichess w dowolnym motywie, klatki z filmów na YouTube i ze streamów, diagramy z książek i plików PDF, zadania wrzucone na Reddit lub przesłane na czacie. Najlepiej działają szachownice narysowane płasko, widziane z góry.",
   "f073736282": "Do nauki, nie do trwającej partii",
@@ -263,8 +262,9 @@
   "0fad03d17d": "Skopiuj obraz albo zrób zrzut ekranu.",
   "98392ad2ba": "Sprawdź szachownicę, ustaw, kto jest na posunięciu, i analizuj albo skopiuj pozycję.",
   "00185470e5": "Gdy skan nie jest pewny",
-  "6c958d917f": "Skaner, który myli się po cichu, jest gorszy niż brak skanera. fenshot mówi ci, gdy odczyt jest wątpliwy, a gdy pozycja nie może być legalna, kieruje cię do edytora Lichess, żebyś ją poprawił. Jak często ma rację, zmierzone na prawdziwych obrazach i z nazwanymi słabymi punktami, znajdziesz na <a href=\"/accuracy/\">stronie o dokładności</a>.",
   "ca231e10f7": "Skanuj stronę, na której jesteś",
   "68e26dcd7f": "Jeśli często skanujesz pozycje, <a href=\"/extension/\">rozszerzenie przeglądarki fenshot</a> odczyta szachownicę prosto ze strony jednym kliknięciem, bez zrzutu ekranu: filmy, artykuły, studia, a także całe partie tam, gdzie strona pokazuje ruchy.",
-  "107d8b5e3a": "<a href=\"/best-move-from-chess-screenshot/\">Najlepszy ruch ze zrzutu ekranu szachowego</a>: zeskanuj pozycję, a potem zapytaj silnik"
+  "107d8b5e3a": "<a href=\"/best-move-from-chess-screenshot/\">Najlepszy ruch ze zrzutu ekranu szachowego</a>: zeskanuj pozycję, a potem zapytaj silnik",
+  "572804c6f2": "Jedna bierka na złym polu i najlepszy ruch jest już innym ruchem. Dlatego fenshot najpierw pokazuje ci szachownicę, którą odczytał, ostrzega, gdy nie jest pewny jakiegoś pola, i pozwala poprawić ją od razu na miejscu: przesuń bierkę, zdejmij którąś, dodaj nową.",
+  "515408b57b": "Skaner, który myli się po cichu, jest gorszy niż brak skanera. fenshot mówi ci, gdy odczyt jest wątpliwy, a szachownica, którą pokazuje, jest edytorem: przesuń bierkę, zdejmij którąś albo dodaj nową, tuż obok twojego obrazu. Jak często ma rację, zmierzone na prawdziwych obrazach i z nazwanymi słabymi punktami, znajdziesz na <a href=\"/accuracy/\">stronie o dokładności</a>."
 }

@@ -10,9 +10,9 @@
 ## What it does
 
 - Reads a chess position from an image: chess.com and Lichess screenshots in any theme, stream and video frames, diagrams from printed or PDF chess books, positions posted on Reddit or in chats.
-- Outputs the FEN string, a live board with a free Stockfish engine, and one-click links to Lichess analysis, the Lichess board editor and Kibitzo.
+- Outputs the FEN string and a board that is also an editor (move, remove and add pieces, set the side to move and the castling rights), with one-click links to Kibitzo and Lichess analysis, where a free Stockfish engine runs.
 - Detects screenshots taken from Black's point of view and flips the read automatically.
-- Says when a read is unreliable instead of returning a silently wrong FEN; squares can be fixed in an editor.
+- Says when a read is unreliable instead of returning a silently wrong FEN; squares can be fixed on the result board itself.
 - Browser extension: captures the visible tab only when the icon is clicked, reads the board, and on pages that show a game as a move list (chessgames.com, Lichess, chess.com articles, blogs) imports the whole game as PGN, checks every move is legal, and opens it on Lichess or Kibitzo.
 
 ## How it works
@@ -20,7 +20,7 @@
 - Board detection by gradient peak analysis (extended from tensorflow_chessbot), then a compact CNN (about 330k parameters, 1.3 MB ONNX) classifies the 64 squares with onnxruntime-web in WebAssembly.
 - Everything runs on the user's device. Images and positions are never sent anywhere, unless the user clicks a link that opens the position on Lichess or Kibitzo.
 - Extension: no account, no analytics, no tracking, no network requests of its own.
-- Website (fenshot.com): counts anonymous page views only (self-hosted, cookieless Umami).
+- Website (fenshot.com): counts anonymous page views and button clicks only, never the image or the position (self-hosted, cookieless Umami).
 - Works best with top-down 2D boards: screenshots, video frames, book and PDF diagrams. A straight-overhead photo of a physical board can work; photos taken at an angle are unreliable.
 
 ## Accuracy

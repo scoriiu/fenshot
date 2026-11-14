@@ -1,4 +1,5 @@
 {
+  "2998580709": "« Juste » signifie que les 64 cases correspondent toutes. Un avertissement signifie que fenshot a prévenu l'utilisateur que la lecture pouvait être fausse et lui a proposé l'éditeur pour la corriger. La colonne rouge, fausse sans avertissement, est celle qui compte le plus.",
   "d17421b81d": "Image d'échecs en FEN : capture ou photo en échiquier | fenshot",
   "50e3dfcaec": "fenshot : capture d'écran échecs en FEN, gratuit et open source",
   "65c835a7d6": "Collez une capture d'écran d'échecs ou un diagramme de livre et obtenez un échiquier à analyser. Tout se passe dans votre navigateur, gratuit et open source, Lichess en un clic.",
@@ -161,7 +162,6 @@
   "4e24c27dd4": "fenshot lit la position sur une capture d'écran, un diagramme ou une photo d'échecs et vous donne un échiquier vivant, prêt à analyser. Collez une capture d'écran de chess.com ou de Lichess, la photo d'un diagramme de livre d'échecs, ou une position publiée sur Reddit ou reçue dans une conversation. Un clic plus tard, vous avez la FEN et un échiquier sur lequel vous pouvez vraiment déplacer les pièces, avec un moteur Stockfish gratuit.",
   "eb69b933f5": "fenshot est conçu par l'équipe de <a href=\"https://kibitzo.com/\">Kibitzo</a>. Si vous le connaissez sous le nom FenShot by Kibitzo via <a href=\"https://kibitzo.com/extension\">kibitzo.com/extension</a>, c'est la même extension, avec les mêmes fiches dans les boutiques, pas une deuxième.",
   "0136092f1c": "L'extension n'a ni compte, ni statistiques, ni pistage, et n'effectue aucune requête réseau de son côté. Le site fenshot.com compte des visites anonymes, sans cookies.",
-  "2998580709": "« Juste » signifie que les 64 cases correspondent toutes. Un avertissement signifie que fenshot a prévenu l'utilisateur que la lecture pouvait être fausse et lui a proposé l'éditeur pour la corriger. La colonne rouge, fausse sans avertissement, est celle qui compte le plus.",
   "17568f5468": "<a href=\"/accuracy/\" style=\"color:#fbbf24\">Quelle est la précision de fenshot</a> : un benchmark ouvert sur de vraies images chess.com, Lichess et Reddit",
   "87a978873d": "Précision de fenshot : un benchmark ouvert et reproductible",
   "92c0da8ca4": "Combien de fois fenshot lit exactement une capture d'écran d'échecs, mesuré sur de vraies images chess.com, Lichess et Reddit. Méthode, erreurs et code publics.",
@@ -237,7 +237,6 @@
   "22421ee3b7": "Qui a le trait ?",
   "c28cf7fb06": "Une image ne dit pas à qui c'est de jouer, et le meilleur coup des Blancs n'est pas le meilleur coup des Noirs. C'est pourquoi fenshot vous demande le trait avant l'analyse. En revanche, il remarque quand une capture d'écran a été prise du côté des Noirs et remet la position dans le bon sens.",
   "84af1934a5": "Un moteur a besoin de la position exacte",
-  "c10da6d464": "Une seule pièce sur la mauvaise case, et le meilleur coup n'est plus le même. fenshot vous montre donc avant tout l'échiquier qu'il a lu, vous prévient quand il a un doute sur une case, et vous envoie vers l'éditeur Lichess pour corriger quand la position ne peut pas être juste.",
   "e5f5d4c010": "Quelles images fonctionnent ?",
   "fa0646cbf8": "Les captures d'écran chess.com et Lichess dans n'importe quel thème, les images tirées de vidéos YouTube et de streams, les diagrammes de livres et de PDF, les problèmes publiés sur Reddit ou envoyés dans une conversation. Les échiquiers dessinés à plat, vus de dessus, donnent les meilleurs résultats.",
   "f073736282": "Pour l'étude, pas pour une partie en cours",
@@ -263,8 +262,9 @@
   "0fad03d17d": "Copiez l'image ou faites une capture d'écran.",
   "98392ad2ba": "Vérifiez l'échiquier, indiquez le trait, puis analysez ou copiez la position.",
   "00185470e5": "Quand le scan a un doute",
-  "6c958d917f": "Un scanner qui se trompe en silence est pire que pas de scanner du tout. fenshot vous prévient quand une lecture est douteuse, et quand une position ne peut pas être légale, il vous envoie vers l'éditeur Lichess pour la corriger. La fréquence à laquelle il a raison, mesurée sur de vraies images et avec les points faibles nommés, se trouve sur la <a href=\"/accuracy/\">page de précision</a>.",
   "ca231e10f7": "Scannez la page où vous êtes",
   "68e26dcd7f": "Si vous scannez souvent des positions, l'<a href=\"/extension/\">extension de navigateur fenshot</a> lit l'échiquier directement sur la page en un clic, sans capture d'écran : vidéos, articles, études, et des parties entières quand la page affiche les coups.",
-  "107d8b5e3a": "<a href=\"/best-move-from-chess-screenshot/\">Meilleur coup à partir d'une capture d'écran d'échecs</a> : scannez la position, puis interrogez le moteur"
+  "107d8b5e3a": "<a href=\"/best-move-from-chess-screenshot/\">Meilleur coup à partir d'une capture d'écran d'échecs</a> : scannez la position, puis interrogez le moteur",
+  "572804c6f2": "Une seule pièce sur la mauvaise case, et le meilleur coup n'est plus le même. fenshot vous montre donc avant tout l'échiquier qu'il a lu, vous prévient quand il a un doute sur une case, et vous laisse corriger sur-le-champ : déplacez une pièce, retirez-en une, ajoutez-en une.",
+  "515408b57b": "Un scanner qui se trompe en silence est pire que pas de scanner du tout. fenshot vous prévient quand une lecture est douteuse, et l'échiquier qu'il affiche est un éditeur : déplacez une pièce, retirez-en une ou ajoutez-en une, juste à côté de votre image. La fréquence à laquelle il a raison, mesurée sur de vraies images et avec les points faibles nommés, se trouve sur la <a href=\"/accuracy/\">page de précision</a>."
 }

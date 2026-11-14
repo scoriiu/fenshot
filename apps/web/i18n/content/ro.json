@@ -237,7 +237,6 @@
   "22421ee3b7": "Cine este la mutare?",
   "c28cf7fb06": "O imagine nu spune cine este la mutare, iar cea mai bună mutare pentru alb nu este cea mai bună mutare pentru negru. De aceea fenshot te întreabă cine este la mutare înainte să analizezi. Observă, în schimb, când o captură a fost făcută din partea negrului și întoarce poziția cum trebuie.",
   "84af1934a5": "Motorul are nevoie de poziția exactă",
-  "c10da6d464": "O singură piesă pe câmpul greșit și cea mai bună mutare este alta. De aceea fenshot îți arată mai întâi tabla pe care a citit-o, te avertizează când nu e sigur de un câmp și te trimite în editorul Lichess ca s-o corectezi atunci când poziția nu are cum să fie corectă.",
   "e5f5d4c010": "Ce imagini merg?",
   "fa0646cbf8": "Capturi de ecran de pe chess.com și Lichess în orice temă, cadre din videoclipuri YouTube și din streamuri, diagrame din cărți și PDF-uri, probleme postate pe Reddit sau trimise pe chat. Cel mai bine merg tablele desenate plat, văzute de sus.",
   "f073736282": "Pentru studiu, nu pentru o partidă în desfășurare",
@@ -263,8 +262,9 @@
   "0fad03d17d": "Copiază imaginea sau fă o captură de ecran.",
   "98392ad2ba": "Verifică tabla, alege cine este la mutare, apoi analizează sau copiază poziția.",
   "00185470e5": "Când scanarea nu e sigură",
-  "6c958d917f": "Un scaner care greșește în tăcere e mai rău decât niciun scaner. fenshot îți spune când o citire e îndoielnică, iar când o poziție nu poate fi legală te trimite în editorul Lichess ca s-o corectezi. Cât de des are dreptate, măsurat pe imagini reale și cu punctele slabe numite, găsești pe <a href=\"/accuracy/\">pagina de precizie</a>.",
   "ca231e10f7": "Scanează pagina pe care te afli",
   "68e26dcd7f": "Dacă scanezi des poziții, <a href=\"/extension/\">extensia de browser fenshot</a> citește tabla direct de pe pagină dintr-un clic, fără captură de ecran: videoclipuri, articole, studii și partide întregi acolo unde pagina arată mutările.",
-  "107d8b5e3a": "<a href=\"/best-move-from-chess-screenshot/\">Cea mai bună mutare dintr-o captură de ecran de șah</a>: scanează poziția, apoi întreabă motorul"
+  "107d8b5e3a": "<a href=\"/best-move-from-chess-screenshot/\">Cea mai bună mutare dintr-o captură de ecran de șah</a>: scanează poziția, apoi întreabă motorul",
+  "572804c6f2": "O singură piesă pe câmpul greșit și cea mai bună mutare este alta. De aceea fenshot îți arată mai întâi tabla pe care a citit-o, te avertizează când nu e sigur de un câmp și te lasă s-o corectezi pe loc: muți o piesă, scoți una, adaugi una.",
+  "515408b57b": "Un scaner care greșește în tăcere e mai rău decât niciun scaner. fenshot îți spune când o citire e îndoielnică, iar tabla pe care o arată este un editor: muți o piesă, scoți una sau adaugi una, chiar lângă imaginea ta. Cât de des are dreptate, măsurat pe imagini reale și cu punctele slabe numite, găsești pe <a href=\"/accuracy/\">pagina de precizie</a>."
 }
