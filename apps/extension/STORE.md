@@ -92,6 +92,14 @@ nothing on the page, and the text is processed locally and discarded
 when the popup closes. Source: apps/extension/src/pgn.ts
 (collectPageText).
 
+Since 0.6.2 the same click runs one more small function in the tab. It
+looks for a chess board the page draws itself (Lichess's chessground
+wrapper, chess.com's board element) and returns only where that board is
+on the screen and which side is at the bottom, taken from a class name.
+It reads no moves, no text and nothing about the user, changes nothing on
+the page, and its answer is used once, to show the position the right way
+round. Source: apps/extension/src/board-side.ts (collectBoardSides).
+
 ## Single purpose statement (CWS review form)
 
 Reads the chess position, and any chess game, from the visible tab and
@@ -127,20 +135,44 @@ source zip is byte-identical to the Firefox zip, `diff -rq`), Node 24 / npm 11:
   `git archive` (see "Packaging" below); the README covers the build.
 - data_collection_permissions in the manifest stays `required: ["none"]`.
 
-## Translations (0.6.0)
+## Translations
 
-Romanian (ro) and Hebrew (he) were added after 0.6.0 was submitted:
-public/_locales/{ro,he} and store-listing/{ro,he}.md ship with the next
-release (bump the version, package, then paste the two listings).
+Romanian (ro) and Hebrew (he) ship with 0.6.2 (0.6.1 was never sent to
+the stores): public/_locales/{ro,he}, and store-listing/{ro,he}.md to
+paste into the two new per-language listings.
 
 The extension follows the browser's language: es, de, ru, fr, pt_BR, it,
-zh_CN, tr, nl, pl, vi, fa, ar, and English otherwise (public/_locales,
+zh_CN, tr, nl, pl, vi, fa, ar, ro, he, and English otherwise (public/_locales,
 checked by `node scripts/i18n-check.mjs`). Store listings per language
 (name, short description, detailed description) are in store-listing/,
 to paste into each store's per-language listing fields. The reviewer
 forms below stay English.
 
-## Release notes (0.6.1)
+## Release notes (0.6.2, covers 0.6.1)
+
+Fewer wrong reads, and a board that shows which way it faces.
+
+- On chess.com and Lichess, fenshot now takes the board's direction from
+  the page itself. Endgames seen from Black's side sometimes came out
+  upside down.
+- A new button says which side is at the bottom. Press it when a
+  screenshot from another site is read the wrong way round.
+- The board in the popup has coordinates.
+- Fixed: in Persian and Arabic the board was drawn mirrored.
+- New languages: Romanian and Hebrew.
+
+Notes to reviewer (AMO): no new permission. One new source file,
+src/board-side.ts: `collectBoardSides` is injected with
+scripting.executeScript on the user's click (activeTab), the same pattern
+as `collectPageText` in src/pgn.ts. It reads only the class names and the
+bounding boxes of board elements (`.cg-wrap.orientation-*`,
+`wc-chess-board`, `chess-board`) and returns where each board is and
+which side is at the bottom; nothing is stored or sent. The popup's board
+gets coordinates and `direction: ltr` (src/popup.ts, src/popup.css). Two
+new locale folders: public/_locales/ro and public/_locales/he. Build
+steps unchanged (see Firefox (AMO) notes).
+
+## Release notes (0.6.1, not sent to the stores)
 
 Now also in Romanian and Hebrew (right to left). No other changes.
 
