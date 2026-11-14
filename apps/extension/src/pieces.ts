@@ -1,8 +1,10 @@
 /**
- * cburnett piece set (Colin M.L. Burnett, GPL/BSD multi-license, via
- * lichess-org/lila), bundled as raw SVG markup and parsed once into
- * template elements. Pieces are cloned per square so the board builds
- * with DOM APIs only, no innerHTML anywhere in the popup.
+ * The Kibitzo piece set (kibitzo.com, (c) 2026 Danubian Research AG, CC BY
+ * 4.0; see pieces-svg/NOTICE.md), bundled as raw SVG markup and parsed
+ * once into template elements. Pieces are cloned per square so the board
+ * builds with DOM APIs only, no innerHTML anywhere in the popup. The
+ * pictures are written by scripts/update-pieces.mjs from the set's one
+ * source; do not edit them by hand.
  */
 
 import wK from "./pieces-svg/wK.svg?raw";

@@ -157,7 +157,8 @@ Fewer wrong reads, and a board that shows which way it faces.
   upside down.
 - A new button says which side is at the bottom. Press it when a
   screenshot from another site is read the wrong way round.
-- The board in the popup has coordinates.
+- The board in the popup has coordinates and new pieces, the same ones
+  as on Kibitzo.
 - Fixed: in Persian and Arabic the board was drawn mirrored.
 - New languages: Romanian and Hebrew.
 
@@ -168,7 +169,10 @@ as `collectPageText` in src/pgn.ts. It reads only the class names and the
 bounding boxes of board elements (`.cg-wrap.orientation-*`,
 `wc-chess-board`, `chess-board`) and returns where each board is and
 which side is at the bottom; nothing is stored or sent. The popup's board
-gets coordinates and `direction: ltr` (src/popup.ts, src/popup.css). Two
+gets coordinates and `direction: ltr` (src/popup.ts, src/popup.css). The
+twelve piece pictures in src/pieces-svg are replaced by our own set
+(CC BY 4.0, src/pieces-svg/NOTICE.md; written by
+scripts/update-pieces.mjs, which is not part of the build). Two
 new locale folders: public/_locales/ro and public/_locales/he. Build
 steps unchanged (see Firefox (AMO) notes).
 
