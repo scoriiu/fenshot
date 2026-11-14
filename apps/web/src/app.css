@@ -492,6 +492,11 @@ body {
   cursor: grab;
 }
 
+/* And closed while the piece is carried (stated here because the rule above outweighs Lightsquare's own). */
+.board-host .ls-board:has(.ls-piece.ls-dragging) {
+  cursor: grabbing;
+}
+
 .board-host .ls-board .ls-piece.ls-dragging,
 body:has(.ls-layer > .ls-piece.ls-dragging),
 body:has(.ls-layer > .ls-piece.ls-dragging) .spare {
