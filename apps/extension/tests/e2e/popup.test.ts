@@ -193,10 +193,28 @@ describe("popup end-to-end", () => {
       // The user can say which side is at the bottom: the position turns
       // around, and saying it back restores it.
       const side = () => popup.locator(".turn button.side");
+      // The board says which way it faces: rank numbers down the left
+      // column, file letters along the bottom row, and they turn with it.
+      const coords = () =>
+        popup.evaluate(() => {
+          const board = document.querySelector(".board")!;
+          const box = board.getBoundingClientRect();
+          const read = (sel: string) => [...board.querySelectorAll(sel)].map((c) => c.textContent).join("");
+          const rank = board.querySelector(".coord.rank")!.getBoundingClientRect();
+          const file = board.querySelector(".coord.file")!.getBoundingClientRect();
+          return { ranks: read(".coord.rank"), files: read(".coord.file"), ranksOnTheLeft: rank.left - box.left < box.width / 8, filesAtTheBottom: box.bottom - file.bottom < box.height / 8 };
+        });
       expect(await side().getAttribute("title")).toBe("at the bottom: Black");
+      expect(await coords()).toEqual({ ranks: "12345678", files: "hgfedcba", ranksOnTheLeft: true, filesAtTheBottom: true });
       await side().click();
       await expect.poll(() => popup.locator(".caption.fen").textContent()).toMatch(/^8\/6p1\/5k2\/8\/8\/2K5\/1P6\/8 /);
       expect(await side().getAttribute("title")).toBe("at the bottom: White");
+      expect(await coords()).toEqual({ ranks: "87654321", files: "abcdefgh", ranksOnTheLeft: true, filesAtTheBottom: true });
+      // In a right-to-left popup (Persian, Arabic, Hebrew) the board is not mirrored: the a-file stays on the left.
+      await popup.evaluate(() => (document.documentElement.dir = "rtl"));
+      expect(await coords()).toEqual({ ranks: "87654321", files: "abcdefgh", ranksOnTheLeft: true, filesAtTheBottom: true });
+      expect(await popup.evaluate(() => { const b = document.querySelector(".board")!.getBoundingClientRect(); const first = document.querySelector(".board .sq")!.getBoundingClientRect(); return first.left - b.left < b.width / 8; }), "the first square of the top row is on the left").toBe(true);
+      await popup.evaluate(() => (document.documentElement.dir = "ltr"));
       await side().click();
       await expect.poll(() => popup.locator(".caption.fen").textContent()).toMatch(/^8\/6P1\/5K2\/8\/8\/2k5\/1p6\/8 /);
       await popup.screenshot({ path: "../../.tmp/bm-probe/popup-switch.png" });

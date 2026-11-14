@@ -74,6 +74,10 @@ body.wide {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(8, 1fr);
+  /* A chess board has its a-file on White's left in every language. In a
+     right-to-left popup (Persian, Arabic, Hebrew) the grid ran from the
+     right and drew the board mirrored. */
+  direction: ltr;
   width: 100%;
   aspect-ratio: 1;
   border-radius: 8px;
@@ -82,6 +86,7 @@ body.wide {
 }
 
 .sq {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -90,10 +95,31 @@ body.wide {
 
 .sq.light {
   background: #f0d9b5;
+  --coord: #b58863;
 }
 
 .sq.dark {
   background: #b58863;
+  --coord: #f0d9b5;
+}
+
+/* Rank numbers down the left column, file letters along the bottom row,
+   each in the colour of the other square: there to be read, not noticed. */
+.coord {
+  position: absolute;
+  font: 700 9px/1 ui-rounded, system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--coord);
+  pointer-events: none;
+}
+
+.coord.rank {
+  top: 2px;
+  left: 3px;
+}
+
+.coord.file {
+  bottom: 2px;
+  right: 3px;
 }
 
 .sq svg {
@@ -478,10 +504,12 @@ button.nav:disabled {
 
 .card.games .sq.light {
   background: #dfe6ec;
+  --coord: #6f8ea4;
 }
 
 .card.games .sq.dark {
   background: #86a2b6;
+  --coord: #dfe6ec;
 }
 
 .card.games button.nav {

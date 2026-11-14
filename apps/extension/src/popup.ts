@@ -501,6 +501,10 @@ function boardEl(placement: string, flipped: boolean): HTMLElement {
         const svg = pieceElement(piece);
         if (svg) sq.append(svg);
       }
+      // Coordinates inside the squares of the left column and the bottom
+      // row: which way the board faces is then plain to see.
+      if (f === 0) sq.append(el("span", "coord rank", String(8 - rank)));
+      if (r === 7) sq.append(el("span", "coord file", "abcdefgh"[file]));
       board.append(sq);
     }
   }
