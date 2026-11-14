@@ -35,5 +35,6 @@
   "analyzeLichess": "Анализ на Lichess",
   "analyzeKibitzo": "Анализ на Kibitzo",
   "footerBefore": "Открытый код MIT · создано на основе импорта позиций",
+  "suggestions": "Предложения:",
   "language": "Язык"
 }

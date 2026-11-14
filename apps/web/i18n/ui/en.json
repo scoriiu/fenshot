@@ -35,5 +35,6 @@
   "analyzeLichess": "Analyze on Lichess",
   "analyzeKibitzo": "Analyze on Kibitzo",
   "footerBefore": "MIT open source · built from the position import of",
+  "suggestions": "Suggestions:",
   "language": "Language"
 }

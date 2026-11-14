@@ -464,6 +464,13 @@ export default function App({ lang }: { lang: string }) {
         <a href="https://kibitzo.com?ref=fenshot-web" target="_blank" rel="noreferrer">
           kibitzo.com
         </a>
+        {" · "}
+        <span className="contact">
+          {t("suggestions")}{" "}
+          <a href="mailto:contact@kibitzo.com?subject=fenshot" data-umami-event="contact" dir="ltr">
+            contact@kibitzo.com
+          </a>
+        </span>
       </footer>
     </div>
   );

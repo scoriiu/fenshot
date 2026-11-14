@@ -35,5 +35,6 @@
   "analyzeLichess": "在 Lichess 上分析",
   "analyzeKibitzo": "在 Kibitzo 上分析",
   "footerBefore": "MIT 开源 · 基于以下项目的局面导入功能构建：",
+  "suggestions": "建议：",
   "language": "语言"
 }
