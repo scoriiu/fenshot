@@ -59,13 +59,14 @@ type Phase =
   | { kind: "noboard" }
   | {
       kind: "result";
-      scan: BoardScanResult;
+      /** What the recognizer read, or null for a position the visitor sets up by hand. */
+      scan: BoardScanResult | null;
       placement: string;
       flipped: boolean;
       turn: "w" | "b";
       /** Castling rights the user switched off (letters of "KQkq"). The rest follow from where the kings and rooks stand. */
       noCastling: string;
-      imageUrl: string;
+      imageUrl: string | null;
     };
 
 const START = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR";
@@ -145,9 +146,25 @@ export default function App({ lang }: { lang: string }) {
   );
 
   const reset = useCallback(() => {
-    if (phase.kind === "result") URL.revokeObjectURL(phase.imageUrl);
+    if (phase.kind === "result" && phase.imageUrl) URL.revokeObjectURL(phase.imageUrl);
+    if (location.hash === "#setup") history.replaceState(null, "", location.pathname + location.search);
     setPhase({ kind: "idle" });
   }, [phase]);
+
+  /** No picture: the editor alone, on the starting position. (fenshot.com/#setup opens it directly.) */
+  const setUp = useCallback(() => {
+    setTool("move");
+    setPhase({ kind: "result", scan: null, placement: START, flipped: false, turn: "w", noCastling: "", imageUrl: null });
+    count("setup");
+  }, []);
+  useEffect(() => {
+    const open = () => {
+      if (location.hash === "#setup") setUp();
+    };
+    open();
+    window.addEventListener("hashchange", open);
+    return () => window.removeEventListener("hashchange", open);
+  }, [setUp]);
 
   useEffect(() => {
     const onPaste = (e: ClipboardEvent) => {
@@ -272,6 +289,16 @@ export default function App({ lang }: { lang: string }) {
               {phase.kind === "noboard" && (
                 <div className="noboard">{t("noBoard")}</div>
               )}
+              <button
+                type="button"
+                className="setup-link"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setUp();
+                }}
+              >
+                {t("setUpPosition")}
+              </button>
             </>
           )}
           <input
@@ -342,19 +369,23 @@ export default function App({ lang }: { lang: string }) {
 
       {result && fen && (
         <main className="result">
-          <div className="media-row">
-            <figure className="shot-card">
-              <div className="shot-frame">
-                <img src={result.imageUrl} alt={t("yourScreenshot")} />
-              </div>
-              <figcaption>{t("yourScreenshot")}</figcaption>
-            </figure>
-            <div className="transform-arrow" aria-hidden>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 12h14" />
-                <path d="m13 6 6 6-6 6" />
-              </svg>
-            </div>
+          <div className={`media-row ${result.imageUrl ? "" : "media-solo"}`}>
+            {result.imageUrl && (
+              <>
+                <figure className="shot-card">
+                  <div className="shot-frame">
+                    <img src={result.imageUrl} alt={t("yourScreenshot")} />
+                  </div>
+                  <figcaption>{t("yourScreenshot")}</figcaption>
+                </figure>
+                <div className="transform-arrow" aria-hidden>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 12h14" />
+                    <path d="m13 6 6 6-6 6" />
+                  </svg>
+                </div>
+              </>
+            )}
             <figure className="shot-card board-card">
               {/* The side at the top of the board has its pieces above it, the other below, as on Lichess. */}
               <SpareRow pieces={result.flipped ? WHITE : BLACK} tool={tool} labels={spareLabels(result.flipped ? "white" : "black")} onPick={setTool} onCarry={carry} />
@@ -364,11 +395,11 @@ export default function App({ lang }: { lang: string }) {
                 </div>
               </div>
               <SpareRow pieces={result.flipped ? BLACK : WHITE} tool={tool} labels={spareLabels(result.flipped ? "black" : "white")} onPick={setTool} onCarry={carry} />
-              <figcaption>{t("whatFenshotRead", { pct: Math.round(result.scan.meanConfidence * 100) })}</figcaption>
+              <figcaption>{result.scan ? t("whatFenshotRead", { pct: Math.round(result.scan.meanConfidence * 100) }) : t("yourPosition")}</figcaption>
             </figure>
           </div>
           <div className="result-panel">
-            {!result.scan.reliable && (
+            {result.scan && !result.scan.reliable && (
               <div className="warning">
                 {t("lowConfidence", { pct: Math.round(result.scan.minConfidence * 100) })}
               </div>

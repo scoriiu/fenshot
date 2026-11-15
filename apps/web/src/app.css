@@ -369,6 +369,24 @@ body {
   font-size: 13px;
 }
 
+/* Under the hint, inside the drop area: the other way in, without a picture. */
+.setup-link {
+  margin-top: 14px;
+  padding: 8px 12px;
+  border: none;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  font-size: 14px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.setup-link:hover {
+  color: var(--accent);
+}
+
 .noboard {
   color: var(--rose);
   font-size: 14px;
@@ -457,6 +475,11 @@ body {
 
 .result-board {
   width: 100%;
+}
+
+/* A position set up by hand has no picture beside it: the board alone, in the middle. */
+.media-row.media-solo {
+  grid-template-columns: 1fr;
 }
 
 /* The board is an editor. Its frame must not cut off a piece that is
@@ -616,10 +639,11 @@ body:has(.ls-layer > .ls-piece.ls-dragging) .spare {
   .shot-card {
     padding: 8px;
   }
-  .media-row > .shot-card:first-child {
+  /* The screenshot, small. (Not the board's card, which comes first when there is no picture.) */
+  .media-row > .shot-card:not(.board-card) {
     max-width: 150px;
   }
-  .media-row > .shot-card:first-child figcaption {
+  .media-row > .shot-card:not(.board-card) figcaption {
     display: none;
   }
   .board-card {
@@ -883,13 +907,19 @@ body:has(.ls-layer > .ls-piece.ls-dragging) .spare {
     max-width: 1760px;
   }
   .result {
+    --card: clamp(240px, calc((100vh - 215px) * 0.795), 720px);
     display: grid;
     grid-template-columns: minmax(0, 1fr) 320px;
     align-items: center;
     gap: 28px;
   }
   .shot-card {
-    max-width: clamp(240px, calc((100vh - 215px) * 0.795), 720px);
+    max-width: var(--card);
+  }
+  /* A position set up by hand: the board and the column beside it are one group, in the middle of the page. */
+  .result:has(.media-solo) {
+    grid-template-columns: minmax(0, var(--card)) 320px;
+    justify-content: center;
   }
   .panel-bottom,
   .controls {
