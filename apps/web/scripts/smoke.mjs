@@ -56,6 +56,18 @@ for (const [path, screen] of [...PAGES.map((p) => [p, PHONE]), ["/de/", DESKTOP]
     await page.waitForTimeout(400);
     edited = (await page.locator(".board-host .ls-piece").count()) === before - 1 && (await page.locator("code.fen").textContent()) !== fenBefore;
   }
+  // "Scanned position" puts back the board as it was read, and is then off again.
+  let reverted = false;
+  if (edited) {
+    const back = page.locator('[data-testid="back-to-read"]');
+    await back.click();
+    await page.waitForTimeout(300);
+    reverted = (await page.locator("code.fen").textContent()) === fenBefore && (await back.isDisabled());
+  }
+  if (!reverted) failed.push("Scanned position did not put the read board back");
+  // Castling: a line per colour, each with its king and two switches.
+  const castling = await page.evaluate(() => [...document.querySelectorAll('[data-testid="castling"] .castling-side')].map((side) => [side.querySelectorAll(".ls-wk, .ls-bk").length, side.querySelectorAll("button").length]));
+  if (JSON.stringify(castling) !== "[[1,2],[1,2]]") failed.push(`castling is not two lines of a king and two switches: ${JSON.stringify(castling)}`);
   const seen = await page.evaluate(() => {
     const piece = document.querySelector(".board-host .ls-piece");
     const board = document.querySelector(".board-host .ls-board")?.getBoundingClientRect();

@@ -764,11 +764,77 @@ body:has(.ls-layer > .ls-piece.ls-dragging) .spare {
   font-weight: 600;
 }
 
-.toggle.castling button {
-  width: auto;
+/* Castling: a line per colour, its king, then Kingside and Queenside,
+   ticked when that castling is still allowed. They were four "O-O"
+   buttons told apart only by a king's outline. */
+.castling {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  direction: ltr;
+}
+
+.castling-side {
+  display: grid;
+  grid-template-columns: 30px 1fr 1fr;
+  align-items: center;
+  gap: 6px;
+}
+
+.castling-king {
+  width: 30px;
+  height: 30px;
+  display: flex;
+}
+
+.castling-king .spare-piece {
+  background-size: 100%;
+}
+
+.castling-right {
+  height: 34px;
+  min-width: 96px;
   padding: 0 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: transparent;
+  color: var(--muted);
   font-size: 13px;
   white-space: nowrap;
+  cursor: pointer;
+}
+
+.castling-right svg {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+  visibility: hidden;
+}
+
+.castling-right.on {
+  background: var(--accent-soft);
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.castling-right.on svg {
+  visibility: visible;
+}
+
+.castling-right:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+  pointer-events: none;
 }
 
 .toggle button:disabled {
@@ -945,12 +1011,22 @@ body:has(.ls-layer > .ls-piece.ls-dragging) .spare {
   .actions .btn {
     width: 100%;
   }
-  .toggle.castling {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: 100%;
+  .castling-group {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
   }
-  .toggle.castling button {
-    height: 34px;
+  .castling-right {
+    min-width: 0;
+  }
+  /* The three whole-board buttons share one line. */
+  .presets {
+    flex-wrap: nowrap;
+    gap: 6px;
+  }
+  .presets .btn {
+    padding: 0 8px;
+    font-size: 12px;
+    white-space: nowrap;
   }
 }

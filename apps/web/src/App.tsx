@@ -67,15 +67,16 @@ type Phase =
       /** Castling rights the user switched off (letters of "KQkq"). The rest follow from where the kings and rooks stand. */
       noCastling: string;
       imageUrl: string | null;
+      /** The board as fenshot read it (placement after the orientation guess), to go back to; null when set up by hand. */
+      read: { placement: string; flipped: boolean } | null;
     };
 
 const START = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR";
 const EMPTY = "8/8/8/8/8/8/8/8";
+/** Who may still castle, and to which side: a line per colour, with that colour's king as the board draws it. */
 const CASTLING = [
-  ["K", "\u2654 O-O"],
-  ["Q", "\u2654 O-O-O"],
-  ["k", "\u265A O-O"],
-  ["q", "\u265A O-O-O"],
+  { side: "white", king: "wk", rights: ["K", "Q"] },
+  { side: "black", king: "bk", rights: ["k", "q"] },
 ] as const;
 
 /** One anonymous count of something a visitor did (Umami, no cookie). Never the position or the image. */
@@ -135,6 +136,7 @@ export default function App({ lang }: { lang: string }) {
           turn: "w",
           noCastling: "",
           imageUrl: URL.createObjectURL(blob),
+          read: { placement: oriented.placement, flipped: oriented.orientation === "black" },
         });
         count("scan", { reliable: result.reliable });
       } catch (err) {
@@ -154,7 +156,7 @@ export default function App({ lang }: { lang: string }) {
   /** No picture: the editor alone, on the starting position. (fenshot.com/#setup opens it directly.) */
   const setUp = useCallback(() => {
     setTool("move");
-    setPhase({ kind: "result", scan: null, placement: START, flipped: false, turn: "w", noCastling: "", imageUrl: null });
+    setPhase({ kind: "result", scan: null, placement: START, flipped: false, turn: "w", noCastling: "", imageUrl: null, read: null });
     count("setup");
   }, []);
   useEffect(() => {
@@ -227,6 +229,13 @@ export default function App({ lang }: { lang: string }) {
   const toggleCastling = (right: string) => {
     if (!result) return;
     setPhase({ ...result, noCastling: result.noCastling.includes(right) ? result.noCastling.replace(right, "") : result.noCastling + right });
+  };
+  /** Back to the board as fenshot read it: pieces, the side at the bottom, White to move, every castling right the board allows. */
+  const changedSinceRead = !!result?.read && (result.placement !== result.read.placement || result.flipped !== result.read.flipped || result.turn !== "w" || result.noCastling !== "");
+  const backToRead = () => {
+    if (!result?.read) return;
+    count("back-to-read");
+    setPhase({ ...result, placement: result.read.placement, flipped: result.read.flipped, turn: "w", noCastling: "" });
   };
   const spareLabels = (side: "white" | "black") => ({ move: t("moveTool"), erase: t("eraseTool"), side: t(side) });
   const carry = (piece: Parameters<BoardHandle["carry"]>[0], e: PointerEvent) => boardRef.current?.carry(piece, e);
@@ -444,17 +453,36 @@ export default function App({ lang }: { lang: string }) {
                     </button>
                   </div>
                 </div>
-                <div className="control-group">
+                <div className="control-group castling-group">
                   <span className="control-label">{t("castling")}</span>
-                  <div className="toggle castling" dir="ltr">
-                    {CASTLING.map(([right, label]) => (
-                      <button key={right} className={castling.includes(right) ? "on" : ""} disabled={!possible.includes(right)} aria-pressed={castling.includes(right)} onClick={() => toggleCastling(right)}>
-                        {label}
-                      </button>
+                  <div className="castling" dir="ltr" data-testid="castling">
+                    {CASTLING.map(({ side, king, rights }) => (
+                      <div key={side} className="castling-side">
+                        <span className="castling-king" title={t(side)}>
+                          <span className={`spare-piece ls-${king}`} />
+                        </span>
+                        {rights.map((right) => {
+                          const where = right.toLowerCase() === "k" ? t("kingside") : t("queenside");
+                          const on = castling.includes(right);
+                          return (
+                            <button key={right} className={`castling-right ${on ? "on" : ""}`} disabled={!possible.includes(right)} aria-pressed={on} aria-label={`${t(side)}: ${where}`} onClick={() => toggleCastling(right)}>
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                                <path d="M20 6 9 17l-5-5" />
+                              </svg>
+                              {where}
+                            </button>
+                          );
+                        })}
+                      </div>
                     ))}
                   </div>
                 </div>
-                <div className="control-group">
+                <div className="control-group presets">
+                  {result.read && (
+                    <button className="btn btn-quiet" onClick={backToRead} disabled={!changedSinceRead} data-testid="back-to-read">
+                      {t("scannedPosition")}
+                    </button>
+                  )}
                   <button className="btn btn-quiet" onClick={() => edit(START)}>
                     {t("startPosition")}
                   </button>
