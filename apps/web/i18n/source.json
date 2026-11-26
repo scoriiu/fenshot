@@ -742,8 +742,8 @@
       "/accuracy/"
     ]
   },
-  "55102ba0a1": {
-    "text": "fenshot is MIT open source, made by the team behind <a href=\"https://kibitzo.com?ref=fenshot-accuracy\">Kibitzo</a>. <a href=\"/\">Try fenshot</a> · <a href=\"/extension/\">Browser extension</a>",
+  "d8eb5d2325": {
+    "text": "fenshot is MIT open source, made by the team behind <a href=\"https://kibitzo.com/?utm_source=fenshot&amp;utm_medium=web&amp;utm_campaign=accuracy\">Kibitzo</a>. <a href=\"/\">Try fenshot</a> · <a href=\"/extension/\">Browser extension</a>",
     "kind": "text",
     "pages": [
       "/accuracy/"
@@ -1007,8 +1007,8 @@
       "/photo-of-chess-board-to-fen/"
     ]
   },
-  "f0f12bed1f": {
-    "text": "fenshot is MIT open source. The analysis board is powered by <a href=\"https://kibitzo.com?ref=fenshot-seo\">kibitzo.com</a>, where a coach can also review your full games.",
+  "7fa3dd1027": {
+    "text": "fenshot is MIT open source. The analysis board is powered by <a href=\"https://kibitzo.com/?utm_source=fenshot&amp;utm_medium=web&amp;utm_campaign=seo\">kibitzo.com</a>, where a coach can also review your full games.",
     "kind": "text",
     "pages": [
       "/best-move-from-chess-screenshot/",

@@ -506,7 +506,7 @@ export default function App({ lang }: { lang: string }) {
                 <a
                   className="btn btn-primary"
                   data-umami-event="analyze-kibitzo"
-                  href={`https://kibitzo.com/coach/position?fen=${encodeURIComponent(fen ?? "")}${result?.flipped ? "&pov=black" : ""}&ref=fenshot-web`}
+                  href={`https://kibitzo.com/coach/position?fen=${encodeURIComponent(fen ?? "")}${result?.flipped ? "&pov=black" : ""}&utm_source=fenshot&utm_medium=web&utm_campaign=analyze`}
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -520,7 +520,7 @@ export default function App({ lang }: { lang: string }) {
 
       <footer className="footer">
         {t("footerBefore")}{" "}
-        <a href="https://kibitzo.com?ref=fenshot-web" target="_blank" rel="noreferrer">
+        <a href="https://kibitzo.com/?utm_source=fenshot&utm_medium=web&utm_campaign=footer" target="_blank" rel="noreferrer">
           kibitzo.com
         </a>
         {" · "}
